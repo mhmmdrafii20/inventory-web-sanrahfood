@@ -216,4 +216,15 @@ export interface Registry {
       response: unknown
     }
   }
+  'resep.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/resep'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
 }

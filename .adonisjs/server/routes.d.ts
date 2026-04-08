@@ -23,6 +23,7 @@ export type ScannedRoutes = {
     'updatePengguna.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'updatePengguna.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'pengguna.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'resep.index': { paramsTuple?: []; params?: {} }
   }
   GET: {
     'auth.login': { paramsTuple?: []; params?: {} }
@@ -33,6 +34,7 @@ export type ScannedRoutes = {
     'updateHakAkses.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'pengguna.index': { paramsTuple?: []; params?: {} }
     'updatePengguna.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'resep.index': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'auth.login': { paramsTuple?: []; params?: {} }
@@ -43,6 +45,7 @@ export type ScannedRoutes = {
     'updateHakAkses.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'pengguna.index': { paramsTuple?: []; params?: {} }
     'updatePengguna.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'resep.index': { paramsTuple?: []; params?: {} }
   }
   POST: {
     'auth.sign_in': { paramsTuple?: []; params?: {} }

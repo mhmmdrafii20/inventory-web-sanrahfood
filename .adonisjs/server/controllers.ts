@@ -9,4 +9,5 @@ export const controllers = {
   HakAkses: () => import('#controllers/hak_akses_controller'),
   Pengguna: () => import('#controllers/pengguna_controller'),
   Produk: () => import('#controllers/produk_controller'),
+  Resep: () => import('#controllers/resep_controller'),
 }

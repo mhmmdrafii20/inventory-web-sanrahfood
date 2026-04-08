@@ -13,6 +13,7 @@ import AuthController from '#controllers/auth_controller';
 import HakAksesController from '#controllers/hak_akses_controller';
 import PenggunaController from '#controllers/pengguna_controller';
 import ProdukController from '#controllers/produk_controller';
+import ResepController from '#controllers/resep_controller';
 
 router.get('/', [AuthController, 'login']);
 router.post('/login', [AuthController, 'signIn']);
@@ -38,3 +39,5 @@ router.post('/pengguna/create', [PenggunaController, 'create']).as('pengguna.cre
 router.get('/pengguna/edit/:id', [PenggunaController, 'edit']).as('updatePengguna.edit');
 router.put('/pengguna/update/:id', [PenggunaController, 'update']).as('updatePengguna.update');
 router.delete('/pengguna/delete/:id', [PenggunaController, 'destroy']).as('pengguna.destroy');
+
+router.get('/resep', [ResepController, 'index']).as('resep.index');

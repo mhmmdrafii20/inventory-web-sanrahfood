@@ -120,6 +120,12 @@ const routes = {
     tokens: [{"old":"/pengguna/delete/:id","type":0,"val":"pengguna","end":""},{"old":"/pengguna/delete/:id","type":0,"val":"delete","end":""},{"old":"/pengguna/delete/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['pengguna.destroy']['types'],
   },
+  'resep.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/resep',
+    tokens: [{"old":"/resep","type":0,"val":"resep","end":""}],
+    types: placeholder as Registry['resep.index']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

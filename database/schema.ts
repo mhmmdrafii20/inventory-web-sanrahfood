@@ -40,6 +40,34 @@ export class TbKategoriSchema extends BaseModel {
   declare namaKategori: string
 }
 
+export class TbPenerimaJenisNotifikasiSchema extends BaseModel {
+  static $columns = ['idPenerimaJenisNotifikasi', 'idPenerimaNotifikasi', 'idTipeNotifikasi'] as const
+  $columns = TbPenerimaJenisNotifikasiSchema.$columns
+  @column()
+  declare idPenerimaJenisNotifikasi: number
+  @column()
+  declare idPenerimaNotifikasi: number | null
+  @column()
+  declare idTipeNotifikasi: number | null
+}
+
+export class TbPenerimaNotifikasiSchema extends BaseModel {
+  static $columns = ['idPenerimaNotifikasi', 'idPengguna', 'namaPenerima', 'nomorTelepon', 'isActive', 'createdAt'] as const
+  $columns = TbPenerimaNotifikasiSchema.$columns
+  @column()
+  declare idPenerimaNotifikasi: number
+  @column()
+  declare idPengguna: number | null
+  @column()
+  declare namaPenerima: string
+  @column()
+  declare nomorTelepon: number
+  @column()
+  declare isActive: boolean
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+}
+
 export class TbPenggunaSchema extends BaseModel {
   static $columns = ['id', 'idPengguna', 'idHakAkses', 'namaPengguna', 'nomorTelepon', 'createdAt'] as const
   $columns = TbPenggunaSchema.$columns
@@ -68,6 +96,203 @@ export class TbProdukSchema extends BaseModel {
   declare namaProduk: string
   @column()
   declare satuan: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+}
+
+export class TbResepSchema extends BaseModel {
+  static $columns = ['idResep', 'namaResep', 'idProduk', 'isActive', 'batch', 'catatanTambahan', 'createdAt'] as const
+  $columns = TbResepSchema.$columns
+  @column()
+  declare idResep: number
+  @column()
+  declare namaResep: string
+  @column()
+  declare idProduk: number | null
+  @column()
+  declare isActive: boolean
+  @column()
+  declare batch: number
+  @column()
+  declare catatanTambahan: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+}
+
+export class TbResepBahanSchema extends BaseModel {
+  static $columns = ['idResepBahan', 'idResep', 'idBahanBaku', 'jumlah', 'satuan', 'createdAt'] as const
+  $columns = TbResepBahanSchema.$columns
+  @column()
+  declare idResepBahan: number
+  @column()
+  declare idResep: number | null
+  @column()
+  declare idBahanBaku: number | null
+  @column()
+  declare jumlah: number
+  @column()
+  declare satuan: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+}
+
+export class TbRiwayatNotifikasiBahanBakuSchema extends BaseModel {
+  static $columns = ['idRiwayatNotifikasiBahanBaku', 'idPenerimaNotifikasi', 'idTipeNotifikasi', 'idTemplateNotifikasi', 'idBahanBaku', 'tanggalDikirim', 'createdAt'] as const
+  $columns = TbRiwayatNotifikasiBahanBakuSchema.$columns
+  @column()
+  declare idRiwayatNotifikasiBahanBaku: number
+  @column()
+  declare idPenerimaNotifikasi: number | null
+  @column()
+  declare idTipeNotifikasi: number | null
+  @column()
+  declare idTemplateNotifikasi: number | null
+  @column()
+  declare idBahanBaku: number | null
+  @column.dateTime()
+  declare tanggalDikirim: DateTime | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+}
+
+export class TbRiwayatNotifikasiProdukSchema extends BaseModel {
+  static $columns = ['idRiwayatNotifikasiProduk', 'idPenerimaNotifikasi', 'idTipeNotifikasi', 'idTemplateNotifikasi', 'idProduk', 'tanggalDikirim', 'createdAt'] as const
+  $columns = TbRiwayatNotifikasiProdukSchema.$columns
+  @column()
+  declare idRiwayatNotifikasiProduk: number
+  @column()
+  declare idPenerimaNotifikasi: number | null
+  @column()
+  declare idTipeNotifikasi: number | null
+  @column()
+  declare idTemplateNotifikasi: number | null
+  @column()
+  declare idProduk: number | null
+  @column.dateTime()
+  declare tanggalDikirim: DateTime | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+}
+
+export class TbRiwayatProduksiSchema extends BaseModel {
+  static $columns = ['idRiwayatProduksi', 'idProduk', 'idResep', 'jumlahBatch', 'jumlahHasilProduksi', 'tanggalProduksi', 'catatanTambahan', 'createdAt', 'updatedAt'] as const
+  $columns = TbRiwayatProduksiSchema.$columns
+  @column()
+  declare idRiwayatProduksi: number
+  @column()
+  declare idProduk: number | null
+  @column()
+  declare idResep: number | null
+  @column()
+  declare jumlahBatch: number
+  @column()
+  declare jumlahHasilProduksi: number
+  @column.dateTime()
+  declare tanggalProduksi: DateTime
+  @column()
+  declare catatanTambahan: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class TbRiwayatStokBahanBakuSchema extends BaseModel {
+  static $columns = ['idRiwayatStokBb', 'idStokBahanBaku', 'jenisStok', 'selisihStok', 'stokSebelum', 'stokSesudah', 'tanggalPerubahanStok', 'createdAt'] as const
+  $columns = TbRiwayatStokBahanBakuSchema.$columns
+  @column()
+  declare idRiwayatStokBb: number
+  @column()
+  declare idStokBahanBaku: number | null
+  @column()
+  declare jenisStok: string
+  @column()
+  declare selisihStok: number
+  @column()
+  declare stokSebelum: number
+  @column()
+  declare stokSesudah: number
+  @column.dateTime()
+  declare tanggalPerubahanStok: DateTime
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+}
+
+export class TbRiwayatStokProdukSchema extends BaseModel {
+  static $columns = ['idRiwayatStokProduk', 'idStokProduk', 'jenisStok', 'selisihStok', 'stokSebelum', 'stokSesudah', 'tanggalPerubahanStok', 'createdAt'] as const
+  $columns = TbRiwayatStokProdukSchema.$columns
+  @column()
+  declare idRiwayatStokProduk: number
+  @column()
+  declare idStokProduk: number | null
+  @column()
+  declare jenisStok: string
+  @column()
+  declare selisihStok: number
+  @column()
+  declare stokSebelum: number
+  @column()
+  declare stokSesudah: number
+  @column.dateTime()
+  declare tanggalPerubahanStok: DateTime
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+}
+
+export class TbStokBahanBakuSchema extends BaseModel {
+  static $columns = ['idStokBahanBaku', 'idBahanBaku', 'jumlahStok', 'createdAt'] as const
+  $columns = TbStokBahanBakuSchema.$columns
+  @column()
+  declare idStokBahanBaku: number
+  @column()
+  declare idBahanBaku: number | null
+  @column()
+  declare jumlahStok: number
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+}
+
+export class TbStokProdukSchema extends BaseModel {
+  static $columns = ['idStokProduk', 'idProduk', 'jumlahStok', 'createdAt'] as const
+  $columns = TbStokProdukSchema.$columns
+  @column()
+  declare idStokProduk: number
+  @column()
+  declare idProduk: number | null
+  @column()
+  declare jumlahStok: number
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+}
+
+export class TbTemplateNotifikasiSchema extends BaseModel {
+  static $columns = ['idTemplateNotifikasi', 'idTipeNotifikasi', 'namaTemplate', 'konten', 'isActive', 'createdAt'] as const
+  $columns = TbTemplateNotifikasiSchema.$columns
+  @column()
+  declare idTemplateNotifikasi: number
+  @column()
+  declare idTipeNotifikasi: number | null
+  @column()
+  declare namaTemplate: string
+  @column()
+  declare konten: string
+  @column()
+  declare isActive: boolean
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+}
+
+export class TbTipeNotifikasiSchema extends BaseModel {
+  static $columns = ['idTipeNotifikasi', 'kodeNotifikasi', 'namaNotifikasi', 'isActive', 'createdAt'] as const
+  $columns = TbTipeNotifikasiSchema.$columns
+  @column()
+  declare idTipeNotifikasi: number
+  @column()
+  declare kodeNotifikasi: string
+  @column()
+  declare namaNotifikasi: string
+  @column()
+  declare isActive: boolean
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
 }

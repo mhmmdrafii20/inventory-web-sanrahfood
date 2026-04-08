@@ -37,4 +37,7 @@ export interface ApiDefinition {
     edit: typeof routes['updatePengguna.edit']
     update: typeof routes['updatePengguna.update']
   }
+  resep: {
+    index: typeof routes['resep.index']
+  }
 }
