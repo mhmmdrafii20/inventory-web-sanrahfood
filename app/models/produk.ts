@@ -1,8 +1,10 @@
 import { TbProdukSchema as ProdukSchema} from '#database/schema'
-import { belongsTo, column } from '@adonisjs/lucid/orm';
+import { belongsTo, column, hasMany } from '@adonisjs/lucid/orm';
 import Kategori from './kategori.ts'
-import type { BelongsTo } from '@adonisjs/lucid/types/relations';
+import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations';
 import { DateTime } from 'luxon';
+import Resep from './resep.ts'
+
 
 export default class Produk extends ProdukSchema {
     public static table = 'tb_produk'; 
@@ -17,6 +19,9 @@ export default class Produk extends ProdukSchema {
         foreignKey:'id_kategori',
     })
     declare kategori:BelongsTo<typeof Kategori>
+
+    @hasMany(() => Resep)
+    declare resep:HasMany<typeof Resep>
 
     @column() 
     declare nama_produk:string

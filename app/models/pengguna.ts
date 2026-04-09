@@ -1,15 +1,19 @@
 import { TbPenggunaSchema as PenggunaSchema } from "#database/schema";
 // import { BaseSchema } from "@adonisjs/lucid/schema";
-import { belongsTo, column } from "@adonisjs/lucid/orm";
+import { belongsTo, column, hasMany } from "@adonisjs/lucid/orm";
 import { DateTime } from "luxon";
 import HakAkses from "./hakAkses.ts";
-import type { BelongsTo } from "@adonisjs/lucid/types/relations";
+import type { BelongsTo, HasMany } from "@adonisjs/lucid/types/relations";
+import PenerimaNotifikasi from './penerima_notifikasi.ts'
 
 export default class Pengguna extends PenggunaSchema {
     public static table = 'public.tb_pengguna'
 
     @column({isPrimary:true, columnName:'id_pengguna'})
     declare id_pengguna:number
+
+      @hasMany(() => PenerimaNotifikasi)
+      declare penerima_notifikasi:HasMany<typeof PenerimaNotifikasi>
 
     @column({columnName:'nama_pengguna'})
     declare nama_pengguna:string

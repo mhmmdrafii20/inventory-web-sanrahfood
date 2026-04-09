@@ -1,5 +1,5 @@
 import Kategori from "#models/kategori"
-import { ProdukServices } from "#services/produkServices";
+import { ProdukServices } from "#services/ProdukServices";
 import { HttpContext } from "@adonisjs/core/http"
 
 export default class ProdukController {
