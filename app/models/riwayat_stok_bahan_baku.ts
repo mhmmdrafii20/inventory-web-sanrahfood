@@ -1,6 +1,8 @@
 import { TbRiwayatStokBahanBakuSchema as  RiwayatStokBahanBakuSchema } from '#database/schema'
-import { column } from '@adonisjs/lucid/orm'
+import { column, belongsTo } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
+import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import StokBahanBaku from './stok_bahan_baku.ts'
 
 export default class RiwayatStokBahanBaku extends RiwayatStokBahanBakuSchema {
     @column({isPrimary:true})
@@ -9,6 +11,11 @@ export default class RiwayatStokBahanBaku extends RiwayatStokBahanBakuSchema {
     @column()
     declare id_stok_bahan_baku:number
 
+    @belongsTo(() => StokBahanBaku, {
+        foreignKey:'id_stok_bahan_baku'
+    })
+    declare produk:BelongsTo<typeof StokBahanBaku>
+    
     @column()
     declare jenis_stok:Text
     

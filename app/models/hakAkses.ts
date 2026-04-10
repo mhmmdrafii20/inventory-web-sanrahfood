@@ -14,7 +14,9 @@ export default class HakAkses extends HakAksesSchema {
     @column()
     declare nama_hak_akses:string
 
-    @hasMany(() => Pengguna)
+    @hasMany(() => Pengguna, {
+        foreignKey:'id_hak_akses'
+    })
     declare pengguna:HasMany<typeof Pengguna>
 
     @column.dateTime({autoCreate:true})

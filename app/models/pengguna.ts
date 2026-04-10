@@ -12,8 +12,10 @@ export default class Pengguna extends PenggunaSchema {
     @column({isPrimary:true, columnName:'id_pengguna'})
     declare id_pengguna:number
 
-      @hasMany(() => PenerimaNotifikasi)
-      declare penerima_notifikasi:HasMany<typeof PenerimaNotifikasi>
+    @hasMany(() => PenerimaNotifikasi, {
+        foreignKey:'id_pengguna'
+    })
+    declare penerima_notifikasi:HasMany<typeof PenerimaNotifikasi>
 
     @column({columnName:'nama_pengguna'})
     declare nama_pengguna:string

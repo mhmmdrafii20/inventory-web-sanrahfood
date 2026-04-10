@@ -4,6 +4,8 @@ import Kategori from './kategori.ts'
 import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations';
 import { DateTime } from 'luxon';
 import Resep from './resep.ts'
+import RiwayatNotifikasiProduk from './riwayat_notifikasi_produk.ts';
+import RiwayatProduksi from './riwayat_produksi.ts';
 
 
 export default class Produk extends ProdukSchema {
@@ -11,6 +13,16 @@ export default class Produk extends ProdukSchema {
     
     @column({isPrimary:true})
     declare id_produk:number
+
+    @hasMany(() => RiwayatNotifikasiProduk, {
+        foreignKey:'id_produk'
+    })
+    declare riwayatNotifikasiProduk:HasMany<typeof RiwayatNotifikasiProduk>
+
+    @hasMany(() => RiwayatProduksi, {
+        foreignKey:'id_produk'
+    })
+    declare riwayatProduksi:HasMany<typeof RiwayatProduksi>
 
     @column()
     declare id_kategori:number

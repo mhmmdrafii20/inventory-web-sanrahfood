@@ -1,6 +1,8 @@
 import { TbRiwayatStokProdukSchema as RiwayatStokProdukSchema } from '#database/schema'
-import { column } from '@adonisjs/lucid/orm'
+import { column, belongsTo } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
+import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import StokProduk from './stok_produk.ts'
 
 export default class RiwayatStokProduk extends RiwayatStokProdukSchema {
 
@@ -9,6 +11,11 @@ export default class RiwayatStokProduk extends RiwayatStokProdukSchema {
 
     @column()
     declare id_stok_produk:number
+
+    @belongsTo(() => StokProduk, {
+        foreignKey:'id_stok_produk'
+    })
+    declare stokProduk:BelongsTo<typeof StokProduk>
 
     @column()
     declare jenis_stok:Text

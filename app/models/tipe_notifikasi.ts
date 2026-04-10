@@ -1,16 +1,36 @@
 import { TbTipeNotifikasiSchema as  TipeNotifikasiSchema } from '#database/schema'
 import { column, hasMany } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
-import PenerimaJenisNotifikasi from './penerima_jenis_notifikasi.ts'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
+import PenerimaJenisNotifikasi from './penerima_jenis_notifikasi.ts'
+import RiwayatNotifikasiBahanBaku from './riwayat_notifikasi_bahan_baku.ts'
+import RiwayatNotifikasiProduk from './riwayat_notifikasi_produk.ts'
+import TemplateNotifikasi from './template_notifikasi.ts'
 
 export default class TipeNotifikasi extends TipeNotifikasiSchema {
     @column({isPrimary:true})
     declare id_tipe_notifikasi:number
 
-    @hasMany(() => PenerimaJenisNotifikasi)
+    @hasMany(() => RiwayatNotifikasiBahanBaku, {
+        foreignKey:'id_tipe_notifikasi'
+    })
+    declare riwayatNotifikasiBahanBaku:HasMany<typeof RiwayatNotifikasiBahanBaku>
+
+    @hasMany(() => RiwayatNotifikasiProduk, {
+        foreignKey:'id_tipe_notifikasi'
+    })
+    declare riwayatNotifikasiProduk:HasMany<typeof RiwayatNotifikasiProduk>
+
+    @hasMany(() => PenerimaJenisNotifikasi, {
+        foreignKey:'id_tipe_notifikasi'
+    })
     declare penerima_jenis_notifikasi:HasMany<typeof PenerimaJenisNotifikasi>
 
+    @hasMany(() => TemplateNotifikasi, {
+        foreignKey:'id_tipe_notifikasi'
+    })
+    declare templateNotifikasi:HasMany<typeof TemplateNotifikasi>
+    
     @column()
     declare kode_notifikasi:string
 

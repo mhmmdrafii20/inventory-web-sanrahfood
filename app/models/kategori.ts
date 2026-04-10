@@ -12,6 +12,8 @@ export default class Kategori extends KategoriSchema {
     @column()
     declare nama_kategori:string
 
-    @hasMany(() => Produk)
+    @hasMany(() => Produk, {
+        foreignKey:'id_kategori'
+    })
     declare produk:HasMany<typeof Produk>
 }
