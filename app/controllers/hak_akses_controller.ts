@@ -3,7 +3,7 @@ import { HakAksesServices } from "#services/HakAksesServices";
 import { HttpContext } from "@adonisjs/core/http";
 export default class HakAksesController {
     async index({inertia}:HttpContext) {
-        const role = await HakAkses.all();
+        const role = await HakAkses.query().where({is_deleted:false});
         return inertia.render('hakAkses', {role});
     }
     async create({request, response, session}:HttpContext){
@@ -41,9 +41,11 @@ export default class HakAksesController {
     async destroy({response, params, session}:HttpContext){
         try{
             const role = await HakAkses.find(params.id);
-            await role?.delete();
+            const dataRole = role?.$attributes;
+
+            await HakAksesServices.delete(params.id)
     
-            session.flash('success', `${role?.nama_hak_akses} berhasil dihapus`);
+            session.flash('success', `${dataRole?.nama_hak_akses} berhasil dihapus`);
             return response.redirect().toRoute('hakAkses.index');
         }catch(error){
             session.flash('error', 'Terjadi kesalahan saat delete.');

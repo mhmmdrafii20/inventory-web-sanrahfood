@@ -18,6 +18,11 @@ export interface ApiDefinition {
   produk: {
     index: typeof routes['produk.index']
     create: typeof routes['produk.create']
+    destroy: typeof routes['produk.destroy']
+  }
+  updateProduk: {
+    edit: typeof routes['updateProduk.edit']
+    update: typeof routes['updateProduk.update']
   }
   hakAkses: {
     index: typeof routes['hakAkses.index']

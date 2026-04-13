@@ -51,7 +51,7 @@ export default function HakAkses () {
                 </Modal>
                 <div className="flex flex-row gap-5 ">
                     <input placeholder="Cari Bahan Baku...."></input>
-                    <ActionButton type="search" size="lg">
+                    <ActionButton as="button" type="update" size="lg">
                         <FaSearch/>
                     </ActionButton>
                 </div>
@@ -70,7 +70,7 @@ export default function HakAkses () {
                             <td className="border border-gray-300 py-3 px-5">
                                 <div className="flex flex-row gap-2 justify-center">
                                     <Link route="updateHakAkses.edit" routeParams={{id:items.idHakAkses}}> 
-                                        <ActionButton type="update" size="sm">
+                                        <ActionButton as="div" className="flex items-center" type="update" size="sm">
                                             <FaPen/>
                                         </ActionButton>
                                     </Link>

@@ -9,4 +9,8 @@ export class PenggunaServices {
         const data = await Pengguna.query().where('id', params).update(payload);
         return data;
     }
+    static async delete(params:number){
+        const data = await Pengguna.query().where('id_pengguna', params).update({is_deleted:true});
+        return data;
+    }
 }

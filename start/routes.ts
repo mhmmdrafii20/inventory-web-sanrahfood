@@ -26,7 +26,9 @@ router.delete('/bahan/delete/:id', [BahanController, 'destroy']).as("bahan.destr
 
 router.get('/produk', [ProdukController, 'index' ]).as('produk.index');
 router.post('/produk/create', [ProdukController, 'create']).as('produk.create');
-
+router.get('/produk/edit/:id', [ProdukController, 'edit']).as('updateProduk.edit');
+router.put('/produk/update/:id', [ProdukController, 'update']).as('updateProduk.update');
+router.delete('produk/delete/:id', [ProdukController, 'destroy']).as('produk.destroy');
 
 router.get('/role', [HakAksesController, 'index']).as('hakAkses.index');
 router.post('/role/create', [HakAksesController, 'create']).as('hakAkses.create');

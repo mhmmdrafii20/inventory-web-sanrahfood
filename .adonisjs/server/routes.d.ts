@@ -13,6 +13,9 @@ export type ScannedRoutes = {
     'bahan.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'produk.index': { paramsTuple?: []; params?: {} }
     'produk.create': { paramsTuple?: []; params?: {} }
+    'updateProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'updateProduk.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'produk.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'hakAkses.index': { paramsTuple?: []; params?: {} }
     'hakAkses.create': { paramsTuple?: []; params?: {} }
     'updateHakAkses.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -30,6 +33,7 @@ export type ScannedRoutes = {
     'bahan.index': { paramsTuple?: []; params?: {} }
     'updateBahan.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'produk.index': { paramsTuple?: []; params?: {} }
+    'updateProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'hakAkses.index': { paramsTuple?: []; params?: {} }
     'updateHakAkses.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'pengguna.index': { paramsTuple?: []; params?: {} }
@@ -41,6 +45,7 @@ export type ScannedRoutes = {
     'bahan.index': { paramsTuple?: []; params?: {} }
     'updateBahan.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'produk.index': { paramsTuple?: []; params?: {} }
+    'updateProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'hakAkses.index': { paramsTuple?: []; params?: {} }
     'updateHakAkses.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'pengguna.index': { paramsTuple?: []; params?: {} }
@@ -56,11 +61,13 @@ export type ScannedRoutes = {
   }
   PUT: {
     'updateBahan.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'updateProduk.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'updateHakAkses.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'updatePengguna.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   DELETE: {
     'bahan.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'produk.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'hakAkses.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'pengguna.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }

@@ -6,15 +6,14 @@ import { PenggunaServices } from '#services/PenggunaServices';
 
 export default class PenggunaController {
     async index ({inertia}:HttpContext) {
-        const role = await HakAkses.all();
-        const pengguna = await Pengguna.query().preload('hakAkses');
+        const role = await HakAkses.query().where({is_deleted:false});
+        const pengguna = await Pengguna.query().preload('hakAkses').where({is_deleted:false});
         return inertia.render('pengguna', {role, pengguna});
     }
     async create({response, request, session}:HttpContext){
         try{
             const userPayload = request.only(['email', 'password']);
             const additionalUserPayload = request.only(['nama_pengguna', 'nomor_telepon', 'id_hak_akses']);
-            console.log(additionalUserPayload);
 
             const {data, error} = await supabase.auth.admin.createUser({
                 email:userPayload.email,
@@ -37,7 +36,7 @@ export default class PenggunaController {
     async edit({inertia, params}:HttpContext) {
         const pengguna = await Pengguna.find(params.id);
         const dataPengguna = pengguna?.$attributes;
-        const role = await HakAkses.all();
+        const role = await HakAkses.query().where({is_deleted:false});
         const auth = await supabase.auth.admin.getUserById(pengguna!.$attributes.id_pengguna);
 
         return inertia.render('updatePengguna', {dataPengguna, role, auth});
@@ -67,15 +66,12 @@ export default class PenggunaController {
     }
     async destroy({response, session, params}:HttpContext){
         try{
-
-            const {error} = await supabase.auth.admin.deleteUser(params.id);
-
-            if(error) throw new Error(error.message);
-
             const pengguna = await Pengguna.find(params.id);
-            await pengguna?.delete();
-            
-            session.flash('success', `Berhasil dihapus`);
+            const dataPengguna = pengguna?.$attributes;
+
+            await PenggunaServices.delete(params.id);
+
+            session.flash('success', `${dataPengguna?.nama_pengguna} Berhasil dihapus`);
             return response.redirect().toRoute('pengguna.index');
         }catch(error){
             session.flash('error', 'Terjadi kesalahan saat delete.');

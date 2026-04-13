@@ -106,6 +106,39 @@ export interface Registry {
       response: unknown
     }
   }
+  'updateProduk.edit': {
+    methods: ["GET","HEAD"]
+    pattern: '/produk/edit/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'updateProduk.update': {
+    methods: ["PUT"]
+    pattern: '/produk/update/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'produk.destroy': {
+    methods: ["DELETE"]
+    pattern: '/produk/delete/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
   'hakAkses.index': {
     methods: ["GET","HEAD"]
     pattern: '/role'

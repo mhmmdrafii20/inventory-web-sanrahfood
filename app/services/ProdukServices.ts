@@ -5,8 +5,12 @@ export class ProdukServices {
         const data = await Produk.create(payload);
         return data;
     }
-    // static async update(payload:{id:number, id_pengguna:string,  id_hak_akses:number, nama_pengguna:string, nomor_telepon:string}, params:number){
-    //     const data = await Pengguna.query().where('id', params).update(payload);
-    //     return data;
-    // }
+    static async update(payload:{id_produk:number, id_kategori:number,  nama_produk:string, satuan:string}, params:number){
+        const data = await Produk.query().where('id_produk', params).update(payload);
+        return data;
+    }
+    static async delete(params:number){
+        const data = await Produk.query().where('id_produk', params).update({is_deleted:true});
+        return data;
+    }
 }

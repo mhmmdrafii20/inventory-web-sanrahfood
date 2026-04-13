@@ -74,7 +74,7 @@ export default function Bahan () {
                             <td className="border border-gray-300 py-3 px-5">
                                 <div className="flex flex-row gap-2 justify-center">
                                     <Link route='updateBahan.edit' routeParams={{id:items.idBahanBaku}}> 
-                                        <ActionButton type="update" size="sm">
+                                      <ActionButton as="div" className="flex items-center" type="update" size="sm">
                                             <FaPen/>
                                         </ActionButton>
                                     </Link>

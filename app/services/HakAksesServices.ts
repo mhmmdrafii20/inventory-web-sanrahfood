@@ -9,4 +9,8 @@ export class HakAksesServices {
         const data = await HakAkses.query().where('id_hak_akses', params).update(payload);
         return data;
     }
+    static async delete(params:number){
+        const data = await HakAkses.query().where('id_hak_akses', params).update({is_deleted:true});
+        return data;
+    }
 }

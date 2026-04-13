@@ -8,11 +8,11 @@ import Paragraph from "~/components/ui/Paragraph";
 import {usePage} from "@inertiajs/react";
 import ActionButton from "~/components/ui/Button/ActionButton";
 import { FaSearch, FaPen, FaTrash } from "react-icons/fa";
+import { Link } from "@adonisjs/inertia/react";
 
 export default function Produk () {
     const [open, setIsOpen] = useState(false);
     const {kategori, produk} = usePage<{kategori:{idKategori:number, namaKategori:string} [], produk:{idProduk:number, namaProduk:string, satuan:string, kategori:{namaKategori:string}} []}>().props;
-    console.log(produk)
     const {data, setData, post, delete:destroy, processing, errors, reset} = useForm({
         nama_produk:"",
         satuan:"",
@@ -28,7 +28,9 @@ export default function Produk () {
             }
         })
     }
-
+    function handleDelete (id:number) {
+        destroy(`/produk/delete/${id}`);
+    }
     return (
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold">Manajemen Produk</Heading>
@@ -62,7 +64,7 @@ export default function Produk () {
                     </Modal>
                     <div className="flex flex-row gap-5 ">
                         <input placeholder="Cari Produk..."></input>
-                            <ActionButton type="search" size="lg">
+                            <ActionButton as="button" type="update" size="lg">
                                 <FaSearch/>
                             </ActionButton>
                     </div>
@@ -84,12 +86,12 @@ export default function Produk () {
                         <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.satuan}</Paragraph></td>
                         <td className="border border-gray-300 py-3 px-5">
                             <div className="flex flex-row gap-2 justify-center">
-                                 {/* <Link route='updateBahan.edit' routeParams={}>  */}
-                                <ActionButton type="update" size="sm">
-                                    <FaPen/>
-                                </ActionButton>
-                                {/* </Link> */}
-                                <ActionButton type="delete" size="sm"><FaTrash/></ActionButton>
+                                <Link route='updateProduk.edit' routeParams={{id:items.idProduk}}> 
+                                    <ActionButton className="flex items-center" as="div" type="update" size="sm">
+                                        <FaPen/>
+                                    </ActionButton>
+                                </Link>
+                                <ActionButton type="delete" size="sm" onClick={() => handleDelete(items.idProduk)}><FaTrash/></ActionButton>
                         </div>
                     </td>
                  </tr>

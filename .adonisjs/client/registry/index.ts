@@ -60,6 +60,24 @@ const routes = {
     tokens: [{"old":"/produk/create","type":0,"val":"produk","end":""},{"old":"/produk/create","type":0,"val":"create","end":""}],
     types: placeholder as Registry['produk.create']['types'],
   },
+  'updateProduk.edit': {
+    methods: ["GET","HEAD"],
+    pattern: '/produk/edit/:id',
+    tokens: [{"old":"/produk/edit/:id","type":0,"val":"produk","end":""},{"old":"/produk/edit/:id","type":0,"val":"edit","end":""},{"old":"/produk/edit/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['updateProduk.edit']['types'],
+  },
+  'updateProduk.update': {
+    methods: ["PUT"],
+    pattern: '/produk/update/:id',
+    tokens: [{"old":"/produk/update/:id","type":0,"val":"produk","end":""},{"old":"/produk/update/:id","type":0,"val":"update","end":""},{"old":"/produk/update/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['updateProduk.update']['types'],
+  },
+  'produk.destroy': {
+    methods: ["DELETE"],
+    pattern: '/produk/delete/:id',
+    tokens: [{"old":"/produk/delete/:id","type":0,"val":"produk","end":""},{"old":"/produk/delete/:id","type":0,"val":"delete","end":""},{"old":"/produk/delete/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['produk.destroy']['types'],
+  },
   'hakAkses.index': {
     methods: ["GET","HEAD"],
     pattern: '/role',

@@ -43,7 +43,8 @@ export default class BahanController {
     async destroy({response, params, session}:HttpContext){
         try{
             const bahan = await Bahan.find(params.id);
-            await bahan?.delete();
+            
+            await BahanService.delete(params.id);
 
             session.flash('success', `${bahan?.nama_bahan_baku} berhasil dihapus`);
             return response.redirect().toRoute('bahan.index');

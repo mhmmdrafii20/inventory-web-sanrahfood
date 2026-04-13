@@ -8,4 +8,8 @@ export class BahanService {
         const data = await Bahan.query().where('id_bahan_baku', params).update(payload);
         return data;
     }
+    static async delete(params:number){
+        const data = await Bahan.query().where('id_bahan_baku', params).update({is_deleted:true});
+        return data;
+    }
 }
