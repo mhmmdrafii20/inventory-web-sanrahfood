@@ -1,7 +1,7 @@
 import { HTMLAttributes, ReactNode } from "react"
 
 type ActionType = 'search' | 'update' | 'delete';
-type SizeType = 'sm' | 'md' | 'lg';
+type SizeType = 'xs' | 'sm' | 'md' | 'lg';
 
 type Params = HTMLAttributes<HTMLButtonElement> & {
     children:ReactNode,
@@ -16,6 +16,7 @@ const ActionButton = ({type, size, children, ...props}:Params) => {
         delete:"bg-red-500 text-white",
     }
     const actionSize = {
+        xs:"px-1 h-5",
         sm:"px-2 h-7.5",
         md:"px-2 h-8",
         lg:"px-4 h-10"

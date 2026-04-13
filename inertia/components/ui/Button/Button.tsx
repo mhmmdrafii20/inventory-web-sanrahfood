@@ -9,14 +9,14 @@ type Params = ButtonHTMLAttributes<HTMLButtonElement> & {
     size:SizeType,
 }
 
-const Button = ({variant, size, children, ...props }:Params) => {
+const Button = ({variant, size, children, className, ...props }:Params) => {
     const model = {
         1: "bg-medium-teal text-[16px] text-white cursor-pointer",
     }
     const sizes = {
         md:"px-4 py-2",
     }
-    return <button {...props} className={`${model[variant]} ${sizes[size]}`}>{children}</button>
+    return <button {...props} className={`${model[variant]} ${sizes[size]} ${className ?? ''}`} >{children}</button>
 }
 
 export default Button;

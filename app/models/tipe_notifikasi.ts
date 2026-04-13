@@ -8,7 +8,7 @@ import RiwayatNotifikasiProduk from './riwayat_notifikasi_produk.ts'
 import TemplateNotifikasi from './template_notifikasi.ts'
 
 export default class TipeNotifikasi extends TipeNotifikasiSchema {
-    @column({isPrimary:true})
+    @column({isPrimary:true, columnName:'id_tipe_notifikasi'})
     declare id_tipe_notifikasi:number
 
     @hasMany(() => RiwayatNotifikasiBahanBaku, {
@@ -31,14 +31,14 @@ export default class TipeNotifikasi extends TipeNotifikasiSchema {
     })
     declare templateNotifikasi:HasMany<typeof TemplateNotifikasi>
     
-    @column()
+    @column({columnName:'kode_notifikasi'})
     declare kode_notifikasi:string
 
-    @column()
+    @column({columnName:'nama_notifikasi'})
     declare nama_notifikasi:string
 
-    @column()
-    declare is_active:boolean
+    @column({columnName:'is_deleted'})
+    declare is_deleted:boolean
 
     @column.dateTime({autoCreate:true})
     declare created_at:DateTime

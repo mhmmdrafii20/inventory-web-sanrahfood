@@ -38,7 +38,7 @@ export default function Sidebar () {
                     </li>
                     <li className="flex flex-row gap-2 items-center">
                         <GrNotes size={20} className="text-white"/>
-                        <Link href="/bahan"><Heading level={2} color="dark_grey">Resep</Heading></Link>
+                        <Link href="/resep"><Heading level={2} color="dark_grey">Resep</Heading></Link>
                     </li>
                     <li className="flex flex-row gap-2 items-center">
                         <TbCubePlus size={20} className="text-white"/>
@@ -50,7 +50,7 @@ export default function Sidebar () {
                     </li>
                     <li className="flex flex-row gap-2 items-center">
                         <TbPackage size={20} className="text-white"/>
-                        <Link href="/bahan"><Heading level={2} color="dark_grey">Produk</Heading></Link>
+                        <Link href="/produk"><Heading level={2} color="dark_grey">Produk</Heading></Link>
                     </li>
                     <li className="flex flex-row gap-2 items-center">
                         <TbCategory size={20} className="text-white"/>

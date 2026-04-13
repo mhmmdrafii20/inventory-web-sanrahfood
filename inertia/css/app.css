@@ -9,6 +9,8 @@
     --color-deep-cyan:#0f7c99;
     --color-dark-grey:#a9a9a9;
     --color-dark-slate-grey:#2c3e50;
+    --color-status-false:#cc0808;
+    --color-status-true:#116902;
 }
 
 * {

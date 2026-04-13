@@ -7,23 +7,24 @@ import { useForm } from "@inertiajs/react";
 import Paragraph from "~/components/ui/Paragraph";
 import {usePage} from "@inertiajs/react";
 import ActionButton from "~/components/ui/Button/ActionButton";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaPen, FaTrash } from "react-icons/fa";
 
 export default function Produk () {
     const [open, setIsOpen] = useState(false);
-    const {kategori} = usePage<{kategori:{idKategori:number, namaKategori:string} []}>().props;
-
+    const {kategori, produk} = usePage<{kategori:{idKategori:number, namaKategori:string} [], produk:{idProduk:number, namaProduk:string, satuan:string, kategori:{namaKategori:string}} []}>().props;
+    console.log(produk)
     const {data, setData, post, delete:destroy, processing, errors, reset} = useForm({
-        id_kategori: "",
         nama_produk:"",
         satuan:"",
+        id_kategori: "",
     });
     
     function handleCreate (e:SubmitEvent) {
         e.preventDefault();
         post('/produk/create', {
             onSuccess: () => {
-                reset()
+                setIsOpen(false);
+                reset();
             }
         })
     }
@@ -49,7 +50,7 @@ export default function Produk () {
                                 <div className="flex flex-col gap-3">
                                         <Paragraph size="lg">Kategori Produk</Paragraph>
                                         <select name="id_kategori" onChange={(e) => setData('id_kategori', e.target.value)}>
-                                            <option value="">Pilih Hak Akses</option>
+                                            <option value="">Pilih Kategori</option>
                                              {kategori.map(items => (
                                                 <option key={items.idKategori} value={items.idKategori} >{items.namaKategori}</option>
                                             ))}
@@ -66,7 +67,35 @@ export default function Produk () {
                             </ActionButton>
                     </div>
              </div>
-
+            <table className="w-full border-collapse mt-5 bg-white">
+                <thead>
+                    <tr>
+                        <th className="border border-gray-300 py-3">Nama Produk</th>
+                        <th className="border border-gray-300 py-3">Kategori Produk</th>
+                        <th className="border border-gray-300 py-3">Satuan</th>
+                        <th className="border border-gray-300 py-3">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {produk.map(items => (
+                    <tr key={items.idProduk}>
+                        <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.namaProduk}</Paragraph></td>
+                        <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.kategori.namaKategori}</Paragraph></td>
+                        <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.satuan}</Paragraph></td>
+                        <td className="border border-gray-300 py-3 px-5">
+                            <div className="flex flex-row gap-2 justify-center">
+                                 {/* <Link route='updateBahan.edit' routeParams={}>  */}
+                                <ActionButton type="update" size="sm">
+                                    <FaPen/>
+                                </ActionButton>
+                                {/* </Link> */}
+                                <ActionButton type="delete" size="sm"><FaTrash/></ActionButton>
+                        </div>
+                    </td>
+                 </tr>
+                     ))} 
+                </tbody>
+            </table>
         </>
     )
 }
