@@ -7,7 +7,7 @@ import RiwayatNotifikasiBahanBaku from './riwayat_notifikasi_bahan_baku.ts'
 import RiwayatNotifikasiProduk from './riwayat_notifikasi_produk.ts';
 
 export default class PenerimaNotifikasi extends PenerimaNotifikasiSchema {
-    @column({isPrimary:true})
+    @column({isPrimary:true, columnName:'id_penerima_notifikasi'})
     declare id_penerima_notifikasi:number
 
     @hasMany(() => RiwayatNotifikasiBahanBaku, {
@@ -20,7 +20,7 @@ export default class PenerimaNotifikasi extends PenerimaNotifikasiSchema {
     })
     declare riwayatNotifikasiProduk:HasMany<typeof RiwayatNotifikasiProduk>
 
-    @column()
+    @column({columnName:'id_pengguna'})
     declare id_pengguna:number
 
     @belongsTo(() => Pengguna, {
@@ -28,14 +28,14 @@ export default class PenerimaNotifikasi extends PenerimaNotifikasiSchema {
     })
     declare pengguna:BelongsTo<typeof Pengguna>
 
-    @column()
+    @column({columnName:'nama_penerima'})
     declare nama_penerima:string
 
-    @column()
+    @column({columnName:'nomor_telepon'})
     declare nomor_telepon:number
 
-    @column()
-    declare is_active:boolean
+    @column({columnName:'is_deleted'})
+    declare is_deleted:boolean
 
     @column.dateTime({autoCreate:true})
     declare created_at:DateTime

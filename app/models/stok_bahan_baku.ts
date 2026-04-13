@@ -7,7 +7,7 @@ import RiwayatStokBahanBaku from './riwayat_stok_bahan_baku.ts'
 
 export default class StokBahanBaku extends StokBahanBakuSchema {
     
-    @column({isPrimary:true})
+    @column({isPrimary:true, columnName:'id_stok_bahan_baku'})
     declare id_stok_bahan_baku:number
 
     @hasMany(() => RiwayatStokBahanBaku, {
@@ -15,8 +15,7 @@ export default class StokBahanBaku extends StokBahanBakuSchema {
     })
     declare riwayatStokBahanBaku:HasMany<typeof RiwayatStokBahanBaku>
     
-
-    @column()
+    @column({columnName:'id_bahan_baku'})
     declare id_bahan_baku:number
 
     @belongsTo(() => Bahan, {
@@ -24,7 +23,7 @@ export default class StokBahanBaku extends StokBahanBakuSchema {
     })
     declare bahan:BelongsTo<typeof Bahan>
 
-    @column()
+    @column({columnName:'jumlah_stok'})
     declare jumlah_stok:number
 
     @column.dateTime({autoCreate:true})

@@ -11,7 +11,7 @@ import RiwayatProduksi from './riwayat_produksi.ts';
 export default class Produk extends ProdukSchema {
     public static table = 'tb_produk'; 
     
-    @column({isPrimary:true})
+    @column({isPrimary:true, columnName:'id_produk'})
     declare id_produk:number
 
     @hasMany(() => RiwayatNotifikasiProduk, {
@@ -24,7 +24,7 @@ export default class Produk extends ProdukSchema {
     })
     declare riwayatProduksi:HasMany<typeof RiwayatProduksi>
 
-    @column()
+    @column({columnName:'id_kategori'})
     declare id_kategori:number
 
     @belongsTo(() => Kategori, {
@@ -35,11 +35,14 @@ export default class Produk extends ProdukSchema {
     @hasMany(() => Resep)
     declare resep:HasMany<typeof Resep>
 
-    @column() 
+    @column({columnName:'nama_produk'}) 
     declare nama_produk:string
 
-    @column()
+    @column({columnName:'satuan'})
     declare satuan:string
+
+    @column({columnName:'is_deleted'})
+    declare is_deleted:boolean
 
     @column.dateTime({autoCreate:true})
     declare created_at:DateTime

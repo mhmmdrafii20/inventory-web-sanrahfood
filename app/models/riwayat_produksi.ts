@@ -6,10 +6,10 @@ import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import Resep from './resep.ts'
 
 export default class RiwayatProduksi extends RiwayatProduksiSchema {
-    @column ({isPrimary:true})
+    @column ({isPrimary:true, columnName:'id_riwayat_produksi'})
     declare id_riwayat_produksi:number
 
-    @column()
+    @column({columnName:'id_produk'})
     declare id_produk:number
 
     @belongsTo(() => Produk, {
@@ -17,7 +17,7 @@ export default class RiwayatProduksi extends RiwayatProduksiSchema {
     })
     declare produk:BelongsTo<typeof Produk>
 
-    @column()
+    @column({columnName:'id_resep'})
     declare id_resep:number
 
     @belongsTo(() => Resep, {
@@ -25,16 +25,16 @@ export default class RiwayatProduksi extends RiwayatProduksiSchema {
     })
     declare resep:BelongsTo<typeof Resep>
 
-    @column()
+    @column({columnName:'jumlah_batch'})
     declare jumlah_batch:number
 
-    @column()
+    @column({columnName:'jumlah_hasil_produksi'})
     declare jumlah_hasil_produksi:number
 
-    @column.dateTime({autoCreate:false})
+    @column.dateTime({autoCreate:false, columnName:'tanggal_produksi'})
     declare tanggal_produksi:DateTime
 
-    @column()
+    @column({columnName:'catatan_tambahan'})
     declare catatan_tambahan:string
         
     @column.dateTime({autoCreate:true})

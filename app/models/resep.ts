@@ -6,7 +6,7 @@ import ResepBahan from './resep_bahan.ts'
 import RiwayatProduksi from './riwayat_produksi.ts';
 
 export default class Resep extends ResepSchema {
-    @column({isPrimary:true})
+    @column({isPrimary:true, columnName:'id_resep'})
     declare id_resep:number
 
     @hasMany(() => ResepBahan, {
@@ -19,10 +19,10 @@ export default class Resep extends ResepSchema {
     })
     declare riwayatProduksi:HasMany<typeof RiwayatProduksi>
 
-    @column()
+    @column({columnName:'nama_resep'})
     declare nama_resep:string
 
-    @column()
+    @column({columnName:'id_produk'})
     declare id_produk:number
 
     @belongsTo(() => Produk, {
@@ -30,5 +30,7 @@ export default class Resep extends ResepSchema {
     })
     declare produk:BelongsTo<typeof Produk>
 
+    @column({columnName:'is_deleted'})
+    declare is_deleted:boolean
     
 }

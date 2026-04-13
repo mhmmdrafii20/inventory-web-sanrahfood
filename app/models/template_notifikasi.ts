@@ -7,7 +7,7 @@ import RiwayatStokBahanBaku from './riwayat_stok_bahan_baku.ts'
 import RiwayatNotifikasiProduk from './riwayat_notifikasi_produk.ts'
 
 export default class TemplateNotifikasi extends TemplateNotifikasiSchema {
-    @column({isPrimary:true})
+    @column({isPrimary:true, columnName:'id_template_notifikasi'})
     declare id_template_notifikasi:number
 
     @hasMany(() => RiwayatStokBahanBaku, {
@@ -20,7 +20,7 @@ export default class TemplateNotifikasi extends TemplateNotifikasiSchema {
      })
     declare riwayatNotifikasiProduk:HasMany<typeof RiwayatNotifikasiProduk>
 
-    @column()
+    @column({columnName:'id_tipe_notifikasi'})
     declare id_tipe_notifikasi:number
 
     @belongsTo(() => TipeNotifikasi, {
@@ -28,14 +28,14 @@ export default class TemplateNotifikasi extends TemplateNotifikasiSchema {
     })
     declare produk:BelongsTo<typeof TipeNotifikasi>
 
-    @column()
+    @column({columnName:'nama_template'})
     declare nama_template:string
 
-    @column()
+    @column({columnName:'konten'})
     declare konten:string
 
-    @column()
-    declare is_active:boolean
+    @column({columnName:'is_deleted'})
+    declare is_deleted:boolean
 
     @column.dateTime({autoCreate:true})
     declare created_at:DateTime

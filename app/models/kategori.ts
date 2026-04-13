@@ -6,14 +6,17 @@ import  type { HasMany } from "@adonisjs/lucid/types/relations";
 export default class Kategori extends KategoriSchema {
     public static table = 'tb_kategori'
 
-    @column({isPrimary:true})
+    @column({isPrimary:true, columnName:'id_kategori'})
     declare id_kategori:number
 
-    @column()
+    @column({columnName:'nama_kategori'})
     declare nama_kategori:string
 
     @hasMany(() => Produk, {
         foreignKey:'id_kategori'
     })
     declare produk:HasMany<typeof Produk>
+
+    @column({columnName:'is_deleted'})
+    declare is_deleted:boolean
 }

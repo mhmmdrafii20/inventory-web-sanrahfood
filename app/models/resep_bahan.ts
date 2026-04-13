@@ -5,10 +5,10 @@ import Resep from './resep.ts'
 import Bahan from './bahan.ts'
 
 export default class ResepBahan extends ResepBahanSchema {
-    @column({isPrimary:true})
+    @column({isPrimary:true, columnName:'id_resep_bahan'})
     declare id_resep_bahan:number
 
-    @column()
+    @column({columnName:'id_resep'})
     declare id_resep:number
 
     @belongsTo(() => Resep, {
@@ -16,7 +16,7 @@ export default class ResepBahan extends ResepBahanSchema {
     })
     declare resep:BelongsTo<typeof Resep>
 
-    @column()
+    @column({columnName:'id_bahan_baku'})
     declare id_bahan_baku:number
     
     @belongsTo(() => Bahan, {
@@ -24,10 +24,10 @@ export default class ResepBahan extends ResepBahanSchema {
     })
     declare bahan:BelongsTo<typeof Bahan>
 
-    @column()
+    @column({columnName:'jumlah'})
     declare jumlah:number
 
-    @column()
+    @column({columnName:'satuan'})
     declare satuan:string
 
 }

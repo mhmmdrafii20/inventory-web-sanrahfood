@@ -8,10 +8,10 @@ import TemplateNotifikasi from './template_notifikasi.ts'
 import Bahan from './bahan.ts'
 
 export default class RiwayatNotifikasiBahanBaku extends RiwayatNotifikasiBahanBakuSchema {
-    @column({isPrimary:true})
+    @column({isPrimary:true, columnName:'id_riwayat_notifikasi_bahan_baku'})
     declare id_riwayat_notifikasi_bahan_baku:number
 
-    @column()
+    @column({columnName:'id_penerima_notifikasi'})
     declare id_penerima_notifikasi:number
 
     @belongsTo(() => PenerimaNotifikasi, {
@@ -19,7 +19,7 @@ export default class RiwayatNotifikasiBahanBaku extends RiwayatNotifikasiBahanBa
     })
     declare penerima_notifikasi:BelongsTo<typeof PenerimaNotifikasi>
 
-    @column()
+    @column({columnName:'id_tipe_notifikasi'})
     declare id_tipe_notifikasi:number
 
     @belongsTo(() => TipeNotifikasi, {
@@ -27,7 +27,7 @@ export default class RiwayatNotifikasiBahanBaku extends RiwayatNotifikasiBahanBa
     })
     declare tipe_notifikasi:BelongsTo<typeof TipeNotifikasi>
 
-    @column()
+    @column({columnName:'id_template_notifikasi'})
     declare id_template_notifikasi:number
 
     @belongsTo(() => TemplateNotifikasi, {
@@ -35,7 +35,7 @@ export default class RiwayatNotifikasiBahanBaku extends RiwayatNotifikasiBahanBa
     })
     declare template_notifikasi:BelongsTo<typeof TemplateNotifikasi>
 
-    @column()
+    @column({columnName:'id_bahan_baku'})
     declare id_bahan_baku:number
 
     @belongsTo(() => Bahan, {
@@ -43,7 +43,7 @@ export default class RiwayatNotifikasiBahanBaku extends RiwayatNotifikasiBahanBa
     })
     declare bahan:BelongsTo<typeof Bahan>
 
-    @column.dateTime({autoCreate:false})
+    @column.dateTime({autoCreate:false, columnName:'tanggal_dikirim'})
     declare tanggal_dikirim:DateTime
 
     @column.dateTime({autoCreate:true})

@@ -14,6 +14,7 @@ export default class PenggunaController {
         try{
             const userPayload = request.only(['email', 'password']);
             const additionalUserPayload = request.only(['nama_pengguna', 'nomor_telepon', 'id_hak_akses']);
+            console.log(additionalUserPayload);
 
             const {data, error} = await supabase.auth.admin.createUser({
                 email:userPayload.email,

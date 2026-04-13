@@ -6,7 +6,7 @@ import Produk from './produk.ts'
 import RiwayatStokProduk from './riwayat_stok_produk.ts'
 
 export default class StokProduk extends StokProdukSchema {
-    @column({isPrimary:true})
+    @column({isPrimary:true, columnName:'id_stok_produk'})
     declare id_stok_produk:number
 
     @hasMany(() => RiwayatStokProduk, {
@@ -14,7 +14,7 @@ export default class StokProduk extends StokProdukSchema {
      })
     declare riwayatStokProduk:HasMany<typeof RiwayatStokProduk>
     
-    @column()
+    @column({columnName:'id_produk'})
     declare id_produk:number
 
     @belongsTo(() => Produk, {
@@ -22,7 +22,7 @@ export default class StokProduk extends StokProdukSchema {
     })
     declare produk:BelongsTo<typeof Produk>
 
-    @column()
+    @column({columnName:'jumlah_stok'})
     declare jumlah_stok:number
     
     @column.dateTime({autoCreate:true})

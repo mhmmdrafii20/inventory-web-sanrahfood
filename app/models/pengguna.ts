@@ -31,6 +31,9 @@ export default class Pengguna extends PenggunaSchema {
     @column({columnName:'nomor_telepon'})
     declare nomor_telepon:number
 
+    @column({columnName:'is_deleted'})
+    declare is_deleted:boolean
+
     @column.dateTime({autoCreate:true})
     declare created_at:DateTime
 }
