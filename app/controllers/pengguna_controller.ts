@@ -18,7 +18,7 @@ export default class PenggunaController {
             const {data, error} = await supabase.auth.admin.createUser({
                 email:userPayload.email,
                 password:userPayload.password,
-                email_confirm:false
+                email_confirm:true
             });
             const user = await Pengguna.findBy('id_pengguna', data.user?.id);
             if(error) throw Error(error.message);
@@ -43,19 +43,17 @@ export default class PenggunaController {
     }
     async update({response, request,  session, params}:HttpContext){
         try{
-             //ambil request dari frontend
             const userPayload = request.only(['email', 'password']);
             const additionalPayload = request.only(['id', 'id_pengguna', 'id_hak_akses', 'nama_pengguna', 'nomor_telepon']);
-            //update user table by id
+
             const {error} = await supabase.auth.admin.updateUserById(params.id, {
                 email:userPayload.email,
                 password:userPayload.password
             })
-            //cek error
             if(error) throw new Error(error.message);
-            //update profile user (username, role, nomor telepon)
+
             await  PenggunaServices.update(additionalPayload, additionalPayload.id);
-            //flash message success.
+
             session.flash('success', 'Berhasil melakukan perubahan');
             response.redirect().toRoute('pengguna.index');
         }catch(error) {
@@ -67,11 +65,11 @@ export default class PenggunaController {
     async destroy({response, session, params}:HttpContext){
         try{
             const pengguna = await Pengguna.find(params.id);
-            const dataPengguna = pengguna?.$attributes;
 
             await PenggunaServices.delete(params.id);
+            await supabase.auth.signOut();
 
-            session.flash('success', `${dataPengguna?.nama_pengguna} Berhasil dihapus`);
+            session.flash('success', `${pengguna?.nama_pengguna} Berhasil dihapus`);
             return response.redirect().toRoute('pengguna.index');
         }catch(error){
             session.flash('error', 'Terjadi kesalahan saat delete.');

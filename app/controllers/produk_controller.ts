@@ -13,7 +13,6 @@ export default class ProdukController {
     async create({request, response, session}:HttpContext) {
         try{
             const payload = request.only(['nama_produk', 'satuan', 'id_kategori']);
-            console.log(payload)
             await ProdukServices.create(payload);
 
             session.flash('success', 'Berhasil melakukan penambahan produk');
@@ -34,11 +33,11 @@ export default class ProdukController {
    async update({response, request,  session, params}:HttpContext){
         try{
             const produk = await Produk.find(params.id);
-            const dataProduk = produk?.$attributes;
+    
             
             const payload = request.only(['id_produk', 'id_kategori', 'nama_produk', 'satuan']);
             await ProdukServices.update(payload, params.id);
-            session.flash('success', `${dataProduk?.nama_produk} berhasil diupdate`);
+            session.flash('success', `${produk?.nama_produk} berhasil diupdate`);
             return response.redirect().toRoute('produk.index');
         }catch(error){
             session.flash("error", 'Terjadi kesalahan saat update data');
@@ -48,11 +47,10 @@ export default class ProdukController {
     async destroy({response, params, session}:HttpContext){
         try{
             const produk = await Produk.find(params.id);
-            const dataProduk = produk?.$attributes;
 
             await ProdukServices.delete(params.id);
     
-            session.flash('success', `${dataProduk?.nama_produk} berhasil dihapus`);
+            session.flash('success', `${produk?.nama_produk} berhasil dihapus`);
             return response.redirect().toRoute('produk.index');
         }catch(error){
             session.flash('error', 'Terjadi kesalahan saat delete.');

@@ -8,7 +8,6 @@ import { SubmitEvent } from "react";
 
 export default function UpdatePengguna () {
     const {role, dataPengguna, auth} = usePage<{flash?:{success?:string; error?:string}, role:{idHakAkses:number, namaHakAkses:string} [], dataPengguna:{id:number, id_pengguna:string, id_hak_akses:number, nama_pengguna:string, nomor_telepon:string}, auth:{data:{user:{id:string, email:string}}}}>().props;
-    console.log(dataPengguna)
     const {data, setData,  put, errors,  reset, processing} = useForm({
         id:dataPengguna.id,
         id_pengguna: dataPengguna.id_pengguna,

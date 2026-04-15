@@ -45,4 +45,13 @@ export interface ApiDefinition {
   resep: {
     index: typeof routes['resep.index']
   }
+  kategoriProduk: {
+    index: typeof routes['kategoriProduk.index']
+    create: typeof routes['kategoriProduk.create']
+    destroy: typeof routes['kategoriProduk.destroy']
+  }
+  updateKategoriProduk: {
+    edit: typeof routes['updateKategoriProduk.edit']
+    update: typeof routes['updateKategoriProduk.update']
+  }
 }

@@ -1,5 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { supabase } from '../../services/supabase.ts';
+import Pengguna from '#models/pengguna';
 export default class AuthController {
     async login ({inertia}:HttpContext) {
         return inertia.render('login', {});
@@ -10,8 +11,12 @@ export default class AuthController {
             email:payload.email,
             password:payload.password
         });
-        if(error) throw new Error(error.message);
-        session.flash('success', 'Berhasil melakukan login.');
-        return response.redirect().toRoute('bahan.index');
+        if(!error) {
+            session.flash('success', 'Berhasil melakukan login.');
+            return response.redirect().toRoute('bahan.index');
+        }
+        response.redirect().back();
+        return session.flash('error', "Login Gagal");
+
     }
 }

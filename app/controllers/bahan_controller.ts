@@ -5,6 +5,7 @@ export default class BahanController {
     async index({inertia}:HttpContext) {
         const bahan = await Bahan.all();
 
+
         return inertia.render('bahan', {bahan});
     }
     async create({request, response, session}:HttpContext) {

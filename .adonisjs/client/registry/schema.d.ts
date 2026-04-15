@@ -260,4 +260,59 @@ export interface Registry {
       response: unknown
     }
   }
+  'kategoriProduk.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/kategori-produk'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'kategoriProduk.create': {
+    methods: ["POST"]
+    pattern: '/kategori-produk/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'updateKategoriProduk.edit': {
+    methods: ["GET","HEAD"]
+    pattern: '/kategori-produk/edit/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'updateKategoriProduk.update': {
+    methods: ["PUT"]
+    pattern: '/kategori-produk/update/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'kategoriProduk.destroy': {
+    methods: ["DELETE"]
+    pattern: '/kategori-produk/delete/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
 }

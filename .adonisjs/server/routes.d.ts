@@ -27,6 +27,11 @@ export type ScannedRoutes = {
     'updatePengguna.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'pengguna.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'resep.index': { paramsTuple?: []; params?: {} }
+    'kategoriProduk.index': { paramsTuple?: []; params?: {} }
+    'kategoriProduk.create': { paramsTuple?: []; params?: {} }
+    'updateKategoriProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'updateKategoriProduk.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'kategoriProduk.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   GET: {
     'auth.login': { paramsTuple?: []; params?: {} }
@@ -39,6 +44,8 @@ export type ScannedRoutes = {
     'pengguna.index': { paramsTuple?: []; params?: {} }
     'updatePengguna.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'resep.index': { paramsTuple?: []; params?: {} }
+    'kategoriProduk.index': { paramsTuple?: []; params?: {} }
+    'updateKategoriProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   HEAD: {
     'auth.login': { paramsTuple?: []; params?: {} }
@@ -51,6 +58,8 @@ export type ScannedRoutes = {
     'pengguna.index': { paramsTuple?: []; params?: {} }
     'updatePengguna.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'resep.index': { paramsTuple?: []; params?: {} }
+    'kategoriProduk.index': { paramsTuple?: []; params?: {} }
+    'updateKategoriProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   POST: {
     'auth.sign_in': { paramsTuple?: []; params?: {} }
@@ -58,18 +67,21 @@ export type ScannedRoutes = {
     'produk.create': { paramsTuple?: []; params?: {} }
     'hakAkses.create': { paramsTuple?: []; params?: {} }
     'pengguna.create': { paramsTuple?: []; params?: {} }
+    'kategoriProduk.create': { paramsTuple?: []; params?: {} }
   }
   PUT: {
     'updateBahan.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'updateProduk.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'updateHakAkses.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'updatePengguna.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'updateKategoriProduk.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   DELETE: {
     'bahan.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'produk.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'hakAkses.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'pengguna.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'kategoriProduk.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {

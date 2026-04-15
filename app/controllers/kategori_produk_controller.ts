@@ -1,0 +1,55 @@
+import type { HttpContext } from '@adonisjs/core/http'
+import { KategoriProdukServices } from '#services/KategoriProdukServices';
+import Kategori from '#models/kategori';
+
+export default class KategoriController {
+    async index ({inertia}:HttpContext) {
+        const kategori = await Kategori.query().where({is_deleted:false});
+        return inertia.render('kategoriProduk', {kategori});
+    }
+    async create({request, response, session}:HttpContext){
+        try{
+            const payload = request.only(['nama_kategori']);
+            await KategoriProdukServices.create(payload);
+    
+            session.flash('success', `${payload.nama_kategori} Berhasil ditambahkan`);
+            return response.redirect().toRoute('kategoriProduk.index');
+        }catch(error){
+            session.flash('error', 'Terjadi kesalahan saat tambah data.');
+            return response.redirect().back();
+        } 
+    }
+    async edit({inertia, params}:HttpContext) {
+        const kategori = await Kategori.find(params.id);
+        const dataKategori = kategori?.$attributes;
+        return inertia.render('updateKategoriProduk', {dataKategori});
+    }
+    async update({request, response, session, params}:HttpContext) {
+        try{
+            const kategori = await Kategori.find(params.id);
+    
+            const payload = request.only(['id_kategori', 'nama_kategori']);
+            console.log(payload)
+    
+            await KategoriProdukServices.update(payload, params.id);
+            session.flash('success', `${kategori?.nama_kategori} Berhasil dilakukan perubahan.`);
+            return response.redirect().toRoute('kategoriProduk.index');
+        }catch(error){
+            session.flash("error", 'Terjadi kesalahan saat update data');
+            return response.redirect().back();
+        }
+    } 
+    async destroy({response, params, session}:HttpContext){
+        try{
+            const kategori = await Kategori.find(params.id);
+    
+            await KategoriProdukServices.delete(params.id)
+        
+            session.flash('success', `${kategori?.nama_kategori} berhasil dihapus`);
+            return response.redirect().toRoute('kategoriProduk.index');
+        }catch(error){
+            session.flash('error', 'Terjadi kesalahan saat delete.');
+            return response.redirect().back();
+        }
+    }
+}

@@ -11,6 +11,78 @@ import { MdMessage } from "react-icons/md";
 
 
 export default function Sidebar () {
+    const menu = [
+        {
+            name:"Dashboard",
+            link:"/bahan",
+            icon:<FaHome size={20}/>
+        },
+        {
+            name:"Pengguna",
+            link:"/pengguna",
+            icon:<FaUser size={20}/>
+        },
+        {
+            name:"Hak Akses",
+            link:"/role",
+            icon:<FaLock size={20}/>
+        },
+        {
+            name:"Bahan Baku",
+            link:"/bahan",
+            icon:<FaBox  size={20}/>
+        },
+        {
+            name:"Stok Bahan Baku",
+            link:"/bahan",
+            icon:<FaBoxes  size={20}/>
+        },
+        {
+            name:"Resep",
+            link:"/resep",
+            icon:<GrNotes  size={20}/>
+        },
+        {
+            name:"Produksi",
+            link:"/resep",
+            icon:<TbCubePlus  size={20}/>
+        },
+        {
+            name:"Riwayat Produksi",
+            link:"/resep",
+            icon:<FaHistory  size={20}/>
+        },
+        {
+            name:"Produk",
+            link:"/produk",
+            icon:<TbPackage  size={20}/>
+        },
+        {
+            name:"Kategori Produk",
+            link:"/kategori-produk",
+            icon:<TbCategory  size={20}/>
+        },
+        {
+            name:"Daftar Penerima",
+            link:"/resep",
+            icon:<TbUsersGroup  size={20}/>
+        },
+        {
+            name:"Atur Tipe Notifikasi",
+            link:"/resep",
+            icon:<MdOutlineEditNotifications  size={20}/>
+        },
+        {
+            name:"Atur Tipe Template Notifikasi",
+            link:"/resep",
+            icon:<MdMessage  size={20}/>
+        },
+        {
+            name:"Riwayat Notifikasi",
+            link:"/resep",
+            icon:<FaHistory  size={20}/>
+        },
+    ]
     return (
         <>
         <nav className="w-62.5 bg-dark-teal">
@@ -54,7 +126,7 @@ export default function Sidebar () {
                     </li>
                     <li className="flex flex-row gap-2 items-center">
                         <TbCategory size={20} className="text-white"/>
-                        <Link href="/bahan"><Heading level={2} color="dark_grey">Kategori Produk</Heading></Link>
+                        <Link href="/kategori-produk"><Heading level={2} color="dark_grey">Kategori Produk</Heading></Link>
                     </li>
                     <li className="flex flex-row gap-2 items-center">
                         <RiBox3Line size={20} className="text-white"/>

@@ -7,6 +7,7 @@ export const controllers = {
   Auth: () => import('#controllers/auth_controller'),
   Bahan: () => import('#controllers/bahan_controller'),
   HakAkses: () => import('#controllers/hak_akses_controller'),
+  KategoriProduk: () => import('#controllers/kategori_produk_controller'),
   Pengguna: () => import('#controllers/pengguna_controller'),
   Produk: () => import('#controllers/produk_controller'),
   Resep: () => import('#controllers/resep_controller'),

@@ -26,12 +26,11 @@ export default class HakAksesController {
     async update({request, response, session, params}:HttpContext) {
         try{
             const role = await HakAkses.find(params.id);
-            const dataRole = role?.$attributes;
 
             const payload = request.only(['id_hak_akses', 'nama_hak_akses']);
 
             await HakAksesServices.update(payload, params.id);
-            session.flash('success', `${dataRole?.nama_hak_akses} Berhasil dilakukan perubahan.`);
+            session.flash('success', `${role?.nama_hak_akses} Berhasil dilakukan perubahan.`);
             return response.redirect().toRoute('hakAkses.index');
         }catch(error){
             session.flash("error", 'Terjadi kesalahan saat update data');
@@ -41,11 +40,10 @@ export default class HakAksesController {
     async destroy({response, params, session}:HttpContext){
         try{
             const role = await HakAkses.find(params.id);
-            const dataRole = role?.$attributes;
 
             await HakAksesServices.delete(params.id)
     
-            session.flash('success', `${dataRole?.nama_hak_akses} berhasil dihapus`);
+            session.flash('success', `${role?.nama_hak_akses} berhasil dihapus`);
             return response.redirect().toRoute('hakAkses.index');
         }catch(error){
             session.flash('error', 'Terjadi kesalahan saat delete.');

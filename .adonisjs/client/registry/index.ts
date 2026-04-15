@@ -144,6 +144,36 @@ const routes = {
     tokens: [{"old":"/resep","type":0,"val":"resep","end":""}],
     types: placeholder as Registry['resep.index']['types'],
   },
+  'kategoriProduk.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/kategori-produk',
+    tokens: [{"old":"/kategori-produk","type":0,"val":"kategori-produk","end":""}],
+    types: placeholder as Registry['kategoriProduk.index']['types'],
+  },
+  'kategoriProduk.create': {
+    methods: ["POST"],
+    pattern: '/kategori-produk/create',
+    tokens: [{"old":"/kategori-produk/create","type":0,"val":"kategori-produk","end":""},{"old":"/kategori-produk/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['kategoriProduk.create']['types'],
+  },
+  'updateKategoriProduk.edit': {
+    methods: ["GET","HEAD"],
+    pattern: '/kategori-produk/edit/:id',
+    tokens: [{"old":"/kategori-produk/edit/:id","type":0,"val":"kategori-produk","end":""},{"old":"/kategori-produk/edit/:id","type":0,"val":"edit","end":""},{"old":"/kategori-produk/edit/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['updateKategoriProduk.edit']['types'],
+  },
+  'updateKategoriProduk.update': {
+    methods: ["PUT"],
+    pattern: '/kategori-produk/update/:id',
+    tokens: [{"old":"/kategori-produk/update/:id","type":0,"val":"kategori-produk","end":""},{"old":"/kategori-produk/update/:id","type":0,"val":"update","end":""},{"old":"/kategori-produk/update/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['updateKategoriProduk.update']['types'],
+  },
+  'kategoriProduk.destroy': {
+    methods: ["DELETE"],
+    pattern: '/kategori-produk/delete/:id',
+    tokens: [{"old":"/kategori-produk/delete/:id","type":0,"val":"kategori-produk","end":""},{"old":"/kategori-produk/delete/:id","type":0,"val":"delete","end":""},{"old":"/kategori-produk/delete/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['kategoriProduk.destroy']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }
