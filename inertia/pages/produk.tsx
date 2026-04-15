@@ -9,6 +9,7 @@ import {usePage} from "@inertiajs/react";
 import ActionButton from "~/components/ui/Button/ActionButton";
 import { FaSearch, FaPen, FaTrash } from "react-icons/fa";
 import { Link } from "@adonisjs/inertia/react";
+import confirmDialog from '../../utils/sweetalert'
 
 export default function Produk () {
     const [open, setIsOpen] = useState(false);
@@ -29,7 +30,16 @@ export default function Produk () {
         })
     }
     function handleDelete (id:number) {
-        destroy(`/produk/delete/${id}`);
+        confirmDialog(
+            "Yakin ingin menghapus ?", 
+            "Data ini akan dinonaktifkan untuk sementara", 
+            "warning", 
+            () => {
+                destroy(`/produk/delete/${id}`);
+            }, 
+        "Hapus",
+        "Batal")
+
     }
     return (
         <>

@@ -8,7 +8,7 @@ import {useForm, usePage } from "@inertiajs/react";
 import { Link } from "@adonisjs/inertia/react";
 import 'react-responsive-modal/styles.css';
 import Modal from 'react-responsive-modal';
-
+import confirmDialog from "../../utils/sweetalert";
 export default function Bahan () {
     const [open, setIsOpen] = useState(false);
 
@@ -29,7 +29,15 @@ export default function Bahan () {
         });
     }
     function handleDelete (id:number) {
-        destroy(`/bahan/delete/${id}`);
+        confirmDialog(
+            "Yakin ingin menghapus ?", 
+            "Data ini akan dinonaktifkan untuk sementara", 
+            "warning", 
+            () => {
+                destroy(`/bahan/delete/${id}`);
+            }, 
+            "Hapus",
+            "Batal")
     }
 
     return (

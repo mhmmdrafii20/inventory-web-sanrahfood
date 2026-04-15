@@ -9,6 +9,7 @@ import {usePage} from "@inertiajs/react";
 import ActionButton from "~/components/ui/Button/ActionButton";
 import { FaSearch, FaPen, FaTrash } from "react-icons/fa";
 import { Link } from "@adonisjs/inertia/react";
+import confirmDialog from "../../utils/sweetalert";
 
 export default function HakAkses () {
     const [open, setIsOpen] = useState(false);
@@ -29,9 +30,16 @@ export default function HakAkses () {
          })
     }
     function handleDelete (id:number) {
-        destroy(`/role/delete/${id}`);
+        confirmDialog(
+            "Yakin ingin menghapus ?", 
+            "Data ini akan dinonaktifkan untuk sementara", 
+            "warning", 
+            () => {
+                destroy(`/role/delete/${id}`);
+            }, 
+            "Hapus",
+            "Batal")
     }
-
     return (
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold">Manajemen Hak Akses</Heading>

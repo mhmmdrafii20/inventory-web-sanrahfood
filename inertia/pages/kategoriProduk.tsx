@@ -7,6 +7,7 @@ import ActionButton from "~/components/ui/Button/ActionButton";
 import { useState, SubmitEvent } from "react";
 import { useForm, usePage } from "@inertiajs/react";
 import { Link } from "@adonisjs/inertia/react";
+import confirmDialog from "../../utils/sweetalert";
 
 export default function KategoriProduk () {
     const [open, setIsOpen] = useState(false);
@@ -27,7 +28,15 @@ export default function KategoriProduk () {
          })
     }
     function handleDelete (id:number) {
-        destroy(`/kategori-produk/delete/${id}`);
+        confirmDialog(
+             "Yakin ingin menghapus ?", 
+            "Data ini akan dinonaktifkan untuk sementara", 
+            "warning", 
+            () => {
+                destroy(`/kategori-produk/delete/${id}`);
+            }, 
+            "Hapus",
+            "Batal")
     }
 
     return (

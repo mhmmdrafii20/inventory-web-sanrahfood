@@ -10,6 +10,7 @@ import 'react-phone-number-input/style.css'
 import { Link } from "@adonisjs/inertia/react";
 import ActionButton from "~/components/ui/Button/ActionButton"
 import { FaPen, FaTrash } from "react-icons/fa"
+import confirmDialog from '../../utils/sweetalert'
 
 export default function Pengguna () {
     const [open, setIsOpen] = useState(false);
@@ -31,9 +32,16 @@ export default function Pengguna () {
             }
         })
     }
-
     function handleDelete (id:number) {
-        destroy(`/pengguna/delete/${id}`);
+        confirmDialog(
+            "Yakin ingin menghapus ?", 
+            "Data ini akan dinonaktifkan untuk sementara", 
+            "warning", 
+            () => {
+                destroy(`/pengguna/delete/${id}`);
+            }, 
+            "Hapus",
+            "Batal")
     }
     return (
         <>
