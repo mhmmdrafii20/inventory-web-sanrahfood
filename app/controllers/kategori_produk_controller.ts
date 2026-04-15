@@ -29,7 +29,6 @@ export default class KategoriController {
             const kategori = await Kategori.find(params.id);
     
             const payload = request.only(['id_kategori', 'nama_kategori']);
-            console.log(payload)
     
             await KategoriProdukServices.update(payload, params.id);
             session.flash('success', `${kategori?.nama_kategori} Berhasil dilakukan perubahan.`);

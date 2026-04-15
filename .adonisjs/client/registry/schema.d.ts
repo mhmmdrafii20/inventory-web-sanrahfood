@@ -260,6 +260,39 @@ export interface Registry {
       response: unknown
     }
   }
+  'resep.create': {
+    methods: ["POST"]
+    pattern: '/resep/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'updateResep.edit': {
+    methods: ["GET","HEAD"]
+    pattern: '/resep/edit/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'updateResep.update': {
+    methods: ["PUT"]
+    pattern: '/resep/update/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
   'kategoriProduk.index': {
     methods: ["GET","HEAD"]
     pattern: '/kategori-produk'

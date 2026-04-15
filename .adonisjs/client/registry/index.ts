@@ -144,6 +144,24 @@ const routes = {
     tokens: [{"old":"/resep","type":0,"val":"resep","end":""}],
     types: placeholder as Registry['resep.index']['types'],
   },
+  'resep.create': {
+    methods: ["POST"],
+    pattern: '/resep/create',
+    tokens: [{"old":"/resep/create","type":0,"val":"resep","end":""},{"old":"/resep/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['resep.create']['types'],
+  },
+  'updateResep.edit': {
+    methods: ["GET","HEAD"],
+    pattern: '/resep/edit/:id',
+    tokens: [{"old":"/resep/edit/:id","type":0,"val":"resep","end":""},{"old":"/resep/edit/:id","type":0,"val":"edit","end":""},{"old":"/resep/edit/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['updateResep.edit']['types'],
+  },
+  'updateResep.update': {
+    methods: ["PUT"],
+    pattern: '/resep/update/:id',
+    tokens: [{"old":"/resep/update/:id","type":0,"val":"resep","end":""},{"old":"/resep/update/:id","type":0,"val":"update","end":""},{"old":"/resep/update/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['updateResep.update']['types'],
+  },
   'kategoriProduk.index': {
     methods: ["GET","HEAD"],
     pattern: '/kategori-produk',

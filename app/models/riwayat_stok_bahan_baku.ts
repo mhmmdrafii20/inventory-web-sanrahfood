@@ -5,6 +5,8 @@ import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import StokBahanBaku from './stok_bahan_baku.ts'
 
 export default class RiwayatStokBahanBaku extends RiwayatStokBahanBakuSchema {
+    public static table = 'tb_riwayat_stok_bahan_baku'; 
+
     @column({isPrimary:true, columnName:'id_riwayat_stok_bb'})
     declare id_riwayat_stok_bb:number
     

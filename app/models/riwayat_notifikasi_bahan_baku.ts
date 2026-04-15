@@ -8,6 +8,8 @@ import TemplateNotifikasi from './template_notifikasi.ts'
 import Bahan from './bahan.ts'
 
 export default class RiwayatNotifikasiBahanBaku extends RiwayatNotifikasiBahanBakuSchema {
+    public static table = 'tb_riwayat_notifikasi_bahan_baku'; 
+
     @column({isPrimary:true, columnName:'id_riwayat_notifikasi_bahan_baku'})
     declare id_riwayat_notifikasi_bahan_baku:number
 

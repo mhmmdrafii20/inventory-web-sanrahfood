@@ -7,6 +7,8 @@ import RiwayatNotifikasiBahanBaku from './riwayat_notifikasi_bahan_baku.ts'
 import RiwayatNotifikasiProduk from './riwayat_notifikasi_produk.ts';
 
 export default class PenerimaNotifikasi extends PenerimaNotifikasiSchema {
+    public static table = 'tb_penerima_notifikasi'; 
+
     @column({isPrimary:true, columnName:'id_penerima_notifikasi'})
     declare id_penerima_notifikasi:number
 

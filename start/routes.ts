@@ -47,6 +47,9 @@ router
         router.delete('/pengguna/delete/:id', [PenggunaController, 'destroy']).as('pengguna.destroy');
 
         router.get('/resep', [ResepController, 'index']).as('resep.index');
+        router.post('/resep/create', [ResepController, 'create']).as('resep.create');
+        router.get('/resep/edit/:id', [ResepController, 'edit']).as('updateResep.edit');
+        router.put('/resep/update/:id', [ResepController, 'update']).as('updateResep.update');
 
         router.get('/kategori-produk', [KategoriController, 'index']).as('kategoriProduk.index');
         router.post('/kategori-produk/create', [KategoriController, 'create']).as('kategoriProduk.create');

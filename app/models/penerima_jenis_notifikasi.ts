@@ -5,6 +5,8 @@ import PenerimaNotifikasi from './penerima_notifikasi.ts'
 import TipeNotifikasi from './tipe_notifikasi.ts'
 
 export default class PenerimaJenisNotifikasi extends PenerimaJenisNotifikasiSchema {
+    public static table = 'tb_penerima_jenis_notifikasi'; 
+
     @column ({isPrimary:true, columnName:'id_penerima_jenis'})
     declare id_penerima_jenis_notifikasi:number
 

@@ -4,7 +4,7 @@ import Paragraph from "~/components/ui/Paragraph";
 import Button from "~/components/ui/Button/Button";
 import { SubmitEvent } from "react";
 
-export default function updateProduk () {
+export default function UpdateProduk () {
     const  { dataProduk, kategori } = usePage<{dataProduk:{id_produk:number, nama_produk:string, satuan:string, id_kategori:number}, kategori:{idKategori:number, namaKategori:string} []}>().props;
     console.log(kategori)
     const {data, setData, put, processing, errors, reset} = useForm({
@@ -14,13 +14,13 @@ export default function updateProduk () {
         satuan:dataProduk.satuan,
     });
 
-        function handleUpdate (e:SubmitEvent) {
-            e.preventDefault();
-            put(`/produk/update/${dataProduk.id_produk}`, {
-                onSuccess: () => {
-                    reset();
-                },
-            });
+    function handleUpdate (e:SubmitEvent) {
+        e.preventDefault();
+        put(`/produk/update/${dataProduk.id_produk}`, {
+            onSuccess: () => {
+                reset();
+            },
+         });
         }
 
     return (

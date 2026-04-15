@@ -5,6 +5,7 @@ import Resep from './resep.ts'
 import Bahan from './bahan.ts'
 
 export default class ResepBahan extends ResepBahanSchema {
+    public static table = 'tb_resep_bahan'; 
     @column({isPrimary:true, columnName:'id_resep_bahan'})
     declare id_resep_bahan:number
 
@@ -26,8 +27,4 @@ export default class ResepBahan extends ResepBahanSchema {
 
     @column({columnName:'jumlah'})
     declare jumlah:number
-
-    @column({columnName:'satuan'})
-    declare satuan:string
-
 }

@@ -6,6 +6,7 @@ import Bahan from './bahan.ts'
 import RiwayatStokBahanBaku from './riwayat_stok_bahan_baku.ts'
 
 export default class StokBahanBaku extends StokBahanBakuSchema {
+    public static table = 'tb_stok_bahan_baku'; 
     
     @column({isPrimary:true, columnName:'id_stok_bahan_baku'})
     declare id_stok_bahan_baku:number

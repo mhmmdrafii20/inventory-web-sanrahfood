@@ -6,6 +6,8 @@ import ResepBahan from './resep_bahan.ts'
 import RiwayatProduksi from './riwayat_produksi.ts';
 
 export default class Resep extends ResepSchema {
+    public static table = 'tb_resep'; 
+
     @column({isPrimary:true, columnName:'id_resep'})
     declare id_resep:number
 
@@ -29,6 +31,9 @@ export default class Resep extends ResepSchema {
         foreignKey:'id_produk'
     })
     declare produk:BelongsTo<typeof Produk>
+
+    @column({columnName:'catatan_tambahan'})
+    declare catatan_tambahan:string
 
     @column({columnName:'is_deleted'})
     declare is_deleted:boolean

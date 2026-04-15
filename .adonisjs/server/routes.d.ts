@@ -27,6 +27,9 @@ export type ScannedRoutes = {
     'updatePengguna.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'pengguna.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'resep.index': { paramsTuple?: []; params?: {} }
+    'resep.create': { paramsTuple?: []; params?: {} }
+    'updateResep.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'updateResep.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'kategoriProduk.index': { paramsTuple?: []; params?: {} }
     'kategoriProduk.create': { paramsTuple?: []; params?: {} }
     'updateKategoriProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -44,6 +47,7 @@ export type ScannedRoutes = {
     'pengguna.index': { paramsTuple?: []; params?: {} }
     'updatePengguna.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'resep.index': { paramsTuple?: []; params?: {} }
+    'updateResep.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'kategoriProduk.index': { paramsTuple?: []; params?: {} }
     'updateKategoriProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
@@ -58,6 +62,7 @@ export type ScannedRoutes = {
     'pengguna.index': { paramsTuple?: []; params?: {} }
     'updatePengguna.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'resep.index': { paramsTuple?: []; params?: {} }
+    'updateResep.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'kategoriProduk.index': { paramsTuple?: []; params?: {} }
     'updateKategoriProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
@@ -67,6 +72,7 @@ export type ScannedRoutes = {
     'produk.create': { paramsTuple?: []; params?: {} }
     'hakAkses.create': { paramsTuple?: []; params?: {} }
     'pengguna.create': { paramsTuple?: []; params?: {} }
+    'resep.create': { paramsTuple?: []; params?: {} }
     'kategoriProduk.create': { paramsTuple?: []; params?: {} }
   }
   PUT: {
@@ -74,6 +80,7 @@ export type ScannedRoutes = {
     'updateProduk.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'updateHakAkses.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'updatePengguna.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'updateResep.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'updateKategoriProduk.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   DELETE: {

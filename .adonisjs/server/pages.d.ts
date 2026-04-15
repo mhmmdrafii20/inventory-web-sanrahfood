@@ -25,5 +25,6 @@ declare module '@adonisjs/inertia/types' {
     'updateKategoriProduk': ExtractProps<(typeof import('../../inertia/pages/updateKategoriProduk.tsx'))['default']>
     'updatePengguna': ExtractProps<(typeof import('../../inertia/pages/updatePengguna.tsx'))['default']>
     'updateProduk': ExtractProps<(typeof import('../../inertia/pages/updateProduk.tsx'))['default']>
+    'updateResep': ExtractProps<(typeof import('../../inertia/pages/updateResep.tsx'))['default']>
   }
 }

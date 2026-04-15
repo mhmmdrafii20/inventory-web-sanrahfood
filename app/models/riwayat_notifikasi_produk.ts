@@ -8,6 +8,8 @@ import TemplateNotifikasi from './template_notifikasi.ts'
 import Produk from './produk.ts'
 
 export default class RiwayatNotifikasiProduk extends RiwayatNotifikasiProdukSchema {
+    public static table = 'tb_riwayat_notifikasi_produk'; 
+
     @column({isPrimary:true, columnName:'id_riwayat_produk'})
     declare id_riwayat_notifikasi_produk:number
 

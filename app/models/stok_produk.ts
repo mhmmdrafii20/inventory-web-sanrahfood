@@ -6,6 +6,8 @@ import Produk from './produk.ts'
 import RiwayatStokProduk from './riwayat_stok_produk.ts'
 
 export default class StokProduk extends StokProdukSchema {
+    public static table = 'tb_stok_produk'; 
+
     @column({isPrimary:true, columnName:'id_stok_produk'})
     declare id_stok_produk:number
 
