@@ -53,7 +53,7 @@ export default function KategoriProduk () {
                         </div>                        
                         {errors.nama_kategori && <div>{errors.nama_kategori}</div>}
 
-                        <Button type="submit" variant={1} disabled={processing} size="md">Tambahkan</Button>
+                        <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan" }</Button>
                     </form>
                 </Modal>
                 <div className="flex flex-row gap-5 ">

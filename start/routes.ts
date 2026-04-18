@@ -20,6 +20,7 @@ import KategoriController from '#controllers/kategori_produk_controller';
 
 router.get('/', [AuthController, 'login']).as('auth.login');
 router.post('/login', [AuthController, 'signIn']);
+
 router
     .group (() => {
         router.get('/bahan', [BahanController, 'index']).as('bahan.index');
@@ -50,6 +51,7 @@ router
         router.post('/resep/create', [ResepController, 'create']).as('resep.create');
         router.get('/resep/edit/:id', [ResepController, 'edit']).as('updateResep.edit');
         router.put('/resep/update/:id', [ResepController, 'update']).as('updateResep.update');
+        router.delete('/resep/delete/:id', [ResepController, 'destroy']).as('resep.destroy');
 
         router.get('/kategori-produk', [KategoriController, 'index']).as('kategoriProduk.index');
         router.post('/kategori-produk/create', [KategoriController, 'create']).as('kategoriProduk.create');

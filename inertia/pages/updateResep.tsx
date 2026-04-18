@@ -73,7 +73,7 @@ export default function updateResep () {
                             <input className="w-full" type="number" name="batch" value={data.batch} placeholder="Tuliskan batch disini"  onChange={(e) => setData('batch', parseInt(e.target.value))} />
                         </div>
                         <div className="mt-auto">
-                            <Button type="submit" className="w-full" variant={1} size="md">Update</Button>
+                            <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Updating...." : "Update" }</Button>
                         </div>
                     </div>
                     <div className="flex flex-col gap-5">

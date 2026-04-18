@@ -27,7 +27,8 @@ export default function UpdateKategoriProduk () {
                 <Paragraph size="lg">Nama Kategori</Paragraph>
                 <input type="text" name="nama_kategori" placeholder="Nama Kategori " value={data.nama_kategori} onChange={(e) => setData("nama_kategori", e.target.value)}/>
                 {errors.nama_kategori && <div>{errors.nama_kategori}</div>}
-                <Button type="submit" variant={1} disabled={processing} size="md">Update</Button>
+                
+                <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Updating...." : "Update" }</Button>
             </form>
         </>
     )

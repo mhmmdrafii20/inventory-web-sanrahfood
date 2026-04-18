@@ -54,7 +54,7 @@ export default function HakAkses () {
                         </div>                        
                         {errors.nama_hak_akses && <div>{errors.nama_hak_akses}</div>}
 
-                        <Button type="submit" variant={1} disabled={processing} size="md">Tambahkan</Button>
+                        <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan" }</Button>
                     </form>
                 </Modal>
                 <div className="flex flex-row gap-5 ">

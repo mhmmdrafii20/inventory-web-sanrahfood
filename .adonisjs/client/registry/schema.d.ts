@@ -293,6 +293,17 @@ export interface Registry {
       response: unknown
     }
   }
+  'resep.destroy': {
+    methods: ["DELETE"]
+    pattern: '/resep/delete/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
   'kategoriProduk.index': {
     methods: ["GET","HEAD"]
     pattern: '/kategori-produk'

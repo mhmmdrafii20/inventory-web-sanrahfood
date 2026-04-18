@@ -56,7 +56,7 @@ export default function Bahan () {
                             <input type="text" name="satuan" value={data.satuan} onChange={e => setData('satuan', e.target.value)} placeholder="Satuan" ></input>
                         </div>
                         {errors.satuan && <div>{errors.satuan}</div>}
-                        <Button type="submit" variant={1} disabled={processing} size="md">Tambahkan</Button>
+                        <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan" }</Button>
                     </form>
                 </Modal>
                 <div className="flex flex-row gap-5 ">

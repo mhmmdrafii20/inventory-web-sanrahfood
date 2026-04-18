@@ -39,7 +39,6 @@ export default function Produk () {
             }, 
         "Hapus",
         "Batal")
-
     }
     return (
         <>
@@ -69,7 +68,7 @@ export default function Produk () {
                                         </select>
                                         {errors.id_kategori && <div>{errors.id_kategori}</div>}
                                 </div>
-                                <Button type="submit" variant={1} disabled={processing} size="md">Tambahkan</Button>
+                                <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan" }</Button>
                             </form>
                     </Modal>
                     <div className="flex flex-row gap-5 ">

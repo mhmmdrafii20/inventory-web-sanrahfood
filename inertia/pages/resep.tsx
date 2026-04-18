@@ -10,6 +10,7 @@ import { useState, SubmitEvent } from "react";
 import Modal from "react-responsive-modal";
 import { MultiSelect } from 'react-multi-select-component';
 import { usePage, useForm } from "@inertiajs/react";
+import confirmDialog from "../../utils/sweetalert";
 
 export default function Resep () {
     type Option = {
@@ -49,6 +50,17 @@ export default function Resep () {
             }
         })
     }
+    function handleDelete (id:number) {
+        confirmDialog(
+            "Yakin ingin menghapus ?", 
+            "Data ini akan dinonaktifkan untuk sementara", 
+            "warning", 
+            () => {
+                destroy(`/resep/delete/${id}`);
+            }, 
+            "Hapus",
+            "Batal")
+        }
     return (
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold">Manajemen Resep</Heading>
@@ -62,6 +74,7 @@ export default function Resep () {
                                     <Paragraph size="lg">Nama Resep</Paragraph>
                                     <input className="w-full" type="text" name="nama_resep" value={data.nama_resep} placeholder="Tuliskan nama resep disini" onChange={(e) => setData('nama_resep', e.target.value)} />
                                 </div>
+                                {errors.nama_resep && <div>{errors.nama_resep}</div>}
                                 <div className="flex flex-col gap-3">
                                     <Paragraph size="lg">Produk</Paragraph>
                                     <select className="w-full" name="id_produk" onChange={(e) => setData('id_produk', e.target.value)}>
@@ -71,12 +84,14 @@ export default function Resep () {
                                         ))}
                                     </select>
                                 </div>
+                                {errors.id_produk && <div>{errors.id_produk}</div>}
                                 <div className="flex flex-col gap-3">
                                     <Paragraph size="lg">Batch</Paragraph>
                                     <input className="w-full" type="number" name="batch" value={data.batch} placeholder="Tuliskan batch disini"  onChange={(e) => setData('batch', e.target.value)} />
                                 </div>
+                                {errors.batch && <div>{errors.batch}</div>}
                                 <div className="mt-auto">
-                                    <Button type="submit" className="w-full" variant={1} size="md">Tambah Resep</Button>
+                                    <Button type="submit" className="w-full" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan" }</Button>
                                 </div>
                             </div>
                         <div className="flex flex-col gap-5">
@@ -93,25 +108,27 @@ export default function Resep () {
                                     })))
                                 }} labelledBy="Select"></MultiSelect>
                             </div>
-                                <Paragraph size="lg">List Bahan Baku</Paragraph>
-                                <div className="flex items-center gap-2">
-                                    <ul className="flex flex-col gap-5 w-full">
-                                        {data.bahan.map((items, i) => 
-                                                <li key={i} className="flex flex-row gap-3">
-                                                    <span className="flex-1">{items.nama_bahan_baku}</span>
-                                                    <input type="number"  className="w-20" value={items.jumlah}  placeholder="Jumlah" onChange={(e) => {
-                                                        const updated = [...data.bahan];
-                                                        updated[i].jumlah = Number(e.target.value);
-                                                        setData("bahan", updated);
-                                                    }}/>
-                                                </li>
-                                        ) }
-                                        </ul>
-                                </div>
+                            <Paragraph size="lg">List Bahan Baku</Paragraph>
+                            <div className="flex items-center gap-2">
+                                <ul className="flex flex-col gap-5 w-full">
+                                    {data.bahan.map((items, i) => 
+                                        <li key={i} className="flex flex-row gap-3">
+                                            <span className="flex-1">{items.nama_bahan_baku}</span>
+                                            <input type="number"  className="w-20" value={items.jumlah}  placeholder="Jumlah" onChange={(e) => {
+                                                const updated = [...data.bahan];
+                                                updated[i].jumlah = Number(e.target.value);
+                                                setData("bahan", updated);
+                                            }}/>
+                                        </li>
+                                    )}
+                                </ul>
+                            </div>
+                            {errors.bahan && <div>{errors.bahan}</div>}  
                             <div className="flex flex-col gap-3">
                                 <Paragraph size="lg">Catatan Tambahan</Paragraph>
                                 <textarea className="w-full" value={data.catatan_tambahan} placeholder="Tuliskan catatan tambahan disini" rows={10} onChange={(e) => setData('catatan_tambahan', e.target.value)}></textarea>
                             </div>
+                            {errors.catatan_tambahan && <div>{errors.catatan_tambahan}</div>}
                         </div>
                     </form>
                  </Modal>
@@ -144,7 +161,7 @@ export default function Resep () {
                                             <FaPen/>
                                         </ActionButton>
                                     </Link>
-                                    <ActionButton type="delete" size="sm"><FaTrash/></ActionButton>
+                                    <ActionButton type="delete" size="sm" onClick={() => handleDelete(items.idResep)}><FaTrash/></ActionButton>
                                 </div>
                             </td>
                         </tr>

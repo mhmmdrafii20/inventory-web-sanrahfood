@@ -30,6 +30,7 @@ export type ScannedRoutes = {
     'resep.create': { paramsTuple?: []; params?: {} }
     'updateResep.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'updateResep.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'resep.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'kategoriProduk.index': { paramsTuple?: []; params?: {} }
     'kategoriProduk.create': { paramsTuple?: []; params?: {} }
     'updateKategoriProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -88,6 +89,7 @@ export type ScannedRoutes = {
     'produk.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'hakAkses.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'pengguna.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'resep.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'kategoriProduk.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }

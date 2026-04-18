@@ -162,6 +162,12 @@ const routes = {
     tokens: [{"old":"/resep/update/:id","type":0,"val":"resep","end":""},{"old":"/resep/update/:id","type":0,"val":"update","end":""},{"old":"/resep/update/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['updateResep.update']['types'],
   },
+  'resep.destroy': {
+    methods: ["DELETE"],
+    pattern: '/resep/delete/:id',
+    tokens: [{"old":"/resep/delete/:id","type":0,"val":"resep","end":""},{"old":"/resep/delete/:id","type":0,"val":"delete","end":""},{"old":"/resep/delete/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['resep.destroy']['types'],
+  },
   'kategoriProduk.index': {
     methods: ["GET","HEAD"],
     pattern: '/kategori-produk',

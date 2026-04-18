@@ -85,7 +85,7 @@ export default function Pengguna () {
                             {errors.id_hak_akses && <div>{errors.id_hak_akses}</div>}
                         </div>
 
-                        <Button type="submit" variant={1} disabled={processing} size="md">Tambahkan</Button>
+                        <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan" }</Button>
                     </form>
                 </Modal>
             </div>

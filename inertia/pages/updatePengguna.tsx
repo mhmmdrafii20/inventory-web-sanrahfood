@@ -60,7 +60,7 @@ export default function UpdatePengguna () {
                         <PhoneInput placeholder="Nomor telepon Pengguna"   value={data.nomor_telepon} onChange={(e) => setData("nomor_telepon", e ?? "")}/>
                         {errors.nomor_telepon && <div>{errors.nomor_telepon}</div>}
 
-                        <Button type="submit" variant={1} disabled={processing} size="md">Update</Button>
+                        <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Updating...." : "Update" }</Button>
                     </form>
         </>
     )

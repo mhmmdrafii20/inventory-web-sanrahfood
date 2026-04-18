@@ -26,7 +26,8 @@ export default function UpdateHakAkses () {
                 <Paragraph size="lg">Nama Hak Akses</Paragraph>
                 <input type="text" placeholder="Nama Hak Akses " value={data.nama_hak_akses} onChange={(e) => setData("nama_hak_akses", e.target.value)}/>
                 {errors.nama_hak_akses && <div>{errors.nama_hak_akses}</div>}
-                <Button type="submit" variant={1} disabled={processing} size="md">Update</Button>
+
+                 <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Updating...." : "Update" }</Button>
             </form>
         </>
     )

@@ -36,7 +36,7 @@ export default function Login () {
                              {errors.password && <div>{errors.password}</div>}
                         </div>
                         
-                        <Button type="submit"  disabled={processing} variant={1} size="md">Login</Button>
+                        <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Sedang masuk...." : "Login" }</Button>
                     </form>
                 </div>
         </div>

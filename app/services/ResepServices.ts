@@ -21,7 +21,7 @@ export class ResepServices {
             return resep;
         })
     }
-    static async update(params:number, data:any){
+    static async update(params:number, data:{id_resep:number, nama_resep:string, id_produk:number, batch:number, bahan:{id_bahan_baku:number, jumlah:number}[]}){
         await db.transaction(async (transaction) => {
             await Resep
                  .query({client:transaction})
@@ -47,8 +47,8 @@ export class ResepServices {
                 }
             })
     }
-    // static async delete(params:number){
-    //     const data = await Produk.query().where('id_produk', params).update({is_deleted:true});
-    //     return data;
-    // }
+    static async delete(params:number){
+        const data = await Resep.query().where('id_resep', params).update({is_deleted:true});
+        return data;
+    }
 }

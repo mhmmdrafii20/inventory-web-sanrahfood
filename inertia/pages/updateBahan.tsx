@@ -33,7 +33,7 @@ export default function UpdateBahan () {
                 <input type="text" value={data.satuan}  onChange={(e) => setData("satuan", e.target.value)}/>
                 {errors.satuan && <div>{errors.satuan}</div>}
 
-                <Button type="submit" variant={1} disabled={processing} size="md">Update</Button>
+                <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Updating...." : "Update" }</Button>
             </form>
         </>
     )

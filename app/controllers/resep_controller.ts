@@ -37,19 +37,25 @@ export default class ResepController {
     }
     async update({response, request,  session, params}:HttpContext){
         try{
-            const payload = request.only([
-                'id_resep',
-                'nama_resep',
-                'id_produk',
-                'batch',
-                'bahan',
-            ])
-            console.log(payload)
+            const payload = request.only(['id_resep', 'nama_resep', 'id_produk', 'batch', 'bahan'])
             await ResepServices.update(params.id, payload);
+
             session.flash('success', `${payload.nama_resep} berhasil diupdate`);
             response.redirect().toRoute('resep.index');
         }catch(error){
             session.flash('error', 'Terjadi kesalahan dalam update data.');
+            return response.redirect().back();
+        }
+    }
+    async destroy({response, session, params}:HttpContext){
+        try{
+            const resep = await Resep.find(params.id);
+            await ResepServices.delete(params.id);
+
+            session.flash('success', `${resep?.nama_resep} berhasil dihapus`);
+            return response.redirect().toRoute('resep.index');
+        }catch(error){
+            session.flash('error', 'Terjadi kesalahan saat delete.');
             return response.redirect().back();
         }
     }

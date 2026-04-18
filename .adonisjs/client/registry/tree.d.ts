@@ -45,6 +45,7 @@ export interface ApiDefinition {
   resep: {
     index: typeof routes['resep.index']
     create: typeof routes['resep.create']
+    destroy: typeof routes['resep.destroy']
   }
   updateResep: {
     edit: typeof routes['updateResep.edit']
