@@ -59,6 +59,7 @@ export default function updateResep () {
                                 <Paragraph size="lg">Nama Resep</Paragraph>
                                 <input className="w-full" type="text" name="nama_resep" value={data.nama_resep} placeholder="Tuliskan nama resep disini" onChange={(e) => setData('nama_resep', e.target.value)} />
                         </div>
+                        {errors.nama_resep && <div>{errors.nama_resep}</div>}
                         <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Produk</Paragraph>
                             <select className="w-full" name="id_produk" value={data.id_produk} onChange={(e) => setData('id_produk', e.target.value)}>
@@ -68,6 +69,7 @@ export default function updateResep () {
                                         ))}
                             </select>
                         </div>
+                        {errors.id_produk && <div>{errors.id_produk}</div>}
                         <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Batch</Paragraph>
                             <input className="w-full" type="number" name="batch" value={data.batch} placeholder="Tuliskan batch disini"  onChange={(e) => setData('batch', parseInt(e.target.value))} />
@@ -76,6 +78,7 @@ export default function updateResep () {
                             <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Updating...." : "Update" }</Button>
                         </div>
                     </div>
+                    {errors.batch && <div>{errors.batch}</div>}
                     <div className="flex flex-col gap-5">
                         <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Bahan Baku</Paragraph>
@@ -110,10 +113,12 @@ export default function updateResep () {
                                     )}
                                 </ul>
                         </div>
+                        {errors.bahan && <div>{errors.bahan}</div>}
                         <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Catatan Tambahan</Paragraph>
                             <textarea className="w-full" value={data.catatan_tambahan} placeholder="Tuliskan catatan tambahan disini" rows={10} onChange={(e) => setData('catatan_tambahan', e.target.value)}></textarea>
                         </div>
+                        {errors.catatan_tambahan && <div>{errors.catatan_tambahan}</div>}
                     </div>
               </form>
         </>
