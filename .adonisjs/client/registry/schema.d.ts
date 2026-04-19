@@ -381,4 +381,15 @@ export interface Registry {
       response: unknown
     }
   }
+  'stokBahan.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/stok-bahan'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
 }

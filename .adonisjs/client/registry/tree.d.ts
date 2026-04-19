@@ -64,4 +64,7 @@ export interface ApiDefinition {
     index: typeof routes['produksi.index']
     create: typeof routes['produksi.create']
   }
+  stokBahan: {
+    index: typeof routes['stokBahan.index']
+  }
 }

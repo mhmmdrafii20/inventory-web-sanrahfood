@@ -210,6 +210,12 @@ const routes = {
     tokens: [{"old":"/produksi/create","type":0,"val":"produksi","end":""},{"old":"/produksi/create","type":0,"val":"create","end":""}],
     types: placeholder as Registry['produksi.create']['types'],
   },
+  'stokBahan.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/stok-bahan',
+    tokens: [{"old":"/stok-bahan","type":0,"val":"stok-bahan","end":""}],
+    types: placeholder as Registry['stokBahan.index']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

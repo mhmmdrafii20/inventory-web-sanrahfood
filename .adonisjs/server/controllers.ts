@@ -12,4 +12,5 @@ export const controllers = {
   Produk: () => import('#controllers/produk_controller'),
   Produksi: () => import('#controllers/produksi_controller'),
   Resep: () => import('#controllers/resep_controller'),
+  StokBahan: () => import('#controllers/stok_bahan_controller'),
 }
