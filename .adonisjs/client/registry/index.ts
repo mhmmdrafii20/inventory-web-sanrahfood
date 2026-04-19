@@ -198,6 +198,18 @@ const routes = {
     tokens: [{"old":"/kategori-produk/delete/:id","type":0,"val":"kategori-produk","end":""},{"old":"/kategori-produk/delete/:id","type":0,"val":"delete","end":""},{"old":"/kategori-produk/delete/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['kategoriProduk.destroy']['types'],
   },
+  'produksi.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/produksi',
+    tokens: [{"old":"/produksi","type":0,"val":"produksi","end":""}],
+    types: placeholder as Registry['produksi.index']['types'],
+  },
+  'produksi.create': {
+    methods: ["POST"],
+    pattern: '/produksi/create',
+    tokens: [{"old":"/produksi/create","type":0,"val":"produksi","end":""},{"old":"/produksi/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['produksi.create']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

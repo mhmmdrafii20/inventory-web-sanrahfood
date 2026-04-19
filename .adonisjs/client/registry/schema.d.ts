@@ -359,4 +359,26 @@ export interface Registry {
       response: unknown
     }
   }
+  'produksi.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/produksi'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'produksi.create': {
+    methods: ["POST"]
+    pattern: '/produksi/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
 }

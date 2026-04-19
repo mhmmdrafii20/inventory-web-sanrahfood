@@ -10,5 +10,6 @@ export const controllers = {
   KategoriProduk: () => import('#controllers/kategori_produk_controller'),
   Pengguna: () => import('#controllers/pengguna_controller'),
   Produk: () => import('#controllers/produk_controller'),
+  Produksi: () => import('#controllers/produksi_controller'),
   Resep: () => import('#controllers/resep_controller'),
 }

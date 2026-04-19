@@ -12,35 +12,35 @@ import { MultiSelect } from 'react-multi-select-component';
 import { usePage, useForm } from "@inertiajs/react";
 import confirmDialog from "../../utils/sweetalert";
 
-export default function Resep () {
+export default function Resep() {
     type Option = {
         label: string
         value: string
     }
 
     const [open, setIsOpen] = useState(false);
-    const {bahan, produk, resep} = usePage<{
-    bahan:{ idBahanBaku:number; namaBahanBaku:string; satuan:string;} [], 
-    produk:{ idProduk:number; namaProduk:string; satuan:string;} [],
-    resep:{idResep:number, namaResep:string, idProduk:string, batch:number, catatanTambahan:string, produk:{namaProduk:string, satuan:string}}[]
+    const { bahan, produk, resep } = usePage<{
+        bahan: { idBahanBaku: number; namaBahanBaku: string; satuan: string; }[],
+        produk: { idProduk: number; namaProduk: string; satuan: string; }[],
+        resep: { idResep: number, namaResep: string, idProduk: string, batch: number, catatanTambahan: string, produk: { namaProduk: string, satuan: string } }[]
     }>().props;
 
     const options = bahan.map(items => ({
         label: items.namaBahanBaku,
         value: String(items.idBahanBaku)
     }))
-    const {data, setData,  post, delete:destroy, processing, errors, reset} = useForm({
-        nama_resep:"",
-        id_produk:"",
-        batch:"",
-        catatan_tambahan:"",
+    const { data, setData, post, delete: destroy, processing, errors, reset } = useForm({
+        nama_resep: "",
+        id_produk: "",
+        batch: "",
+        catatan_tambahan: "",
         bahan: [] as {
-            id_bahan_baku:string,
-            nama_bahan_baku:string
-            jumlah:number,
+            id_bahan_baku: string,
+            nama_bahan_baku: string
+            jumlah: number,
         }[],
     });
-    function handleCreate(e:SubmitEvent) {
+    function handleCreate(e: SubmitEvent) {
         e.preventDefault()
 
         post('/resep/create', {
@@ -50,80 +50,80 @@ export default function Resep () {
             }
         })
     }
-    function handleDelete (id:number) {
+    function handleDelete(id: number) {
         confirmDialog(
-            "Yakin ingin menghapus ?", 
-            "Data ini akan dinonaktifkan untuk sementara", 
-            "warning", 
+            "Yakin ingin menghapus ?",
+            "Data ini akan dinonaktifkan untuk sementara",
+            "warning",
             () => {
                 destroy(`/resep/delete/${id}`);
-            }, 
+            },
             "Hapus",
             "Batal")
-        }
+    }
     return (
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold">Manajemen Resep</Heading>
             <div className="flex flex-row justify-between mt-5">
                 <Button onClick={() => setIsOpen(true)} variant={1} size="md">Tambah Resep</Button>
-                 <Modal open={open} onClose={() => setIsOpen(false)}  center styles={{modal:{width:"1024px"}}} closeOnOverlayClick={false} closeOnEsc={false}>
+                <Modal open={open} onClose={() => setIsOpen(false)} center styles={{ modal: { width: "1024px" } }} closeOnOverlayClick={false} closeOnEsc={false}>
                     <Heading level={1} color="dark_slate_grey" className="font-bold">Tambah Resep</Heading>
-                        <form className="grid grid-cols-1 md:grid-cols-2 gap-10" onSubmit={handleCreate}>
-                            <div className="flex flex-col gap-5">
-                                <div className="flex flex-col gap-3">
-                                    <Paragraph size="lg">Nama Resep</Paragraph>
-                                    <input className="w-full" type="text" name="nama_resep" value={data.nama_resep} placeholder="Tuliskan nama resep disini" onChange={(e) => setData('nama_resep', e.target.value)} />
-                                </div>
-                                {errors.nama_resep && <div>{errors.nama_resep}</div>}
-                                <div className="flex flex-col gap-3">
-                                    <Paragraph size="lg">Produk</Paragraph>
-                                    <select className="w-full" name="id_produk" onChange={(e) => setData('id_produk', e.target.value)}>
-                                        <option value=" ">Pilih Produk</option>
-                                        {produk.map(items => (
-                                                <option key={items.idProduk} value={items.idProduk} >{items.namaProduk}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                                {errors.id_produk && <div>{errors.id_produk}</div>}
-                                <div className="flex flex-col gap-3">
-                                    <Paragraph size="lg">Batch</Paragraph>
-                                    <input className="w-full" type="number" name="batch" value={data.batch} placeholder="Tuliskan batch disini"  onChange={(e) => setData('batch', e.target.value)} />
-                                </div>
-                                {errors.batch && <div>{errors.batch}</div>}
-                                <div className="mt-auto">
-                                    <Button type="submit" className="w-full" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan" }</Button>
-                                </div>
+                    <form className="grid grid-cols-1 md:grid-cols-2 gap-10" onSubmit={handleCreate}>
+                        <div className="flex flex-col gap-5">
+                            <div className="flex flex-col gap-3">
+                                <Paragraph size="lg">Nama Resep</Paragraph>
+                                <input className="w-full" type="text" name="nama_resep" value={data.nama_resep} placeholder="Tuliskan nama resep disini" onChange={(e) => setData('nama_resep', e.target.value)} />
                             </div>
+                            {errors.nama_resep && <div>{errors.nama_resep}</div>}
+                            <div className="flex flex-col gap-3">
+                                <Paragraph size="lg">Produk</Paragraph>
+                                <select className="w-full" name="id_produk" onChange={(e) => setData('id_produk', e.target.value)}>
+                                    <option value=" ">Pilih Produk</option>
+                                    {produk.map(items => (
+                                        <option key={items.idProduk} value={items.idProduk} >{items.namaProduk}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            {errors.id_produk && <div>{errors.id_produk}</div>}
+                            <div className="flex flex-col gap-3">
+                                <Paragraph size="lg">Batch</Paragraph>
+                                <input className="w-full" type="number" name="batch" value={data.batch} placeholder="Tuliskan batch disini" onChange={(e) => setData('batch', e.target.value)} />
+                            </div>
+                            {errors.batch && <div>{errors.batch}</div>}
+                            <div className="mt-auto">
+                                <Button type="submit" className="w-full" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan"}</Button>
+                            </div>
+                        </div>
                         <div className="flex flex-col gap-5">
                             <div className="flex flex-col gap-3">
                                 <Paragraph size="lg">Bahan Baku</Paragraph>
                                 <MultiSelect options={options} value={data.bahan.map(b => ({
-                                    value:b.id_bahan_baku,
-                                    label:options.find(o => o.value === b.id_bahan_baku)?.label ?? ""
-                                }))} onChange={(val:Option[]) => {
+                                    value: b.id_bahan_baku,
+                                    label: options.find(o => o.value === b.id_bahan_baku)?.label ?? ""
+                                }))} onChange={(val: Option[]) => {
                                     setData("bahan", val.map(v => ({
-                                        id_bahan_baku:v.value,
-                                        nama_bahan_baku:v.label,
-                                        jumlah:0
+                                        id_bahan_baku: v.value,
+                                        nama_bahan_baku: v.label,
+                                        jumlah: 0
                                     })))
                                 }} labelledBy="Select"></MultiSelect>
                             </div>
                             <Paragraph size="lg">List Bahan Baku</Paragraph>
                             <div className="flex items-center gap-2">
                                 <ul className="flex flex-col gap-5 w-full">
-                                    {data.bahan.map((items, i) => 
+                                    {data.bahan.map((items, i) =>
                                         <li key={i} className="flex flex-row gap-3">
                                             <span className="flex-1">{items.nama_bahan_baku}</span>
-                                            <input type="number"  className="w-20" value={items.jumlah}  placeholder="Jumlah" onChange={(e) => {
+                                            <input type="number" className="w-20" value={items.jumlah} placeholder="Jumlah" onChange={(e) => {
                                                 const updated = [...data.bahan];
                                                 updated[i].jumlah = Number(e.target.value);
                                                 setData("bahan", updated);
-                                            }}/>
+                                            }} />
                                         </li>
                                     )}
                                 </ul>
                             </div>
-                            {errors.bahan && <div>{errors.bahan}</div>}  
+                            {errors.bahan && <div>{errors.bahan}</div>}
                             <div className="flex flex-col gap-3">
                                 <Paragraph size="lg">Catatan Tambahan</Paragraph>
                                 <textarea className="w-full" value={data.catatan_tambahan} placeholder="Tuliskan catatan tambahan disini" rows={10} onChange={(e) => setData('catatan_tambahan', e.target.value)}></textarea>
@@ -131,11 +131,11 @@ export default function Resep () {
                             {errors.catatan_tambahan && <div>{errors.catatan_tambahan}</div>}
                         </div>
                     </form>
-                 </Modal>
+                </Modal>
                 <div className="flex flex-row gap-5 ">
                     <input placeholder="Cari Resep"></input>
                     <ActionButton type="search" size="lg">
-                        <FaSearch/>
+                        <FaSearch />
                     </ActionButton>
                 </div>
             </div>
@@ -150,22 +150,22 @@ export default function Resep () {
                 </thead>
                 <tbody>
                     {resep.map(items => (
-                        <tr key="">
+                        <tr key={items.idResep}>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.namaResep}</Paragraph></td>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.produk.namaProduk}</Paragraph></td>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.batch}</Paragraph></td>
                             <td className="border border-gray-300 py-3 px-5">
                                 <div className="flex flex-row gap-2 justify-center">
-                                    <Link route='updateResep.edit' routeParams={{id:items.idResep}}> 
+                                    <Link route='updateResep.edit' routeParams={{ id: items.idResep }}>
                                         <ActionButton as="div" className="flex items-center" type="update" size="sm">
-                                            <FaPen/>
+                                            <FaPen />
                                         </ActionButton>
                                     </Link>
-                                    <ActionButton type="delete" size="sm" onClick={() => handleDelete(items.idResep)}><FaTrash/></ActionButton>
+                                    <ActionButton type="delete" size="sm" onClick={() => handleDelete(items.idResep)}><FaTrash /></ActionButton>
                                 </div>
                             </td>
                         </tr>
-                     ))}
+                    ))}
                 </tbody>
             </table>
         </>

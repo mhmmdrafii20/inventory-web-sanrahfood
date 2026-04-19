@@ -36,6 +36,8 @@ export type ScannedRoutes = {
     'updateKategoriProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'updateKategoriProduk.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'kategoriProduk.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'produksi.index': { paramsTuple?: []; params?: {} }
+    'produksi.create': { paramsTuple?: []; params?: {} }
   }
   GET: {
     'auth.login': { paramsTuple?: []; params?: {} }
@@ -51,6 +53,7 @@ export type ScannedRoutes = {
     'updateResep.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'kategoriProduk.index': { paramsTuple?: []; params?: {} }
     'updateKategoriProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'produksi.index': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'auth.login': { paramsTuple?: []; params?: {} }
@@ -66,6 +69,7 @@ export type ScannedRoutes = {
     'updateResep.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'kategoriProduk.index': { paramsTuple?: []; params?: {} }
     'updateKategoriProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'produksi.index': { paramsTuple?: []; params?: {} }
   }
   POST: {
     'auth.sign_in': { paramsTuple?: []; params?: {} }
@@ -75,6 +79,7 @@ export type ScannedRoutes = {
     'pengguna.create': { paramsTuple?: []; params?: {} }
     'resep.create': { paramsTuple?: []; params?: {} }
     'kategoriProduk.create': { paramsTuple?: []; params?: {} }
+    'produksi.create': { paramsTuple?: []; params?: {} }
   }
   PUT: {
     'updateBahan.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }

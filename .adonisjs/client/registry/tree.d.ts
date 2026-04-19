@@ -60,4 +60,8 @@ export interface ApiDefinition {
     edit: typeof routes['updateKategoriProduk.edit']
     update: typeof routes['updateKategoriProduk.update']
   }
+  produksi: {
+    index: typeof routes['produksi.index']
+    create: typeof routes['produksi.create']
+  }
 }

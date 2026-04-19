@@ -16,20 +16,21 @@ import ProdukController from '#controllers/produk_controller';
 import ResepController from '#controllers/resep_controller';
 import { middleware } from './kernel.ts';
 import KategoriController from '#controllers/kategori_produk_controller';
+import ProduksiController from '#controllers/produksi_controller';
 
 
 router.get('/', [AuthController, 'login']).as('auth.login');
 router.post('/login', [AuthController, 'signIn']);
 
 router
-    .group (() => {
+    .group(() => {
         router.get('/bahan', [BahanController, 'index']).as('bahan.index');
         router.get('/bahan/edit/:id', [BahanController, 'edit']).as('updateBahan.edit')
         router.post('/bahan/create', [BahanController, `create`]).as('bahan.create');
         router.put('/bahan/update/:id', [BahanController, 'update']).as('updateBahan.update');
         router.delete('/bahan/delete/:id', [BahanController, 'destroy']).as("bahan.destroy");
 
-        router.get('/produk', [ProdukController, 'index' ]).as('produk.index');
+        router.get('/produk', [ProdukController, 'index']).as('produk.index');
         router.post('/produk/create', [ProdukController, 'create']).as('produk.create');
         router.get('/produk/edit/:id', [ProdukController, 'edit']).as('updateProduk.edit');
         router.put('/produk/update/:id', [ProdukController, 'update']).as('updateProduk.update');
@@ -58,6 +59,9 @@ router
         router.get('/kategori-produk/edit/:id', [KategoriController, 'edit']).as('updateKategoriProduk.edit');
         router.put('/kategori-produk/update/:id', [KategoriController, 'update']).as('updateKategoriProduk.update');
         router.delete('/kategori-produk/delete/:id', [KategoriController, 'destroy']).as('kategoriProduk.destroy');
+
+        router.get('/produksi', [ProduksiController, 'index']).as('produksi.index');
+        router.post('/produksi/create', [ProduksiController, 'create']).as('produksi.create');
 
     })
     .use(middleware.ensureUserAcces())
