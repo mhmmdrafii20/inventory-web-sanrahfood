@@ -21,13 +21,13 @@ declare module '@adonisjs/inertia/types' {
     'produk': ExtractProps<(typeof import('../../inertia/pages/produk.tsx'))['default']>
     'produksi': ExtractProps<(typeof import('../../inertia/pages/produksi.tsx'))['default']>
     'resep': ExtractProps<(typeof import('../../inertia/pages/resep.tsx'))['default']>
+    'restokBahan': ExtractProps<(typeof import('../../inertia/pages/restokBahan.tsx'))['default']>
+    'stokBahan': ExtractProps<(typeof import('../../inertia/pages/stokBahan.tsx'))['default']>
     'updateBahan': ExtractProps<(typeof import('../../inertia/pages/updateBahan.tsx'))['default']>
     'updateHakAkses': ExtractProps<(typeof import('../../inertia/pages/updateHakAkses.tsx'))['default']>
     'updateKategoriProduk': ExtractProps<(typeof import('../../inertia/pages/updateKategoriProduk.tsx'))['default']>
     'updatePengguna': ExtractProps<(typeof import('../../inertia/pages/updatePengguna.tsx'))['default']>
     'updateProduk': ExtractProps<(typeof import('../../inertia/pages/updateProduk.tsx'))['default']>
     'updateResep': ExtractProps<(typeof import('../../inertia/pages/updateResep.tsx'))['default']>
-    'stokBahan': ExtractProps<(typeof import('../../inertia/pages/stokBahan.tsx'))['default']>
-    'restokBahan': ExtractProps<(typeof import('../../inertia/pages/restokBahan.tsx'))['default']>
   }
 }

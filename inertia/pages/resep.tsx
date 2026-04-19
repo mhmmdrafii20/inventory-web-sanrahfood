@@ -22,7 +22,7 @@ export default function Resep() {
     const { bahan, produk, resep } = usePage<{
         bahan: { idBahanBaku: number; namaBahanBaku: string; satuan: string; }[],
         produk: { idProduk: number; namaProduk: string; satuan: string; }[],
-        resep: { idResep: number, namaResep: string, idProduk: string, batch: number, catatanTambahan: string, produk: { namaProduk: string, satuan: string } }[]
+        resep: { idResep: number, namaResep: string, idProduk: string, yieldPerBatch: number, catatanTambahan: string, produk: { namaProduk: string, satuan: string } }[]
     }>().props;
 
     const options = bahan.map(items => ({
@@ -32,7 +32,7 @@ export default function Resep() {
     const { data, setData, post, delete: destroy, processing, errors, reset } = useForm({
         nama_resep: "",
         id_produk: "",
-        batch: "",
+        yield_per_batch: "",
         catatan_tambahan: "",
         bahan: [] as {
             id_bahan_baku: string,
@@ -86,10 +86,10 @@ export default function Resep() {
                             </div>
                             {errors.id_produk && <div>{errors.id_produk}</div>}
                             <div className="flex flex-col gap-3">
-                                <Paragraph size="lg">Batch</Paragraph>
-                                <input className="w-full" type="number" name="batch" value={data.batch} placeholder="Tuliskan batch disini" onChange={(e) => setData('batch', e.target.value)} />
+                                <Paragraph size="lg">Yield Per Batch</Paragraph>
+                                <input className="w-full" type="number" name="yield_per_batch" value={data.yield_per_batch} placeholder="Tuliskan yield per batch disini" onChange={(e) => setData('yield_per_batch', e.target.value)} />
                             </div>
-                            {errors.batch && <div>{errors.batch}</div>}
+                            {errors.yield_per_batch && <div>{errors.yield_per_batch}</div>}
                             <div className="mt-auto">
                                 <Button type="submit" className="w-full" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan"}</Button>
                             </div>
@@ -144,7 +144,7 @@ export default function Resep() {
                     <tr>
                         <th className="border border-gray-300 py-3">Nama Resep</th>
                         <th className="border border-gray-300 py-3">Produk</th>
-                        <th className="border border-gray-300 py-3">Batch</th>
+                        <th className="border border-gray-300 py-3">Yield Per Batch</th>
                         <th className="border border-gray-300 py-3">Aksi</th>
                     </tr>
                 </thead>
@@ -153,7 +153,7 @@ export default function Resep() {
                         <tr key={items.idResep}>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.namaResep}</Paragraph></td>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.produk.namaProduk}</Paragraph></td>
-                            <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.batch}</Paragraph></td>
+                            <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.yieldPerBatch}</Paragraph></td>
                             <td className="border border-gray-300 py-3 px-5">
                                 <div className="flex flex-row gap-2 justify-center">
                                     <Link route='updateResep.edit' routeParams={{ id: items.idResep }}>
