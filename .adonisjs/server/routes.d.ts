@@ -39,6 +39,11 @@ export type ScannedRoutes = {
     'produksi.index': { paramsTuple?: []; params?: {} }
     'produksi.create': { paramsTuple?: []; params?: {} }
     'stokBahan.index': { paramsTuple?: []; params?: {} }
+    'restokBahan.restok': { paramsTuple?: []; params?: {} }
+    'restokBahan.create': { paramsTuple?: []; params?: {} }
+    'stokProduk.index': { paramsTuple?: []; params?: {} }
+    'riwayatProduksi.index': { paramsTuple?: []; params?: {} }
+    'riwayatProduksi.filter': { paramsTuple?: []; params?: {} }
   }
   GET: {
     'auth.login': { paramsTuple?: []; params?: {} }
@@ -56,6 +61,10 @@ export type ScannedRoutes = {
     'updateKategoriProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'produksi.index': { paramsTuple?: []; params?: {} }
     'stokBahan.index': { paramsTuple?: []; params?: {} }
+    'restokBahan.restok': { paramsTuple?: []; params?: {} }
+    'stokProduk.index': { paramsTuple?: []; params?: {} }
+    'riwayatProduksi.index': { paramsTuple?: []; params?: {} }
+    'riwayatProduksi.filter': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'auth.login': { paramsTuple?: []; params?: {} }
@@ -73,6 +82,10 @@ export type ScannedRoutes = {
     'updateKategoriProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'produksi.index': { paramsTuple?: []; params?: {} }
     'stokBahan.index': { paramsTuple?: []; params?: {} }
+    'restokBahan.restok': { paramsTuple?: []; params?: {} }
+    'stokProduk.index': { paramsTuple?: []; params?: {} }
+    'riwayatProduksi.index': { paramsTuple?: []; params?: {} }
+    'riwayatProduksi.filter': { paramsTuple?: []; params?: {} }
   }
   POST: {
     'auth.sign_in': { paramsTuple?: []; params?: {} }
@@ -83,6 +96,7 @@ export type ScannedRoutes = {
     'resep.create': { paramsTuple?: []; params?: {} }
     'kategoriProduk.create': { paramsTuple?: []; params?: {} }
     'produksi.create': { paramsTuple?: []; params?: {} }
+    'restokBahan.create': { paramsTuple?: []; params?: {} }
   }
   PUT: {
     'updateBahan.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }

@@ -18,6 +18,8 @@ import { middleware } from './kernel.ts';
 import KategoriController from '#controllers/kategori_produk_controller';
 import ProduksiController from '#controllers/produksi_controller';
 import StokBahanController from '#controllers/stok_bahan_controller';
+import StokProdukController from '#controllers/stok_produk_controller';
+import RiwayatProduksiController from '#controllers/riwayat_produksi_controller';
 
 
 router.get('/', [AuthController, 'login']).as('auth.login');
@@ -65,6 +67,13 @@ router
         router.post('/produksi/create', [ProduksiController, 'create']).as('produksi.create');
 
         router.get('/stok-bahan', [StokBahanController, 'index']).as('stokBahan.index');
+        router.get('/restok-bahan', [StokBahanController, 'restok']).as('restokBahan.restok');
+        router.post('/restok-bahan/create', [StokBahanController, 'create']).as('restokBahan.create');
+
+        router.get('/stok-produk', [StokProdukController, 'index']).as('stokProduk.index');
+
+        router.get('/riwayat-produksi', [RiwayatProduksiController, 'index']).as('riwayatProduksi.index');
+        router.get('/riwayat-produksi/filter', [RiwayatProduksiController, 'filter']).as('riwayatProduksi.filter');
 
     })
     .use(middleware.ensureUserAcces())

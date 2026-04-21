@@ -392,4 +392,59 @@ export interface Registry {
       response: unknown
     }
   }
+  'restokBahan.restok': {
+    methods: ["GET","HEAD"]
+    pattern: '/restok-bahan'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'restokBahan.create': {
+    methods: ["POST"]
+    pattern: '/restok-bahan/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'stokProduk.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/stok-produk'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'riwayatProduksi.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/riwayat-produksi'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'riwayatProduksi.filter': {
+    methods: ["GET","HEAD"]
+    pattern: '/riwayat-produksi/filter'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
 }

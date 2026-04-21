@@ -5,9 +5,9 @@ export default class extends BaseSchema {
 
   async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id_riwayat_stok_bb', {primaryKey:true})
+      table.increments('id_riwayat_stok_bb', { primaryKey: true })
       table.integer('id_stok_bahan_baku')
-      table.enu('jenis_stok', ['produksi', 'restok', 'expired'] ).notNullable()
+      table.enu('jenis_stok', ['restok', 'expired', 'keluar']).notNullable()
       table.integer('selisih_stok').notNullable()
       table.integer('stok_sebelum').notNullable()
       table.integer('stok_sesudah').notNullable()

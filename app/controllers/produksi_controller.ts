@@ -1,6 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Produk from '#models/produk'
-import { RiwayatProduksiServices } from '#services/RiwayatProduksiServices';
+import { ProduksiServices } from '#services/ProduksiServices';
 
 export default class ProduksiController {
     async index({ inertia }: HttpContext) {
@@ -14,8 +14,7 @@ export default class ProduksiController {
     async create({ request, response, session }: HttpContext) {
         try {
             const payload = request.only(['id_produk', 'id_resep', 'jumlah_batch', 'tanggal_produksi', 'catatan_tambahan'])
-            console.log(payload);
-            await RiwayatProduksiServices.create(payload);
+            await ProduksiServices.create(payload);
             session.flash('success', "Produksi berhasil dilakukan");
             return response.redirect().toRoute('produksi.index');
         } catch (error) {

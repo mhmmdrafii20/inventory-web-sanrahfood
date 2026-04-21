@@ -1,17 +1,17 @@
-import {HTMLAttributes, ReactNode } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 
 type SizesType = "sm" | "md" | "lg";
 type Params = HTMLAttributes<HTMLParagraphElement> & {
-    size:SizesType,
-    children:ReactNode,
+    size: SizesType,
+    children: ReactNode,
 }
 
-const Paragraph = ({size, children, ...props}:Params) => {
+const Paragraph = ({ size, children, className, ...props }: Params) => {
     const sizes = {
-        sm:"text-[12px]",
-        md:"text-[16px]",
-        lg:"text-[18px]",
+        sm: "text-[12px]",
+        md: "text-[16px]",
+        lg: "text-[18px]",
     }
-    return <p {...props} className={`${sizes[size]}`} >{children}</p>
+    return <p {...props} className={`${sizes[size]} ${className}`} >{children}</p>
 }
 export default Paragraph;

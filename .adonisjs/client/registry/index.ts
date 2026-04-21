@@ -216,6 +216,36 @@ const routes = {
     tokens: [{"old":"/stok-bahan","type":0,"val":"stok-bahan","end":""}],
     types: placeholder as Registry['stokBahan.index']['types'],
   },
+  'restokBahan.restok': {
+    methods: ["GET","HEAD"],
+    pattern: '/restok-bahan',
+    tokens: [{"old":"/restok-bahan","type":0,"val":"restok-bahan","end":""}],
+    types: placeholder as Registry['restokBahan.restok']['types'],
+  },
+  'restokBahan.create': {
+    methods: ["POST"],
+    pattern: '/restok-bahan/create',
+    tokens: [{"old":"/restok-bahan/create","type":0,"val":"restok-bahan","end":""},{"old":"/restok-bahan/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['restokBahan.create']['types'],
+  },
+  'stokProduk.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/stok-produk',
+    tokens: [{"old":"/stok-produk","type":0,"val":"stok-produk","end":""}],
+    types: placeholder as Registry['stokProduk.index']['types'],
+  },
+  'riwayatProduksi.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/riwayat-produksi',
+    tokens: [{"old":"/riwayat-produksi","type":0,"val":"riwayat-produksi","end":""}],
+    types: placeholder as Registry['riwayatProduksi.index']['types'],
+  },
+  'riwayatProduksi.filter': {
+    methods: ["GET","HEAD"],
+    pattern: '/riwayat-produksi/filter',
+    tokens: [{"old":"/riwayat-produksi/filter","type":0,"val":"riwayat-produksi","end":""},{"old":"/riwayat-produksi/filter","type":0,"val":"filter","end":""}],
+    types: placeholder as Registry['riwayatProduksi.filter']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }
