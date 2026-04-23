@@ -20,7 +20,9 @@ import ProduksiController from '#controllers/produksi_controller';
 import StokBahanController from '#controllers/stok_bahan_controller';
 import StokProdukController from '#controllers/stok_produk_controller';
 import RiwayatProduksiController from '#controllers/riwayat_produksi_controller';
-
+import RiwayatStokBahanBakuController from '#controllers/riwayat_stok_bahan_baku';
+import RiwayatStokProdukController from '#controllers/riwayat_stok_produk_controller';
+import IntegrasiWhatsappController from '#controllers/integrasi_whatsapp_controller';
 
 router.get('/', [AuthController, 'login']).as('auth.login');
 router.post('/login', [AuthController, 'signIn']);
@@ -70,10 +72,20 @@ router
         router.get('/restok-bahan', [StokBahanController, 'restok']).as('restokBahan.restok');
         router.post('/restok-bahan/create', [StokBahanController, 'create']).as('restokBahan.create');
 
+        router.get('/riwayat-stok-bahan-baku', [RiwayatStokBahanBakuController, 'index']).as('riwayatStokBahanBaku.index');
+        router.get('/riwayat-stok-bahan-baku/filter', [RiwayatStokBahanBakuController, 'filter']).as('riwayatStokBahanBaku.filter');
+
         router.get('/stok-produk', [StokProdukController, 'index']).as('stokProduk.index');
+
+        router.get('/riwayat-stok-produk', [RiwayatStokProdukController, 'index']).as('riwayatStokProduk.index');
+        router.get('/riwayat-stok-produk/filter', [RiwayatStokProdukController, 'filter']).as('riwayatStokProduk.filter');
 
         router.get('/riwayat-produksi', [RiwayatProduksiController, 'index']).as('riwayatProduksi.index');
         router.get('/riwayat-produksi/filter', [RiwayatProduksiController, 'filter']).as('riwayatProduksi.filter');
 
+        router.get('/integrasi-whatsapp', [IntegrasiWhatsappController, 'index']).as('integrasiWhatsapp.index');
+        router.post('/integrasi-whatsapp/connect', [IntegrasiWhatsappController, 'connect']).as('integrasiWhatsapp.connect');
+        router.get('/integrasi-whatsapp/get-qr', [IntegrasiWhatsappController, 'getQr']).as('integrasiWhatsapp.getQr');
+        // router.put('/integrasi-whatsapp/connected', [IntegrasiWhatsappController, 'connected']).as('integrasiWhatsapp.connected');
     })
     .use(middleware.ensureUserAcces())

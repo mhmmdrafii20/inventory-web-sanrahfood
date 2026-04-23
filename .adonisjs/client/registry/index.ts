@@ -228,11 +228,35 @@ const routes = {
     tokens: [{"old":"/restok-bahan/create","type":0,"val":"restok-bahan","end":""},{"old":"/restok-bahan/create","type":0,"val":"create","end":""}],
     types: placeholder as Registry['restokBahan.create']['types'],
   },
+  'riwayatStokBahanBaku.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/riwayat-stok-bahan-baku',
+    tokens: [{"old":"/riwayat-stok-bahan-baku","type":0,"val":"riwayat-stok-bahan-baku","end":""}],
+    types: placeholder as Registry['riwayatStokBahanBaku.index']['types'],
+  },
+  'riwayatStokBahanBaku.filter': {
+    methods: ["GET","HEAD"],
+    pattern: '/riwayat-stok-bahan-baku/filter',
+    tokens: [{"old":"/riwayat-stok-bahan-baku/filter","type":0,"val":"riwayat-stok-bahan-baku","end":""},{"old":"/riwayat-stok-bahan-baku/filter","type":0,"val":"filter","end":""}],
+    types: placeholder as Registry['riwayatStokBahanBaku.filter']['types'],
+  },
   'stokProduk.index': {
     methods: ["GET","HEAD"],
     pattern: '/stok-produk',
     tokens: [{"old":"/stok-produk","type":0,"val":"stok-produk","end":""}],
     types: placeholder as Registry['stokProduk.index']['types'],
+  },
+  'riwayatStokProduk.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/riwayat-stok-produk',
+    tokens: [{"old":"/riwayat-stok-produk","type":0,"val":"riwayat-stok-produk","end":""}],
+    types: placeholder as Registry['riwayatStokProduk.index']['types'],
+  },
+  'riwayatStokProduk.filter': {
+    methods: ["GET","HEAD"],
+    pattern: '/riwayat-stok-produk/filter',
+    tokens: [{"old":"/riwayat-stok-produk/filter","type":0,"val":"riwayat-stok-produk","end":""},{"old":"/riwayat-stok-produk/filter","type":0,"val":"filter","end":""}],
+    types: placeholder as Registry['riwayatStokProduk.filter']['types'],
   },
   'riwayatProduksi.index': {
     methods: ["GET","HEAD"],
@@ -245,6 +269,24 @@ const routes = {
     pattern: '/riwayat-produksi/filter',
     tokens: [{"old":"/riwayat-produksi/filter","type":0,"val":"riwayat-produksi","end":""},{"old":"/riwayat-produksi/filter","type":0,"val":"filter","end":""}],
     types: placeholder as Registry['riwayatProduksi.filter']['types'],
+  },
+  'integrasiWhatsapp.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/integrasi-whatsapp',
+    tokens: [{"old":"/integrasi-whatsapp","type":0,"val":"integrasi-whatsapp","end":""}],
+    types: placeholder as Registry['integrasiWhatsapp.index']['types'],
+  },
+  'integrasiWhatsapp.connect': {
+    methods: ["POST"],
+    pattern: '/integrasi-whatsapp/connect',
+    tokens: [{"old":"/integrasi-whatsapp/connect","type":0,"val":"integrasi-whatsapp","end":""},{"old":"/integrasi-whatsapp/connect","type":0,"val":"connect","end":""}],
+    types: placeholder as Registry['integrasiWhatsapp.connect']['types'],
+  },
+  'integrasiWhatsapp.getQr': {
+    methods: ["GET","HEAD"],
+    pattern: '/integrasi-whatsapp/get-qr',
+    tokens: [{"old":"/integrasi-whatsapp/get-qr","type":0,"val":"integrasi-whatsapp","end":""},{"old":"/integrasi-whatsapp/get-qr","type":0,"val":"get-qr","end":""}],
+    types: placeholder as Registry['integrasiWhatsapp.getQr']['types'],
   },
 } as const satisfies Record<string, AdonisEndpoint>
 

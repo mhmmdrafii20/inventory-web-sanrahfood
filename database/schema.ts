@@ -296,3 +296,18 @@ export class TbTipeNotifikasiSchema extends BaseModel {
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
 }
+
+export class TbIntegrasiWhatsappSchema extends BaseModel {
+  static $columns = ['idWhatsappSessions', 'idPengguna', 'sessionId', 'status', 'createdAt'] as const
+  $columns = TbIntegrasiWhatsappSchema.$columns
+  @column()
+  declare idWhatsappSessions: number
+  @column()
+  declare idPengguna: number
+  @column()
+  declare sessionId: string
+  @column()
+  declare status: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+}

@@ -1,7 +1,7 @@
 import { Link } from "@inertiajs/react";
 import Heading from "./ui/Heading";
 import Logo from '../../resources/assets/logo_sanrahfood.png';
-import { TbCubePlus, TbPackage, TbCategory, TbUsersGroup, TbHistory, TbMessage, TbNotification, TbNotes, TbBox, TbBoxModel, TbLock, TbUser, TbHome } from "react-icons/tb";
+import { TbCubePlus, TbPackage, TbCategory, TbUsersGroup, TbHistory, TbMessage, TbNotification, TbNotes, TbBox, TbBoxModel, TbLock, TbUser, TbHome, TbBrandWhatsapp } from "react-icons/tb";
 
 
 export default function Sidebar() {
@@ -75,6 +75,11 @@ export default function Sidebar() {
             name: "Kategori Produk",
             link: "/kategori-produk",
             icon: <TbCategory size={20} className="text-white" />
+        },
+        {
+            name: "Integrasi Whatsapp",
+            link: "/integrasi-whatsapp",
+            icon: <TbBrandWhatsapp size={20} className="text-white" />
         },
         {
             name: "Daftar Penerima",

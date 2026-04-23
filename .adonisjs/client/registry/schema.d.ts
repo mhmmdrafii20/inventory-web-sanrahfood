@@ -414,9 +414,53 @@ export interface Registry {
       response: unknown
     }
   }
+  'riwayatStokBahanBaku.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/riwayat-stok-bahan-baku'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'riwayatStokBahanBaku.filter': {
+    methods: ["GET","HEAD"]
+    pattern: '/riwayat-stok-bahan-baku/filter'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
   'stokProduk.index': {
     methods: ["GET","HEAD"]
     pattern: '/stok-produk'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'riwayatStokProduk.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/riwayat-stok-produk'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'riwayatStokProduk.filter': {
+    methods: ["GET","HEAD"]
+    pattern: '/riwayat-stok-produk/filter'
     types: {
       body: {}
       paramsTuple: []
@@ -439,6 +483,39 @@ export interface Registry {
   'riwayatProduksi.filter': {
     methods: ["GET","HEAD"]
     pattern: '/riwayat-produksi/filter'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'integrasiWhatsapp.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/integrasi-whatsapp'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'integrasiWhatsapp.connect': {
+    methods: ["POST"]
+    pattern: '/integrasi-whatsapp/connect'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'integrasiWhatsapp.getQr': {
+    methods: ["GET","HEAD"]
+    pattern: '/integrasi-whatsapp/get-qr'
     types: {
       body: {}
       paramsTuple: []

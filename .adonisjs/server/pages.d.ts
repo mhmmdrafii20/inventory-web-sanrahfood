@@ -15,6 +15,7 @@ declare module '@adonisjs/inertia/types' {
     'bahan': ExtractProps<(typeof import('../../inertia/pages/bahan.tsx'))['default']>
     'hakAkses': ExtractProps<(typeof import('../../inertia/pages/hakAkses.tsx'))['default']>
     'home': ExtractProps<(typeof import('../../inertia/pages/home.tsx'))['default']>
+    'integrasiWhatsapp': ExtractProps<(typeof import('../../inertia/pages/integrasiWhatsapp.tsx'))['default']>
     'kategoriProduk': ExtractProps<(typeof import('../../inertia/pages/kategoriProduk.tsx'))['default']>
     'login': ExtractProps<(typeof import('../../inertia/pages/login.tsx'))['default']>
     'pengguna': ExtractProps<(typeof import('../../inertia/pages/pengguna.tsx'))['default']>
@@ -23,6 +24,8 @@ declare module '@adonisjs/inertia/types' {
     'resep': ExtractProps<(typeof import('../../inertia/pages/resep.tsx'))['default']>
     'restokBahan': ExtractProps<(typeof import('../../inertia/pages/restokBahan.tsx'))['default']>
     'riwayatProduksi': ExtractProps<(typeof import('../../inertia/pages/riwayatProduksi.tsx'))['default']>
+    'riwayatStokBahan': ExtractProps<(typeof import('../../inertia/pages/riwayatStokBahan.tsx'))['default']>
+    'riwayatStokProduk': ExtractProps<(typeof import('../../inertia/pages/riwayatStokProduk.tsx'))['default']>
     'stokBahan': ExtractProps<(typeof import('../../inertia/pages/stokBahan.tsx'))['default']>
     'stokProduk': ExtractProps<(typeof import('../../inertia/pages/stokProduk.tsx'))['default']>
     'updateBahan': ExtractProps<(typeof import('../../inertia/pages/updateBahan.tsx'))['default']>

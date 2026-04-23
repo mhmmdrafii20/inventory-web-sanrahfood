@@ -71,11 +71,24 @@ export interface ApiDefinition {
     restok: typeof routes['restokBahan.restok']
     create: typeof routes['restokBahan.create']
   }
+  riwayatStokBahanBaku: {
+    index: typeof routes['riwayatStokBahanBaku.index']
+    filter: typeof routes['riwayatStokBahanBaku.filter']
+  }
   stokProduk: {
     index: typeof routes['stokProduk.index']
+  }
+  riwayatStokProduk: {
+    index: typeof routes['riwayatStokProduk.index']
+    filter: typeof routes['riwayatStokProduk.filter']
   }
   riwayatProduksi: {
     index: typeof routes['riwayatProduksi.index']
     filter: typeof routes['riwayatProduksi.filter']
+  }
+  integrasiWhatsapp: {
+    index: typeof routes['integrasiWhatsapp.index']
+    connect: typeof routes['integrasiWhatsapp.connect']
+    getQr: typeof routes['integrasiWhatsapp.getQr']
   }
 }
