@@ -11,6 +11,7 @@ import { FaSearch, FaPen, FaTrash } from "react-icons/fa";
 import { Link } from "@adonisjs/inertia/react";
 import confirmDialog from '../../utils/sweetalert'
 import Input from "~/components/ui/Input";
+import Select from "~/components/ui/Select";
 
 export default function Produk() {
     const [open, setIsOpen] = useState(false);
@@ -61,12 +62,12 @@ export default function Produk() {
                         </div>
                         <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Kategori Produk</Paragraph>
-                            <select name="id_kategori" onChange={(e) => setData('id_kategori', e.target.value)}>
+                            <Select variant={1} size="md" name="id_kategori" onChange={(e) => setData('id_kategori', e.target.value)}>
                                 <option value="">Pilih Kategori</option>
                                 {kategori.map(items => (
                                     <option key={items.idKategori} value={items.idKategori} >{items.namaKategori}</option>
                                 ))}
-                            </select>
+                            </Select>
                             {errors.id_kategori && <div>{errors.id_kategori}</div>}
                         </div>
                         <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan"}</Button>

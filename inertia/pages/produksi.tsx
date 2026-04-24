@@ -5,6 +5,7 @@ import { SubmitEvent } from "react";
 import Button from "~/components/ui/Button/Button";
 import Input from "~/components/ui/Input";
 import TextArea from "~/components/ui/Textarea";
+import Select from "~/components/ui/Select";
 
 export default function Produksi() {
     const { produk } = usePage<{
@@ -35,22 +36,22 @@ export default function Produksi() {
                 <div className="flex flex-col gap-5">
                     <div className="flex flex-col gap-3">
                         <Paragraph size="lg">Produk</Paragraph>
-                        <select name="id_produk" value={data.id_produk} onChange={(e) => setData('id_produk', e.target.value)}>
+                        <Select variant={1} size="md" name="id_produk" value={data.id_produk} onChange={(e) => setData('id_produk', e.target.value)}>
                             <option value=" ">Pilih Produk</option>
                             {produk.map(items => (
                                 <option key={items.idProduk} value={items.idProduk} >{items.namaProduk}</option>
                             ))}
-                        </select>
+                        </Select>
                     </div>
                     {errors.id_produk && <div>{errors.id_produk}</div>}
                     {selectedProduk && <div className="flex flex-col gap-3">
                         <Paragraph size="lg">Resep</Paragraph>
-                        <select name="id_resep" value={data.id_resep} onChange={(e) => setData('id_resep', e.target.value)}>
+                        <Select variant={1} size="md" name="id_resep" value={data.id_resep} onChange={(e) => setData('id_resep', e.target.value)}>
                             <option value=" ">Pilih Resep</option>
                             {selectedProduk.resep.map(items => (
                                 <option key={items.idResep} value={items.idResep} >{items.namaResep}</option>
                             ))}
-                        </select>
+                        </Select>
                     </div>}
                     {errors.id_resep && <div>{errors.id_resep}</div>}
                     <div className="flex flex-col gap-3">

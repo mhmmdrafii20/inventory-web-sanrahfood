@@ -6,6 +6,7 @@ import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css'
 import { SubmitEvent } from "react";
 import Input from "~/components/ui/Input";
+import Select from "~/components/ui/Select";
 
 export default function UpdatePengguna() {
     const { role, dataPengguna, auth } = usePage<{ flash?: { success?: string; error?: string }, role: { idHakAkses: number, namaHakAkses: string }[], dataPengguna: { id: number, id_pengguna: string, id_hak_akses: number, nama_pengguna: string, nomor_telepon: string }, auth: { data: { user: { id: string, email: string } } } }>().props;
@@ -49,12 +50,12 @@ export default function UpdatePengguna() {
                 {errors.nama_pengguna && <div>{errors.nama_pengguna}</div>}
 
                 <Paragraph size="lg">Hak Akses</Paragraph>
-                <select name="id_hak_akses" defaultValue={dataPengguna.id_hak_akses} onChange={(e) => setData('id_hak_akses', parseInt(e.target.value))}>
+                <Select variant={1} size="md" name="id_hak_akses" defaultValue={dataPengguna.id_hak_akses} onChange={(e) => setData('id_hak_akses', parseInt(e.target.value))}>
                     <option value="">Pilih Hak Akses</option>
                     {role.map(items => (
                         <option key={items.idHakAkses} value={items.idHakAkses} >{items.namaHakAkses}</option>
                     ))}
-                </select>
+                </Select>
                 {errors.id_hak_akses && <div>{errors.id_hak_akses}</div>}
 
                 <Paragraph size="lg">Nomor Telepon</Paragraph>

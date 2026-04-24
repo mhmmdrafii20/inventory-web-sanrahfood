@@ -14,7 +14,7 @@ export default function RiwayatStokBahan() {
         filteredRiwayatStokBahanBaku: { idRiwayatStokBb: number; idStokBahanBaku: number; jenisStok: string; selisihStok: number, stokSebelum: number, stokSesudah: number, tanggalPerubahanStok: string, stokBahanBaku: { bahan: { namaBahanBaku: string } } }[]
     }>().props;
 
-    const { data, setData, get, delete: destroy, processing, errors, reset } = useForm({
+    const { data, setData, get, processing, } = useForm({
         tanggal_awal: "",
         tanggal_akhir: "",
     });

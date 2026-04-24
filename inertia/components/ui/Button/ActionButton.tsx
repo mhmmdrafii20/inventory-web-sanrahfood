@@ -15,9 +15,9 @@ const ActionButton = ({type, size, children, as, className,  ...props}:Params) =
     const Component = as || 'button';
 
     const actionType = {
-        search:"bg-medium-teal text-white",
-        update:"bg-deep-cyan text-white",
-        delete:"bg-red-500 text-white",
+        search:"bg-medium-teal text-white transition-all duration-200 ease-in-out hover:brightness-110",
+        update:"bg-deep-cyan text-white transition-all duration-200 ease-in-out hover:brightness-110",
+        delete:"bg-red-500 text-white transition-all duration-200 ease-in-out hover:brightness-110",
     }
     const actionSize = {
         xs:"px-1 h-5",

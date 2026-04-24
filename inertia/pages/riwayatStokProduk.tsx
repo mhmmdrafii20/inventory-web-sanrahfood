@@ -13,7 +13,7 @@ export default function RiwayatStokProduk() {
         filteredRiwayatStokProduk: { idRiwayatStokProduk: number; idStokProduk: number; jenisStok: string; selisihStok: number, stokSebelum: number, stokSesudah: number, tanggalPerubahanStok: string, stokProduk: { produk: { namaProduk: string } } }[]
     }>().props;
 
-    const { data, setData, get, delete: destroy, processing, errors, reset } = useForm({
+    const { data, setData, get, processing } = useForm({
         tanggal_awal: "",
         tanggal_akhir: "",
     });
@@ -53,7 +53,7 @@ export default function RiwayatStokProduk() {
                     </tr>
                 </thead>
                 <tbody>
-                    {riwayatStokProduk?.length > 0 ? riwayatStokProduk?.map(items => (
+                    {displayRiwayatStokProduk?.length > 0 ? displayRiwayatStokProduk?.map(items => (
                         <tr key={items.idRiwayatStokProduk}>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.stokProduk.produk.namaProduk}</Paragraph></td>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.selisihStok}</Paragraph></td>

@@ -4,6 +4,7 @@ import Paragraph from "~/components/ui/Paragraph";
 import Button from "~/components/ui/Button/Button";
 import { SubmitEvent } from "react";
 import Input from "~/components/ui/Input";
+import Select from "~/components/ui/Select";
 
 export default function UpdateProduk() {
     const { dataProduk, kategori } = usePage<{ dataProduk: { id_produk: number, nama_produk: string, satuan: string, id_kategori: number }, kategori: { idKategori: number, namaKategori: string }[] }>().props;
@@ -39,12 +40,12 @@ export default function UpdateProduk() {
                 {errors.satuan && <div>{errors.satuan}</div>}
 
                 <Paragraph size="lg">Kategori Produk</Paragraph>
-                <select name="id_kategori" defaultValue={data.id_kategori} onChange={(e) => setData('id_kategori', parseInt(e.target.value))}>
+                <Select variant={1} size="md" name="id_kategori" defaultValue={data.id_kategori} onChange={(e) => setData('id_kategori', parseInt(e.target.value))}>
                     <option value=" ">Pilih Kategori</option>
                     {kategori.map(items => (
                         <option key={items.idKategori} value={items.idKategori}>{items.namaKategori}</option>
                     ))}
-                </select>
+                </Select>
                 {errors.id_kategori && <div>{errors.id_kategori}</div>}
                 <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Updating...." : "Update"}</Button>
             </form>

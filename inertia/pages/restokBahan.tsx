@@ -4,6 +4,7 @@ import Button from "~/components/ui/Button/Button";
 import { useForm, usePage } from "@inertiajs/react";
 import { SubmitEvent } from "react";
 import Input from "~/components/ui/Input";
+import Select from "~/components/ui/Select";
 
 export default function RestokBahan() {
     const { bahan } = usePage<{ bahan: { idBahanBaku: number; namaBahanBaku: string; satuan: string; }[] }>().props;
@@ -25,12 +26,12 @@ export default function RestokBahan() {
                 <div className="flex flex-col gap-5">
                     <div className="flex flex-col gap-3">
                         <Paragraph size="lg">Bahan Baku</Paragraph>
-                        <select name="id_bahan_baku" value={data.id_bahan_baku} onChange={(e) => setData("id_bahan_baku", e.target.value)}>
+                        <Select variant={1} size="md" name="id_bahan_baku" value={data.id_bahan_baku} onChange={(e) => setData("id_bahan_baku", e.target.value)}>
                             <option value="">Pilih Bahan Baku</option>
                             {bahan.map((item) => (
                                 <option key={item.idBahanBaku} value={item.idBahanBaku}>{item.namaBahanBaku}</option>
                             ))}
-                        </select>
+                        </Select>
                     </div>
                     {errors.id_bahan_baku && <div>{errors.id_bahan_baku}</div>}
                     <div className="flex flex-col gap-3">

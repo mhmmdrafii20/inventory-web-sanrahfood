@@ -53,7 +53,7 @@ export default function Bahan() {
                         <Paragraph size="lg">Nama Bahan Baku</Paragraph>
                         <Input variant={1} size="md" type="text" name="nama_bahan_baku" value={data.nama_bahan_baku} onChange={e => setData("nama_bahan_baku", e.target.value)} placeholder="Nama Bahan Baku" />
                         {errors.nama_bahan_baku && <div>{errors.nama_bahan_baku}</div>}
-                        <div className="mt-5 mb-5">
+                        <div className="flex flex-col gap-2">
                             <Paragraph size="lg">Satuan</Paragraph>
                             <Input variant={1} size="md" type="text" name="satuan" value={data.satuan} onChange={e => setData('satuan', e.target.value)} placeholder="Satuan" />
                         </div>

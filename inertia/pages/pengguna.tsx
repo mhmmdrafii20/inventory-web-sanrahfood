@@ -12,6 +12,7 @@ import ActionButton from "~/components/ui/Button/ActionButton"
 import { FaPen, FaTrash } from "react-icons/fa"
 import confirmDialog from '../../utils/sweetalert'
 import Input from "~/components/ui/Input";
+import Select from "~/components/ui/Select"
 
 export default function Pengguna() {
     const [open, setIsOpen] = useState(false);
@@ -77,12 +78,12 @@ export default function Pengguna() {
                         </div>
                         <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Hak Akses</Paragraph>
-                            <select name="id_hak_akses" onChange={(e) => setData('id_hak_akses', e.target.value)}>
+                            <Select variant={1} size="md" name="id_hak_akses" onChange={(e) => setData('id_hak_akses', e.target.value)}>
                                 <option value="">Pilih Hak Akses</option>
                                 {role.map(items => (
                                     <option key={items.idHakAkses} value={items.idHakAkses} >{items.namaHakAkses}</option>
                                 ))}
-                            </select>
+                            </Select>
                             {errors.id_hak_akses && <div>{errors.id_hak_akses}</div>}
                         </div>
 

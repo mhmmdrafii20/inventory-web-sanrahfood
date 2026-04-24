@@ -6,6 +6,7 @@ import { MultiSelect } from "react-multi-select-component";
 import Button from "~/components/ui/Button/Button";
 import Input from "~/components/ui/Input";
 import TextArea from "~/components/ui/Textarea";
+import Select from "~/components/ui/Select";
 
 export default function updateResep() {
     type Option = {
@@ -64,12 +65,12 @@ export default function updateResep() {
                     {errors.nama_resep && <div>{errors.nama_resep}</div>}
                     <div className="flex flex-col gap-3">
                         <Paragraph size="lg">Produk</Paragraph>
-                        <select className="w-full" name="id_produk" value={data.id_produk} onChange={(e) => setData('id_produk', e.target.value)}>
+                        <Select variant={1} size="md" className="w-full" name="id_produk" value={data.id_produk} onChange={(e) => setData('id_produk', e.target.value)}>
                             <option value=" ">Pilih Produk</option>
                             {produk.map(items => (
                                 <option key={items.idProduk} value={items.idProduk} >{items.namaProduk}</option>
                             ))}
-                        </select>
+                        </Select>
                     </div>
                     {errors.id_produk && <div>{errors.id_produk}</div>}
                     <div className="flex flex-col gap-3">
@@ -103,7 +104,7 @@ export default function updateResep() {
                     <Paragraph size="lg">List Bahan Baku</Paragraph>
                     <div className="flex items-center gap-2">
                         <ul className="flex flex-col gap-5 w-full">
-                            {data.bahan.map((items, i) =>
+                            {data.bahan && data.bahan.length > 0 ? data.bahan.map((items, i) =>
                                 <li key={i} className="flex flex-row gap-3">
                                     <span className="flex-1">{items.nama_bahan_baku}</span>
                                     <input type="number" className="w-20" value={items.jumlah} placeholder="Jumlah" onChange={(e) => {
@@ -112,7 +113,7 @@ export default function updateResep() {
                                         setData("bahan", updated);
                                     }} />
                                 </li>
-                            )}
+                            ) : (<Paragraph size="md" className="text-gray-500">Tidak Ada Bahan Baku</Paragraph>)}
                         </ul>
                     </div>
                     {errors.bahan && <div>{errors.bahan}</div>}
