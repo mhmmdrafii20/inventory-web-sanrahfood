@@ -4,6 +4,8 @@ import Heading from "~/components/ui/Heading";
 import Paragraph from "~/components/ui/Paragraph";
 import { MultiSelect } from "react-multi-select-component";
 import Button from "~/components/ui/Button/Button";
+import Input from "~/components/ui/Input";
+import TextArea from "~/components/ui/Textarea";
 
 export default function updateResep() {
     type Option = {
@@ -52,12 +54,12 @@ export default function updateResep() {
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold">Edit Resep</Heading>
             <form className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-white p-5 shadow-md rounded-md" onSubmit={handleUpdate}>
-                <input type="hidden" name="id_resep" value={data.id_resep} onChange={(e) => setData('id_resep', parseInt(e.target.value))}></input>
-                <input type="hidden" name="id_produk" value={data.id_produk} onChange={(e) => setData('id_produk', e.target.value)}></input>
+                <Input variant={1} size="md" type="hidden" name="id_resep" value={data.id_resep} onChange={(e) => setData('id_resep', parseInt(e.target.value))} />
+                <Input variant={1} size="md" type="hidden" name="id_produk" value={data.id_produk} onChange={(e) => setData('id_produk', e.target.value)} />
                 <div className="flex flex-col gap-5">
                     <div className="flex flex-col gap-3">
                         <Paragraph size="lg">Nama Resep</Paragraph>
-                        <input className="w-full" type="text" name="nama_resep" value={data.nama_resep} placeholder="Tuliskan nama resep disini" onChange={(e) => setData('nama_resep', e.target.value)} />
+                        <Input variant={1} size="md" type="text" name="nama_resep" value={data.nama_resep} placeholder="Tuliskan nama resep disini" onChange={(e) => setData('nama_resep', e.target.value)} />
                     </div>
                     {errors.nama_resep && <div>{errors.nama_resep}</div>}
                     <div className="flex flex-col gap-3">
@@ -72,7 +74,7 @@ export default function updateResep() {
                     {errors.id_produk && <div>{errors.id_produk}</div>}
                     <div className="flex flex-col gap-3">
                         <Paragraph size="lg">Yield Per Batch</Paragraph>
-                        <input className="w-full" type="number" name="yield_per_batch" value={data.yield_per_batch} placeholder="Tuliskan yield per batch disini" onChange={(e) => setData('yield_per_batch', parseInt(e.target.value))} />
+                        <Input variant={1} size="md" type="number" name="yield_per_batch" value={data.yield_per_batch} placeholder="Tuliskan yield per batch disini" onChange={(e) => setData('yield_per_batch', parseInt(e.target.value))} />
                     </div>
                     <div className="mt-auto">
                         <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Updating...." : "Update"}</Button>
@@ -116,7 +118,7 @@ export default function updateResep() {
                     {errors.bahan && <div>{errors.bahan}</div>}
                     <div className="flex flex-col gap-3">
                         <Paragraph size="lg">Catatan Tambahan</Paragraph>
-                        <textarea className="w-full" value={data.catatan_tambahan} placeholder="Tuliskan catatan tambahan disini" rows={10} onChange={(e) => setData('catatan_tambahan', e.target.value)}></textarea>
+                        <TextArea variant={1} size="md" className="w-full" value={data.catatan_tambahan} placeholder="Tuliskan catatan tambahan disini" rows={10} onChange={(e) => setData('catatan_tambahan', e.target.value)} />
                     </div>
                     {errors.catatan_tambahan && <div>{errors.catatan_tambahan}</div>}
                 </div>

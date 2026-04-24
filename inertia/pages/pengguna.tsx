@@ -11,19 +11,20 @@ import { Link } from "@adonisjs/inertia/react";
 import ActionButton from "~/components/ui/Button/ActionButton"
 import { FaPen, FaTrash } from "react-icons/fa"
 import confirmDialog from '../../utils/sweetalert'
+import Input from "~/components/ui/Input";
 
-export default function Pengguna () {
+export default function Pengguna() {
     const [open, setIsOpen] = useState(false);
-    const {role, pengguna} = usePage<{role:{idHakAkses:number, namaHakAkses:string} [], pengguna:{id:number, idPengguna:number, hakAkses:{namaHakAkses:string}, namaPengguna:string, nomorTelepon:string} []}>().props;
-    const {data, setData, post, delete:destroy, processing, errors, reset} = useForm({
+    const { role, pengguna } = usePage<{ role: { idHakAkses: number, namaHakAkses: string }[], pengguna: { id: number, idPengguna: number, hakAkses: { namaHakAkses: string }, namaPengguna: string, nomorTelepon: string }[] }>().props;
+    const { data, setData, post, delete: destroy, processing, errors, reset } = useForm({
         id_pengguna: "",
-        id_hak_akses:"",
+        id_hak_akses: "",
         email: "",
-        password:"",
-        nama_pengguna:"",
-        nomor_telepon:"",
+        password: "",
+        nama_pengguna: "",
+        nomor_telepon: "",
     });
-    function handleCreate(e:SubmitEvent) {
+    function handleCreate(e: SubmitEvent) {
         e.preventDefault();
         post('/pengguna/create', {
             onSuccess: () => {
@@ -32,14 +33,14 @@ export default function Pengguna () {
             }
         })
     }
-    function handleDelete (id:number) {
+    function handleDelete(id: number) {
         confirmDialog(
-            "Yakin ingin menghapus ?", 
-            "Data ini akan dinonaktifkan untuk sementara", 
-            "warning", 
+            "Yakin ingin menghapus ?",
+            "Data ini akan dinonaktifkan untuk sementara",
+            "warning",
             () => {
                 destroy(`/pengguna/delete/${id}`);
-            }, 
+            },
             "Hapus",
             "Batal")
     }
@@ -48,30 +49,30 @@ export default function Pengguna () {
             <Heading level={1} color="dark_slate_grey" className="font-bold">Manajemen Pengguna</Heading>
             <div className="flex flex-row justify-between mt-5">
                 <Button onClick={() => setIsOpen(true)} variant={1} size="md">Tambah Pengguna</Button>
-                <Modal open={open} onClose={() => setIsOpen(false)}  center styles={{modal:{width:"1024px"}}}>
+                <Modal open={open} onClose={() => setIsOpen(false)} center styles={{ modal: { width: "1024px" } }}>
                     <Heading level={1} color="dark_slate_grey" className="font-bold">Tambah Pengguna</Heading>
                     <form className="flex flex-col gap-2" onSubmit={handleCreate}>
                         <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Email Pengguna</Paragraph>
-                            <input  type="text" name="email" value={data.email} onChange={e => setData('email', e.target.value)}  placeholder="Email Pengguna"></input>
+                            <Input variant={1} size="md" type="text" name="email" value={data.email} onChange={e => setData('email', e.target.value)} placeholder="Email Pengguna" />
                             {errors.email && <div>{errors.email}</div>}
                         </div>
 
                         <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Password</Paragraph>
-                            <input  type="password" name="password" value={data.password} onChange={e => setData('password', e.target.value)}  placeholder="Password Pengguna"></input>
+                            <Input variant={1} size="md" type="password" name="password" value={data.password} onChange={e => setData('password', e.target.value)} placeholder="Password Pengguna" />
                             {errors.password && <div>{errors.password}</div>}
                         </div>
 
-                         <div className="flex flex-col gap-3">
+                        <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Nama Pengguna</Paragraph>
-                            <input  type="text" name="nama_pengguna" value={data.nama_pengguna} onChange={e => setData('nama_pengguna', e.target.value)} placeholder="Nama Pengguna"></input>
+                            <Input variant={1} size="md" type="text" name="nama_pengguna" value={data.nama_pengguna} onChange={e => setData('nama_pengguna', e.target.value)} placeholder="Nama Pengguna" />
                             {errors.nama_pengguna && <div>{errors.nama_pengguna}</div>}
-                         </div>
+                        </div>
 
                         <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Nomor Telepon</Paragraph>
-                            <PhoneInput placeholder="Nomor telepon Pengguna"   value={data.nomor_telepon} onChange={(e) => setData("nomor_telepon", e ?? "")}/>
+                            <PhoneInput placeholder="Nomor telepon Pengguna" value={data.nomor_telepon} onChange={(e) => setData("nomor_telepon", e ?? "")} />
                             {errors.nomor_telepon && <div>{errors.nomor_telepon}</div>}
                         </div>
                         <div className="flex flex-col gap-3">
@@ -79,13 +80,13 @@ export default function Pengguna () {
                             <select name="id_hak_akses" onChange={(e) => setData('id_hak_akses', e.target.value)}>
                                 <option value="">Pilih Hak Akses</option>
                                 {role.map(items => (
-                                        <option key={items.idHakAkses} value={items.idHakAkses} >{items.namaHakAkses}</option>
+                                    <option key={items.idHakAkses} value={items.idHakAkses} >{items.namaHakAkses}</option>
                                 ))}
                             </select>
                             {errors.id_hak_akses && <div>{errors.id_hak_akses}</div>}
                         </div>
 
-                        <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan" }</Button>
+                        <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan"}</Button>
                     </form>
                 </Modal>
             </div>
@@ -106,18 +107,18 @@ export default function Pengguna () {
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.nomorTelepon}</Paragraph></td>
                             <td className="border border-gray-300 py-3 px-5">
                                 <div className="flex flex-row gap-2 justify-center">
-                                <Link route='updatePengguna.edit' routeParams={{id:items.idPengguna}}> 
+                                    <Link route='updatePengguna.edit' routeParams={{ id: items.idPengguna }}>
                                         <ActionButton as="div" className="flex items-center" type="update" size="sm">
-                                            <FaPen/>
+                                            <FaPen />
                                         </ActionButton>
                                     </Link>
-                                    <ActionButton type="delete" size="sm" onClick={() => handleDelete(items.idPengguna)}><FaTrash/></ActionButton>
+                                    <ActionButton type="delete" size="sm" onClick={() => handleDelete(items.idPengguna)}><FaTrash /></ActionButton>
                                 </div>
                             </td>
                         </tr>
                     ))}
                 </tbody>
-            </table> 
+            </table>
         </>
     )
 }

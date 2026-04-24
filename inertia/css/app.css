@@ -2,15 +2,16 @@
 @source "../views";
 
 @theme {
-    --color-dark-teal:#1a535c;
-    --color-grey-teal:#95a5a6;
-    --color-ultra-light-gray:#f7f9fc;
-    --color-medium-teal:#14919b;
-    --color-deep-cyan:#0f7c99;
-    --color-dark-grey:#a9a9a9;
-    --color-dark-slate-grey:#2c3e50;
-    --color-status-false:#cc0808;
-    --color-status-true:#116902;
+    --color-dark-teal: #1a535c;
+    --color-grey-teal: #95a5a6;
+    --color-ultra-light-gray: #f7f9fc;
+    --color-medium-teal: #14919b;
+    --color-deep-cyan: #0f7c99;
+    --color-dark-grey: #a9a9a9;
+    --color-light-grey: #ccc;
+    --color-dark-slate-grey: #2c3e50;
+    --color-status-false: #cc0808;
+    --color-status-true: #116902;
 }
 
 * {

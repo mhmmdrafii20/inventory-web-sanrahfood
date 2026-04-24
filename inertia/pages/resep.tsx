@@ -11,6 +11,8 @@ import Modal from "react-responsive-modal";
 import { MultiSelect } from 'react-multi-select-component';
 import { usePage, useForm } from "@inertiajs/react";
 import confirmDialog from "../../utils/sweetalert";
+import Input from "~/components/ui/Input";
+import TextArea from "~/components/ui/Textarea";
 
 export default function Resep() {
     type Option = {
@@ -72,7 +74,7 @@ export default function Resep() {
                         <div className="flex flex-col gap-5">
                             <div className="flex flex-col gap-3">
                                 <Paragraph size="lg">Nama Resep</Paragraph>
-                                <input className="w-full" type="text" name="nama_resep" value={data.nama_resep} placeholder="Tuliskan nama resep disini" onChange={(e) => setData('nama_resep', e.target.value)} />
+                                <Input className="w-full" variant={1} size="md" type="text" name="nama_resep" value={data.nama_resep} placeholder="Tuliskan nama resep disini" onChange={(e) => setData('nama_resep', e.target.value)} />
                             </div>
                             {errors.nama_resep && <div>{errors.nama_resep}</div>}
                             <div className="flex flex-col gap-3">
@@ -87,7 +89,7 @@ export default function Resep() {
                             {errors.id_produk && <div>{errors.id_produk}</div>}
                             <div className="flex flex-col gap-3">
                                 <Paragraph size="lg">Yield Per Batch</Paragraph>
-                                <input className="w-full" type="number" name="yield_per_batch" value={data.yield_per_batch} placeholder="Tuliskan yield per batch disini" onChange={(e) => setData('yield_per_batch', e.target.value)} />
+                                <Input className="w-full" variant={1} size="md" type="number" name="yield_per_batch" value={data.yield_per_batch} placeholder="Tuliskan yield per batch disini" onChange={(e) => setData('yield_per_batch', e.target.value)} />
                             </div>
                             {errors.yield_per_batch && <div>{errors.yield_per_batch}</div>}
                             <div className="mt-auto">
@@ -114,7 +116,7 @@ export default function Resep() {
                                     {data.bahan.map((items, i) =>
                                         <li key={i} className="flex flex-row gap-3">
                                             <span className="flex-1">{items.nama_bahan_baku}</span>
-                                            <input type="number" className="w-20" value={items.jumlah} placeholder="Jumlah" onChange={(e) => {
+                                            <Input variant={1} size="md" type="number" className="w-20" value={items.jumlah} placeholder="Jumlah" onChange={(e) => {
                                                 const updated = [...data.bahan];
                                                 updated[i].jumlah = Number(e.target.value);
                                                 setData("bahan", updated);
@@ -126,14 +128,14 @@ export default function Resep() {
                             {errors.bahan && <div>{errors.bahan}</div>}
                             <div className="flex flex-col gap-3">
                                 <Paragraph size="lg">Catatan Tambahan</Paragraph>
-                                <textarea className="w-full" value={data.catatan_tambahan} placeholder="Tuliskan catatan tambahan disini" rows={10} onChange={(e) => setData('catatan_tambahan', e.target.value)}></textarea>
+                                <TextArea variant={1} size="md" className="w-full" value={data.catatan_tambahan} placeholder="Tuliskan catatan tambahan disini" rows={10} onChange={(e) => setData('catatan_tambahan', e.target.value)} />
                             </div>
                             {errors.catatan_tambahan && <div>{errors.catatan_tambahan}</div>}
                         </div>
                     </form>
                 </Modal>
                 <div className="flex flex-row gap-5 ">
-                    <input placeholder="Cari Resep"></input>
+                    <Input variant={1} size="md" type="text" name="" placeholder="Cari Resep" />
                     <ActionButton type="search" size="lg">
                         <FaSearch />
                     </ActionButton>

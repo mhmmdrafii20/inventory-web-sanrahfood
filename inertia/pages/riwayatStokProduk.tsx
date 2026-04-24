@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import 'dayjs/locale/id'
 import Button from "~/components/ui/Button/Button";
 import { SubmitEvent } from "react";
+import Input from "~/components/ui/Input";
 
 export default function RiwayatStokProduk() {
     const { riwayatStokProduk, filteredRiwayatStokProduk } = usePage<{
@@ -34,10 +35,10 @@ export default function RiwayatStokProduk() {
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold"> Riwayat Stok Produk</Heading>
             <form onSubmit={handleFilter} className="flex flex-row gap-5 mt-5 items-center">
-                <Paragraph size="lg" className="font-bold"> Tanggal Awal</Paragraph>
-                <input type="date" value={data.tanggal_awal} onChange={(e) => setData('tanggal_awal', e.target.value)} />
-                <Paragraph size="lg" className="font-bold"> Tanggal Akhir</Paragraph>
-                <input type="date" value={data.tanggal_akhir} onChange={(e) => setData('tanggal_akhir', e.target.value)} />
+                <Paragraph size="lg"> Tanggal Awal</Paragraph>
+                <Input type="date" variant={1} size="md" value={data.tanggal_awal} onChange={(e) => setData('tanggal_awal', e.target.value)} />
+                <Paragraph size="lg" > Tanggal Akhir</Paragraph>
+                <Input type="date" variant={1} size="md" value={data.tanggal_akhir} onChange={(e) => setData('tanggal_akhir', e.target.value)} />
                 <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Filtering..." : "Filter"}</Button>
             </form>
             <table className="w-full border-collapse mt-5 bg-white">

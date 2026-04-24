@@ -3,6 +3,8 @@ import Paragraph from "~/components/ui/Paragraph"
 import { usePage, useForm } from "@inertiajs/react";
 import { SubmitEvent } from "react";
 import Button from "~/components/ui/Button/Button";
+import Input from "~/components/ui/Input";
+import TextArea from "~/components/ui/Textarea";
 
 export default function Produksi() {
     const { produk } = usePage<{
@@ -53,22 +55,22 @@ export default function Produksi() {
                     {errors.id_resep && <div>{errors.id_resep}</div>}
                     <div className="flex flex-col gap-3">
                         <Paragraph size="lg">Jumlah Batch</Paragraph>
-                        <input type="number" name="jumlah_batch" placeholder="Tuliskan jumlah batch disini" value={data.jumlah_batch} onChange={(e) => setData('jumlah_batch', e.target.value)}></input>
+                        <Input variant={1} size="md" type="number" name="jumlah_batch" placeholder="Tuliskan jumlah batch disini" value={data.jumlah_batch} onChange={(e) => setData('jumlah_batch', e.target.value)} />
                     </div>
                     {errors.jumlah_batch && <div>{errors.jumlah_batch}</div>}
+                    <Button type="submit" className="w-full mt-auto" variant={1} disabled={processing} size="md">{processing ? "Memproses...." : "Input Produksi"}</Button>
                 </div>
                 <div className="flex flex-col gap-5">
                     <div className="flex flex-col gap-3">
                         <Paragraph size="lg">Tanggal Produksi</Paragraph>
-                        <input type="date" name="tanggal_produksi" value={data.tanggal_produksi} onChange={(e) => setData('tanggal_produksi', e.target.value)}></input>
+                        <Input variant={1} size="md" type="date" name="tanggal_produksi" value={data.tanggal_produksi} onChange={(e) => setData('tanggal_produksi', e.target.value)} />
                     </div>
                     {errors.tanggal_produksi && <div>{errors.tanggal_produksi}</div>}
                     <div className="flex flex-col gap-3">
                         <Paragraph size="lg">Catatan Tambahan</Paragraph>
-                        <textarea name="catatan_tambahan" placeholder="Tuliskan catatan tambahan disini" rows={10} value={data.catatan_tambahan} onChange={(e) => setData('catatan_tambahan', e.target.value)}></textarea>
+                        <TextArea variant={1} size="md" name="catatan_tambahan" placeholder="Tuliskan catatan tambahan disini" rows={10} value={data.catatan_tambahan} onChange={(e) => setData('catatan_tambahan', e.target.value)} />
                     </div>
                     {errors.catatan_tambahan && <div>{errors.catatan_tambahan}</div>}
-                    <Button type="submit" className="w-full" variant={1} disabled={processing} size="md">{processing ? "Memproses...." : "Input Produksi"}</Button>
                 </div>
             </form>
         </>
