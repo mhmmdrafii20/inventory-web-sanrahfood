@@ -8,7 +8,7 @@ import RiwayatStokProduk from "#models/riwayat_stok_produk";
 import RiwayatStokBahanBaku from "#models/riwayat_stok_bahan_baku";
 
 export class ProduksiServices {
-    static async create(payload: { id_resep: number, id_produk: number, jumlah_batch: number, tanggal_produksi: DateTime, catatan_tambahan: string }) {
+    static async create(payload: { id_resep: number, id_produk: number, jumlah_batch: number, tanggal_produksi: DateTime, catatan_tambahan?: string }) {
         try {
             const resep = await Resep.query().where('id_resep', payload.id_resep).preload('resep_bahan', (resepBahanQuery) => {
                 resepBahanQuery.preload('bahan');

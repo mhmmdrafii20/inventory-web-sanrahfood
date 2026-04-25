@@ -74,6 +74,7 @@ export interface ApiDefinition {
   riwayatStokBahanBaku: {
     index: typeof routes['riwayatStokBahanBaku.index']
     filter: typeof routes['riwayatStokBahanBaku.filter']
+    generate: typeof routes['riwayatStokBahanBaku.generate']
   }
   stokProduk: {
     index: typeof routes['stokProduk.index']
@@ -81,10 +82,12 @@ export interface ApiDefinition {
   riwayatStokProduk: {
     index: typeof routes['riwayatStokProduk.index']
     filter: typeof routes['riwayatStokProduk.filter']
+    generate: typeof routes['riwayatStokProduk.generate']
   }
   riwayatProduksi: {
     index: typeof routes['riwayatProduksi.index']
     filter: typeof routes['riwayatProduksi.filter']
+    generate: typeof routes['riwayatProduksi.generate']
   }
   integrasiWhatsapp: {
     index: typeof routes['integrasiWhatsapp.index']

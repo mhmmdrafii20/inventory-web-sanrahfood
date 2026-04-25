@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <style>
+            .header{
+                display:flex;
+                flex-direction:column;
+                align-items:center;
+                justify-content:center;
+            }
+            .header h1 {
+                font-size: 32px;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+            .header span {
+                font-size:24px;
+                font-weight: 600;
+                text-transform: uppercase;
+            }
+            table {
+                width:100%;
+                border-collapse: collapse;
+                margin-top:1rem;
+            }
+            th, td {
+                border: 1px solid #000;
+                padding: 8px;
+                text-align: center;
+            }
+            th {
+                background-color: #f2f2f2;
+                font-weight: bold;
+            }
+        </style>
+        <body>
+            <div class="header">
+                <h1>{{title}}</h1>
+                <span>Periode : {{date}}</span>
+            </div>
+            <table>
+                <tr>
+                    <th>Nama Produk</th>
+                    <th>Selisih Stok</th>
+                    <th>Stok Awal</th>
+                    <th>Stok Akhir</th>
+                    <th>Jenis Stok</th>
+                    <th>Tanggal Perubahan Stok</th>
+                </tr>
+                @each(item in data)
+                    <tr>
+                        <td>{{item.stokProduk.produk.nama_produk}}</td>
+                        <td>{{item.selisih_stok}}</td>
+                        <td>{{item.stok_sebelum}}</td>
+                        <td>{{item.stok_sesudah}}</td>
+                        <td>{{item.jenis_stok}}</td>
+                        <td>{{item.tanggal_perubahan_stok.toFormat('dd-MM-yyyy')}}</td>
+                    </tr>
+                @endeach
+            </table>
+        </body>
+    </head>
+</html>

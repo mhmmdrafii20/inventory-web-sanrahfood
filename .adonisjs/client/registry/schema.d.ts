@@ -436,6 +436,17 @@ export interface Registry {
       response: unknown
     }
   }
+  'riwayatStokBahanBaku.generate': {
+    methods: ["GET","HEAD"]
+    pattern: '/riwayat-stok-bahan-baku/generate-pdf'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
   'stokProduk.index': {
     methods: ["GET","HEAD"]
     pattern: '/stok-produk'
@@ -469,6 +480,17 @@ export interface Registry {
       response: unknown
     }
   }
+  'riwayatStokProduk.generate': {
+    methods: ["GET","HEAD"]
+    pattern: '/riwayat-stok-produk/generate-pdf'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
   'riwayatProduksi.index': {
     methods: ["GET","HEAD"]
     pattern: '/riwayat-produksi'
@@ -483,6 +505,17 @@ export interface Registry {
   'riwayatProduksi.filter': {
     methods: ["GET","HEAD"]
     pattern: '/riwayat-produksi/filter'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'riwayatProduksi.generate': {
+    methods: ["GET","HEAD"]
+    pattern: '/riwayat-produksi/generate-pdf'
     types: {
       body: {}
       paramsTuple: []

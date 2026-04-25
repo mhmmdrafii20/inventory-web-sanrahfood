@@ -74,18 +74,22 @@ router
 
         router.get('/riwayat-stok-bahan-baku', [RiwayatStokBahanBakuController, 'index']).as('riwayatStokBahanBaku.index');
         router.get('/riwayat-stok-bahan-baku/filter', [RiwayatStokBahanBakuController, 'filter']).as('riwayatStokBahanBaku.filter');
+        router.get('/riwayat-stok-bahan-baku/generate-pdf', [RiwayatStokBahanBakuController, 'generate']).as('riwayatStokBahanBaku.generate');
 
         router.get('/stok-produk', [StokProdukController, 'index']).as('stokProduk.index');
 
         router.get('/riwayat-stok-produk', [RiwayatStokProdukController, 'index']).as('riwayatStokProduk.index');
         router.get('/riwayat-stok-produk/filter', [RiwayatStokProdukController, 'filter']).as('riwayatStokProduk.filter');
+        router.get('/riwayat-stok-produk/generate-pdf', [RiwayatStokProdukController, 'generate']).as('riwayatStokProduk.generate');
 
         router.get('/riwayat-produksi', [RiwayatProduksiController, 'index']).as('riwayatProduksi.index');
         router.get('/riwayat-produksi/filter', [RiwayatProduksiController, 'filter']).as('riwayatProduksi.filter');
+        router.get('/riwayat-produksi/generate-pdf', [RiwayatProduksiController, 'generate']).as('riwayatProduksi.generate');
 
         router.get('/integrasi-whatsapp', [IntegrasiWhatsappController, 'index']).as('integrasiWhatsapp.index');
         router.post('/integrasi-whatsapp/connect', [IntegrasiWhatsappController, 'connect']).as('integrasiWhatsapp.connect');
         router.get('/integrasi-whatsapp/get-qr', [IntegrasiWhatsappController, 'getQr']).as('integrasiWhatsapp.getQr');
         // router.put('/integrasi-whatsapp/connected', [IntegrasiWhatsappController, 'connected']).as('integrasiWhatsapp.connected');
+
     })
     .use(middleware.ensureUserAcces())

@@ -29,6 +29,11 @@ export default function RiwayatProduksi() {
             preserveState: true,
         })
     }
+    const handleExportPdf = (e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault();
+        const query = new URLSearchParams(data).toString()
+        window.open(`/riwayat-produksi/generate-pdf?${query}`, '_blank')
+    }
     //TODO : BIKIN TOMBOL RESET DATA NYA.
 
     return (
@@ -40,6 +45,9 @@ export default function RiwayatProduksi() {
                 <Paragraph size="lg"> Tanggal Akhir</Paragraph>
                 <Input type="date" variant={1} size="md" value={data.tanggal_akhir} onChange={(e) => setData('tanggal_akhir', e.target.value)} />
                 <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Filtering..." : "Filter"}</Button>
+                <div className="flex justify-end ml-auto">
+                    <Button type="button" variant={1} size="md" onClick={handleExportPdf}>Export PDF</Button>
+                </div>
             </form>
             <table className="w-full border-collapse mt-5 bg-white">
                 <thead>

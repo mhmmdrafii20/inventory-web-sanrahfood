@@ -240,6 +240,12 @@ const routes = {
     tokens: [{"old":"/riwayat-stok-bahan-baku/filter","type":0,"val":"riwayat-stok-bahan-baku","end":""},{"old":"/riwayat-stok-bahan-baku/filter","type":0,"val":"filter","end":""}],
     types: placeholder as Registry['riwayatStokBahanBaku.filter']['types'],
   },
+  'riwayatStokBahanBaku.generate': {
+    methods: ["GET","HEAD"],
+    pattern: '/riwayat-stok-bahan-baku/generate-pdf',
+    tokens: [{"old":"/riwayat-stok-bahan-baku/generate-pdf","type":0,"val":"riwayat-stok-bahan-baku","end":""},{"old":"/riwayat-stok-bahan-baku/generate-pdf","type":0,"val":"generate-pdf","end":""}],
+    types: placeholder as Registry['riwayatStokBahanBaku.generate']['types'],
+  },
   'stokProduk.index': {
     methods: ["GET","HEAD"],
     pattern: '/stok-produk',
@@ -258,6 +264,12 @@ const routes = {
     tokens: [{"old":"/riwayat-stok-produk/filter","type":0,"val":"riwayat-stok-produk","end":""},{"old":"/riwayat-stok-produk/filter","type":0,"val":"filter","end":""}],
     types: placeholder as Registry['riwayatStokProduk.filter']['types'],
   },
+  'riwayatStokProduk.generate': {
+    methods: ["GET","HEAD"],
+    pattern: '/riwayat-stok-produk/generate-pdf',
+    tokens: [{"old":"/riwayat-stok-produk/generate-pdf","type":0,"val":"riwayat-stok-produk","end":""},{"old":"/riwayat-stok-produk/generate-pdf","type":0,"val":"generate-pdf","end":""}],
+    types: placeholder as Registry['riwayatStokProduk.generate']['types'],
+  },
   'riwayatProduksi.index': {
     methods: ["GET","HEAD"],
     pattern: '/riwayat-produksi',
@@ -269,6 +281,12 @@ const routes = {
     pattern: '/riwayat-produksi/filter',
     tokens: [{"old":"/riwayat-produksi/filter","type":0,"val":"riwayat-produksi","end":""},{"old":"/riwayat-produksi/filter","type":0,"val":"filter","end":""}],
     types: placeholder as Registry['riwayatProduksi.filter']['types'],
+  },
+  'riwayatProduksi.generate': {
+    methods: ["GET","HEAD"],
+    pattern: '/riwayat-produksi/generate-pdf',
+    tokens: [{"old":"/riwayat-produksi/generate-pdf","type":0,"val":"riwayat-produksi","end":""},{"old":"/riwayat-produksi/generate-pdf","type":0,"val":"generate-pdf","end":""}],
+    types: placeholder as Registry['riwayatProduksi.generate']['types'],
   },
   'integrasiWhatsapp.index': {
     methods: ["GET","HEAD"],

@@ -43,11 +43,14 @@ export type ScannedRoutes = {
     'restokBahan.create': { paramsTuple?: []; params?: {} }
     'riwayatStokBahanBaku.index': { paramsTuple?: []; params?: {} }
     'riwayatStokBahanBaku.filter': { paramsTuple?: []; params?: {} }
+    'riwayatStokBahanBaku.generate': { paramsTuple?: []; params?: {} }
     'stokProduk.index': { paramsTuple?: []; params?: {} }
     'riwayatStokProduk.index': { paramsTuple?: []; params?: {} }
     'riwayatStokProduk.filter': { paramsTuple?: []; params?: {} }
+    'riwayatStokProduk.generate': { paramsTuple?: []; params?: {} }
     'riwayatProduksi.index': { paramsTuple?: []; params?: {} }
     'riwayatProduksi.filter': { paramsTuple?: []; params?: {} }
+    'riwayatProduksi.generate': { paramsTuple?: []; params?: {} }
     'integrasiWhatsapp.index': { paramsTuple?: []; params?: {} }
     'integrasiWhatsapp.connect': { paramsTuple?: []; params?: {} }
     'integrasiWhatsapp.getQr': { paramsTuple?: []; params?: {} }
@@ -71,11 +74,14 @@ export type ScannedRoutes = {
     'restokBahan.restok': { paramsTuple?: []; params?: {} }
     'riwayatStokBahanBaku.index': { paramsTuple?: []; params?: {} }
     'riwayatStokBahanBaku.filter': { paramsTuple?: []; params?: {} }
+    'riwayatStokBahanBaku.generate': { paramsTuple?: []; params?: {} }
     'stokProduk.index': { paramsTuple?: []; params?: {} }
     'riwayatStokProduk.index': { paramsTuple?: []; params?: {} }
     'riwayatStokProduk.filter': { paramsTuple?: []; params?: {} }
+    'riwayatStokProduk.generate': { paramsTuple?: []; params?: {} }
     'riwayatProduksi.index': { paramsTuple?: []; params?: {} }
     'riwayatProduksi.filter': { paramsTuple?: []; params?: {} }
+    'riwayatProduksi.generate': { paramsTuple?: []; params?: {} }
     'integrasiWhatsapp.index': { paramsTuple?: []; params?: {} }
     'integrasiWhatsapp.getQr': { paramsTuple?: []; params?: {} }
   }
@@ -98,11 +104,14 @@ export type ScannedRoutes = {
     'restokBahan.restok': { paramsTuple?: []; params?: {} }
     'riwayatStokBahanBaku.index': { paramsTuple?: []; params?: {} }
     'riwayatStokBahanBaku.filter': { paramsTuple?: []; params?: {} }
+    'riwayatStokBahanBaku.generate': { paramsTuple?: []; params?: {} }
     'stokProduk.index': { paramsTuple?: []; params?: {} }
     'riwayatStokProduk.index': { paramsTuple?: []; params?: {} }
     'riwayatStokProduk.filter': { paramsTuple?: []; params?: {} }
+    'riwayatStokProduk.generate': { paramsTuple?: []; params?: {} }
     'riwayatProduksi.index': { paramsTuple?: []; params?: {} }
     'riwayatProduksi.filter': { paramsTuple?: []; params?: {} }
+    'riwayatProduksi.generate': { paramsTuple?: []; params?: {} }
     'integrasiWhatsapp.index': { paramsTuple?: []; params?: {} }
     'integrasiWhatsapp.getQr': { paramsTuple?: []; params?: {} }
   }

@@ -24,6 +24,7 @@ export default function Bahan() {
         e.preventDefault();
         post('/bahan/create', {
             onSuccess: () => {
+                setIsOpen(false);
                 reset();
             },
         });

@@ -1,6 +1,6 @@
 import { Data } from '@generated/data'
 import { ReactElement } from 'react'
-import Sidebar from '~/components/Sidebar/Sidebar'
+import Sidebar from '~/components/sidebar/Sidebar'
 import { hideSidebar } from '~/hooks/usePageLayout';
 import { useEffect } from 'react';
 import { toast } from 'sonner'

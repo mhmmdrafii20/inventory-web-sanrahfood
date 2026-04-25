@@ -6,6 +6,7 @@ import 'dayjs/locale/id';
 import Button from "~/components/ui/Button/Button";
 import { SubmitEvent } from "react";
 import Input from "~/components/ui/Input";
+import { toast } from "sonner";
 
 export default function RiwayatStokBahan() {
 
@@ -30,6 +31,11 @@ export default function RiwayatStokBahan() {
             preserveState: true,
         });
     }
+    const handleExportPdf = (e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault();
+        const query = new URLSearchParams(data).toString()
+        window.open(`/riwayat-stok-bahan-baku/generate-pdf?${query}`, '_blank')
+    }
     //TODO : BIKIN TOMBOL RESET DATA NYA.
 
     return (
@@ -41,6 +47,9 @@ export default function RiwayatStokBahan() {
                 <Paragraph size="lg"> Tanggal Akhir</Paragraph>
                 <Input type="date" variant={1} size="md" value={data.tanggal_akhir} onChange={(e) => setData('tanggal_akhir', e.target.value)} />
                 <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Filtering..." : "Filter"}</Button>
+                <div className="flex justify-end ml-auto">
+                    <Button type="button" variant={1} size="md" onClick={handleExportPdf}>Export PDF</Button>
+                </div>
             </form>
             <table className="w-full border-collapse mt-5 bg-white">
                 <thead className="bg-gray-100">
