@@ -4,18 +4,19 @@ import Heading from "~/components/ui/Heading";
 import { FaPen, FaSearch, FaTrash } from "react-icons/fa";
 import Paragraph from "~/components/ui/Paragraph";
 import { SubmitEvent, useState } from "react";
-import { useForm, usePage } from "@inertiajs/react";
+import { Form, useForm, usePage } from "@inertiajs/react";
 import { Link } from "@adonisjs/inertia/react";
 import 'react-responsive-modal/styles.css';
 import Modal from 'react-responsive-modal';
 import confirmDialog from "../../utils/sweetalert";
 import Input from "~/components/ui/Input";
+import Error from "~/components/ui/Error";
 
 export default function Bahan() {
     const [open, setIsOpen] = useState(false);
 
-    const { bahan } = usePage<{ bahan: { idBahanBaku: number; namaBahanBaku: string; satuan: string; }[] }>().props;
-    const { data, setData, post, delete: destroy, processing, errors, reset } = useForm({
+    const { bahan, errors } = usePage<{ bahan: { idBahanBaku: number; namaBahanBaku: string; satuan: string; }[] }>().props;
+    const { data, setData, post, delete: destroy, processing, reset } = useForm({
         nama_bahan_baku: "",
         satuan: ""
     })
@@ -25,9 +26,6 @@ export default function Bahan() {
             onSuccess: () => {
                 reset();
             },
-            onFinish: () => {
-                setIsOpen(false);
-            }
         });
     }
     function handleDelete(id: number) {
@@ -41,7 +39,6 @@ export default function Bahan() {
             "Hapus",
             "Batal")
     }
-
     return (
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold">Manajemen Bahan Baku</Heading>
@@ -52,12 +49,12 @@ export default function Bahan() {
                     <form className="flex flex-col gap-2" onSubmit={handleCreate}>
                         <Paragraph size="lg">Nama Bahan Baku</Paragraph>
                         <Input variant={1} size="md" type="text" name="nama_bahan_baku" value={data.nama_bahan_baku} onChange={e => setData("nama_bahan_baku", e.target.value)} placeholder="Nama Bahan Baku" />
-                        {errors.nama_bahan_baku && <div>{errors.nama_bahan_baku}</div>}
+                        {errors.nama_bahan_baku && <Error variant={1}>{errors.nama_bahan_baku}</Error>}
                         <div className="flex flex-col gap-2">
                             <Paragraph size="lg">Satuan</Paragraph>
                             <Input variant={1} size="md" type="text" name="satuan" value={data.satuan} onChange={e => setData('satuan', e.target.value)} placeholder="Satuan" />
                         </div>
-                        {errors.satuan && <div>{errors.satuan}</div>}
+                        {errors.satuan && <Error variant={1}>{errors.satuan}</Error>}
                         <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan"}</Button>
                     </form>
                 </Modal>

@@ -9,11 +9,12 @@ import { useForm, usePage } from "@inertiajs/react";
 import { Link } from "@adonisjs/inertia/react";
 import confirmDialog from "../../utils/sweetalert";
 import Input from "~/components/ui/Input";
+import Error from "~/components/ui/Error";
 
 export default function KategoriProduk() {
     const [open, setIsOpen] = useState(false);
-    const { kategori } = usePage<{ kategori: { idKategori: number, namaKategori: string }[] }>().props;
-    const { data, setData, post, delete: destroy, processing, errors, reset } = useForm({
+    const { kategori, errors } = usePage<{ kategori: { idKategori: number, namaKategori: string }[] }>().props;
+    const { data, setData, post, delete: destroy, processing, reset } = useForm({
         nama_kategori: "",
     })
 
@@ -23,9 +24,6 @@ export default function KategoriProduk() {
             onSuccess: () => {
                 reset();
             },
-            onFinish: () => {
-                setIsOpen(false);
-            }
         })
     }
     function handleDelete(id: number) {
@@ -48,11 +46,11 @@ export default function KategoriProduk() {
                 <Modal open={open} onClose={() => setIsOpen(false)} center styles={{ modal: { width: "1024px" } }}>
                     <Heading level={1} color="dark_slate_grey" className="font-bold">Tambah Kategori Produk</Heading>
                     <form className="flex flex-col gap-2" onSubmit={handleCreate}>
-                        <div className="flex flex-col gap-3 mb-5 mt-5">
+                        <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Nama Kategori</Paragraph>
                             <Input variant={1} size="md" type="text" name="nama_kategori" placeholder="Nama Kategori" value={data.nama_kategori} onChange={e => setData('nama_kategori', e.target.value)} />
                         </div>
-                        {errors.nama_kategori && <div>{errors.nama_kategori}</div>}
+                        {errors.nama_kategori && <Error variant={1}>{errors.nama_kategori}</Error>}
 
                         <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan"}</Button>
                     </form>

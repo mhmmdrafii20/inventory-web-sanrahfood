@@ -1,6 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Produk from '#models/produk'
 import { ProduksiServices } from '#services/ProduksiServices';
+import { produksiValidator } from '#validators/produksi';
 
 export default class ProduksiController {
     async index({ inertia }: HttpContext) {
@@ -13,12 +14,16 @@ export default class ProduksiController {
     }
     async create({ request, response, session }: HttpContext) {
         try {
-            const payload = request.only(['id_produk', 'id_resep', 'jumlah_batch', 'tanggal_produksi', 'catatan_tambahan'])
+            const payload = await request.validateUsing(produksiValidator);
             await ProduksiServices.create(payload);
+
             session.flash('success', "Produksi berhasil dilakukan");
             return response.redirect().toRoute('produksi.index');
         } catch (error) {
-            session.flash('error', 'Terjadi kesalahan saat produksi.');
+            if (error.code === 'E_VALIDATION_ERROR') {
+                throw error
+            }
+            session.flash('error', 'Terjadi kesalahan saat tambah data.')
             return response.redirect().back();
         }
     }

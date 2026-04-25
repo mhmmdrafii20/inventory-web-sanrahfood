@@ -11,11 +11,12 @@ import { FaSearch, FaPen, FaTrash } from "react-icons/fa";
 import { Link } from "@adonisjs/inertia/react";
 import confirmDialog from "../../utils/sweetalert";
 import Input from "~/components/ui/Input";
+import Error from "~/components/ui/Error";
 
 export default function HakAkses() {
     const [open, setIsOpen] = useState(false);
-    const { role } = usePage<{ role: { idHakAkses: number, namaHakAkses: string }[] }>().props;
-    const { data, setData, post, delete: destroy, processing, errors, reset } = useForm({
+    const { role, errors } = usePage<{ role: { idHakAkses: number, namaHakAkses: string }[] }>().props;
+    const { data, setData, post, delete: destroy, processing, reset } = useForm({
         nama_hak_akses: "",
     })
 
@@ -23,11 +24,9 @@ export default function HakAkses() {
         e.preventDefault();
         post('/role/create', {
             onSuccess: () => {
+                setIsOpen(false);
                 reset();
             },
-            onFinish: () => {
-                setIsOpen(false);
-            }
         })
     }
     function handleDelete(id: number) {
@@ -49,12 +48,11 @@ export default function HakAkses() {
                 <Modal open={open} onClose={() => setIsOpen(false)} center styles={{ modal: { width: "1024px" } }}>
                     <Heading level={1} color="dark_slate_grey" className="font-bold">Tambah Hak Akses</Heading>
                     <form className="flex flex-col gap-2" onSubmit={handleCreate}>
-                        <div className="flex flex-col gap-3 mb-5 mt-5">
+                        <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Nama Hak Akses</Paragraph>
                             <Input variant={1} size="md" type="text" name="nama_hak_akses" placeholder="Nama Hak Akses" value={data.nama_hak_akses} onChange={e => setData('nama_hak_akses', e.target.value)} />
                         </div>
-                        {errors.nama_hak_akses && <div>{errors.nama_hak_akses}</div>}
-
+                        {errors.nama_hak_akses && <Error variant={1}>{errors.nama_hak_akses}</Error>}
                         <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan"}</Button>
                     </form>
                 </Modal>

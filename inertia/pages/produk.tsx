@@ -12,11 +12,12 @@ import { Link } from "@adonisjs/inertia/react";
 import confirmDialog from '../../utils/sweetalert'
 import Input from "~/components/ui/Input";
 import Select from "~/components/ui/Select";
+import Error from "~/components/ui/Error";
 
 export default function Produk() {
     const [open, setIsOpen] = useState(false);
-    const { kategori, produk } = usePage<{ kategori: { idKategori: number, namaKategori: string }[], produk: { idProduk: number, namaProduk: string, satuan: string, kategori: { namaKategori: string } }[] }>().props;
-    const { data, setData, post, delete: destroy, processing, errors, reset } = useForm({
+    const { kategori, produk, errors } = usePage<{ kategori: { idKategori: number, namaKategori: string }[], produk: { idProduk: number, namaProduk: string, satuan: string, kategori: { namaKategori: string } }[] }>().props;
+    const { data, setData, post, delete: destroy, processing, reset } = useForm({
         nama_produk: "",
         satuan: "",
         id_kategori: "",
@@ -53,12 +54,12 @@ export default function Produk() {
                         <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Nama Produk</Paragraph>
                             <Input variant={1} size="md" type="text" name="nama_produk" placeholder="Nama Produk" value={data.nama_produk} onChange={(e) => setData('nama_produk', e.target.value)} />
-                            {errors.nama_produk && <div>{errors.nama_produk}</div>}
+                            {errors.nama_produk && <Error variant={1}>{errors.nama_produk}</Error>}
                         </div >
                         <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Satuan</Paragraph>
                             <Input variant={1} size="md" type="text" name="satuan" placeholder="Satuan Produk" value={data.satuan} onChange={(e) => setData('satuan', e.target.value)} />
-                            {errors.satuan && <div>{errors.satuan}</div>}
+                            {errors.satuan && <Error variant={1}>{errors.satuan}</Error>}
                         </div>
                         <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Kategori Produk</Paragraph>
@@ -68,7 +69,7 @@ export default function Produk() {
                                     <option key={items.idKategori} value={items.idKategori} >{items.namaKategori}</option>
                                 ))}
                             </Select>
-                            {errors.id_kategori && <div>{errors.id_kategori}</div>}
+                            {errors.id_kategori && <Error variant={1}>{errors.id_kategori}</Error>}
                         </div>
                         <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan"}</Button>
                     </form>

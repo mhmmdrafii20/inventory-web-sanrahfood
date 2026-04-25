@@ -3,7 +3,7 @@ import ResepBahan from "#models/resep_bahan";
 import db from '@adonisjs/lucid/services/db'
 
 export class ResepServices {
-    static async create(payload: { nama_resep: string, id_produk: number, yield_per_batch: number, catatan_tambahan: string, bahan: { id_bahan_baku: number; jumlah: number }[] }) {
+    static async create(payload: { nama_resep: string, id_produk: number, yield_per_batch: number, catatan_tambahan?: string, bahan: { id_bahan_baku: number; jumlah: number }[] }) {
         await db.transaction(async (transaction) => {
             const resep = await Resep.create({
                 nama_resep: payload.nama_resep,

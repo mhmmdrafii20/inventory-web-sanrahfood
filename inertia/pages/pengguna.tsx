@@ -13,11 +13,12 @@ import { FaPen, FaTrash } from "react-icons/fa"
 import confirmDialog from '../../utils/sweetalert'
 import Input from "~/components/ui/Input";
 import Select from "~/components/ui/Select"
+import Error from "~/components/ui/Error";
 
 export default function Pengguna() {
     const [open, setIsOpen] = useState(false);
-    const { role, pengguna } = usePage<{ role: { idHakAkses: number, namaHakAkses: string }[], pengguna: { id: number, idPengguna: number, hakAkses: { namaHakAkses: string }, namaPengguna: string, nomorTelepon: string }[] }>().props;
-    const { data, setData, post, delete: destroy, processing, errors, reset } = useForm({
+    const { role, pengguna, errors } = usePage<{ role: { idHakAkses: number, namaHakAkses: string }[], pengguna: { id: number, idPengguna: number, hakAkses: { namaHakAkses: string }, namaPengguna: string, nomorTelepon: string }[] }>().props;
+    const { data, setData, post, delete: destroy, processing, reset } = useForm({
         id_pengguna: "",
         id_hak_akses: "",
         email: "",
@@ -56,25 +57,25 @@ export default function Pengguna() {
                         <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Email Pengguna</Paragraph>
                             <Input variant={1} size="md" type="text" name="email" value={data.email} onChange={e => setData('email', e.target.value)} placeholder="Email Pengguna" />
-                            {errors.email && <div>{errors.email}</div>}
+                            {errors.email && <Error variant={1}>{errors.email}</Error>}
                         </div>
 
                         <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Password</Paragraph>
                             <Input variant={1} size="md" type="password" name="password" value={data.password} onChange={e => setData('password', e.target.value)} placeholder="Password Pengguna" />
-                            {errors.password && <div>{errors.password}</div>}
+                            {errors.password && <Error variant={1}>{errors.password}</Error>}
                         </div>
 
                         <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Nama Pengguna</Paragraph>
                             <Input variant={1} size="md" type="text" name="nama_pengguna" value={data.nama_pengguna} onChange={e => setData('nama_pengguna', e.target.value)} placeholder="Nama Pengguna" />
-                            {errors.nama_pengguna && <div>{errors.nama_pengguna}</div>}
+                            {errors.nama_pengguna && <Error variant={1}>{errors.nama_pengguna}</Error>}
                         </div>
 
                         <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Nomor Telepon</Paragraph>
                             <PhoneInput placeholder="Nomor telepon Pengguna" value={data.nomor_telepon} onChange={(e) => setData("nomor_telepon", e ?? "")} />
-                            {errors.nomor_telepon && <div>{errors.nomor_telepon}</div>}
+                            {errors.nomor_telepon && <Error variant={1}>{errors.nomor_telepon}</Error>}
                         </div>
                         <div className="flex flex-col gap-3">
                             <Paragraph size="lg">Hak Akses</Paragraph>
@@ -84,7 +85,7 @@ export default function Pengguna() {
                                     <option key={items.idHakAkses} value={items.idHakAkses} >{items.namaHakAkses}</option>
                                 ))}
                             </Select>
-                            {errors.id_hak_akses && <div>{errors.id_hak_akses}</div>}
+                            {errors.id_hak_akses && <Error variant={1}>{errors.id_hak_akses}</Error>}
                         </div>
 
                         <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan"}</Button>

@@ -29,6 +29,7 @@ server.use([
   () => import('@adonisjs/vite/vite_middleware'),
   () => import('#middleware/inertia_middleware'),
   () => import('#middleware/share_middleware'),
+  () => import('@adonisjs/session/session_middleware')
 ])
 
 
@@ -38,7 +39,6 @@ server.use([
  */
 router.use([
   () => import('@adonisjs/core/bodyparser_middleware'),
-  () => import('@adonisjs/session/session_middleware'),
   () => import('@adonisjs/shield/shield_middleware'),
   () => import('@adonisjs/auth/initialize_auth_middleware'),
   () => import('#middleware/silent_auth_middleware'),

@@ -13,7 +13,7 @@ export default function RiwayatProduksi() {
         filteredRiwayatProduksi: { idRiwayatProduksi: number; idProduk: number; idResep: number, jumlahBatch: number, jumlahHasilProduksi: number, catatanTambahan: string, tanggalProduksi: string, produk: { namaProduk: string, satuan: string }, resep: { namaResep: string, yieldPerBatch: number } }[]
     }>().props;
 
-    const { data, setData, get, delete: destroy, processing, errors, reset } = useForm({
+    const { data, setData, get, processing } = useForm({
         tanggal_awal: "",
         tanggal_akhir: "",
     });

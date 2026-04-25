@@ -4,10 +4,11 @@ import { usePage, useForm } from "@inertiajs/react";
 import Button from "~/components/ui/Button/Button";
 import { SubmitEvent } from "react";
 import Input from "~/components/ui/Input";
+import Error from "~/components/ui/Error";
+
 export default function UpdateKategoriProduk() {
-    const { dataKategori } = usePage<{ dataKategori: { id_kategori: number; nama_kategori: string; } }>().props;
-    console.log(dataKategori)
-    const { data, setData, put, processing, errors, reset } = useForm({
+    const { dataKategori, errors } = usePage<{ dataKategori: { id_kategori: number; nama_kategori: string; } }>().props;
+    const { data, setData, put, processing, reset } = useForm({
         id_kategori: dataKategori.id_kategori,
         nama_kategori: dataKategori.nama_kategori,
     });
@@ -27,7 +28,7 @@ export default function UpdateKategoriProduk() {
 
                 <Paragraph size="lg">Nama Kategori</Paragraph>
                 <Input variant={1} size="md" type="text" name="nama_kategori" placeholder="Nama Kategori " value={data.nama_kategori} onChange={(e) => setData("nama_kategori", e.target.value)} />
-                {errors.nama_kategori && <div>{errors.nama_kategori}</div>}
+                {errors.nama_kategori && <Error variant={1}>{errors.nama_kategori}</Error>}
 
                 <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Updating...." : "Update"}</Button>
             </form>

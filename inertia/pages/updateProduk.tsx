@@ -5,11 +5,12 @@ import Button from "~/components/ui/Button/Button";
 import { SubmitEvent } from "react";
 import Input from "~/components/ui/Input";
 import Select from "~/components/ui/Select";
+import Error from "~/components/ui/Error";
 
 export default function UpdateProduk() {
-    const { dataProduk, kategori } = usePage<{ dataProduk: { id_produk: number, nama_produk: string, satuan: string, id_kategori: number }, kategori: { idKategori: number, namaKategori: string }[] }>().props;
+    const { dataProduk, kategori, errors } = usePage<{ dataProduk: { id_produk: number, nama_produk: string, satuan: string, id_kategori: number }, kategori: { idKategori: number, namaKategori: string }[] }>().props;
     console.log(kategori)
-    const { data, setData, put, processing, errors, reset } = useForm({
+    const { data, setData, put, processing, reset } = useForm({
         id_produk: dataProduk.id_produk,
         id_kategori: dataProduk.id_kategori,
         nama_produk: dataProduk.nama_produk,
@@ -33,11 +34,11 @@ export default function UpdateProduk() {
 
                 <Paragraph size="lg">Nama Produk</Paragraph>
                 <Input variant={1} size="md" type="text" name="nama_produk" value={data.nama_produk} onChange={(e) => setData('nama_produk', e.target.value)} />
-                {errors.nama_produk && <div>{errors.nama_produk}</div>}
+                {errors.nama_produk && <Error variant={1}>{errors.nama_produk}</ Error>}
 
                 <Paragraph size="lg">Satuan</Paragraph>
                 <Input variant={1} size="md" type="text" name="satuan" value={data.satuan} onChange={(e) => setData('satuan', e.target.value)} />
-                {errors.satuan && <div>{errors.satuan}</div>}
+                {errors.satuan && <Error variant={1}>{errors.satuan}</Error>}
 
                 <Paragraph size="lg">Kategori Produk</Paragraph>
                 <Select variant={1} size="md" name="id_kategori" defaultValue={data.id_kategori} onChange={(e) => setData('id_kategori', parseInt(e.target.value))}>
@@ -46,7 +47,7 @@ export default function UpdateProduk() {
                         <option key={items.idKategori} value={items.idKategori}>{items.namaKategori}</option>
                     ))}
                 </Select>
-                {errors.id_kategori && <div>{errors.id_kategori}</div>}
+                {errors.id_kategori && <Error variant={1}>{errors.id_kategori}</Error>}
                 <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Updating...." : "Update"}</Button>
             </form>
         </>

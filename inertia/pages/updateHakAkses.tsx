@@ -4,10 +4,11 @@ import { usePage, useForm } from "@inertiajs/react";
 import Button from "~/components/ui/Button/Button";
 import { SubmitEvent } from "react";
 import Input from "~/components/ui/Input";
+import Error from "~/components/ui/Error";
 
 export default function UpdateHakAkses() {
-    const { dataRole } = usePage<{ dataRole: { id_hak_akses: number; nama_hak_akses: string; } }>().props;
-    const { data, setData, put, processing, errors, reset } = useForm({
+    const { dataRole, errors } = usePage<{ dataRole: { id_hak_akses: number; nama_hak_akses: string; } }>().props;
+    const { data, setData, put, processing, reset } = useForm({
         id_hak_akses: dataRole.id_hak_akses,
         nama_hak_akses: dataRole.nama_hak_akses,
     });
@@ -27,7 +28,7 @@ export default function UpdateHakAkses() {
 
                 <Paragraph size="lg">Nama Hak Akses</Paragraph>
                 <Input variant={1} size="md" type="text" placeholder="Nama Hak Akses " value={data.nama_hak_akses} onChange={(e) => setData("nama_hak_akses", e.target.value)} />
-                {errors.nama_hak_akses && <div>{errors.nama_hak_akses}</div>}
+                {errors.nama_hak_akses && <Error variant={1}>{errors.nama_hak_akses}</Error>}
 
                 <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Updating...." : "Update"}</Button>
             </form>

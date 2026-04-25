@@ -6,13 +6,14 @@ import Button from "~/components/ui/Button/Button";
 import Input from "~/components/ui/Input";
 import TextArea from "~/components/ui/Textarea";
 import Select from "~/components/ui/Select";
+import Error from "~/components/ui/Error";
 
 export default function Produksi() {
     const { produk } = usePage<{
         produk: { idProduk: number; namaProduk: string; satuan: string; resep: { idResep: number, idProduk: number, namaResep: string, jumlah: number }[] }[],
     }>().props;
 
-    const { data, setData, post, delete: destroy, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, errors, reset } = useForm({
         id_produk: "",
         id_resep: "",
         jumlah_batch: "",
@@ -43,7 +44,7 @@ export default function Produksi() {
                             ))}
                         </Select>
                     </div>
-                    {errors.id_produk && <div>{errors.id_produk}</div>}
+                    {errors.id_produk && <Error variant={1}>{errors.id_produk}</Error>}
                     {selectedProduk && <div className="flex flex-col gap-3">
                         <Paragraph size="lg">Resep</Paragraph>
                         <Select variant={1} size="md" name="id_resep" value={data.id_resep} onChange={(e) => setData('id_resep', e.target.value)}>
@@ -53,12 +54,12 @@ export default function Produksi() {
                             ))}
                         </Select>
                     </div>}
-                    {errors.id_resep && <div>{errors.id_resep}</div>}
+                    {selectedProduk && errors.id_resep && <Error variant={1}>{errors.id_resep}</Error>}
                     <div className="flex flex-col gap-3">
                         <Paragraph size="lg">Jumlah Batch</Paragraph>
                         <Input variant={1} size="md" type="number" name="jumlah_batch" placeholder="Tuliskan jumlah batch disini" value={data.jumlah_batch} onChange={(e) => setData('jumlah_batch', e.target.value)} />
                     </div>
-                    {errors.jumlah_batch && <div>{errors.jumlah_batch}</div>}
+                    {errors.jumlah_batch && <Error variant={1}>{errors.jumlah_batch}</Error>}
                     <Button type="submit" className="w-full mt-auto" variant={1} disabled={processing} size="md">{processing ? "Memproses...." : "Input Produksi"}</Button>
                 </div>
                 <div className="flex flex-col gap-5">
@@ -66,12 +67,12 @@ export default function Produksi() {
                         <Paragraph size="lg">Tanggal Produksi</Paragraph>
                         <Input variant={1} size="md" type="date" name="tanggal_produksi" value={data.tanggal_produksi} onChange={(e) => setData('tanggal_produksi', e.target.value)} />
                     </div>
-                    {errors.tanggal_produksi && <div>{errors.tanggal_produksi}</div>}
+                    {errors.tanggal_produksi && <Error variant={1}>{errors.tanggal_produksi}</Error>}
                     <div className="flex flex-col gap-3">
                         <Paragraph size="lg">Catatan Tambahan</Paragraph>
                         <TextArea variant={1} size="md" name="catatan_tambahan" placeholder="Tuliskan catatan tambahan disini" rows={10} value={data.catatan_tambahan} onChange={(e) => setData('catatan_tambahan', e.target.value)} />
                     </div>
-                    {errors.catatan_tambahan && <div>{errors.catatan_tambahan}</div>}
+                    {errors.catatan_tambahan && <Error variant={1}>{errors.catatan_tambahan}</Error>}
                 </div>
             </form>
         </>

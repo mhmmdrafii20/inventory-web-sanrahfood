@@ -1,22 +1,24 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { BahanService } from '#services/BahanServices';
 import Bahan from '#models/bahan';
+import { bahanValidator } from '#validators/bahan';
 export default class BahanController {
     async index({ inertia }: HttpContext) {
-        const bahan = await Bahan.all();
-
-
+        const bahan = await Bahan.query().where('is_deleted', false);
         return inertia.render('bahan', { bahan });
     }
     async create({ request, response, session }: HttpContext) {
         try {
-            const payload = request.only(['nama_bahan_baku', 'satuan']);
+            const payload = await request.validateUsing(bahanValidator);
             await BahanService.create(payload);
 
             session.flash('success', `${payload.nama_bahan_baku} berhasil ditambahkan.`);
             return response.redirect().toRoute('bahan.index');
         } catch (error) {
-            session.flash('error', 'Terjadi kesalahan saat tambah data.');
+            if (error.code === 'E_VALIDATION_ERROR') {
+                throw error
+            }
+            session.flash('error', 'Terjadi kesalahan saat tambah data.')
             return response.redirect().back();
         }
     }
@@ -31,13 +33,16 @@ export default class BahanController {
             const bahan = await Bahan.find(params.id);
             const dataBahan = bahan?.$attributes;
 
-            const payload = request.only(['id_bahan_baku', 'nama_bahan_baku', 'satuan']);
+            const payload = await request.validateUsing(bahanValidator);
             await BahanService.update(payload, params.id);
 
             session.flash('success', `${dataBahan?.nama_bahan_baku} berhasil diupdate`);
             return response.redirect().toRoute('bahan.index');
         } catch (error) {
-            session.flash('error', 'Terjadi kesalahan saat update.');
+            if (error.code === 'E_VALIDATION_ERROR') {
+                throw error
+            }
+            session.flash('error', 'Terjadi kesalahan saat update data.');
             return response.redirect().back();
         }
     }

@@ -48,5 +48,5 @@ export default class InertiaMiddleware extends BaseInertiaMiddleware {
 
 declare module '@adonisjs/inertia/types' {
   type MiddlewareSharedProps = InferSharedProps<InertiaMiddleware>
-  export interface SharedProps extends MiddlewareSharedProps {}
+  export interface SharedProps extends MiddlewareSharedProps { }
 }

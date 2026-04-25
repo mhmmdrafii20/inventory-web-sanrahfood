@@ -4,9 +4,11 @@ import Paragraph from "~/components/ui/Paragraph";
 import Button from "~/components/ui/Button/Button";
 import { SubmitEvent } from "react";
 import Input from "~/components/ui/Input";
+import Error from "~/components/ui/Error";
+
 export default function UpdateBahan() {
-    const { dataBahan } = usePage<{ dataBahan: { id_bahan_baku: number; nama_bahan_baku: string; satuan: string; } }>().props;
-    const { data, setData, put, processing, errors, reset } = useForm({
+    const { dataBahan, errors } = usePage<{ dataBahan: { id_bahan_baku: number; nama_bahan_baku: string; satuan: string; } }>().props;
+    const { data, setData, put, processing, reset } = useForm({
         id_bahan_baku: dataBahan.id_bahan_baku,
         nama_bahan_baku: dataBahan.nama_bahan_baku,
         satuan: dataBahan.satuan,
@@ -27,11 +29,11 @@ export default function UpdateBahan() {
 
                 <Paragraph size="lg">Nama Bahan Baku</Paragraph>
                 <Input variant={1} size="md" type="text" value={data.nama_bahan_baku} onChange={(e) => setData("nama_bahan_baku", e.target.value)} />
-                {errors.nama_bahan_baku && <div>{errors.nama_bahan_baku}</div>}
+                {errors.nama_bahan_baku && <Error variant={1}>{errors.nama_bahan_baku}</Error>}
 
                 <Paragraph size="lg">Satuan</Paragraph>
                 <Input variant={1} size="md" type="text" value={data.satuan} onChange={(e) => setData("satuan", e.target.value)} />
-                {errors.satuan && <div>{errors.satuan}</div>}
+                {errors.satuan && <Error variant={1}>{errors.satuan}</Error>}
 
                 <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Updating...." : "Update"}</Button>
             </form>

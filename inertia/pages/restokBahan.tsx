@@ -5,10 +5,11 @@ import { useForm, usePage } from "@inertiajs/react";
 import { SubmitEvent } from "react";
 import Input from "~/components/ui/Input";
 import Select from "~/components/ui/Select";
+import Error from "~/components/ui/Error";
 
 export default function RestokBahan() {
-    const { bahan } = usePage<{ bahan: { idBahanBaku: number; namaBahanBaku: string; satuan: string; }[] }>().props;
-    const { data, setData, post, processing, errors } = useForm({
+    const { bahan, errors } = usePage<{ bahan: { idBahanBaku: number; namaBahanBaku: string; satuan: string; }[] }>().props;
+    const { data, setData, post, processing } = useForm({
         id_bahan_baku: "",
         jumlah: "",
         tanggal_restok: "",
@@ -33,17 +34,17 @@ export default function RestokBahan() {
                             ))}
                         </Select>
                     </div>
-                    {errors.id_bahan_baku && <div>{errors.id_bahan_baku}</div>}
+                    {errors.id_bahan_baku && <Error variant={1}>{errors.id_bahan_baku}</Error>}
                     <div className="flex flex-col gap-3">
                         <Paragraph size="lg">Jumlah</Paragraph>
                         <Input variant={1} size="md" className="w-full" type="number" name="jumlah" placeholder="Masukkan jumlah stok" value={data.jumlah} onChange={(e) => setData("jumlah", e.target.value)} />
                     </div>
-                    {errors.jumlah && <div>{errors.jumlah}</div>}
+                    {errors.jumlah && <Error variant={1}>{errors.jumlah}</Error>}
                     <div className="flex flex-col gap-3">
                         <Paragraph size="lg">Tanggal Restok</Paragraph>
                         <Input variant={1} size="md" className="w-full" type="date" name="tanggal_restok" value={data.tanggal_restok} onChange={(e) => setData("tanggal_restok", e.target.value)} />
                     </div>
-                    {errors.tanggal_restok && <div>{errors.tanggal_restok}</div>}
+                    {errors.tanggal_restok && <Error variant={1}>{errors.tanggal_restok}</Error>}
                     <Button type="submit" variant={1} size="md" disabled={processing}>{processing ? "Restoking..." : "Restok Bahan Baku"}</Button>
                 </div>
             </form>

@@ -61,14 +61,14 @@ export const data: MenuSection[] = [
                 icon: TbPackage
             },
             {
-                name: "Stok Produk",
-                link: "/stok-produk",
-                icon: TbPackage
-            },
-            {
                 name: "Kategori Produk",
                 link: "/kategori-produk",
                 icon: TbCategory
+            },
+            {
+                name: "Stok Produk",
+                link: "/stok-produk",
+                icon: TbPackage
             },
         ],
     },

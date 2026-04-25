@@ -4,6 +4,7 @@ import Produk from '#models/produk';
 import { ResepServices } from '#services/ResepServices';
 import Resep from '#models/resep';
 import ResepBahan from '#models/resep_bahan';
+import { resepValidator } from '#validators/resep';
 
 export default class ResepController {
     async index({ inertia }: HttpContext) {
@@ -15,12 +16,16 @@ export default class ResepController {
     }
     async create({ request, response, session }: HttpContext) {
         try {
-            const payload = request.only(['nama_resep', 'id_produk', 'yield_per_batch', 'catatan_tambahan', 'bahan']);
+            const payload = await request.validateUsing(resepValidator);
             await ResepServices.create(payload);
+
             session.flash('success', `${payload.nama_resep} Berhasil ditambahkan `);
             return response.redirect().toRoute('resep.index');
         } catch (error) {
-            session.flash('error', 'Terjadi kesalahan dalam pembuatan resep.');
+            if (error.code === 'E_VALIDATION_ERROR') {
+                throw error
+            }
+            session.flash('error', 'Terjadi kesalahan saat tambah data.')
             return response.redirect().back();
         }
     }
@@ -37,13 +42,16 @@ export default class ResepController {
     }
     async update({ response, request, session, params }: HttpContext) {
         try {
-            const payload = request.only(['id_resep', 'nama_resep', 'id_produk', 'yield_per_batch', 'bahan'])
+            const payload = await request.validateUsing(resepValidator);
             await ResepServices.update(params.id, payload);
 
             session.flash('success', `${payload.nama_resep} berhasil diupdate`);
             response.redirect().toRoute('resep.index');
         } catch (error) {
-            session.flash('error', 'Terjadi kesalahan dalam update data.');
+            if (error.code === 'E_VALIDATION_ERROR') {
+                throw error
+            }
+            session.flash('error', 'Terjadi kesalahan saat update data.')
             return response.redirect().back();
         }
     }
