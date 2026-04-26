@@ -13,8 +13,8 @@ import Error from "~/components/ui/Error";
 
 export default function KategoriProduk() {
     const [open, setIsOpen] = useState(false);
-    const { kategori, errors } = usePage<{ kategori: { idKategori: number, namaKategori: string }[] }>().props;
-    const { data, setData, post, delete: destroy, processing, reset } = useForm({
+    const { kategori, errors, searchRes } = usePage<{ kategori: { idKategori: number, namaKategori: string }[], searchRes: { idKategori: number, namaKategori: string }[] }>().props;
+    const { data, setData, post, get, delete: destroy, processing, reset } = useForm({
         nama_kategori: "",
     })
 
@@ -37,7 +37,16 @@ export default function KategoriProduk() {
             "Hapus",
             "Batal")
     }
-
+    function handleSearch() {
+        const query = new URLSearchParams(data).toString()
+        get(`/kategori-produk/search?${query}`, {
+            preserveState: true,
+            replace: true,
+        })
+    }
+    const displayKategori = searchRes && searchRes.length > 0
+        ? searchRes
+        : kategori;
     return (
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold">Manajemen Kategori Produk</Heading>
@@ -56,8 +65,8 @@ export default function KategoriProduk() {
                     </form>
                 </Modal>
                 <div className="flex flex-row gap-5 ">
-                    <Input variant={1} size="md" type="text" name="nama_kategori" placeholder="Cari Kategori Produk"></Input>
-                    <ActionButton as="button" type="update" size="lg">
+                    <Input variant={1} size="md" type="text" name="nama_kategori" placeholder="Cari Kategori Produk" value={data.nama_kategori} onChange={e => setData('nama_kategori', e.target.value)}></Input>
+                    <ActionButton as="button" type="update" size="lg" onClick={handleSearch}>
                         <FaSearch />
                     </ActionButton>
                 </div>
@@ -70,7 +79,7 @@ export default function KategoriProduk() {
                     </tr>
                 </thead>
                 <tbody>
-                    {kategori.map(items => (
+                    {displayKategori?.length > 0 ? displayKategori.map(items => (
                         <tr key={items.idKategori}>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.namaKategori}</Paragraph></td>
                             <td className="border border-gray-300 py-3 px-5">
@@ -84,7 +93,7 @@ export default function KategoriProduk() {
                                 </div>
                             </td>
                         </tr>
-                    ))}
+                    )) : <tr><td colSpan={2} className="text-center py-4"><Paragraph size="lg">Tidak Ada Kategori Produk</Paragraph></td></tr>}
                 </tbody>
             </table>
         </>

@@ -11,40 +11,48 @@ export type ScannedRoutes = {
     'bahan.create': { paramsTuple?: []; params?: {} }
     'updateBahan.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'bahan.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'bahan.search': { paramsTuple?: []; params?: {} }
     'produk.index': { paramsTuple?: []; params?: {} }
     'produk.create': { paramsTuple?: []; params?: {} }
     'updateProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'updateProduk.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'produk.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'produk.search': { paramsTuple?: []; params?: {} }
     'hakAkses.index': { paramsTuple?: []; params?: {} }
     'hakAkses.create': { paramsTuple?: []; params?: {} }
     'updateHakAkses.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'updateHakAkses.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'hakAkses.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'hakAkses.search': { paramsTuple?: []; params?: {} }
     'pengguna.index': { paramsTuple?: []; params?: {} }
     'pengguna.create': { paramsTuple?: []; params?: {} }
     'updatePengguna.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'updatePengguna.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'pengguna.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'pengguna.search': { paramsTuple?: []; params?: {} }
     'resep.index': { paramsTuple?: []; params?: {} }
     'resep.create': { paramsTuple?: []; params?: {} }
     'updateResep.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'updateResep.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'resep.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'resep.search': { paramsTuple?: []; params?: {} }
     'kategoriProduk.index': { paramsTuple?: []; params?: {} }
     'kategoriProduk.create': { paramsTuple?: []; params?: {} }
     'updateKategoriProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'updateKategoriProduk.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'kategoriProduk.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'kategoriProduk.search': { paramsTuple?: []; params?: {} }
     'produksi.index': { paramsTuple?: []; params?: {} }
     'produksi.create': { paramsTuple?: []; params?: {} }
     'stokBahan.index': { paramsTuple?: []; params?: {} }
+    'stokBahan.search': { paramsTuple?: []; params?: {} }
     'restokBahan.restok': { paramsTuple?: []; params?: {} }
     'restokBahan.create': { paramsTuple?: []; params?: {} }
     'riwayatStokBahanBaku.index': { paramsTuple?: []; params?: {} }
     'riwayatStokBahanBaku.filter': { paramsTuple?: []; params?: {} }
     'riwayatStokBahanBaku.generate': { paramsTuple?: []; params?: {} }
     'stokProduk.index': { paramsTuple?: []; params?: {} }
+    'stokProduk.search': { paramsTuple?: []; params?: {} }
     'riwayatStokProduk.index': { paramsTuple?: []; params?: {} }
     'riwayatStokProduk.filter': { paramsTuple?: []; params?: {} }
     'riwayatStokProduk.generate': { paramsTuple?: []; params?: {} }
@@ -59,23 +67,31 @@ export type ScannedRoutes = {
     'auth.login': { paramsTuple?: []; params?: {} }
     'bahan.index': { paramsTuple?: []; params?: {} }
     'updateBahan.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'bahan.search': { paramsTuple?: []; params?: {} }
     'produk.index': { paramsTuple?: []; params?: {} }
     'updateProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'produk.search': { paramsTuple?: []; params?: {} }
     'hakAkses.index': { paramsTuple?: []; params?: {} }
     'updateHakAkses.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'hakAkses.search': { paramsTuple?: []; params?: {} }
     'pengguna.index': { paramsTuple?: []; params?: {} }
     'updatePengguna.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'pengguna.search': { paramsTuple?: []; params?: {} }
     'resep.index': { paramsTuple?: []; params?: {} }
     'updateResep.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'resep.search': { paramsTuple?: []; params?: {} }
     'kategoriProduk.index': { paramsTuple?: []; params?: {} }
     'updateKategoriProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'kategoriProduk.search': { paramsTuple?: []; params?: {} }
     'produksi.index': { paramsTuple?: []; params?: {} }
     'stokBahan.index': { paramsTuple?: []; params?: {} }
+    'stokBahan.search': { paramsTuple?: []; params?: {} }
     'restokBahan.restok': { paramsTuple?: []; params?: {} }
     'riwayatStokBahanBaku.index': { paramsTuple?: []; params?: {} }
     'riwayatStokBahanBaku.filter': { paramsTuple?: []; params?: {} }
     'riwayatStokBahanBaku.generate': { paramsTuple?: []; params?: {} }
     'stokProduk.index': { paramsTuple?: []; params?: {} }
+    'stokProduk.search': { paramsTuple?: []; params?: {} }
     'riwayatStokProduk.index': { paramsTuple?: []; params?: {} }
     'riwayatStokProduk.filter': { paramsTuple?: []; params?: {} }
     'riwayatStokProduk.generate': { paramsTuple?: []; params?: {} }
@@ -89,23 +105,31 @@ export type ScannedRoutes = {
     'auth.login': { paramsTuple?: []; params?: {} }
     'bahan.index': { paramsTuple?: []; params?: {} }
     'updateBahan.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'bahan.search': { paramsTuple?: []; params?: {} }
     'produk.index': { paramsTuple?: []; params?: {} }
     'updateProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'produk.search': { paramsTuple?: []; params?: {} }
     'hakAkses.index': { paramsTuple?: []; params?: {} }
     'updateHakAkses.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'hakAkses.search': { paramsTuple?: []; params?: {} }
     'pengguna.index': { paramsTuple?: []; params?: {} }
     'updatePengguna.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'pengguna.search': { paramsTuple?: []; params?: {} }
     'resep.index': { paramsTuple?: []; params?: {} }
     'updateResep.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'resep.search': { paramsTuple?: []; params?: {} }
     'kategoriProduk.index': { paramsTuple?: []; params?: {} }
     'updateKategoriProduk.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'kategoriProduk.search': { paramsTuple?: []; params?: {} }
     'produksi.index': { paramsTuple?: []; params?: {} }
     'stokBahan.index': { paramsTuple?: []; params?: {} }
+    'stokBahan.search': { paramsTuple?: []; params?: {} }
     'restokBahan.restok': { paramsTuple?: []; params?: {} }
     'riwayatStokBahanBaku.index': { paramsTuple?: []; params?: {} }
     'riwayatStokBahanBaku.filter': { paramsTuple?: []; params?: {} }
     'riwayatStokBahanBaku.generate': { paramsTuple?: []; params?: {} }
     'stokProduk.index': { paramsTuple?: []; params?: {} }
+    'stokProduk.search': { paramsTuple?: []; params?: {} }
     'riwayatStokProduk.index': { paramsTuple?: []; params?: {} }
     'riwayatStokProduk.filter': { paramsTuple?: []; params?: {} }
     'riwayatStokProduk.generate': { paramsTuple?: []; params?: {} }

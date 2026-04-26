@@ -34,41 +34,48 @@ router
         router.post('/bahan/create', [BahanController, `create`]).as('bahan.create');
         router.put('/bahan/update/:id', [BahanController, 'update']).as('updateBahan.update');
         router.delete('/bahan/delete/:id', [BahanController, 'destroy']).as("bahan.destroy");
+        router.get('/bahan/search', [BahanController, 'search']).as('bahan.search');
 
         router.get('/produk', [ProdukController, 'index']).as('produk.index');
         router.post('/produk/create', [ProdukController, 'create']).as('produk.create');
         router.get('/produk/edit/:id', [ProdukController, 'edit']).as('updateProduk.edit');
         router.put('/produk/update/:id', [ProdukController, 'update']).as('updateProduk.update');
         router.delete('produk/delete/:id', [ProdukController, 'destroy']).as('produk.destroy');
+        router.get('/produk/search', [ProdukController, 'search']).as('produk.search');
 
         router.get('/role', [HakAksesController, 'index']).as('hakAkses.index');
         router.post('/role/create', [HakAksesController, 'create']).as('hakAkses.create');
         router.get('/role/edit/:id', [HakAksesController, 'edit']).as('updateHakAkses.edit');
         router.put('/role/update/:id', [HakAksesController, 'update']).as('updateHakAkses.update');
         router.delete('/role/delete/:id', [HakAksesController, 'destroy']).as('hakAkses.destroy');
+        router.get('/role/search', [HakAksesController, 'search']).as('hakAkses.search');
 
         router.get('/pengguna', [PenggunaController, 'index']).as('pengguna.index');
         router.post('/pengguna/create', [PenggunaController, 'create']).as('pengguna.create');
         router.get('/pengguna/edit/:id', [PenggunaController, 'edit']).as('updatePengguna.edit');
         router.put('/pengguna/update/:id', [PenggunaController, 'update']).as('updatePengguna.update');
         router.delete('/pengguna/delete/:id', [PenggunaController, 'destroy']).as('pengguna.destroy');
+        router.get('/pengguna/search', [PenggunaController, 'search']).as('pengguna.search');
 
         router.get('/resep', [ResepController, 'index']).as('resep.index');
         router.post('/resep/create', [ResepController, 'create']).as('resep.create');
         router.get('/resep/edit/:id', [ResepController, 'edit']).as('updateResep.edit');
         router.put('/resep/update/:id', [ResepController, 'update']).as('updateResep.update');
         router.delete('/resep/delete/:id', [ResepController, 'destroy']).as('resep.destroy');
+        router.get('/resep/search', [ResepController, 'search']).as('resep.search');
 
         router.get('/kategori-produk', [KategoriController, 'index']).as('kategoriProduk.index');
         router.post('/kategori-produk/create', [KategoriController, 'create']).as('kategoriProduk.create');
         router.get('/kategori-produk/edit/:id', [KategoriController, 'edit']).as('updateKategoriProduk.edit');
         router.put('/kategori-produk/update/:id', [KategoriController, 'update']).as('updateKategoriProduk.update');
         router.delete('/kategori-produk/delete/:id', [KategoriController, 'destroy']).as('kategoriProduk.destroy');
+        router.get('/kategori-produk/search', [KategoriController, 'search']).as('kategoriProduk.search');
 
         router.get('/produksi', [ProduksiController, 'index']).as('produksi.index');
         router.post('/produksi/create', [ProduksiController, 'create']).as('produksi.create');
 
         router.get('/stok-bahan', [StokBahanController, 'index']).as('stokBahan.index');
+        router.get('/stok-bahan/search', [StokBahanController, 'search']).as('stokBahan.search');
         router.get('/restok-bahan', [StokBahanController, 'restok']).as('restokBahan.restok');
         router.post('/restok-bahan/create', [StokBahanController, 'create']).as('restokBahan.create');
 
@@ -77,6 +84,7 @@ router
         router.get('/riwayat-stok-bahan-baku/generate-pdf', [RiwayatStokBahanBakuController, 'generate']).as('riwayatStokBahanBaku.generate');
 
         router.get('/stok-produk', [StokProdukController, 'index']).as('stokProduk.index');
+        router.get('/stok-produk/search', [StokProdukController, 'search']).as('stokProduk.search');
 
         router.get('/riwayat-stok-produk', [RiwayatStokProdukController, 'index']).as('riwayatStokProduk.index');
         router.get('/riwayat-stok-produk/filter', [RiwayatStokProdukController, 'filter']).as('riwayatStokProduk.filter');

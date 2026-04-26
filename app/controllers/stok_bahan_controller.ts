@@ -6,9 +6,9 @@ import { stokBahanValidator } from "#validators/stok_bahan";
 
 export default class StokBahanController {
     async index({ inertia }: HttpContext) {
-        const stokBahan = await StokBahanBaku.query().preload('bahan', (bahanQuery) => {
+        const stokBahan = await StokBahanBaku.query().whereHas('bahan', (bahanQuery) => {
             bahanQuery.where({ is_deleted: false })
-        });
+        }).preload('bahan');
         return inertia.render("stokBahan", { stokBahan })
     }
     async restok({ inertia }: HttpContext) {
@@ -32,4 +32,13 @@ export default class StokBahanController {
             return response.redirect().back();
         }
     }
+    async search({ request, inertia, response }: HttpContext) {
+        const { nama_bahan_baku } = request.qs();
+        if (!nama_bahan_baku) {
+            return response.redirect().toRoute('stokBahan.index');
+        }
+        const searchRes = await StokBahanServices.search(nama_bahan_baku);
+        return inertia.render("stokBahan", { searchRes });
+    }
+
 }

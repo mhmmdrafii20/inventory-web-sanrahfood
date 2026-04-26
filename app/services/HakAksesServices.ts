@@ -13,4 +13,7 @@ export class HakAksesServices {
         const data = await HakAkses.query().where('id_hak_akses', params).update({ is_deleted: true });
         return data;
     }
+    static async search(nama_hak_akses: string) {
+        return await HakAkses.query().where('nama_hak_akses', 'ILIKE', `%${nama_hak_akses}%`).where('is_deleted', false)
+    }
 }

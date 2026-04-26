@@ -13,4 +13,7 @@ export class KategoriProdukServices {
         const data = await Kategori.query().where('id_kategori', params).update({ is_deleted: true });
         return data;
     }
+    static async search(nama_kategori: string) {
+        return await Kategori.query().where('nama_kategori', 'ILIKE', `%${nama_kategori}%`).where('is_deleted', false);
+    }
 }

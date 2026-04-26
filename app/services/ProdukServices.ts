@@ -13,4 +13,9 @@ export class ProdukServices {
         const data = await Produk.query().where('id_produk', params).update({ is_deleted: true });
         return data;
     }
+    static async search(nama_produk: string) {
+        return await Produk.query().whereHas('kategori', (b) => {
+            b.where('nama_produk', 'ILIKE', `%${nama_produk}%`).where('is_deleted', false)
+        }).preload('kategori').where('is_deleted', false);
+    }
 }

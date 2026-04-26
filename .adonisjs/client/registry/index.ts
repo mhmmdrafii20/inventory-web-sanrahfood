@@ -48,6 +48,12 @@ const routes = {
     tokens: [{"old":"/bahan/delete/:id","type":0,"val":"bahan","end":""},{"old":"/bahan/delete/:id","type":0,"val":"delete","end":""},{"old":"/bahan/delete/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['bahan.destroy']['types'],
   },
+  'bahan.search': {
+    methods: ["GET","HEAD"],
+    pattern: '/bahan/search',
+    tokens: [{"old":"/bahan/search","type":0,"val":"bahan","end":""},{"old":"/bahan/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['bahan.search']['types'],
+  },
   'produk.index': {
     methods: ["GET","HEAD"],
     pattern: '/produk',
@@ -77,6 +83,12 @@ const routes = {
     pattern: '/produk/delete/:id',
     tokens: [{"old":"/produk/delete/:id","type":0,"val":"produk","end":""},{"old":"/produk/delete/:id","type":0,"val":"delete","end":""},{"old":"/produk/delete/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['produk.destroy']['types'],
+  },
+  'produk.search': {
+    methods: ["GET","HEAD"],
+    pattern: '/produk/search',
+    tokens: [{"old":"/produk/search","type":0,"val":"produk","end":""},{"old":"/produk/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['produk.search']['types'],
   },
   'hakAkses.index': {
     methods: ["GET","HEAD"],
@@ -108,6 +120,12 @@ const routes = {
     tokens: [{"old":"/role/delete/:id","type":0,"val":"role","end":""},{"old":"/role/delete/:id","type":0,"val":"delete","end":""},{"old":"/role/delete/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['hakAkses.destroy']['types'],
   },
+  'hakAkses.search': {
+    methods: ["GET","HEAD"],
+    pattern: '/role/search',
+    tokens: [{"old":"/role/search","type":0,"val":"role","end":""},{"old":"/role/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['hakAkses.search']['types'],
+  },
   'pengguna.index': {
     methods: ["GET","HEAD"],
     pattern: '/pengguna',
@@ -137,6 +155,12 @@ const routes = {
     pattern: '/pengguna/delete/:id',
     tokens: [{"old":"/pengguna/delete/:id","type":0,"val":"pengguna","end":""},{"old":"/pengguna/delete/:id","type":0,"val":"delete","end":""},{"old":"/pengguna/delete/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['pengguna.destroy']['types'],
+  },
+  'pengguna.search': {
+    methods: ["GET","HEAD"],
+    pattern: '/pengguna/search',
+    tokens: [{"old":"/pengguna/search","type":0,"val":"pengguna","end":""},{"old":"/pengguna/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['pengguna.search']['types'],
   },
   'resep.index': {
     methods: ["GET","HEAD"],
@@ -168,6 +192,12 @@ const routes = {
     tokens: [{"old":"/resep/delete/:id","type":0,"val":"resep","end":""},{"old":"/resep/delete/:id","type":0,"val":"delete","end":""},{"old":"/resep/delete/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['resep.destroy']['types'],
   },
+  'resep.search': {
+    methods: ["GET","HEAD"],
+    pattern: '/resep/search',
+    tokens: [{"old":"/resep/search","type":0,"val":"resep","end":""},{"old":"/resep/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['resep.search']['types'],
+  },
   'kategoriProduk.index': {
     methods: ["GET","HEAD"],
     pattern: '/kategori-produk',
@@ -198,6 +228,12 @@ const routes = {
     tokens: [{"old":"/kategori-produk/delete/:id","type":0,"val":"kategori-produk","end":""},{"old":"/kategori-produk/delete/:id","type":0,"val":"delete","end":""},{"old":"/kategori-produk/delete/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['kategoriProduk.destroy']['types'],
   },
+  'kategoriProduk.search': {
+    methods: ["GET","HEAD"],
+    pattern: '/kategori-produk/search',
+    tokens: [{"old":"/kategori-produk/search","type":0,"val":"kategori-produk","end":""},{"old":"/kategori-produk/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['kategoriProduk.search']['types'],
+  },
   'produksi.index': {
     methods: ["GET","HEAD"],
     pattern: '/produksi',
@@ -215,6 +251,12 @@ const routes = {
     pattern: '/stok-bahan',
     tokens: [{"old":"/stok-bahan","type":0,"val":"stok-bahan","end":""}],
     types: placeholder as Registry['stokBahan.index']['types'],
+  },
+  'stokBahan.search': {
+    methods: ["GET","HEAD"],
+    pattern: '/stok-bahan/search',
+    tokens: [{"old":"/stok-bahan/search","type":0,"val":"stok-bahan","end":""},{"old":"/stok-bahan/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['stokBahan.search']['types'],
   },
   'restokBahan.restok': {
     methods: ["GET","HEAD"],
@@ -251,6 +293,12 @@ const routes = {
     pattern: '/stok-produk',
     tokens: [{"old":"/stok-produk","type":0,"val":"stok-produk","end":""}],
     types: placeholder as Registry['stokProduk.index']['types'],
+  },
+  'stokProduk.search': {
+    methods: ["GET","HEAD"],
+    pattern: '/stok-produk/search',
+    tokens: [{"old":"/stok-produk/search","type":0,"val":"stok-produk","end":""},{"old":"/stok-produk/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['stokProduk.search']['types'],
   },
   'riwayatStokProduk.index': {
     methods: ["GET","HEAD"],

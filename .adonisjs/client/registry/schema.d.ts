@@ -84,6 +84,17 @@ export interface Registry {
       response: unknown
     }
   }
+  'bahan.search': {
+    methods: ["GET","HEAD"]
+    pattern: '/bahan/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
   'produk.index': {
     methods: ["GET","HEAD"]
     pattern: '/produk'
@@ -135,6 +146,17 @@ export interface Registry {
       body: {}
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'produk.search': {
+    methods: ["GET","HEAD"]
+    pattern: '/produk/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
       query: {}
       response: unknown
     }
@@ -194,6 +216,17 @@ export interface Registry {
       response: unknown
     }
   }
+  'hakAkses.search': {
+    methods: ["GET","HEAD"]
+    pattern: '/role/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
   'pengguna.index': {
     methods: ["GET","HEAD"]
     pattern: '/pengguna'
@@ -245,6 +278,17 @@ export interface Registry {
       body: {}
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'pengguna.search': {
+    methods: ["GET","HEAD"]
+    pattern: '/pengguna/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
       query: {}
       response: unknown
     }
@@ -304,6 +348,17 @@ export interface Registry {
       response: unknown
     }
   }
+  'resep.search': {
+    methods: ["GET","HEAD"]
+    pattern: '/resep/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
   'kategoriProduk.index': {
     methods: ["GET","HEAD"]
     pattern: '/kategori-produk'
@@ -359,6 +414,17 @@ export interface Registry {
       response: unknown
     }
   }
+  'kategoriProduk.search': {
+    methods: ["GET","HEAD"]
+    pattern: '/kategori-produk/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
   'produksi.index': {
     methods: ["GET","HEAD"]
     pattern: '/produksi'
@@ -384,6 +450,17 @@ export interface Registry {
   'stokBahan.index': {
     methods: ["GET","HEAD"]
     pattern: '/stok-bahan'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'stokBahan.search': {
+    methods: ["GET","HEAD"]
+    pattern: '/stok-bahan/search'
     types: {
       body: {}
       paramsTuple: []
@@ -450,6 +527,17 @@ export interface Registry {
   'stokProduk.index': {
     methods: ["GET","HEAD"]
     pattern: '/stok-produk'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'stokProduk.search': {
+    methods: ["GET","HEAD"]
+    pattern: '/stok-produk/search'
     types: {
       body: {}
       paramsTuple: []

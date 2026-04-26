@@ -13,4 +13,9 @@ export class PenggunaServices {
         const data = await Pengguna.query().where('id_pengguna', params).update({ is_deleted: true });
         return data;
     }
+    static async search(nama_pengguna: string) {
+        return await Pengguna.query().whereHas('hakAkses', (b) => {
+            b.where('nama_pengguna', 'ILIKE', `%${nama_pengguna}%`).where('is_deleted', false);
+        }).preload('hakAkses').where('is_deleted', false)
+    }
 }

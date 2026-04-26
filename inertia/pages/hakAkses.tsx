@@ -15,8 +15,8 @@ import Error from "~/components/ui/Error";
 
 export default function HakAkses() {
     const [open, setIsOpen] = useState(false);
-    const { role, errors } = usePage<{ role: { idHakAkses: number, namaHakAkses: string }[] }>().props;
-    const { data, setData, post, delete: destroy, processing, reset } = useForm({
+    const { role, errors, searchRes } = usePage<{ role: { idHakAkses: number, namaHakAkses: string }[], searchRes: { idHakAkses: number, namaHakAkses: string }[] }>().props;
+    const { data, setData, post, get, delete: destroy, processing, reset } = useForm({
         nama_hak_akses: "",
     })
 
@@ -40,6 +40,16 @@ export default function HakAkses() {
             "Hapus",
             "Batal")
     }
+    function handleSearch() {
+        const query = new URLSearchParams(data).toString()
+        get(`/role/search?${query}`, {
+            preserveState: true,
+            replace: true,
+        })
+    }
+    const displayRole = searchRes && searchRes.length > 0
+        ? searchRes
+        : role;
     return (
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold">Manajemen Hak Akses</Heading>
@@ -57,8 +67,8 @@ export default function HakAkses() {
                     </form>
                 </Modal>
                 <div className="flex flex-row gap-5 ">
-                    <Input variant={1} size="md" type="text" placeholder="Cari Hak Akses...." />
-                    <ActionButton as="button" type="update" size="lg">
+                    <Input variant={1} size="md" type="text" placeholder="Cari Hak Akses...." value={data.nama_hak_akses} onChange={e => setData('nama_hak_akses', e.target.value)} />
+                    <ActionButton as="button" type="update" size="lg" onClick={handleSearch}>
                         <FaSearch />
                     </ActionButton>
                 </div>
@@ -71,7 +81,7 @@ export default function HakAkses() {
                     </tr>
                 </thead>
                 <tbody>
-                    {role.map(items => (
+                    {displayRole?.length > 0 ? displayRole?.map(items => (
                         <tr key={items.idHakAkses}>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.namaHakAkses}</Paragraph></td>
                             <td className="border border-gray-300 py-3 px-5">
@@ -85,7 +95,7 @@ export default function HakAkses() {
                                 </div>
                             </td>
                         </tr>
-                    ))}
+                    )) : <tr><td colSpan={2} className="text-center py-4"><Paragraph size="lg">Tidak Ada Hak Akses</Paragraph></td></tr>}
                 </tbody>
             </table>
         </>

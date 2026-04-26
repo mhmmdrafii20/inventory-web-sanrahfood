@@ -12,4 +12,7 @@ export class BahanService {
         const data = await Bahan.query().where('id_bahan_baku', params).update({ is_deleted: true });
         return data;
     }
+    static async search(nama_bahan_baku: string) {
+        return await Bahan.query().where('nama_bahan_baku', 'ILIKE', `%${nama_bahan_baku}%`).where('is_deleted', false);
+    }
 }

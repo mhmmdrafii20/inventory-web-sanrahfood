@@ -59,4 +59,13 @@ export default class BahanController {
             return response.redirect().back();
         }
     }
+    async search({ request, response, inertia }: HttpContext) {
+        const { nama_bahan_baku } = request.qs()
+
+        if (!nama_bahan_baku) {
+            return response.redirect().toRoute('bahan.index');
+        }
+        const searchRes = await BahanService.search(nama_bahan_baku);
+        return inertia.render("bahan", { searchRes });
+    }
 }

@@ -10,6 +10,7 @@ export interface ApiDefinition {
     index: typeof routes['bahan.index']
     create: typeof routes['bahan.create']
     destroy: typeof routes['bahan.destroy']
+    search: typeof routes['bahan.search']
   }
   updateBahan: {
     edit: typeof routes['updateBahan.edit']
@@ -19,6 +20,7 @@ export interface ApiDefinition {
     index: typeof routes['produk.index']
     create: typeof routes['produk.create']
     destroy: typeof routes['produk.destroy']
+    search: typeof routes['produk.search']
   }
   updateProduk: {
     edit: typeof routes['updateProduk.edit']
@@ -28,6 +30,7 @@ export interface ApiDefinition {
     index: typeof routes['hakAkses.index']
     create: typeof routes['hakAkses.create']
     destroy: typeof routes['hakAkses.destroy']
+    search: typeof routes['hakAkses.search']
   }
   updateHakAkses: {
     edit: typeof routes['updateHakAkses.edit']
@@ -37,6 +40,7 @@ export interface ApiDefinition {
     index: typeof routes['pengguna.index']
     create: typeof routes['pengguna.create']
     destroy: typeof routes['pengguna.destroy']
+    search: typeof routes['pengguna.search']
   }
   updatePengguna: {
     edit: typeof routes['updatePengguna.edit']
@@ -46,6 +50,7 @@ export interface ApiDefinition {
     index: typeof routes['resep.index']
     create: typeof routes['resep.create']
     destroy: typeof routes['resep.destroy']
+    search: typeof routes['resep.search']
   }
   updateResep: {
     edit: typeof routes['updateResep.edit']
@@ -55,6 +60,7 @@ export interface ApiDefinition {
     index: typeof routes['kategoriProduk.index']
     create: typeof routes['kategoriProduk.create']
     destroy: typeof routes['kategoriProduk.destroy']
+    search: typeof routes['kategoriProduk.search']
   }
   updateKategoriProduk: {
     edit: typeof routes['updateKategoriProduk.edit']
@@ -66,6 +72,7 @@ export interface ApiDefinition {
   }
   stokBahan: {
     index: typeof routes['stokBahan.index']
+    search: typeof routes['stokBahan.search']
   }
   restokBahan: {
     restok: typeof routes['restokBahan.restok']
@@ -78,6 +85,7 @@ export interface ApiDefinition {
   }
   stokProduk: {
     index: typeof routes['stokProduk.index']
+    search: typeof routes['stokProduk.search']
   }
   riwayatStokProduk: {
     index: typeof routes['riwayatStokProduk.index']

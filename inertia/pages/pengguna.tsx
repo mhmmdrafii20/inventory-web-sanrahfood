@@ -9,7 +9,7 @@ import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
 import { Link } from "@adonisjs/inertia/react";
 import ActionButton from "~/components/ui/Button/ActionButton"
-import { FaPen, FaTrash } from "react-icons/fa"
+import { FaPen, FaTrash, FaSearch } from "react-icons/fa"
 import confirmDialog from '../../utils/sweetalert'
 import Input from "~/components/ui/Input";
 import Select from "~/components/ui/Select"
@@ -17,8 +17,8 @@ import Error from "~/components/ui/Error";
 
 export default function Pengguna() {
     const [open, setIsOpen] = useState(false);
-    const { role, pengguna, errors } = usePage<{ role: { idHakAkses: number, namaHakAkses: string }[], pengguna: { id: number, idPengguna: number, hakAkses: { namaHakAkses: string }, namaPengguna: string, nomorTelepon: string }[] }>().props;
-    const { data, setData, post, delete: destroy, processing, reset } = useForm({
+    const { role, pengguna, errors, searchRes } = usePage<{ role: { idHakAkses: number, namaHakAkses: string }[], pengguna: { id: number, idPengguna: number, hakAkses: { namaHakAkses: string }, namaPengguna: string, nomorTelepon: string }[], searchRes: { idPengguna: number, hakAkses: { namaHakAkses: string }, namaPengguna: string, nomorTelepon: string }[] }>().props;
+    const { data, setData, post, get, delete: destroy, processing, reset } = useForm({
         id_pengguna: "",
         id_hak_akses: "",
         email: "",
@@ -46,6 +46,14 @@ export default function Pengguna() {
             "Hapus",
             "Batal")
     }
+    function handleSearch() {
+        const query = new URLSearchParams(data).toString()
+        get(`/pengguna/search?${query}`, {
+            preserveState: true,
+            replace: true,
+        })
+    }
+    const displayPengguna = searchRes?.length > 0 ? searchRes : pengguna;
     return (
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold">Manajemen Pengguna</Heading>
@@ -81,7 +89,7 @@ export default function Pengguna() {
                             <Paragraph size="lg">Hak Akses</Paragraph>
                             <Select variant={1} size="md" name="id_hak_akses" onChange={(e) => setData('id_hak_akses', e.target.value)}>
                                 <option value="">Pilih Hak Akses</option>
-                                {role.map(items => (
+                                {role?.map(items => (
                                     <option key={items.idHakAkses} value={items.idHakAkses} >{items.namaHakAkses}</option>
                                 ))}
                             </Select>
@@ -91,6 +99,12 @@ export default function Pengguna() {
                         <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan"}</Button>
                     </form>
                 </Modal>
+                <div className="flex flex-row gap-5 ">
+                    <Input variant={1} size="md" type="text" placeholder="Cari Pengguna..." value={data.nama_pengguna} onChange={(e) => setData('nama_pengguna', e.target.value)}></Input>
+                    <ActionButton as="button" type="update" size="lg" onClick={handleSearch}>
+                        <FaSearch />
+                    </ActionButton>
+                </div>
             </div>
             <table className="w-full border-collapse mt-5 bg-white">
                 <thead>
@@ -102,7 +116,7 @@ export default function Pengguna() {
                     </tr>
                 </thead>
                 <tbody>
-                    {pengguna.map(items => (
+                    {displayPengguna?.length > 0 ? displayPengguna?.map(items => (
                         <tr key={items.idPengguna}>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.namaPengguna}</Paragraph></td>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.hakAkses?.namaHakAkses}</Paragraph></td>
@@ -118,7 +132,7 @@ export default function Pengguna() {
                                 </div>
                             </td>
                         </tr>
-                    ))}
+                    )) : <tr><td colSpan={4} className="border border-gray-300 py-3 text-center"><Paragraph size="lg">Tidak ada pengguna</Paragraph></td></tr>}
                 </tbody>
             </table>
         </>

@@ -23,17 +23,18 @@ export default function Resep() {
     }
 
     const [open, setIsOpen] = useState(false);
-    const { bahan, produk, resep, errors } = usePage<{
+    const { bahan, produk, resep, errors, searchRes } = usePage<{
         bahan: { idBahanBaku: number; namaBahanBaku: string; satuan: string; }[],
         produk: { idProduk: number; namaProduk: string; satuan: string; }[],
-        resep: { idResep: number, namaResep: string, idProduk: string, yieldPerBatch: number, catatanTambahan: string, produk: { namaProduk: string, satuan: string } }[]
+        resep: { idResep: number, namaResep: string, idProduk: string, yieldPerBatch: number, catatanTambahan: string, produk: { namaProduk: string, satuan: string } }[],
+        searchRes: { idResep: number, namaResep: string, idProduk: string, yieldPerBatch: number, catatanTambahan: string, produk: { namaProduk: string, satuan: string } }[]
     }>().props;
 
-    const options = bahan.map(items => ({
+    const options = bahan?.map(items => ({
         label: items.namaBahanBaku,
         value: String(items.idBahanBaku)
     }))
-    const { data, setData, post, delete: destroy, processing, reset } = useForm({
+    const { data, setData, post, get, delete: destroy, processing, reset } = useForm({
         nama_resep: "",
         id_produk: "",
         yield_per_batch: "",
@@ -65,6 +66,14 @@ export default function Resep() {
             "Hapus",
             "Batal")
     }
+    function handleSearch() {
+        const query = new URLSearchParams(data.nama_resep).toString()
+        get(`/resep/search?${query}`, {
+            preserveState: true,
+            replace: true,
+        })
+    }
+    const displayResep = searchRes?.length > 0 ? searchRes : resep;
     return (
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold">Manajemen Resep</Heading>
@@ -83,7 +92,7 @@ export default function Resep() {
                                 <Paragraph size="lg">Produk</Paragraph>
                                 <Select variant={1} size="md" className="w-full" name="id_produk" onChange={(e) => setData('id_produk', e.target.value)}>
                                     <option value=" ">Pilih Produk</option>
-                                    {produk.map(items => (
+                                    {produk?.map(items => (
                                         <option key={items.idProduk} value={items.idProduk} >{items.namaProduk}</option>
                                     ))}
                                 </Select>
@@ -141,8 +150,8 @@ export default function Resep() {
                     </form>
                 </Modal>
                 <div className="flex flex-row gap-5 ">
-                    <Input variant={1} size="md" type="text" name="" placeholder="Cari Resep" />
-                    <ActionButton type="search" size="lg">
+                    <Input variant={1} size="md" type="text" name="" placeholder="Cari Resep" value={data.nama_resep} onChange={(e) => setData('nama_resep', e.target.value)} />
+                    <ActionButton type="search" size="lg" onClick={handleSearch}>
                         <FaSearch />
                     </ActionButton>
                 </div>
@@ -157,7 +166,7 @@ export default function Resep() {
                     </tr>
                 </thead>
                 <tbody>
-                    {resep.map(items => (
+                    {displayResep?.length > 0 ? displayResep.map(items => (
                         <tr key={items.idResep}>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.namaResep}</Paragraph></td>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.produk.namaProduk}</Paragraph></td>
@@ -173,7 +182,7 @@ export default function Resep() {
                                 </div>
                             </td>
                         </tr>
-                    ))}
+                    )) : (<tr><td colSpan={4} className="border border-gray-300 py-3 text-center"><Paragraph size="lg">Tidak Ada Resep</Paragraph></td></tr>)}
                 </tbody>
             </table>
         </>

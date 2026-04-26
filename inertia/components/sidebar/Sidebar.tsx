@@ -44,13 +44,13 @@ export default function Sidebar() {
                 </ul>
                 {/* Grouped sections */}
                 <ul className="flex flex-col px-5 gap-1 pb-6">
-                    {menuSections.map((section) => (
-                        <>
-                            <SectionDivider key={`divider-${section.label}`} label={section.label} />
-                            {section.items.map((item) => (
-                                <SidebarMenuItem key={item.link} item={item} />
+                    {menuSections.map((section, i) => (
+                        <div key={i}>
+                            <SectionDivider label={section.label} />
+                            {section.items.map((item, j) => (
+                                <SidebarMenuItem key={j} item={item} />
                             ))}
-                        </>
+                        </div>
                     ))}
                 </ul>
             </nav>

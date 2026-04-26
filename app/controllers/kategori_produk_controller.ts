@@ -58,4 +58,13 @@ export default class KategoriController {
             return response.redirect().back();
         }
     }
+    async search({ request, response, inertia }: HttpContext) {
+        const { nama_kategori } = request.qs()
+
+        if (!nama_kategori) {
+            return response.redirect().toRoute('kategoriProduk.index');
+        }
+        const searchRes = await KategoriProdukServices.search(nama_kategori);
+        return inertia.render("kategoriProduk", { searchRes });
+    }
 }

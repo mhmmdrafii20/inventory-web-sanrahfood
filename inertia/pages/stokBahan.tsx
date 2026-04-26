@@ -1,14 +1,43 @@
 import Heading from "~/components/ui/Heading";
 import { usePage } from "@inertiajs/react";
 import Paragraph from "~/components/ui/Paragraph";
+import Input from "~/components/ui/Input";
+import ActionButton from "~/components/ui/Button/ActionButton";
+import { FaSearch } from "react-icons/fa";
+import { useForm } from "@inertiajs/react";
+
 
 export default function StokBahan() {
-    const { stokBahan } = usePage<{
-        stokBahan: { idStokBahanBaku: number; idBahanBaku: number; jumlahStok: number, bahan: { namaBahanBaku: string, satuan: string } }[]
+    const { stokBahan, searchRes } = usePage<{
+        stokBahan: { idStokBahanBaku: number; idBahanBaku: number; jumlahStok: number, bahan: { namaBahanBaku: string, satuan: string } }[],
+        searchRes: { idStokBahanBaku: number; idBahanBaku: number; jumlahStok: number, bahan: { namaBahanBaku: string, satuan: string } }[]
     }>().props;
+
+    const { data, setData, get } = useForm({
+        nama_bahan_baku: "",
+    })
+
+    function handleSearch() {
+        const query = new URLSearchParams(data).toString()
+        get(`/stok-bahan/search?${query}`, {
+            preserveState: true,
+            replace: true,
+        })
+
+    }
+    const displayStokBahan = searchRes && searchRes.length > 0
+        ? searchRes
+        : stokBahan;
+
     return (
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold" > Stok Bahan Baku</Heading>
+            <div className="flex flex-row gap-5  justify-self-end">
+                <Input variant={1} size="md" type="text" name="nama_bahan_baku" placeholder="Cari Bahan Baku" value={data.nama_bahan_baku} onChange={(e) => setData('nama_bahan_baku', e.target.value)} />
+                <ActionButton type="search" size="lg" onClick={handleSearch}>
+                    <FaSearch />
+                </ActionButton>
+            </div>
             <table className="w-full border-collapse mt-5 bg-white">
                 <thead>
                     <tr>
@@ -18,13 +47,13 @@ export default function StokBahan() {
                     </tr>
                 </thead>
                 <tbody>
-                    {stokBahan.map(items => (
+                    {displayStokBahan?.length > 0 ? displayStokBahan.map(items => (
                         <tr key={items.idStokBahanBaku}>
-                            <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.bahan.namaBahanBaku}</Paragraph></td>
-                            <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.jumlahStok}</Paragraph></td>
-                            <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.bahan.satuan}</Paragraph></td>
+                            <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items?.bahan?.namaBahanBaku}</Paragraph></td>
+                            <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items?.jumlahStok}</Paragraph></td>
+                            <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items?.bahan?.satuan}</Paragraph></td>
                         </tr>
-                    ))}
+                    )) : <tr className="border border-gray-300"><td colSpan={7} className="text-center py-4"><Paragraph size="lg">Tidak Ada Stok Bahan Baku</Paragraph></td></tr>}
                 </tbody>
             </table>
         </>

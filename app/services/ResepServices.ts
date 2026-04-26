@@ -51,4 +51,9 @@ export class ResepServices {
         const data = await Resep.query().where('id_resep', params).update({ is_deleted: true });
         return data;
     }
+    static async search(nama_resep: string) {
+        return await Resep.query().whereHas('produk', (ResepQuery) => {
+            ResepQuery.where('nama_resep', 'ILIKE', `%${nama_resep}%`).where('is_deleted', false)
+        }).preload('produk').where({ is_deleted: false })
+    }
 }

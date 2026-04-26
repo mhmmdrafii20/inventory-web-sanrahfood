@@ -35,4 +35,9 @@ export class StokBahanServices {
             }, { client: transaction });
         })
     }
+    static async search(nama_bahan_baku: string) {
+        return await StokBahanBaku.query().whereHas('bahan', (b) => {
+            b.where('nama_bahan_baku', 'ILIKE', `%${nama_bahan_baku}%`).where('is_deleted', false)
+        }).preload('bahan')
+    }
 }

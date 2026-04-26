@@ -10,7 +10,9 @@ export default class ResepController {
     async index({ inertia }: HttpContext) {
         const bahan = await Bahan.query().where({ is_deleted: false });
         const produk = await Produk.query().where({ is_deleted: false });
-        const resep = await Resep.query().preload('produk').where({ is_deleted: false });
+        const resep = await Resep.query().whereHas('produk', (b) => {
+            b.where({ is_deleted: false })
+        }).preload('produk').where({ is_deleted: false });
 
         return inertia.render('resep', { bahan, produk, resep });
     }
@@ -66,5 +68,14 @@ export default class ResepController {
             session.flash('error', 'Terjadi kesalahan saat delete.');
             return response.redirect().back();
         }
+    }
+    async search({ request, response, inertia }: HttpContext) {
+        const { nama_resep } = request.qs()
+
+        if (!nama_resep) {
+            return response.redirect().toRoute('resep.index');
+        }
+        const searchRes = await ResepServices.search(nama_resep);
+        return inertia.render("resep", { searchRes });
     }
 }   

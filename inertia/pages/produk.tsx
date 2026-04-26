@@ -16,8 +16,8 @@ import Error from "~/components/ui/Error";
 
 export default function Produk() {
     const [open, setIsOpen] = useState(false);
-    const { kategori, produk, errors } = usePage<{ kategori: { idKategori: number, namaKategori: string }[], produk: { idProduk: number, namaProduk: string, satuan: string, kategori: { namaKategori: string } }[] }>().props;
-    const { data, setData, post, delete: destroy, processing, reset } = useForm({
+    const { kategori, produk, errors, searchRes } = usePage<{ kategori: { idKategori: number, namaKategori: string }[], produk: { idProduk: number, namaProduk: string, satuan: string, kategori: { namaKategori: string } }[], searchRes: { idProduk: number, namaProduk: string, satuan: string, kategori: { namaKategori: string } }[] }>().props;
+    const { data, setData, post, get, delete: destroy, processing, reset } = useForm({
         nama_produk: "",
         satuan: "",
         id_kategori: "",
@@ -43,6 +43,15 @@ export default function Produk() {
             "Hapus",
             "Batal")
     }
+    function handleSearch() {
+        const query = new URLSearchParams(data).toString()
+        get(`/produk/search?${query}`, {
+            preserveState: true,
+            replace: true,
+        })
+    }
+    const displayProduk = searchRes?.length > 0 ? searchRes : produk;
+
     return (
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold">Manajemen Produk</Heading>
@@ -65,7 +74,7 @@ export default function Produk() {
                             <Paragraph size="lg">Kategori Produk</Paragraph>
                             <Select variant={1} size="md" name="id_kategori" onChange={(e) => setData('id_kategori', e.target.value)}>
                                 <option value="">Pilih Kategori</option>
-                                {kategori.map(items => (
+                                {kategori?.map(items => (
                                     <option key={items.idKategori} value={items.idKategori} >{items.namaKategori}</option>
                                 ))}
                             </Select>
@@ -75,8 +84,8 @@ export default function Produk() {
                     </form>
                 </Modal>
                 <div className="flex flex-row gap-5 ">
-                    <input placeholder="Cari Produk..."></input>
-                    <ActionButton as="button" type="update" size="lg">
+                    <Input variant={1} size="md" type="text" placeholder="Cari Produk..." value={data.nama_produk} onChange={(e) => setData('nama_produk', e.target.value)}></Input>
+                    <ActionButton as="button" type="update" size="lg" onClick={handleSearch}>
                         <FaSearch />
                     </ActionButton>
                 </div>
@@ -91,7 +100,7 @@ export default function Produk() {
                     </tr>
                 </thead>
                 <tbody>
-                    {produk.map(items => (
+                    {displayProduk?.length > 0 ? displayProduk?.map(items => (
                         <tr key={items.idProduk}>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.namaProduk}</Paragraph></td>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.kategori.namaKategori}</Paragraph></td>
@@ -107,7 +116,7 @@ export default function Produk() {
                                 </div>
                             </td>
                         </tr>
-                    ))}
+                    )) : (<tr className="border border-gray-300"><td colSpan={7} className="text-center py-4"><Paragraph size="lg">Tidak Ada Produk</Paragraph></td></tr>)}
                 </tbody>
             </table>
         </>

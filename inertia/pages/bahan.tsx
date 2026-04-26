@@ -15,8 +15,8 @@ import Error from "~/components/ui/Error";
 export default function Bahan() {
     const [open, setIsOpen] = useState(false);
 
-    const { bahan, errors } = usePage<{ bahan: { idBahanBaku: number; namaBahanBaku: string; satuan: string; }[] }>().props;
-    const { data, setData, post, delete: destroy, processing, reset } = useForm({
+    const { bahan, errors, searchRes } = usePage<{ bahan: { idBahanBaku: number; namaBahanBaku: string; satuan: string; }[], searchRes: { idBahanBaku: number; namaBahanBaku: string; satuan: string; }[] }>().props;
+    const { data, setData, post, get, delete: destroy, processing, reset } = useForm({
         nama_bahan_baku: "",
         satuan: ""
     })
@@ -40,6 +40,17 @@ export default function Bahan() {
             "Hapus",
             "Batal")
     }
+    function handleSearch() {
+        const query = new URLSearchParams(data).toString()
+        get(`/bahan/search?${query}`, {
+            preserveState: true,
+            replace: true,
+        })
+    }
+    const displayBahan = searchRes && searchRes.length > 0
+        ? searchRes
+        : bahan;
+
     return (
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold">Manajemen Bahan Baku</Heading>
@@ -60,8 +71,8 @@ export default function Bahan() {
                     </form>
                 </Modal>
                 <div className="flex flex-row gap-5 ">
-                    <Input variant={1} size="md" type="text" placeholder="Cari Bahan Baku...." />
-                    <ActionButton type="search" size="lg">
+                    <Input variant={1} size="md" type="text" placeholder="Cari Bahan Baku...." value={data.nama_bahan_baku} onChange={e => setData("nama_bahan_baku", e.target.value)} />
+                    <ActionButton type="search" size="lg" onClick={handleSearch}>
                         <FaSearch />
                     </ActionButton>
                 </div>
@@ -75,7 +86,7 @@ export default function Bahan() {
                     </tr>
                 </thead>
                 <tbody>
-                    {bahan.map(items => (
+                    {displayBahan?.length > 0 ? displayBahan?.map(items => (
                         <tr key={items.idBahanBaku}>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.namaBahanBaku}</Paragraph></td>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.satuan}</Paragraph></td>
@@ -90,7 +101,7 @@ export default function Bahan() {
                                 </div>
                             </td>
                         </tr>
-                    ))}
+                    )) : <tr className="border border-gray-300"><td colSpan={6} className="text-center py-4"><Paragraph size="lg">Tidak Ada Bahan Baku</Paragraph></td></tr>}
                 </tbody>
             </table>
         </>

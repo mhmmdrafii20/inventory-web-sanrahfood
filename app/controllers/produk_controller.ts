@@ -7,7 +7,9 @@ import { produkValidator } from "#validators/produk";
 export default class ProdukController {
     async index({ inertia }: HttpContext) {
         const kategori = await Kategori.all();
-        const produk = await Produk.query().preload('kategori').where({ is_deleted: false });
+        const produk = await Produk.query().whereHas('kategori', (b) => {
+            b.where({ is_deleted: false })
+        }).preload('kategori').where('is_deleted', false);
 
         return inertia.render('produk', { kategori, produk })
     }
@@ -64,5 +66,14 @@ export default class ProdukController {
             session.flash('error', 'Terjadi kesalahan saat delete.');
             return response.redirect().back();
         }
+    }
+    async search({ request, response, inertia }: HttpContext) {
+        const { nama_produk } = request.qs()
+
+        if (!nama_produk) {
+            return response.redirect().toRoute('produk.index');
+        }
+        const searchRes = await ProdukServices.search(nama_produk);
+        return inertia.render("produk", { searchRes });
     }
 }

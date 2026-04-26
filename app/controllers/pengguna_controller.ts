@@ -81,4 +81,13 @@ export default class PenggunaController {
             return response.redirect().back();
         }
     }
+    async search({ request, response, inertia }: HttpContext) {
+        const { nama_pengguna } = request.qs()
+
+        if (!nama_pengguna) {
+            return response.redirect().toRoute('pengguna.index');
+        }
+        const searchRes = await PenggunaServices.search(nama_pengguna);
+        return inertia.render("pengguna", { searchRes });
+    }
 }

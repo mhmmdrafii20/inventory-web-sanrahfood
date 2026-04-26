@@ -58,4 +58,13 @@ export default class HakAksesController {
             return response.redirect().back();
         }
     }
+    async search({ request, response, inertia }: HttpContext) {
+        const { nama_hak_akses } = request.qs()
+
+        if (!nama_hak_akses) {
+            return response.redirect().toRoute('hakAkses.index');
+        }
+        const searchRes = await HakAksesServices.search(nama_hak_akses);
+        return inertia.render("hakAkses", { searchRes });
+    }
 }

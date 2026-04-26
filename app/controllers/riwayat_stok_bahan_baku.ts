@@ -2,7 +2,7 @@ import type { HttpContext } from "@adonisjs/core/http";
 import RiwayatStokBahanBaku from "#models/riwayat_stok_bahan_baku";
 import { RiwayatStokBahanBakuServices } from "#services/RiwayatStokBahanBakuServices";
 import TemplateService from "#services/TemplateServices";
-import { PdfServices } from "#services/pdfServices";
+import { PdfServices } from "#services/PdfServices";
 
 export default class RiwayatStokBahanBakuController {
     async index({ inertia }: HttpContext) {

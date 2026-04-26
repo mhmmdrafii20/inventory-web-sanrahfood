@@ -2,7 +2,8 @@ import type { HttpContext } from "@adonisjs/core/http";
 import RiwayatStokProduk from "#models/riwayat_stok_produk";
 import { RiwayatStokProdukServices } from "#services/RiwayatStokProdukServices";
 import TemplateService from "#services/TemplateServices";
-import { PdfServices } from "#services/pdfServices";
+import { PdfServices } from "#services/PdfServices";
+
 export default class RiwayatStokProdukController {
     async index({ inertia }: HttpContext) {
         const riwayatStokProduk = await RiwayatStokProduk.query().preload('stokProduk', (stokProdukQuery) => {

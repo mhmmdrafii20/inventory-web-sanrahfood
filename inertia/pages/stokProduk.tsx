@@ -1,13 +1,38 @@
 import Heading from "~/components/ui/Heading"
 import Paragraph from "~/components/ui/Paragraph"
 import { usePage } from "@inertiajs/react";
+import Input from "~/components/ui/Input";
+import ActionButton from "~/components/ui/Button/ActionButton";
+import { FaSearch } from "react-icons/fa";
+import { useForm } from "@inertiajs/react";
+
 export default function StokProduk() {
-    const { stokProduk } = usePage<{
+    const { stokProduk, searchRes } = usePage<{
         stokProduk: { idStokProduk: number; idProduk: number; jumlahStok: number, produk: { namaProduk: string, satuan: string } }[]
+        searchRes: { idStokProduk: number; idProduk: number; jumlahStok: number, produk: { namaProduk: string, satuan: string } }[]
     }>().props;
+    const { data, setData, get } = useForm({
+        nama_produk: "",
+    })
+    function handleSearch() {
+        const query = new URLSearchParams(data).toString()
+        get(`/stok-produk/search?${query}`, {
+            preserveState: true,
+            replace: true,
+        })
+    }
+    const displayStokProduk = searchRes && searchRes.length > 0
+        ? searchRes
+        : stokProduk;
     return (
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold" > Stok Produk</Heading>
+            <div className="flex flex-row gap-5 justify-self-end">
+                <Input variant={1} size="md" type="text" placeholder="Cari Produk..." value={data.nama_produk} onChange={(e) => setData('nama_produk', e.target.value)}></Input>
+                <ActionButton as="button" type="update" size="lg" onClick={handleSearch}>
+                    <FaSearch />
+                </ActionButton>
+            </div>
             <table className="w-full border-collapse mt-5 bg-white">
                 <thead>
                     <tr>
@@ -17,13 +42,13 @@ export default function StokProduk() {
                     </tr>
                 </thead>
                 <tbody>
-                    {stokProduk.map(items => (
+                    {displayStokProduk?.length > 0 ? displayStokProduk.map(items => (
                         <tr key={items.idStokProduk}>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.produk.namaProduk}</Paragraph></td>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.jumlahStok}</Paragraph></td>
                             <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.produk.satuan}</Paragraph></td>
                         </tr>
-                    ))}
+                    )) : <tr className="border border-gray-300"><td colSpan={7} className="text-center py-4"><Paragraph size="lg">Tidak Ada Stok Produk</Paragraph></td></tr>}
                 </tbody>
             </table>
         </>
