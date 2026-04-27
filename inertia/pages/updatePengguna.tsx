@@ -33,7 +33,7 @@ export default function UpdatePengguna() {
     return (
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold">Edit Hak Akses</Heading>
-            <form onSubmit={handleUpdate}>
+            <form onSubmit={handleUpdate} className="flex flex-col gap-5 bg-white p-5 shadow-md rounded-md w-96">
                 <Input variant={1} size="md" type="hidden" name="id" value={data.id} onChange={(e) => setData('id', parseInt(e.target.value))} />
 
                 <Input variant={1} size="md" type="hidden" name="id_pengguna" value={data.id_pengguna} onChange={(e) => setData('id_pengguna', e.target.value)} />

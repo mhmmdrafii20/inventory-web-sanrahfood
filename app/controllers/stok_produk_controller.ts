@@ -10,7 +10,8 @@ export default class StokProdukController {
         return inertia.render("stokProduk", { stokProduk })
     }
     async search({ request, inertia, response }: HttpContext) {
-        const { nama_produk } = request.qs();
+        const nama_produk = request.input('search', '');
+
         if (!nama_produk) {
             return response.redirect().toRoute('stokProduk.index');
         }

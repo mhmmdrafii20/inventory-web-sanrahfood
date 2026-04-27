@@ -33,7 +33,8 @@ export default class StokBahanController {
         }
     }
     async search({ request, inertia, response }: HttpContext) {
-        const { nama_bahan_baku } = request.qs();
+        const nama_bahan_baku = request.input('search', '');
+
         if (!nama_bahan_baku) {
             return response.redirect().toRoute('stokBahan.index');
         }

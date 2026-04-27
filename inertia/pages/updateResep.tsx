@@ -79,7 +79,7 @@ export default function updateResep() {
                         <Input variant={1} size="md" type="number" name="yield_per_batch" value={data.yield_per_batch} placeholder="Tuliskan yield per batch disini" onChange={(e) => setData('yield_per_batch', parseInt(e.target.value))} />
                     </div>
                     <div className="mt-auto">
-                        <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Updating...." : "Update"}</Button>
+                        <Button type="submit" className="w-full" variant={1} disabled={processing} size="md">{processing ? "Updating...." : "Update"}</Button>
                     </div>
                 </div>
                 {errors.yield_per_batch && <Error variant={1}>{errors.yield_per_batch}</Error>}

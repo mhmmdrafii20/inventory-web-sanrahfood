@@ -1,7 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { KategoriProdukServices } from '#services/KategoriProdukServices';
 import Kategori from '#models/kategori';
-import { kategoriProdukValidator } from '#validators/kategori_produk';
+import { updateKategoriProdukValidator, kategoriProdukValidator } from '#validators/kategori_produk';
 
 export default class KategoriController {
     async index({ inertia }: HttpContext) {
@@ -10,7 +10,7 @@ export default class KategoriController {
     }
     async create({ request, response, session }: HttpContext) {
         try {
-            const payload = await request.validateUsing(kategoriProdukValidator);
+            const payload = await request.validateUsing(kategoriProdukValidator());
             await KategoriProdukServices.create(payload);
 
             session.flash('success', `${payload.nama_kategori} Berhasil ditambahkan`);
@@ -26,13 +26,13 @@ export default class KategoriController {
     async edit({ inertia, params }: HttpContext) {
         const kategori = await Kategori.find(params.id);
         const dataKategori = kategori?.$attributes;
+
         return inertia.render('updateKategoriProduk', { dataKategori });
     }
     async update({ request, response, session, params }: HttpContext) {
         try {
             const kategori = await Kategori.find(params.id);
-
-            const payload = await request.validateUsing(kategoriProdukValidator);
+            const payload = await request.validateUsing(updateKategoriProdukValidator(params.id));
 
             await KategoriProdukServices.update(payload, params.id);
             session.flash('success', `${kategori?.nama_kategori} Berhasil dilakukan perubahan.`);
@@ -41,7 +41,7 @@ export default class KategoriController {
             if (error.code === 'E_VALIDATION_ERROR') {
                 throw error
             }
-            session.flash('error', 'Terjadi kesalahan saat update data.')
+            session.flash('error', "Terjadi kesalahan saat delete.")
             return response.redirect().back();
         }
     }
@@ -54,12 +54,13 @@ export default class KategoriController {
             session.flash('success', `${kategori?.nama_kategori} berhasil dihapus`);
             return response.redirect().toRoute('kategoriProduk.index');
         } catch (error) {
+            console.error(error)
             session.flash('error', 'Terjadi kesalahan saat delete.');
             return response.redirect().back();
         }
     }
     async search({ request, response, inertia }: HttpContext) {
-        const { nama_kategori } = request.qs()
+        const nama_kategori = request.input('search', '')
 
         if (!nama_kategori) {
             return response.redirect().toRoute('kategoriProduk.index');

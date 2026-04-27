@@ -1,7 +1,7 @@
 import HakAkses from "#models/hakAkses";
 import { HakAksesServices } from "#services/HakAksesServices";
 import { HttpContext } from "@adonisjs/core/http";
-import { hakAksesValidator } from "#validators/hak_akses";
+import { hakAksesValidator, updateHakAksesValidator } from "#validators/hak_akses";
 
 export default class HakAksesController {
     async index({ inertia }: HttpContext) {
@@ -16,6 +16,7 @@ export default class HakAksesController {
             session.flash('success', `${payload.nama_hak_akses} Berhasil ditambahkan`);
             return response.redirect().toRoute('hakAkses.index');
         } catch (error) {
+            console.error(error);
             if (error.code === 'E_VALIDATION_ERROR') {
                 throw error
             }
@@ -32,7 +33,7 @@ export default class HakAksesController {
         try {
             const role = await HakAkses.find(params.id);
 
-            const payload = await request.validateUsing(hakAksesValidator);
+            const payload = await request.validateUsing(updateHakAksesValidator(params.id));
 
             await HakAksesServices.update(payload, params.id);
             session.flash('success', `${role?.nama_hak_akses} Berhasil dilakukan perubahan.`);
@@ -59,7 +60,7 @@ export default class HakAksesController {
         }
     }
     async search({ request, response, inertia }: HttpContext) {
-        const { nama_hak_akses } = request.qs()
+        const nama_hak_akses = request.input('search', '')
 
         if (!nama_hak_akses) {
             return response.redirect().toRoute('hakAkses.index');

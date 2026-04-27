@@ -4,7 +4,7 @@ import Produk from '#models/produk';
 import { ResepServices } from '#services/ResepServices';
 import Resep from '#models/resep';
 import ResepBahan from '#models/resep_bahan';
-import { resepValidator } from '#validators/resep';
+import { resepValidator, updateResepValidator } from '#validators/resep';
 
 export default class ResepController {
     async index({ inertia }: HttpContext) {
@@ -44,7 +44,7 @@ export default class ResepController {
     }
     async update({ response, request, session, params }: HttpContext) {
         try {
-            const payload = await request.validateUsing(resepValidator);
+            const payload = await request.validateUsing(updateResepValidator(params.id));
             await ResepServices.update(params.id, payload);
 
             session.flash('success', `${payload.nama_resep} berhasil diupdate`);
@@ -70,7 +70,7 @@ export default class ResepController {
         }
     }
     async search({ request, response, inertia }: HttpContext) {
-        const { nama_resep } = request.qs()
+        const nama_resep = request.input('search', '')
 
         if (!nama_resep) {
             return response.redirect().toRoute('resep.index');

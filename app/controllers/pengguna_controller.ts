@@ -3,28 +3,20 @@ import { supabase } from '../../services/supabase.ts';
 import HakAkses from '#models/hakAkses';
 import Pengguna from '#models/pengguna';
 import { PenggunaServices } from '#services/PenggunaServices';
-import { penggunaValidator } from '#validators/pengguna';
+import { updatePenggunaValidator, penggunaValidator } from '#validators/pengguna';
 
 export default class PenggunaController {
     async index({ inertia }: HttpContext) {
         const role = await HakAkses.query().where({ is_deleted: false });
         const pengguna = await Pengguna.query().preload('hakAkses').where({ is_deleted: false });
+
         return inertia.render('pengguna', { role, pengguna });
     }
     async create({ response, request, session }: HttpContext) {
         try {
             const userPayload = await request.validateUsing(penggunaValidator);
 
-            const { data, error } = await supabase.auth.admin.createUser({
-                email: userPayload.email,
-                password: userPayload.password,
-                email_confirm: true
-            });
-
-            const user = await Pengguna.findBy('id_pengguna', data.user?.id);
-            if (error) throw Error(error.message);
-
-            await PenggunaServices.create(userPayload, user!.id);
+            await PenggunaServices.create(userPayload);
 
             session.flash('success', 'Berhasil melakukan pembuatan akun.');
             response.redirect().toRoute('pengguna.index');
@@ -37,7 +29,7 @@ export default class PenggunaController {
         }
     }
     async edit({ inertia, params }: HttpContext) {
-        const pengguna = await Pengguna.find(params.id);
+        const pengguna = await Pengguna.query().where('id_pengguna', params.id).first();
         const dataPengguna = pengguna?.$attributes;
         const role = await HakAkses.query().where({ is_deleted: false });
         const auth = await supabase.auth.admin.getUserById(pengguna!.$attributes.id_pengguna);
@@ -46,13 +38,7 @@ export default class PenggunaController {
     }
     async update({ response, request, session, params }: HttpContext) {
         try {
-            const userPayload = await request.validateUsing(penggunaValidator);
-
-            const { error } = await supabase.auth.admin.updateUserById(params.id, {
-                email: userPayload.email,
-                password: userPayload.password
-            })
-            if (error) throw new Error(error.message);
+            const userPayload = await request.validateUsing(updatePenggunaValidator);
 
             await PenggunaServices.update(userPayload, params.id);
 
@@ -65,14 +51,12 @@ export default class PenggunaController {
             session.flash('error', 'Terjadi kesalahan saat update data.')
             return response.redirect().back();
         }
-
     }
     async destroy({ response, session, params }: HttpContext) {
         try {
-            const pengguna = await Pengguna.find(params.id);
+            const pengguna = await Pengguna.query().where('id_pengguna', params.id).first();
 
             await PenggunaServices.delete(params.id);
-            await supabase.auth.signOut();
 
             session.flash('success', `${pengguna?.nama_pengguna} Berhasil dihapus`);
             return response.redirect().toRoute('pengguna.index');
@@ -82,7 +66,7 @@ export default class PenggunaController {
         }
     }
     async search({ request, response, inertia }: HttpContext) {
-        const { nama_pengguna } = request.qs()
+        const nama_pengguna = request.input('search', '')
 
         if (!nama_pengguna) {
             return response.redirect().toRoute('pengguna.index');

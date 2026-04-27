@@ -21,7 +21,7 @@ export class ResepServices {
             return resep;
         })
     }
-    static async update(params: number, data: { id_resep: number, nama_resep: string, id_produk: number, yield_per_batch: number, bahan: { id_bahan_baku: number, jumlah: number }[] }) {
+    static async update(params: number, data: { id_resep?: number, nama_resep?: string, id_produk?: number, yield_per_batch?: number, bahan: { id_bahan_baku?: number, jumlah?: number }[] }) {
         await db.transaction(async (transaction) => {
             await Resep
                 .query({ client: transaction })

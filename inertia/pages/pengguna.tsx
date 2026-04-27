@@ -1,5 +1,5 @@
 import { useState, SubmitEvent } from "react"
-import { useForm, usePage } from "@inertiajs/react"
+import { useForm, usePage, router } from "@inertiajs/react"
 import Heading from "~/components/ui/Heading"
 import Button from "~/components/ui/Button/Button"
 import Modal from "react-responsive-modal"
@@ -17,7 +17,7 @@ import Error from "~/components/ui/Error";
 
 export default function Pengguna() {
     const [open, setIsOpen] = useState(false);
-    const { role, pengguna, errors, searchRes } = usePage<{ role: { idHakAkses: number, namaHakAkses: string }[], pengguna: { id: number, idPengguna: number, hakAkses: { namaHakAkses: string }, namaPengguna: string, nomorTelepon: string }[], searchRes: { idPengguna: number, hakAkses: { namaHakAkses: string }, namaPengguna: string, nomorTelepon: string }[] }>().props;
+    const { role, pengguna, errors, searchRes } = usePage<{ role: { idHakAkses: number, namaHakAkses: string }[], pengguna: { id: number, idPengguna: string, hakAkses: { namaHakAkses: string }, namaPengguna: string, nomorTelepon: string }[], searchRes: { idPengguna: string, hakAkses: { namaHakAkses: string }, namaPengguna: string, nomorTelepon: string }[] }>().props;
     const { data, setData, post, get, delete: destroy, processing, reset } = useForm({
         id_pengguna: "",
         id_hak_akses: "",
@@ -26,6 +26,9 @@ export default function Pengguna() {
         nama_pengguna: "",
         nomor_telepon: "",
     });
+
+    const [searchData, setSearchData] = useState("");
+
     function handleCreate(e: SubmitEvent) {
         e.preventDefault();
         post('/pengguna/create', {
@@ -35,7 +38,7 @@ export default function Pengguna() {
             }
         })
     }
-    function handleDelete(id: number) {
+    function handleDelete(id: string) {
         confirmDialog(
             "Yakin ingin menghapus ?",
             "Data ini akan dinonaktifkan untuk sementara",
@@ -47,8 +50,7 @@ export default function Pengguna() {
             "Batal")
     }
     function handleSearch() {
-        const query = new URLSearchParams(data).toString()
-        get(`/pengguna/search?${query}`, {
+        router.get(`/pengguna/search`, { search: searchData }, {
             preserveState: true,
             replace: true,
         })
@@ -100,7 +102,7 @@ export default function Pengguna() {
                     </form>
                 </Modal>
                 <div className="flex flex-row gap-5 ">
-                    <Input variant={1} size="md" type="text" placeholder="Cari Pengguna..." value={data.nama_pengguna} onChange={(e) => setData('nama_pengguna', e.target.value)}></Input>
+                    <Input variant={1} size="md" type="text" placeholder="Cari Pengguna..." value={searchData} onChange={(e) => setSearchData(e.target.value)}></Input>
                     <ActionButton as="button" type="update" size="lg" onClick={handleSearch}>
                         <FaSearch />
                     </ActionButton>

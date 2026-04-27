@@ -5,7 +5,7 @@ export class ProdukServices {
         const data = await Produk.create(payload);
         return data;
     }
-    static async update(payload: { id_produk: number, id_kategori: number, nama_produk: string, satuan: string }, params: number) {
+    static async update(payload: { id_produk?: number, id_kategori?: number, nama_produk?: string, satuan?: string }, params: number) {
         const data = await Produk.query().where('id_produk', params).update(payload);
         return data;
     }

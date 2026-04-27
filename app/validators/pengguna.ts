@@ -1,11 +1,6 @@
 import vine from '@vinejs/vine'
 
-export const penggunaValidator = vine.compile(vine.object({
-    id: vine
-        .number(),
-    id_pengguna: vine
-        .string()
-        .unique({ table: 'tb_pengguna', column: 'id_pengguna' }),
+export const penggunaValidator = vine.create({
     nama_pengguna: vine
         .string()
         .minLength(3)
@@ -22,9 +17,42 @@ export const penggunaValidator = vine.compile(vine.object({
         .trim(),
     nomor_telepon: vine
         .string()
-        .minLength(10)
-        .maxLength(15)
+        .mobile()
         .trim(),
     id_hak_akses: vine
         .number().min(1)
-}))
+})
+export const updatePenggunaValidator = vine.create({
+    id: vine
+        .number().min(1)
+        .optional(),
+    id_pengguna: vine
+        .string()
+        .optional(),
+    email: vine
+        .string()
+        .email()
+        .trim()
+        .optional(),
+    password: vine
+        .string()
+        .minLength(3)
+        .maxLength(255)
+        .trim()
+        .optional(),
+    nama_pengguna: vine
+        .string()
+        .minLength(3)
+        .maxLength(255)
+        .trim()
+        .optional(),
+    nomor_telepon: vine
+        .string()
+        .mobile()
+        .trim()
+        .optional(),
+    id_hak_akses: vine
+        .number().min(1)
+        .optional(),
+})
+

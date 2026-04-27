@@ -1,7 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { BahanService } from '#services/BahanServices';
 import Bahan from '#models/bahan';
-import { bahanValidator } from '#validators/bahan';
+import { bahanValidator, updateBahanValidator } from '#validators/bahan';
 export default class BahanController {
     async index({ inertia }: HttpContext) {
         const bahan = await Bahan.query().where('is_deleted', false);
@@ -33,7 +33,7 @@ export default class BahanController {
             const bahan = await Bahan.find(params.id);
             const dataBahan = bahan?.$attributes;
 
-            const payload = await request.validateUsing(bahanValidator);
+            const payload = await request.validateUsing(updateBahanValidator(params.id));
             await BahanService.update(payload, params.id);
 
             session.flash('success', `${dataBahan?.nama_bahan_baku} berhasil diupdate`);
@@ -60,8 +60,7 @@ export default class BahanController {
         }
     }
     async search({ request, response, inertia }: HttpContext) {
-        const { nama_bahan_baku } = request.qs()
-
+        const nama_bahan_baku = request.input('search', '');
         if (!nama_bahan_baku) {
             return response.redirect().toRoute('bahan.index');
         }

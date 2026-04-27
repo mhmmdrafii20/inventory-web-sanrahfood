@@ -5,7 +5,7 @@ export class KategoriProdukServices {
         const data = await Kategori.create(payload);
         return data;
     }
-    static async update(payload: { id_kategori: number, nama_kategori: string }, params: number) {
+    static async update(payload: { id_kategori?: number, nama_kategori?: string }, params: number) {
         const data = await Kategori.query().where('id_kategori', params).update(payload);
         return data;
     }

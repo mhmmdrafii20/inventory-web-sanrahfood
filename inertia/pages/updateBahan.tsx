@@ -24,7 +24,7 @@ export default function UpdateBahan() {
     return (
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold">Edit Bahan Baku</Heading>
-            <form onSubmit={handleUpdate}>
+            <form onSubmit={handleUpdate} className="flex flex-col gap-5 bg-white p-5 shadow-md rounded-md w-96">
                 <Input variant={1} size="md" type="hidden" value={data.id_bahan_baku} onChange={(e) => setData("id_bahan_baku", parseInt(e.target.value))} />
 
                 <Paragraph size="lg">Nama Bahan Baku</Paragraph>

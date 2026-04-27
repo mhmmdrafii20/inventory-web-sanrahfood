@@ -1,6 +1,6 @@
 import vine from '@vinejs/vine'
 
-export const produksiValidator = vine.compile(vine.object({
+export const produksiValidator = vine.create({
     id_produk: vine
         .number().min(1),
     id_resep: vine
@@ -12,4 +12,4 @@ export const produksiValidator = vine.compile(vine.object({
     catatan_tambahan: vine
         .string()
         .optional()
-}));
+});

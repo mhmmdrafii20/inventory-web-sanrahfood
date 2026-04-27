@@ -9,31 +9,34 @@ import PenerimaNotifikasi from './penerima_notifikasi.ts'
 export default class Pengguna extends PenggunaSchema {
     public static table = 'public.tb_pengguna'
 
-    @column({isPrimary:true, columnName:'id_pengguna'})
-    declare id_pengguna:number
+    @column({ isPrimary: true, columnName: 'id' })
+    declare id: number
+
+    @column({ columnName: 'id_pengguna' })
+    declare id_pengguna: string
 
     @hasMany(() => PenerimaNotifikasi, {
-        foreignKey:'id_pengguna'
+        foreignKey: 'id_pengguna'
     })
-    declare penerima_notifikasi:HasMany<typeof PenerimaNotifikasi>
+    declare penerima_notifikasi: HasMany<typeof PenerimaNotifikasi>
 
-    @column({columnName:'nama_pengguna'})
-    declare nama_pengguna:string
+    @column({ columnName: 'nama_pengguna' })
+    declare nama_pengguna: string
 
-    @column({columnName:'id_hak_akses'})
-    declare id_hak_akses:number
+    @column({ columnName: 'id_hak_akses' })
+    declare id_hak_akses: number
 
     @belongsTo(() => HakAkses, {
-        foreignKey:'id_hak_akses'
+        foreignKey: 'id_hak_akses'
     })
-    declare hakAkses:BelongsTo<typeof HakAkses>
+    declare hakAkses: BelongsTo<typeof HakAkses>
 
-    @column({columnName:'nomor_telepon'})
-    declare nomor_telepon:number
+    @column({ columnName: 'nomor_telepon' })
+    declare nomor_telepon: string
 
-    @column({columnName:'is_deleted'})
-    declare is_deleted:boolean
+    @column({ columnName: 'is_deleted' })
+    declare is_deleted: boolean
 
-    @column.dateTime({autoCreate:true})
-    declare created_at:DateTime
+    @column.dateTime({ autoCreate: true })
+    declare created_at: DateTime
 }

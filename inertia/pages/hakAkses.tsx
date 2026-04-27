@@ -4,8 +4,7 @@ import Heading from "~/components/ui/Heading"
 import { SubmitEvent, useState } from "react";
 import 'react-responsive-modal/styles.css';
 import Paragraph from "~/components/ui/Paragraph";
-import { useForm } from "@inertiajs/react";
-import { usePage } from "@inertiajs/react";
+import { useForm, usePage, router } from "@inertiajs/react";
 import ActionButton from "~/components/ui/Button/ActionButton";
 import { FaSearch, FaPen, FaTrash } from "react-icons/fa";
 import { Link } from "@adonisjs/inertia/react";
@@ -19,6 +18,8 @@ export default function HakAkses() {
     const { data, setData, post, get, delete: destroy, processing, reset } = useForm({
         nama_hak_akses: "",
     })
+
+    const [searchData, setSearchData] = useState("");
 
     function handleCreate(e: SubmitEvent) {
         e.preventDefault();
@@ -41,8 +42,7 @@ export default function HakAkses() {
             "Batal")
     }
     function handleSearch() {
-        const query = new URLSearchParams(data).toString()
-        get(`/role/search?${query}`, {
+        router.get(`/role/search`, { search: searchData }, {
             preserveState: true,
             replace: true,
         })
@@ -67,7 +67,7 @@ export default function HakAkses() {
                     </form>
                 </Modal>
                 <div className="flex flex-row gap-5 ">
-                    <Input variant={1} size="md" type="text" placeholder="Cari Hak Akses...." value={data.nama_hak_akses} onChange={e => setData('nama_hak_akses', e.target.value)} />
+                    <Input variant={1} size="md" type="text" placeholder="Cari Hak Akses...." value={searchData} onChange={e => setSearchData(e.target.value)} />
                     <ActionButton as="button" type="update" size="lg" onClick={handleSearch}>
                         <FaSearch />
                     </ActionButton>

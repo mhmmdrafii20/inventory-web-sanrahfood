@@ -4,7 +4,7 @@ import Heading from "~/components/ui/Heading";
 import { FaPen, FaSearch, FaTrash } from "react-icons/fa";
 import Paragraph from "~/components/ui/Paragraph";
 import { SubmitEvent, useState } from "react";
-import { Form, useForm, usePage } from "@inertiajs/react";
+import { Form, router, useForm, usePage } from "@inertiajs/react";
 import { Link } from "@adonisjs/inertia/react";
 import 'react-responsive-modal/styles.css';
 import Modal from 'react-responsive-modal';
@@ -14,12 +14,15 @@ import Error from "~/components/ui/Error";
 
 export default function Bahan() {
     const [open, setIsOpen] = useState(false);
-
     const { bahan, errors, searchRes } = usePage<{ bahan: { idBahanBaku: number; namaBahanBaku: string; satuan: string; }[], searchRes: { idBahanBaku: number; namaBahanBaku: string; satuan: string; }[] }>().props;
     const { data, setData, post, get, delete: destroy, processing, reset } = useForm({
         nama_bahan_baku: "",
         satuan: ""
     })
+    const [searchData, setSearchData] = useState("");
+
+
+
     function handleCreate(e: SubmitEvent) {
         e.preventDefault();
         post('/bahan/create', {
@@ -41,11 +44,11 @@ export default function Bahan() {
             "Batal")
     }
     function handleSearch() {
-        const query = new URLSearchParams(data).toString()
-        get(`/bahan/search?${query}`, {
+        router.get('/bahan/search', { search: searchData }, {
             preserveState: true,
             replace: true,
         })
+
     }
     const displayBahan = searchRes && searchRes.length > 0
         ? searchRes
@@ -71,7 +74,7 @@ export default function Bahan() {
                     </form>
                 </Modal>
                 <div className="flex flex-row gap-5 ">
-                    <Input variant={1} size="md" type="text" placeholder="Cari Bahan Baku...." value={data.nama_bahan_baku} onChange={e => setData("nama_bahan_baku", e.target.value)} />
+                    <Input variant={1} size="md" type="text" placeholder="Cari Bahan Baku...." value={searchData} onChange={e => setSearchData(e.target.value)} />
                     <ActionButton type="search" size="lg" onClick={handleSearch}>
                         <FaSearch />
                     </ActionButton>

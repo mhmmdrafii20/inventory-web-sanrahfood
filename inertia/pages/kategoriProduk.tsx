@@ -5,7 +5,7 @@ import Paragraph from "~/components/ui/Paragraph";
 import { FaSearch, FaPen, FaTrash } from "react-icons/fa";
 import ActionButton from "~/components/ui/Button/ActionButton";
 import { useState, SubmitEvent } from "react";
-import { useForm, usePage } from "@inertiajs/react";
+import { useForm, usePage, router } from "@inertiajs/react";
 import { Link } from "@adonisjs/inertia/react";
 import confirmDialog from "../../utils/sweetalert";
 import Input from "~/components/ui/Input";
@@ -17,11 +17,13 @@ export default function KategoriProduk() {
     const { data, setData, post, get, delete: destroy, processing, reset } = useForm({
         nama_kategori: "",
     })
+    const [searchData, setSearchData] = useState("");
 
     function handleCreate(e: SubmitEvent) {
         e.preventDefault();
         post('/kategori-produk/create', {
             onSuccess: () => {
+                setIsOpen(false);
                 reset();
             },
         })
@@ -38,8 +40,7 @@ export default function KategoriProduk() {
             "Batal")
     }
     function handleSearch() {
-        const query = new URLSearchParams(data).toString()
-        get(`/kategori-produk/search?${query}`, {
+        router.get(`/kategori-produk/search`, { search: searchData }, {
             preserveState: true,
             replace: true,
         })
@@ -65,7 +66,7 @@ export default function KategoriProduk() {
                     </form>
                 </Modal>
                 <div className="flex flex-row gap-5 ">
-                    <Input variant={1} size="md" type="text" name="nama_kategori" placeholder="Cari Kategori Produk" value={data.nama_kategori} onChange={e => setData('nama_kategori', e.target.value)}></Input>
+                    <Input variant={1} size="md" type="text" name="nama_kategori" placeholder="Cari Kategori Produk" value={searchData} onChange={e => setSearchData(e.target.value)}></Input>
                     <ActionButton as="button" type="update" size="lg" onClick={handleSearch}>
                         <FaSearch />
                     </ActionButton>

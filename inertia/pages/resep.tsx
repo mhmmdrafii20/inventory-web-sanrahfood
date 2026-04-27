@@ -9,7 +9,7 @@ import Button from "~/components/ui/Button/Button";
 import { useState, SubmitEvent } from "react";
 import Modal from "react-responsive-modal";
 import { MultiSelect } from 'react-multi-select-component';
-import { usePage, useForm } from "@inertiajs/react";
+import { usePage, useForm, router } from "@inertiajs/react";
 import confirmDialog from "../../utils/sweetalert";
 import Input from "~/components/ui/Input";
 import TextArea from "~/components/ui/Textarea";
@@ -45,6 +45,9 @@ export default function Resep() {
             jumlah: number,
         }[],
     });
+
+    const [searchData, setSearchData] = useState("");
+
     function handleCreate(e: SubmitEvent) {
         e.preventDefault();
 
@@ -67,8 +70,7 @@ export default function Resep() {
             "Batal")
     }
     function handleSearch() {
-        const query = new URLSearchParams(data.nama_resep).toString()
-        get(`/resep/search?${query}`, {
+        router.get(`/resep/search`, { search: searchData }, {
             preserveState: true,
             replace: true,
         })
@@ -150,7 +152,7 @@ export default function Resep() {
                     </form>
                 </Modal>
                 <div className="flex flex-row gap-5 ">
-                    <Input variant={1} size="md" type="text" name="" placeholder="Cari Resep" value={data.nama_resep} onChange={(e) => setData('nama_resep', e.target.value)} />
+                    <Input variant={1} size="md" type="text" name="" placeholder="Cari Resep" value={searchData} onChange={(e) => setSearchData(e.target.value)} />
                     <ActionButton type="search" size="lg" onClick={handleSearch}>
                         <FaSearch />
                     </ActionButton>

@@ -3,9 +3,8 @@ import Button from "~/components/ui/Button/Button"
 import { SubmitEvent, useState } from "react";
 import Modal from "react-responsive-modal";
 import 'react-responsive-modal/styles.css';
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage, router } from "@inertiajs/react";
 import Paragraph from "~/components/ui/Paragraph";
-import { usePage } from "@inertiajs/react";
 import ActionButton from "~/components/ui/Button/ActionButton";
 import { FaSearch, FaPen, FaTrash } from "react-icons/fa";
 import { Link } from "@adonisjs/inertia/react";
@@ -22,6 +21,8 @@ export default function Produk() {
         satuan: "",
         id_kategori: "",
     });
+
+    const [searchData, setSearchData] = useState("");
 
     function handleCreate(e: SubmitEvent) {
         e.preventDefault();
@@ -44,8 +45,7 @@ export default function Produk() {
             "Batal")
     }
     function handleSearch() {
-        const query = new URLSearchParams(data).toString()
-        get(`/produk/search?${query}`, {
+        router.get(`/produk/search`, { search: searchData }, {
             preserveState: true,
             replace: true,
         })
@@ -84,7 +84,7 @@ export default function Produk() {
                     </form>
                 </Modal>
                 <div className="flex flex-row gap-5 ">
-                    <Input variant={1} size="md" type="text" placeholder="Cari Produk..." value={data.nama_produk} onChange={(e) => setData('nama_produk', e.target.value)}></Input>
+                    <Input variant={1} size="md" type="text" placeholder="Cari Produk..." value={searchData} onChange={(e) => setSearchData(e.target.value)}></Input>
                     <ActionButton as="button" type="update" size="lg" onClick={handleSearch}>
                         <FaSearch />
                     </ActionButton>

@@ -1,11 +1,10 @@
 import Heading from "~/components/ui/Heading";
-import { usePage } from "@inertiajs/react";
+import { usePage, router } from "@inertiajs/react";
 import Paragraph from "~/components/ui/Paragraph";
 import Input from "~/components/ui/Input";
 import ActionButton from "~/components/ui/Button/ActionButton";
 import { FaSearch } from "react-icons/fa";
-import { useForm } from "@inertiajs/react";
-
+import { useState } from "react";
 
 export default function StokBahan() {
     const { stokBahan, searchRes } = usePage<{
@@ -13,18 +12,15 @@ export default function StokBahan() {
         searchRes: { idStokBahanBaku: number; idBahanBaku: number; jumlahStok: number, bahan: { namaBahanBaku: string, satuan: string } }[]
     }>().props;
 
-    const { data, setData, get } = useForm({
-        nama_bahan_baku: "",
-    })
+    const [searchData, setSearchData] = useState("");
 
     function handleSearch() {
-        const query = new URLSearchParams(data).toString()
-        get(`/stok-bahan/search?${query}`, {
+        router.get('/stok-bahan/search', { search: searchData }, {
             preserveState: true,
             replace: true,
         })
-
     }
+
     const displayStokBahan = searchRes && searchRes.length > 0
         ? searchRes
         : stokBahan;
@@ -33,7 +29,7 @@ export default function StokBahan() {
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold" > Stok Bahan Baku</Heading>
             <div className="flex flex-row gap-5  justify-self-end">
-                <Input variant={1} size="md" type="text" name="nama_bahan_baku" placeholder="Cari Bahan Baku" value={data.nama_bahan_baku} onChange={(e) => setData('nama_bahan_baku', e.target.value)} />
+                <Input variant={1} size="md" type="text" name="nama_bahan_baku" placeholder="Cari Bahan Baku" value={searchData} onChange={(e) => setSearchData(e.target.value)} />
                 <ActionButton type="search" size="lg" onClick={handleSearch}>
                     <FaSearch />
                 </ActionButton>

@@ -2,7 +2,7 @@ import Kategori from "#models/kategori"
 import Produk from "#models/produk";
 import { ProdukServices } from "#services/ProdukServices";
 import { HttpContext } from "@adonisjs/core/http"
-import { produkValidator } from "#validators/produk";
+import { produkValidator, updateProdukValidator } from "#validators/produk";
 
 export default class ProdukController {
     async index({ inertia }: HttpContext) {
@@ -39,8 +39,7 @@ export default class ProdukController {
     async update({ response, request, session, params }: HttpContext) {
         try {
             const produk = await Produk.find(params.id);
-
-            const payload = await request.validateUsing(produkValidator);
+            const payload = await request.validateUsing(updateProdukValidator(params.id));
 
             await ProdukServices.update(payload, params.id);
 
@@ -68,7 +67,7 @@ export default class ProdukController {
         }
     }
     async search({ request, response, inertia }: HttpContext) {
-        const { nama_produk } = request.qs()
+        const nama_produk = request.input('search', '')
 
         if (!nama_produk) {
             return response.redirect().toRoute('produk.index');

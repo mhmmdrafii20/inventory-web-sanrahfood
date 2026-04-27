@@ -1,22 +1,21 @@
 import Heading from "~/components/ui/Heading"
 import Paragraph from "~/components/ui/Paragraph"
-import { usePage } from "@inertiajs/react";
+import { usePage, router } from "@inertiajs/react";
 import Input from "~/components/ui/Input";
 import ActionButton from "~/components/ui/Button/ActionButton";
 import { FaSearch } from "react-icons/fa";
-import { useForm } from "@inertiajs/react";
+import { useState } from "react";
 
 export default function StokProduk() {
     const { stokProduk, searchRes } = usePage<{
         stokProduk: { idStokProduk: number; idProduk: number; jumlahStok: number, produk: { namaProduk: string, satuan: string } }[]
         searchRes: { idStokProduk: number; idProduk: number; jumlahStok: number, produk: { namaProduk: string, satuan: string } }[]
     }>().props;
-    const { data, setData, get } = useForm({
-        nama_produk: "",
-    })
+
+    const [searchData, setSearchData] = useState("");
+
     function handleSearch() {
-        const query = new URLSearchParams(data).toString()
-        get(`/stok-produk/search?${query}`, {
+        router.get('/stok-produk/search', { search: searchData }, {
             preserveState: true,
             replace: true,
         })
@@ -28,7 +27,7 @@ export default function StokProduk() {
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold" > Stok Produk</Heading>
             <div className="flex flex-row gap-5 justify-self-end">
-                <Input variant={1} size="md" type="text" placeholder="Cari Produk..." value={data.nama_produk} onChange={(e) => setData('nama_produk', e.target.value)}></Input>
+                <Input variant={1} size="md" type="text" placeholder="Cari Produk..." value={searchData} onChange={(e) => setSearchData(e.target.value)}></Input>
                 <ActionButton as="button" type="update" size="lg" onClick={handleSearch}>
                     <FaSearch />
                 </ActionButton>

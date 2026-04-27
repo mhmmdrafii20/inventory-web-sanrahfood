@@ -29,7 +29,7 @@ export default function UpdateProduk() {
     return (
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold">Edit Produk</Heading>
-            <form onSubmit={handleUpdate}>
+            <form onSubmit={handleUpdate} className="flex flex-col gap-5 bg-white p-5 shadow-md rounded-md w-96">
                 <Input variant={1} size="md" type="hidden" name="id_produk" value={data.id_produk} onChange={(e) => setData('id_produk', parseInt(e.target.value))} />
 
                 <Paragraph size="lg">Nama Produk</Paragraph>
