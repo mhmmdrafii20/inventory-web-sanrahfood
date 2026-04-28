@@ -612,9 +612,9 @@ export interface Registry {
       response: unknown
     }
   }
-  'integrasiWhatsapp.index': {
+  'notifikasiWhatsapp.index': {
     methods: ["GET","HEAD"]
-    pattern: '/integrasi-whatsapp'
+    pattern: '/notifikasi-whatsapp'
     types: {
       body: {}
       paramsTuple: []
@@ -623,9 +623,9 @@ export interface Registry {
       response: unknown
     }
   }
-  'integrasiWhatsapp.connect': {
+  'notifikasiWhatsapp.createSession': {
     methods: ["POST"]
-    pattern: '/integrasi-whatsapp/connect'
+    pattern: '/notifikasi-whatsapp/createSession'
     types: {
       body: {}
       paramsTuple: []
@@ -634,9 +634,119 @@ export interface Registry {
       response: unknown
     }
   }
-  'integrasiWhatsapp.getQr': {
+  'notifikasiWhatsapp.getQr': {
     methods: ["GET","HEAD"]
-    pattern: '/integrasi-whatsapp/get-qr'
+    pattern: '/notifikasi-whatsapp/get-qr'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'notifikasiWhatsapp.deleteSession': {
+    methods: ["DELETE"]
+    pattern: '/notifikasi-whatsapp/deleteSession'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'daftarPenerima.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/daftar-penerima'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'daftarPenerima.create': {
+    methods: ["POST"]
+    pattern: '/daftar-penerima/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'daftarPenerima.search': {
+    methods: ["GET","HEAD"]
+    pattern: '/daftar-penerima/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'tipeNotifikasi.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/tipe-notifikasi'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'tipeNotifikasi.create': {
+    methods: ["POST"]
+    pattern: '/tipe-notifikasi/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'updateTipeNotifikasi.edit': {
+    methods: ["GET","HEAD"]
+    pattern: '/tipe-notifikasi/edit/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'updateTipeNotifikasi.update': {
+    methods: ["PUT"]
+    pattern: '/tipe-notifikasi/update/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'tipeNotifikasi.destroy': {
+    methods: ["DELETE"]
+    pattern: '/tipe-notifikasi/delete/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'tipeNotifikasi.search': {
+    methods: ["GET","HEAD"]
+    pattern: '/tipe-notifikasi/search'
     types: {
       body: {}
       paramsTuple: []

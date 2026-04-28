@@ -16,11 +16,11 @@ import TextArea from "~/components/ui/Textarea";
 import Select from "~/components/ui/Select";
 import Error from "~/components/ui/Error";
 
+type Option = {
+    label: string
+    value: string
+}
 export default function Resep() {
-    type Option = {
-        label: string
-        value: string
-    }
 
     const [open, setIsOpen] = useState(false);
     const { bahan, produk, resep, errors, searchRes } = usePage<{

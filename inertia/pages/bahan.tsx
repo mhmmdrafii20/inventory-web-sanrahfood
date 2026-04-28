@@ -21,8 +21,6 @@ export default function Bahan() {
     })
     const [searchData, setSearchData] = useState("");
 
-
-
     function handleCreate(e: SubmitEvent) {
         e.preventDefault();
         post('/bahan/create', {

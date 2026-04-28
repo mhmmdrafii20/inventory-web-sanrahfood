@@ -73,27 +73,12 @@ export const data: MenuSection[] = [
         ],
     },
     {
-        label: "Integrasi Whatsapp",
+        label: "Whatsapp",
         items: [
             {
-                name: "Integrasi Whatsapp",
-                link: "/integrasi-whatsapp",
+                name: "Notifikasi Whatsapp",
+                link: "/notifikasi-whatsapp",
                 icon: TbBrandWhatsapp
-            },
-            {
-                name: "Daftar Penerima",
-                link: "/daftar-penerima",
-                icon: TbUsersGroup
-            },
-            {
-                name: "Atur Tipe Notifikasi",
-                link: "/tipe-notifikasi",
-                icon: TbNotification
-            },
-            {
-                name: "Atur Template Notifikasi",
-                link: "/template-notifikasi",
-                icon: TbMessage
             },
         ],
     },

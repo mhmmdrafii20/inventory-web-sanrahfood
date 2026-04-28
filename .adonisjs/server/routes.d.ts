@@ -59,9 +59,19 @@ export type ScannedRoutes = {
     'riwayatProduksi.index': { paramsTuple?: []; params?: {} }
     'riwayatProduksi.filter': { paramsTuple?: []; params?: {} }
     'riwayatProduksi.generate': { paramsTuple?: []; params?: {} }
-    'integrasiWhatsapp.index': { paramsTuple?: []; params?: {} }
-    'integrasiWhatsapp.connect': { paramsTuple?: []; params?: {} }
-    'integrasiWhatsapp.getQr': { paramsTuple?: []; params?: {} }
+    'notifikasiWhatsapp.index': { paramsTuple?: []; params?: {} }
+    'notifikasiWhatsapp.createSession': { paramsTuple?: []; params?: {} }
+    'notifikasiWhatsapp.getQr': { paramsTuple?: []; params?: {} }
+    'notifikasiWhatsapp.deleteSession': { paramsTuple?: []; params?: {} }
+    'daftarPenerima.index': { paramsTuple?: []; params?: {} }
+    'daftarPenerima.create': { paramsTuple?: []; params?: {} }
+    'daftarPenerima.search': { paramsTuple?: []; params?: {} }
+    'tipeNotifikasi.index': { paramsTuple?: []; params?: {} }
+    'tipeNotifikasi.create': { paramsTuple?: []; params?: {} }
+    'updateTipeNotifikasi.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'updateTipeNotifikasi.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'tipeNotifikasi.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'tipeNotifikasi.search': { paramsTuple?: []; params?: {} }
   }
   GET: {
     'auth.login': { paramsTuple?: []; params?: {} }
@@ -98,8 +108,13 @@ export type ScannedRoutes = {
     'riwayatProduksi.index': { paramsTuple?: []; params?: {} }
     'riwayatProduksi.filter': { paramsTuple?: []; params?: {} }
     'riwayatProduksi.generate': { paramsTuple?: []; params?: {} }
-    'integrasiWhatsapp.index': { paramsTuple?: []; params?: {} }
-    'integrasiWhatsapp.getQr': { paramsTuple?: []; params?: {} }
+    'notifikasiWhatsapp.index': { paramsTuple?: []; params?: {} }
+    'notifikasiWhatsapp.getQr': { paramsTuple?: []; params?: {} }
+    'daftarPenerima.index': { paramsTuple?: []; params?: {} }
+    'daftarPenerima.search': { paramsTuple?: []; params?: {} }
+    'tipeNotifikasi.index': { paramsTuple?: []; params?: {} }
+    'updateTipeNotifikasi.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'tipeNotifikasi.search': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'auth.login': { paramsTuple?: []; params?: {} }
@@ -136,8 +151,13 @@ export type ScannedRoutes = {
     'riwayatProduksi.index': { paramsTuple?: []; params?: {} }
     'riwayatProduksi.filter': { paramsTuple?: []; params?: {} }
     'riwayatProduksi.generate': { paramsTuple?: []; params?: {} }
-    'integrasiWhatsapp.index': { paramsTuple?: []; params?: {} }
-    'integrasiWhatsapp.getQr': { paramsTuple?: []; params?: {} }
+    'notifikasiWhatsapp.index': { paramsTuple?: []; params?: {} }
+    'notifikasiWhatsapp.getQr': { paramsTuple?: []; params?: {} }
+    'daftarPenerima.index': { paramsTuple?: []; params?: {} }
+    'daftarPenerima.search': { paramsTuple?: []; params?: {} }
+    'tipeNotifikasi.index': { paramsTuple?: []; params?: {} }
+    'updateTipeNotifikasi.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'tipeNotifikasi.search': { paramsTuple?: []; params?: {} }
   }
   POST: {
     'auth.sign_in': { paramsTuple?: []; params?: {} }
@@ -149,7 +169,9 @@ export type ScannedRoutes = {
     'kategoriProduk.create': { paramsTuple?: []; params?: {} }
     'produksi.create': { paramsTuple?: []; params?: {} }
     'restokBahan.create': { paramsTuple?: []; params?: {} }
-    'integrasiWhatsapp.connect': { paramsTuple?: []; params?: {} }
+    'notifikasiWhatsapp.createSession': { paramsTuple?: []; params?: {} }
+    'daftarPenerima.create': { paramsTuple?: []; params?: {} }
+    'tipeNotifikasi.create': { paramsTuple?: []; params?: {} }
   }
   PUT: {
     'updateBahan.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -158,6 +180,7 @@ export type ScannedRoutes = {
     'updatePengguna.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'updateResep.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'updateKategoriProduk.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'updateTipeNotifikasi.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   DELETE: {
     'bahan.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -166,6 +189,8 @@ export type ScannedRoutes = {
     'pengguna.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'resep.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'kategoriProduk.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'notifikasiWhatsapp.deleteSession': { paramsTuple?: []; params?: {} }
+    'tipeNotifikasi.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {

@@ -5,6 +5,7 @@ import { DateTime } from "luxon";
 import HakAkses from "./hakAkses.ts";
 import type { BelongsTo, HasMany } from "@adonisjs/lucid/types/relations";
 import PenerimaNotifikasi from './penerima_notifikasi.ts'
+import PenerimaJenisNotifikasi from "./penerima_jenis_notifikasi.ts";
 
 export default class Pengguna extends PenggunaSchema {
     public static table = 'public.tb_pengguna'
@@ -16,7 +17,8 @@ export default class Pengguna extends PenggunaSchema {
     declare id_pengguna: string
 
     @hasMany(() => PenerimaNotifikasi, {
-        foreignKey: 'id_pengguna'
+        foreignKey: 'id_pengguna',
+        localKey: 'id_pengguna'
     })
     declare penerima_notifikasi: HasMany<typeof PenerimaNotifikasi>
 

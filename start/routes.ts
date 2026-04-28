@@ -22,7 +22,9 @@ import StokProdukController from '#controllers/stok_produk_controller';
 import RiwayatProduksiController from '#controllers/riwayat_produksi_controller';
 import RiwayatStokBahanBakuController from '#controllers/riwayat_stok_bahan_baku';
 import RiwayatStokProdukController from '#controllers/riwayat_stok_produk_controller';
-import IntegrasiWhatsappController from '#controllers/integrasi_whatsapp_controller';
+import NotifikasiWhatsappController from '#controllers/notifikasi_whatsapp_controller';
+import DaftarPenerimaController from '#controllers/daftar_penerima_controller';
+import TipeNotifikasiController from '#controllers/tipe_notifikasi_controller';
 
 router.get('/', [AuthController, 'login']).as('auth.login');
 router.post('/login', [AuthController, 'signIn']);
@@ -94,10 +96,20 @@ router
         router.get('/riwayat-produksi/filter', [RiwayatProduksiController, 'filter']).as('riwayatProduksi.filter');
         router.get('/riwayat-produksi/generate-pdf', [RiwayatProduksiController, 'generate']).as('riwayatProduksi.generate');
 
-        router.get('/integrasi-whatsapp', [IntegrasiWhatsappController, 'index']).as('integrasiWhatsapp.index');
-        router.post('/integrasi-whatsapp/connect', [IntegrasiWhatsappController, 'connect']).as('integrasiWhatsapp.connect');
-        router.get('/integrasi-whatsapp/get-qr', [IntegrasiWhatsappController, 'getQr']).as('integrasiWhatsapp.getQr');
-        // router.put('/integrasi-whatsapp/connected', [IntegrasiWhatsappController, 'connected']).as('integrasiWhatsapp.connected');
+        router.get('/notifikasi-whatsapp', [NotifikasiWhatsappController, 'index']).as('notifikasiWhatsapp.index');
+        router.post('/notifikasi-whatsapp/createSession', [NotifikasiWhatsappController, 'createSession']).as('notifikasiWhatsapp.createSession');
+        router.get('/notifikasi-whatsapp/get-qr', [NotifikasiWhatsappController, 'getQr']).as('notifikasiWhatsapp.getQr');
+        router.delete('/notifikasi-whatsapp/deleteSession', [NotifikasiWhatsappController, 'deleteSession']).as('notifikasiWhatsapp.deleteSession');
 
+        router.get('/daftar-penerima', [DaftarPenerimaController, 'index']).as('daftarPenerima.index');
+        router.post('/daftar-penerima/create', [DaftarPenerimaController, 'create']).as('daftarPenerima.create');
+        router.get('/daftar-penerima/search', [DaftarPenerimaController, 'search']).as('daftarPenerima.search');
+
+        router.get('/tipe-notifikasi', [TipeNotifikasiController, 'index']).as('tipeNotifikasi.index');
+        router.post('/tipe-notifikasi/create', [TipeNotifikasiController, 'create']).as('tipeNotifikasi.create');
+        router.get('/tipe-notifikasi/edit/:id', [TipeNotifikasiController, 'edit']).as('updateTipeNotifikasi.edit');
+        router.put('/tipe-notifikasi/update/:id', [TipeNotifikasiController, 'update']).as('updateTipeNotifikasi.update');
+        router.delete('/tipe-notifikasi/delete/:id', [TipeNotifikasiController, 'destroy']).as('tipeNotifikasi.destroy');
+        router.get('/tipe-notifikasi/search', [TipeNotifikasiController, 'search']).as('tipeNotifikasi.search');
     })
     .use(middleware.ensureUserAcces())

@@ -297,9 +297,9 @@ export class TbTipeNotifikasiSchema extends BaseModel {
   declare createdAt: DateTime | null
 }
 
-export class TbIntegrasiWhatsappSchema extends BaseModel {
+export class TbNotifikasiWhatsappSchema extends BaseModel {
   static $columns = ['idWhatsappSessions', 'idPengguna', 'sessionId', 'status', 'createdAt'] as const
-  $columns = TbIntegrasiWhatsappSchema.$columns
+  $columns = TbNotifikasiWhatsappSchema.$columns
   @column()
   declare idWhatsappSessions: number
   @column()

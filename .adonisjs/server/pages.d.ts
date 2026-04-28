@@ -13,11 +13,12 @@ type ExtractProps<T> =
 declare module '@adonisjs/inertia/types' {
   export interface InertiaPages {
     'bahan': ExtractProps<(typeof import('../../inertia/pages/bahan.tsx'))['default']>
+    'daftarPenerima': ExtractProps<(typeof import('../../inertia/pages/daftarPenerima.tsx'))['default']>
     'hakAkses': ExtractProps<(typeof import('../../inertia/pages/hakAkses.tsx'))['default']>
     'home': ExtractProps<(typeof import('../../inertia/pages/home.tsx'))['default']>
-    'integrasiWhatsapp': ExtractProps<(typeof import('../../inertia/pages/integrasiWhatsapp.tsx'))['default']>
     'kategoriProduk': ExtractProps<(typeof import('../../inertia/pages/kategoriProduk.tsx'))['default']>
     'login': ExtractProps<(typeof import('../../inertia/pages/login.tsx'))['default']>
+    'notifikasiWhatsapp': ExtractProps<(typeof import('../../inertia/pages/notifikasiWhatsapp.tsx'))['default']>
     'pengguna': ExtractProps<(typeof import('../../inertia/pages/pengguna.tsx'))['default']>
     'produk': ExtractProps<(typeof import('../../inertia/pages/produk.tsx'))['default']>
     'produksi': ExtractProps<(typeof import('../../inertia/pages/produksi.tsx'))['default']>
@@ -28,11 +29,13 @@ declare module '@adonisjs/inertia/types' {
     'riwayatStokProduk': ExtractProps<(typeof import('../../inertia/pages/riwayatStokProduk.tsx'))['default']>
     'stokBahan': ExtractProps<(typeof import('../../inertia/pages/stokBahan.tsx'))['default']>
     'stokProduk': ExtractProps<(typeof import('../../inertia/pages/stokProduk.tsx'))['default']>
+    'tipeNotifikasi': ExtractProps<(typeof import('../../inertia/pages/tipeNotifikasi.tsx'))['default']>
     'updateBahan': ExtractProps<(typeof import('../../inertia/pages/updateBahan.tsx'))['default']>
     'updateHakAkses': ExtractProps<(typeof import('../../inertia/pages/updateHakAkses.tsx'))['default']>
     'updateKategoriProduk': ExtractProps<(typeof import('../../inertia/pages/updateKategoriProduk.tsx'))['default']>
     'updatePengguna': ExtractProps<(typeof import('../../inertia/pages/updatePengguna.tsx'))['default']>
     'updateProduk': ExtractProps<(typeof import('../../inertia/pages/updateProduk.tsx'))['default']>
     'updateResep': ExtractProps<(typeof import('../../inertia/pages/updateResep.tsx'))['default']>
+    'updateTipeNotifikasi': ExtractProps<(typeof import('../../inertia/pages/updateTipeNotifikasi.tsx'))['default']>
   }
 }

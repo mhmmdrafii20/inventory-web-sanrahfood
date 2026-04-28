@@ -336,23 +336,83 @@ const routes = {
     tokens: [{"old":"/riwayat-produksi/generate-pdf","type":0,"val":"riwayat-produksi","end":""},{"old":"/riwayat-produksi/generate-pdf","type":0,"val":"generate-pdf","end":""}],
     types: placeholder as Registry['riwayatProduksi.generate']['types'],
   },
-  'integrasiWhatsapp.index': {
+  'notifikasiWhatsapp.index': {
     methods: ["GET","HEAD"],
-    pattern: '/integrasi-whatsapp',
-    tokens: [{"old":"/integrasi-whatsapp","type":0,"val":"integrasi-whatsapp","end":""}],
-    types: placeholder as Registry['integrasiWhatsapp.index']['types'],
+    pattern: '/notifikasi-whatsapp',
+    tokens: [{"old":"/notifikasi-whatsapp","type":0,"val":"notifikasi-whatsapp","end":""}],
+    types: placeholder as Registry['notifikasiWhatsapp.index']['types'],
   },
-  'integrasiWhatsapp.connect': {
+  'notifikasiWhatsapp.createSession': {
     methods: ["POST"],
-    pattern: '/integrasi-whatsapp/connect',
-    tokens: [{"old":"/integrasi-whatsapp/connect","type":0,"val":"integrasi-whatsapp","end":""},{"old":"/integrasi-whatsapp/connect","type":0,"val":"connect","end":""}],
-    types: placeholder as Registry['integrasiWhatsapp.connect']['types'],
+    pattern: '/notifikasi-whatsapp/createSession',
+    tokens: [{"old":"/notifikasi-whatsapp/createSession","type":0,"val":"notifikasi-whatsapp","end":""},{"old":"/notifikasi-whatsapp/createSession","type":0,"val":"createSession","end":""}],
+    types: placeholder as Registry['notifikasiWhatsapp.createSession']['types'],
   },
-  'integrasiWhatsapp.getQr': {
+  'notifikasiWhatsapp.getQr': {
     methods: ["GET","HEAD"],
-    pattern: '/integrasi-whatsapp/get-qr',
-    tokens: [{"old":"/integrasi-whatsapp/get-qr","type":0,"val":"integrasi-whatsapp","end":""},{"old":"/integrasi-whatsapp/get-qr","type":0,"val":"get-qr","end":""}],
-    types: placeholder as Registry['integrasiWhatsapp.getQr']['types'],
+    pattern: '/notifikasi-whatsapp/get-qr',
+    tokens: [{"old":"/notifikasi-whatsapp/get-qr","type":0,"val":"notifikasi-whatsapp","end":""},{"old":"/notifikasi-whatsapp/get-qr","type":0,"val":"get-qr","end":""}],
+    types: placeholder as Registry['notifikasiWhatsapp.getQr']['types'],
+  },
+  'notifikasiWhatsapp.deleteSession': {
+    methods: ["DELETE"],
+    pattern: '/notifikasi-whatsapp/deleteSession',
+    tokens: [{"old":"/notifikasi-whatsapp/deleteSession","type":0,"val":"notifikasi-whatsapp","end":""},{"old":"/notifikasi-whatsapp/deleteSession","type":0,"val":"deleteSession","end":""}],
+    types: placeholder as Registry['notifikasiWhatsapp.deleteSession']['types'],
+  },
+  'daftarPenerima.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/daftar-penerima',
+    tokens: [{"old":"/daftar-penerima","type":0,"val":"daftar-penerima","end":""}],
+    types: placeholder as Registry['daftarPenerima.index']['types'],
+  },
+  'daftarPenerima.create': {
+    methods: ["POST"],
+    pattern: '/daftar-penerima/create',
+    tokens: [{"old":"/daftar-penerima/create","type":0,"val":"daftar-penerima","end":""},{"old":"/daftar-penerima/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['daftarPenerima.create']['types'],
+  },
+  'daftarPenerima.search': {
+    methods: ["GET","HEAD"],
+    pattern: '/daftar-penerima/search',
+    tokens: [{"old":"/daftar-penerima/search","type":0,"val":"daftar-penerima","end":""},{"old":"/daftar-penerima/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['daftarPenerima.search']['types'],
+  },
+  'tipeNotifikasi.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/tipe-notifikasi',
+    tokens: [{"old":"/tipe-notifikasi","type":0,"val":"tipe-notifikasi","end":""}],
+    types: placeholder as Registry['tipeNotifikasi.index']['types'],
+  },
+  'tipeNotifikasi.create': {
+    methods: ["POST"],
+    pattern: '/tipe-notifikasi/create',
+    tokens: [{"old":"/tipe-notifikasi/create","type":0,"val":"tipe-notifikasi","end":""},{"old":"/tipe-notifikasi/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['tipeNotifikasi.create']['types'],
+  },
+  'updateTipeNotifikasi.edit': {
+    methods: ["GET","HEAD"],
+    pattern: '/tipe-notifikasi/edit/:id',
+    tokens: [{"old":"/tipe-notifikasi/edit/:id","type":0,"val":"tipe-notifikasi","end":""},{"old":"/tipe-notifikasi/edit/:id","type":0,"val":"edit","end":""},{"old":"/tipe-notifikasi/edit/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['updateTipeNotifikasi.edit']['types'],
+  },
+  'updateTipeNotifikasi.update': {
+    methods: ["PUT"],
+    pattern: '/tipe-notifikasi/update/:id',
+    tokens: [{"old":"/tipe-notifikasi/update/:id","type":0,"val":"tipe-notifikasi","end":""},{"old":"/tipe-notifikasi/update/:id","type":0,"val":"update","end":""},{"old":"/tipe-notifikasi/update/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['updateTipeNotifikasi.update']['types'],
+  },
+  'tipeNotifikasi.destroy': {
+    methods: ["DELETE"],
+    pattern: '/tipe-notifikasi/delete/:id',
+    tokens: [{"old":"/tipe-notifikasi/delete/:id","type":0,"val":"tipe-notifikasi","end":""},{"old":"/tipe-notifikasi/delete/:id","type":0,"val":"delete","end":""},{"old":"/tipe-notifikasi/delete/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['tipeNotifikasi.destroy']['types'],
+  },
+  'tipeNotifikasi.search': {
+    methods: ["GET","HEAD"],
+    pattern: '/tipe-notifikasi/search',
+    tokens: [{"old":"/tipe-notifikasi/search","type":0,"val":"tipe-notifikasi","end":""},{"old":"/tipe-notifikasi/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['tipeNotifikasi.search']['types'],
   },
 } as const satisfies Record<string, AdonisEndpoint>
 

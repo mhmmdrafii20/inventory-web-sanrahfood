@@ -6,9 +6,10 @@
 export const controllers = {
   Auth: () => import('#controllers/auth_controller'),
   Bahan: () => import('#controllers/bahan_controller'),
+  DaftarPenerima: () => import('#controllers/daftar_penerima_controller'),
   HakAkses: () => import('#controllers/hak_akses_controller'),
-  IntegrasiWhatsapp: () => import('#controllers/integrasi_whatsapp_controller'),
   KategoriProduk: () => import('#controllers/kategori_produk_controller'),
+  NotifikasiWhatsapp: () => import('#controllers/notifikasi_whatsapp_controller'),
   Pengguna: () => import('#controllers/pengguna_controller'),
   Produk: () => import('#controllers/produk_controller'),
   Produksi: () => import('#controllers/produksi_controller'),
@@ -18,4 +19,5 @@ export const controllers = {
   RiwayatStokProduk: () => import('#controllers/riwayat_stok_produk_controller'),
   StokBahan: () => import('#controllers/stok_bahan_controller'),
   StokProduk: () => import('#controllers/stok_produk_controller'),
+  TipeNotifikasi: () => import('#controllers/tipe_notifikasi_controller'),
 }

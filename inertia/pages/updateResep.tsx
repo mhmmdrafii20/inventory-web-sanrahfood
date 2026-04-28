@@ -9,11 +9,11 @@ import TextArea from "~/components/ui/Textarea";
 import Select from "~/components/ui/Select";
 import Error from "~/components/ui/Error";
 
+type Option = {
+    label: string
+    value: number
+}
 export default function updateResep() {
-    type Option = {
-        label: string
-        value: number
-    }
     const { bahan, produk, specificDataResep, specificResepBahan, errors } = usePage<{
         bahan: { idBahanBaku: number; namaBahanBaku: string; satuan: string; }[],
         produk: { idProduk: number; namaProduk: string; satuan: string; }[],

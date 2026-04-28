@@ -1,8 +1,8 @@
-import { TbIntegrasiWhatsappSchema as IntegrasiWhatsappSchema } from "#database/schema"
+import { TbNotifikasiWhatsappSchema as NotifikasiWhatsappSchema } from "#database/schema"
 import { column } from "@adonisjs/lucid/orm"
 import { DateTime } from "luxon"
 
-export default class IntegrasiWhatsapp extends IntegrasiWhatsappSchema {
+export default class NotifikasiWhatsapp extends NotifikasiWhatsappSchema {
     static table = 'tb_whatsapp_sessions'
 
     @column({ columnName: 'id_whatsapp_sessions', isPrimary: true })

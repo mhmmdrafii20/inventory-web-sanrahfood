@@ -97,9 +97,25 @@ export interface ApiDefinition {
     filter: typeof routes['riwayatProduksi.filter']
     generate: typeof routes['riwayatProduksi.generate']
   }
-  integrasiWhatsapp: {
-    index: typeof routes['integrasiWhatsapp.index']
-    connect: typeof routes['integrasiWhatsapp.connect']
-    getQr: typeof routes['integrasiWhatsapp.getQr']
+  notifikasiWhatsapp: {
+    index: typeof routes['notifikasiWhatsapp.index']
+    createSession: typeof routes['notifikasiWhatsapp.createSession']
+    getQr: typeof routes['notifikasiWhatsapp.getQr']
+    deleteSession: typeof routes['notifikasiWhatsapp.deleteSession']
+  }
+  daftarPenerima: {
+    index: typeof routes['daftarPenerima.index']
+    create: typeof routes['daftarPenerima.create']
+    search: typeof routes['daftarPenerima.search']
+  }
+  tipeNotifikasi: {
+    index: typeof routes['tipeNotifikasi.index']
+    create: typeof routes['tipeNotifikasi.create']
+    destroy: typeof routes['tipeNotifikasi.destroy']
+    search: typeof routes['tipeNotifikasi.search']
+  }
+  updateTipeNotifikasi: {
+    edit: typeof routes['updateTipeNotifikasi.edit']
+    update: typeof routes['updateTipeNotifikasi.update']
   }
 }

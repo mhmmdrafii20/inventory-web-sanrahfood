@@ -30,6 +30,10 @@ export default function Produksi() {
             }
         })
     }
+    function onProdukChange(e: React.ChangeEvent<HTMLSelectElement>) {
+        setData('id_produk', e.target.value);
+        setData('id_resep', " ");
+    }
     return (
         <>
             <Heading level={1} color="dark_slate_grey" className="font-bold">Input Produksi</Heading>
@@ -37,7 +41,7 @@ export default function Produksi() {
                 <div className="flex flex-col gap-5">
                     <div className="flex flex-col gap-3">
                         <Paragraph size="lg">Produk</Paragraph>
-                        <Select variant={1} size="md" name="id_produk" value={data.id_produk} onChange={(e) => setData('id_produk', e.target.value)}>
+                        <Select variant={1} size="md" name="id_produk" value={data.id_produk} onChange={(e) => onProdukChange(e)}>
                             <option value=" ">Pilih Produk</option>
                             {produk.map(items => (
                                 <option key={items.idProduk} value={items.idProduk} >{items.namaProduk}</option>
