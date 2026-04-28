@@ -1,22 +1,24 @@
 import swal, { SweetAlertIcon } from 'sweetalert2';
 
-export default function  confirmDialog (
-    title:string,
-    text:string,
-    icon:SweetAlertIcon,
+export default function confirmDialog(
+    title: string,
+    text: string,
+    icon: SweetAlertIcon,
     onConfirm: () => void,
-    confirmText:string,
-    cancelText:string
+    confirmText: string,
+    cancelText: string
 ) {
     swal.fire({
-        title:title,
-        text:text,
-        icon:icon,
-        showCancelButton:true,
-        confirmButtonText:confirmText,
-        cancelButtonText:cancelText,
+        title: title,
+        text: text,
+        icon: icon,
+        showCancelButton: true,
+        confirmButtonText: confirmText,
+        cancelButtonText: cancelText,
+        confirmButtonColor: "#FF0000",
+        cancelButtonColor: "#14919b"
     }).then((result) => {
-        if(result.isConfirmed && typeof onConfirm === 'function') {
+        if (result.isConfirmed && typeof onConfirm === 'function') {
             onConfirm()
         }
     })
