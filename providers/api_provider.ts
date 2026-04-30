@@ -1,4 +1,4 @@
-import Pengguna from '#models/pengguna'
+import Pengguna from '#models/auth/pengguna'
 import { HttpContext } from '@adonisjs/core/http'
 import { BaseSerializer } from '@adonisjs/core/transformers'
 import { type SimplePaginatorMetaKeys } from '@adonisjs/lucid/types/querybuilder'
@@ -56,7 +56,7 @@ HttpContext.instanceProperty('serialize', serialize)
  */
 declare module '@adonisjs/core/http' {
   export interface HttpContext {
-    user?:Pengguna,
+    user?: Pengguna,
     serialize: typeof serialize
   }
 }

@@ -1,6 +1,6 @@
 import { HTMLAttributes, ReactNode } from "react"
 
-type ActionType = 'search' | 'update' | 'delete';
+type ActionType = 'search' | 'update' | 'delete' | 'restore';
 type SizeType = 'xs' | 'sm' | 'md' | 'lg';
 
 type Params = HTMLAttributes<HTMLElement> & {
@@ -18,6 +18,7 @@ const ActionButton = ({ type, size, children, as, className, ...props }: Params)
         search: "bg-medium-teal text-white transition-all duration-200 ease-in-out hover:brightness-110",
         update: "bg-deep-cyan text-white transition-all duration-200 ease-in-out hover:brightness-110",
         delete: "bg-red-500 text-white transition-all duration-200 ease-in-out hover:brightness-110",
+        restore: "bg-green-800 text-white transition-all duration-200 ease-in-out hover:brightness-110",
     }
     const actionSize = {
         xs: "px-1 h-5",

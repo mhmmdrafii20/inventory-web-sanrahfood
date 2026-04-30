@@ -40,7 +40,7 @@ export interface Registry {
       response: unknown
     }
   }
-  'updateBahan.edit': {
+  'bahan.edit': {
     methods: ["GET","HEAD"]
     pattern: '/bahan/edit/:id'
     types: {
@@ -62,7 +62,7 @@ export interface Registry {
       response: unknown
     }
   }
-  'updateBahan.update': {
+  'bahan.update': {
     methods: ["PUT"]
     pattern: '/bahan/update/:id'
     types: {
@@ -95,6 +95,39 @@ export interface Registry {
       response: unknown
     }
   }
+  'bahan.trash': {
+    methods: ["GET","HEAD"]
+    pattern: '/bahan/trash'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'bahan.restore': {
+    methods: ["PATCH"]
+    pattern: '/bahan/restore/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'bahan.searchTrash': {
+    methods: ["GET","HEAD"]
+    pattern: '/bahan/trash/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
   'produk.index': {
     methods: ["GET","HEAD"]
     pattern: '/produk'
@@ -117,7 +150,7 @@ export interface Registry {
       response: unknown
     }
   }
-  'updateProduk.edit': {
+  'produk.edit': {
     methods: ["GET","HEAD"]
     pattern: '/produk/edit/:id'
     types: {
@@ -128,7 +161,7 @@ export interface Registry {
       response: unknown
     }
   }
-  'updateProduk.update': {
+  'produk.update': {
     methods: ["PUT"]
     pattern: '/produk/update/:id'
     types: {
@@ -161,6 +194,39 @@ export interface Registry {
       response: unknown
     }
   }
+  'produk.trash': {
+    methods: ["GET","HEAD"]
+    pattern: '/produk/trash'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'produk.restore': {
+    methods: ["PATCH"]
+    pattern: '/produk/restore/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'produk.searchTrash': {
+    methods: ["GET","HEAD"]
+    pattern: '/produk/trash/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
   'hakAkses.index': {
     methods: ["GET","HEAD"]
     pattern: '/role'
@@ -183,7 +249,7 @@ export interface Registry {
       response: unknown
     }
   }
-  'updateHakAkses.edit': {
+  'hakAkses.edit': {
     methods: ["GET","HEAD"]
     pattern: '/role/edit/:id'
     types: {
@@ -194,7 +260,7 @@ export interface Registry {
       response: unknown
     }
   }
-  'updateHakAkses.update': {
+  'hakAkses.update': {
     methods: ["PUT"]
     pattern: '/role/update/:id'
     types: {
@@ -227,6 +293,39 @@ export interface Registry {
       response: unknown
     }
   }
+  'hakAkses.trash': {
+    methods: ["GET","HEAD"]
+    pattern: '/role/trash'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'hakAkses.restore': {
+    methods: ["PATCH"]
+    pattern: '/role/restore/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'hakAkses.searchTrash': {
+    methods: ["GET","HEAD"]
+    pattern: '/role/trash/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
   'pengguna.index': {
     methods: ["GET","HEAD"]
     pattern: '/pengguna'
@@ -249,7 +348,7 @@ export interface Registry {
       response: unknown
     }
   }
-  'updatePengguna.edit': {
+  'pengguna.edit': {
     methods: ["GET","HEAD"]
     pattern: '/pengguna/edit/:id'
     types: {
@@ -260,7 +359,7 @@ export interface Registry {
       response: unknown
     }
   }
-  'updatePengguna.update': {
+  'pengguna.update': {
     methods: ["PUT"]
     pattern: '/pengguna/update/:id'
     types: {
@@ -293,6 +392,39 @@ export interface Registry {
       response: unknown
     }
   }
+  'pengguna.trash': {
+    methods: ["GET","HEAD"]
+    pattern: '/pengguna/trash'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'pengguna.restore': {
+    methods: ["PATCH"]
+    pattern: '/pengguna/restore/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'pengguna.searchTrash': {
+    methods: ["GET","HEAD"]
+    pattern: '/pengguna/trash/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
   'resep.index': {
     methods: ["GET","HEAD"]
     pattern: '/resep'
@@ -315,7 +447,7 @@ export interface Registry {
       response: unknown
     }
   }
-  'updateResep.edit': {
+  'resep.edit': {
     methods: ["GET","HEAD"]
     pattern: '/resep/edit/:id'
     types: {
@@ -326,7 +458,7 @@ export interface Registry {
       response: unknown
     }
   }
-  'updateResep.update': {
+  'resep.update': {
     methods: ["PUT"]
     pattern: '/resep/update/:id'
     types: {
@@ -359,6 +491,39 @@ export interface Registry {
       response: unknown
     }
   }
+  'resep.trash': {
+    methods: ["GET","HEAD"]
+    pattern: '/resep/trash'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'resep.restore': {
+    methods: ["PATCH"]
+    pattern: '/resep/restore/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'resep.searchTrash': {
+    methods: ["GET","HEAD"]
+    pattern: '/resep/trash/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
   'kategoriProduk.index': {
     methods: ["GET","HEAD"]
     pattern: '/kategori-produk'
@@ -381,7 +546,7 @@ export interface Registry {
       response: unknown
     }
   }
-  'updateKategoriProduk.edit': {
+  'kategoriProduk.edit': {
     methods: ["GET","HEAD"]
     pattern: '/kategori-produk/edit/:id'
     types: {
@@ -392,7 +557,7 @@ export interface Registry {
       response: unknown
     }
   }
-  'updateKategoriProduk.update': {
+  'kategoriProduk.update': {
     methods: ["PUT"]
     pattern: '/kategori-produk/update/:id'
     types: {
@@ -417,6 +582,39 @@ export interface Registry {
   'kategoriProduk.search': {
     methods: ["GET","HEAD"]
     pattern: '/kategori-produk/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'kategoriProduk.trash': {
+    methods: ["GET","HEAD"]
+    pattern: '/kategori-produk/trash'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'kategoriProduk.restore': {
+    methods: ["PATCH"]
+    pattern: '/kategori-produk/restore/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'kategoriProduk.searchTrash': {
+    methods: ["GET","HEAD"]
+    pattern: '/kategori-produk/trash/search'
     types: {
       body: {}
       paramsTuple: []
@@ -689,6 +887,39 @@ export interface Registry {
       response: unknown
     }
   }
+  'daftarPenerima.edit': {
+    methods: ["GET","HEAD"]
+    pattern: '/daftar-penerima/edit/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'daftarPenerima.update': {
+    methods: ["PUT"]
+    pattern: '/daftar-penerima/update/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'daftarPenerima.destroy': {
+    methods: ["DELETE"]
+    pattern: '/daftar-penerima/delete/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
   'tipeNotifikasi.index': {
     methods: ["GET","HEAD"]
     pattern: '/tipe-notifikasi'
@@ -711,7 +942,7 @@ export interface Registry {
       response: unknown
     }
   }
-  'updateTipeNotifikasi.edit': {
+  'tipeNotifikasi.edit': {
     methods: ["GET","HEAD"]
     pattern: '/tipe-notifikasi/edit/:id'
     types: {
@@ -722,7 +953,7 @@ export interface Registry {
       response: unknown
     }
   }
-  'updateTipeNotifikasi.update': {
+  'tipeNotifikasi.update': {
     methods: ["PUT"]
     pattern: '/tipe-notifikasi/update/:id'
     types: {

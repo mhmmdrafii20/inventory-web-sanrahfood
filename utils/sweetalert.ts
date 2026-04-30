@@ -6,7 +6,9 @@ export default function confirmDialog(
     icon: SweetAlertIcon,
     onConfirm: () => void,
     confirmText: string,
-    cancelText: string
+    cancelText: string,
+    confirmColor?: string,
+    cancelColor?: string
 ) {
     swal.fire({
         title: title,
@@ -15,11 +17,33 @@ export default function confirmDialog(
         showCancelButton: true,
         confirmButtonText: confirmText,
         cancelButtonText: cancelText,
-        confirmButtonColor: "#FF0000",
-        cancelButtonColor: "#14919b"
+        confirmButtonColor: confirmColor ? confirmColor : "#FF0000",
+        cancelButtonColor: cancelColor ? cancelColor : "#14919b"
     }).then((result) => {
         if (result.isConfirmed && typeof onConfirm === 'function') {
             onConfirm()
         }
     })
+}
+export function showRestoreDialog(message: string, onConfirm: () => void) {
+    confirmDialog(
+        "Yakin ingin memulihkan data ini?",
+        message,
+        "warning",
+        onConfirm,
+        "Restore",
+        "Batal",
+        "#166534",
+        "#dc2626"
+    )
+}
+export function showDeleteDialog(onConfirm: () => void, description?: string, title?: string) {
+    confirmDialog(
+        title || "Yakin ingin menghapus ?",
+        description || "Data akan dipindahkan ke halaman sampah dan dapat dipulihkan kembali.",
+        "warning",
+        onConfirm,
+        "Hapus",
+        "Batal"
+    )
 }

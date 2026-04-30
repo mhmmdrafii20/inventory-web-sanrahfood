@@ -8,63 +8,69 @@ export interface ApiDefinition {
   }
   bahan: {
     index: typeof routes['bahan.index']
+    edit: typeof routes['bahan.edit']
     create: typeof routes['bahan.create']
+    update: typeof routes['bahan.update']
     destroy: typeof routes['bahan.destroy']
     search: typeof routes['bahan.search']
-  }
-  updateBahan: {
-    edit: typeof routes['updateBahan.edit']
-    update: typeof routes['updateBahan.update']
+    trash: typeof routes['bahan.trash']
+    restore: typeof routes['bahan.restore']
+    searchTrash: typeof routes['bahan.searchTrash']
   }
   produk: {
     index: typeof routes['produk.index']
     create: typeof routes['produk.create']
+    edit: typeof routes['produk.edit']
+    update: typeof routes['produk.update']
     destroy: typeof routes['produk.destroy']
     search: typeof routes['produk.search']
-  }
-  updateProduk: {
-    edit: typeof routes['updateProduk.edit']
-    update: typeof routes['updateProduk.update']
+    trash: typeof routes['produk.trash']
+    restore: typeof routes['produk.restore']
+    searchTrash: typeof routes['produk.searchTrash']
   }
   hakAkses: {
     index: typeof routes['hakAkses.index']
     create: typeof routes['hakAkses.create']
+    edit: typeof routes['hakAkses.edit']
+    update: typeof routes['hakAkses.update']
     destroy: typeof routes['hakAkses.destroy']
     search: typeof routes['hakAkses.search']
-  }
-  updateHakAkses: {
-    edit: typeof routes['updateHakAkses.edit']
-    update: typeof routes['updateHakAkses.update']
+    trash: typeof routes['hakAkses.trash']
+    restore: typeof routes['hakAkses.restore']
+    searchTrash: typeof routes['hakAkses.searchTrash']
   }
   pengguna: {
     index: typeof routes['pengguna.index']
     create: typeof routes['pengguna.create']
+    edit: typeof routes['pengguna.edit']
+    update: typeof routes['pengguna.update']
     destroy: typeof routes['pengguna.destroy']
     search: typeof routes['pengguna.search']
-  }
-  updatePengguna: {
-    edit: typeof routes['updatePengguna.edit']
-    update: typeof routes['updatePengguna.update']
+    trash: typeof routes['pengguna.trash']
+    restore: typeof routes['pengguna.restore']
+    searchTrash: typeof routes['pengguna.searchTrash']
   }
   resep: {
     index: typeof routes['resep.index']
     create: typeof routes['resep.create']
+    edit: typeof routes['resep.edit']
+    update: typeof routes['resep.update']
     destroy: typeof routes['resep.destroy']
     search: typeof routes['resep.search']
-  }
-  updateResep: {
-    edit: typeof routes['updateResep.edit']
-    update: typeof routes['updateResep.update']
+    trash: typeof routes['resep.trash']
+    restore: typeof routes['resep.restore']
+    searchTrash: typeof routes['resep.searchTrash']
   }
   kategoriProduk: {
     index: typeof routes['kategoriProduk.index']
     create: typeof routes['kategoriProduk.create']
+    edit: typeof routes['kategoriProduk.edit']
+    update: typeof routes['kategoriProduk.update']
     destroy: typeof routes['kategoriProduk.destroy']
     search: typeof routes['kategoriProduk.search']
-  }
-  updateKategoriProduk: {
-    edit: typeof routes['updateKategoriProduk.edit']
-    update: typeof routes['updateKategoriProduk.update']
+    trash: typeof routes['kategoriProduk.trash']
+    restore: typeof routes['kategoriProduk.restore']
+    searchTrash: typeof routes['kategoriProduk.searchTrash']
   }
   produksi: {
     index: typeof routes['produksi.index']
@@ -107,15 +113,16 @@ export interface ApiDefinition {
     index: typeof routes['daftarPenerima.index']
     create: typeof routes['daftarPenerima.create']
     search: typeof routes['daftarPenerima.search']
+    edit: typeof routes['daftarPenerima.edit']
+    update: typeof routes['daftarPenerima.update']
+    destroy: typeof routes['daftarPenerima.destroy']
   }
   tipeNotifikasi: {
     index: typeof routes['tipeNotifikasi.index']
     create: typeof routes['tipeNotifikasi.create']
+    edit: typeof routes['tipeNotifikasi.edit']
+    update: typeof routes['tipeNotifikasi.update']
     destroy: typeof routes['tipeNotifikasi.destroy']
     search: typeof routes['tipeNotifikasi.search']
-  }
-  updateTipeNotifikasi: {
-    edit: typeof routes['updateTipeNotifikasi.edit']
-    update: typeof routes['updateTipeNotifikasi.update']
   }
 }

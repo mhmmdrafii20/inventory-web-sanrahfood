@@ -4,20 +4,32 @@
  */
 
 export const controllers = {
-  Auth: () => import('#controllers/auth_controller'),
-  Bahan: () => import('#controllers/bahan_controller'),
-  DaftarPenerima: () => import('#controllers/daftar_penerima_controller'),
-  HakAkses: () => import('#controllers/hak_akses_controller'),
-  KategoriProduk: () => import('#controllers/kategori_produk_controller'),
-  NotifikasiWhatsapp: () => import('#controllers/notifikasi_whatsapp_controller'),
-  Pengguna: () => import('#controllers/pengguna_controller'),
-  Produk: () => import('#controllers/produk_controller'),
-  Produksi: () => import('#controllers/produksi_controller'),
-  Resep: () => import('#controllers/resep_controller'),
-  RiwayatProduksi: () => import('#controllers/riwayat_produksi_controller'),
-  RiwayatStokBahanBaku: () => import('#controllers/riwayat_stok_bahan_baku'),
-  RiwayatStokProduk: () => import('#controllers/riwayat_stok_produk_controller'),
-  StokBahan: () => import('#controllers/stok_bahan_controller'),
-  StokProduk: () => import('#controllers/stok_produk_controller'),
-  TipeNotifikasi: () => import('#controllers/tipe_notifikasi_controller'),
+  auth: {
+    Auth: () => import('#controllers/auth/auth_controller'),
+    HakAkses: () => import('#controllers/auth/hak_akses_controller'),
+    Pengguna: () => import('#controllers/auth/pengguna_controller'),
+  },
+  bahan: {
+    Bahan: () => import('#controllers/bahan/bahan_controller'),
+    RiwayatStokBahanBaku: () => import('#controllers/bahan/riwayat_stok_bahan_baku'),
+    StokBahan: () => import('#controllers/bahan/stok_bahan_controller'),
+  },
+  notifikasi: {
+    DaftarPenerima: () => import('#controllers/notifikasi/daftar_penerima_controller'),
+    NotifikasiWhatsapp: () => import('#controllers/notifikasi/notifikasi_whatsapp_controller'),
+    TipeNotifikasi: () => import('#controllers/notifikasi/tipe_notifikasi_controller'),
+  },
+  produk: {
+    KategoriProduk: () => import('#controllers/produk/kategori_produk_controller'),
+    Produk: () => import('#controllers/produk/produk_controller'),
+    RiwayatStokProduk: () => import('#controllers/produk/riwayat_stok_produk_controller'),
+    StokProduk: () => import('#controllers/produk/stok_produk_controller'),
+  },
+  produksi: {
+    Produksi: () => import('#controllers/produksi/produksi_controller'),
+    RiwayatProduksi: () => import('#controllers/produksi/riwayat_produksi_controller'),
+  },
+  resep: {
+    Resep: () => import('#controllers/resep/resep_controller'),
+  },
 }

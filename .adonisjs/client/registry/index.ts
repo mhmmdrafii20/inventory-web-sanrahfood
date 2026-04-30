@@ -24,11 +24,11 @@ const routes = {
     tokens: [{"old":"/bahan","type":0,"val":"bahan","end":""}],
     types: placeholder as Registry['bahan.index']['types'],
   },
-  'updateBahan.edit': {
+  'bahan.edit': {
     methods: ["GET","HEAD"],
     pattern: '/bahan/edit/:id',
     tokens: [{"old":"/bahan/edit/:id","type":0,"val":"bahan","end":""},{"old":"/bahan/edit/:id","type":0,"val":"edit","end":""},{"old":"/bahan/edit/:id","type":1,"val":"id","end":""}],
-    types: placeholder as Registry['updateBahan.edit']['types'],
+    types: placeholder as Registry['bahan.edit']['types'],
   },
   'bahan.create': {
     methods: ["POST"],
@@ -36,11 +36,11 @@ const routes = {
     tokens: [{"old":"/bahan/create","type":0,"val":"bahan","end":""},{"old":"/bahan/create","type":0,"val":"create","end":""}],
     types: placeholder as Registry['bahan.create']['types'],
   },
-  'updateBahan.update': {
+  'bahan.update': {
     methods: ["PUT"],
     pattern: '/bahan/update/:id',
     tokens: [{"old":"/bahan/update/:id","type":0,"val":"bahan","end":""},{"old":"/bahan/update/:id","type":0,"val":"update","end":""},{"old":"/bahan/update/:id","type":1,"val":"id","end":""}],
-    types: placeholder as Registry['updateBahan.update']['types'],
+    types: placeholder as Registry['bahan.update']['types'],
   },
   'bahan.destroy': {
     methods: ["DELETE"],
@@ -54,6 +54,24 @@ const routes = {
     tokens: [{"old":"/bahan/search","type":0,"val":"bahan","end":""},{"old":"/bahan/search","type":0,"val":"search","end":""}],
     types: placeholder as Registry['bahan.search']['types'],
   },
+  'bahan.trash': {
+    methods: ["GET","HEAD"],
+    pattern: '/bahan/trash',
+    tokens: [{"old":"/bahan/trash","type":0,"val":"bahan","end":""},{"old":"/bahan/trash","type":0,"val":"trash","end":""}],
+    types: placeholder as Registry['bahan.trash']['types'],
+  },
+  'bahan.restore': {
+    methods: ["PATCH"],
+    pattern: '/bahan/restore/:id',
+    tokens: [{"old":"/bahan/restore/:id","type":0,"val":"bahan","end":""},{"old":"/bahan/restore/:id","type":0,"val":"restore","end":""},{"old":"/bahan/restore/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['bahan.restore']['types'],
+  },
+  'bahan.searchTrash': {
+    methods: ["GET","HEAD"],
+    pattern: '/bahan/trash/search',
+    tokens: [{"old":"/bahan/trash/search","type":0,"val":"bahan","end":""},{"old":"/bahan/trash/search","type":0,"val":"trash","end":""},{"old":"/bahan/trash/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['bahan.searchTrash']['types'],
+  },
   'produk.index': {
     methods: ["GET","HEAD"],
     pattern: '/produk',
@@ -66,17 +84,17 @@ const routes = {
     tokens: [{"old":"/produk/create","type":0,"val":"produk","end":""},{"old":"/produk/create","type":0,"val":"create","end":""}],
     types: placeholder as Registry['produk.create']['types'],
   },
-  'updateProduk.edit': {
+  'produk.edit': {
     methods: ["GET","HEAD"],
     pattern: '/produk/edit/:id',
     tokens: [{"old":"/produk/edit/:id","type":0,"val":"produk","end":""},{"old":"/produk/edit/:id","type":0,"val":"edit","end":""},{"old":"/produk/edit/:id","type":1,"val":"id","end":""}],
-    types: placeholder as Registry['updateProduk.edit']['types'],
+    types: placeholder as Registry['produk.edit']['types'],
   },
-  'updateProduk.update': {
+  'produk.update': {
     methods: ["PUT"],
     pattern: '/produk/update/:id',
     tokens: [{"old":"/produk/update/:id","type":0,"val":"produk","end":""},{"old":"/produk/update/:id","type":0,"val":"update","end":""},{"old":"/produk/update/:id","type":1,"val":"id","end":""}],
-    types: placeholder as Registry['updateProduk.update']['types'],
+    types: placeholder as Registry['produk.update']['types'],
   },
   'produk.destroy': {
     methods: ["DELETE"],
@@ -90,6 +108,24 @@ const routes = {
     tokens: [{"old":"/produk/search","type":0,"val":"produk","end":""},{"old":"/produk/search","type":0,"val":"search","end":""}],
     types: placeholder as Registry['produk.search']['types'],
   },
+  'produk.trash': {
+    methods: ["GET","HEAD"],
+    pattern: '/produk/trash',
+    tokens: [{"old":"/produk/trash","type":0,"val":"produk","end":""},{"old":"/produk/trash","type":0,"val":"trash","end":""}],
+    types: placeholder as Registry['produk.trash']['types'],
+  },
+  'produk.restore': {
+    methods: ["PATCH"],
+    pattern: '/produk/restore/:id',
+    tokens: [{"old":"/produk/restore/:id","type":0,"val":"produk","end":""},{"old":"/produk/restore/:id","type":0,"val":"restore","end":""},{"old":"/produk/restore/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['produk.restore']['types'],
+  },
+  'produk.searchTrash': {
+    methods: ["GET","HEAD"],
+    pattern: '/produk/trash/search',
+    tokens: [{"old":"/produk/trash/search","type":0,"val":"produk","end":""},{"old":"/produk/trash/search","type":0,"val":"trash","end":""},{"old":"/produk/trash/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['produk.searchTrash']['types'],
+  },
   'hakAkses.index': {
     methods: ["GET","HEAD"],
     pattern: '/role',
@@ -102,17 +138,17 @@ const routes = {
     tokens: [{"old":"/role/create","type":0,"val":"role","end":""},{"old":"/role/create","type":0,"val":"create","end":""}],
     types: placeholder as Registry['hakAkses.create']['types'],
   },
-  'updateHakAkses.edit': {
+  'hakAkses.edit': {
     methods: ["GET","HEAD"],
     pattern: '/role/edit/:id',
     tokens: [{"old":"/role/edit/:id","type":0,"val":"role","end":""},{"old":"/role/edit/:id","type":0,"val":"edit","end":""},{"old":"/role/edit/:id","type":1,"val":"id","end":""}],
-    types: placeholder as Registry['updateHakAkses.edit']['types'],
+    types: placeholder as Registry['hakAkses.edit']['types'],
   },
-  'updateHakAkses.update': {
+  'hakAkses.update': {
     methods: ["PUT"],
     pattern: '/role/update/:id',
     tokens: [{"old":"/role/update/:id","type":0,"val":"role","end":""},{"old":"/role/update/:id","type":0,"val":"update","end":""},{"old":"/role/update/:id","type":1,"val":"id","end":""}],
-    types: placeholder as Registry['updateHakAkses.update']['types'],
+    types: placeholder as Registry['hakAkses.update']['types'],
   },
   'hakAkses.destroy': {
     methods: ["DELETE"],
@@ -126,6 +162,24 @@ const routes = {
     tokens: [{"old":"/role/search","type":0,"val":"role","end":""},{"old":"/role/search","type":0,"val":"search","end":""}],
     types: placeholder as Registry['hakAkses.search']['types'],
   },
+  'hakAkses.trash': {
+    methods: ["GET","HEAD"],
+    pattern: '/role/trash',
+    tokens: [{"old":"/role/trash","type":0,"val":"role","end":""},{"old":"/role/trash","type":0,"val":"trash","end":""}],
+    types: placeholder as Registry['hakAkses.trash']['types'],
+  },
+  'hakAkses.restore': {
+    methods: ["PATCH"],
+    pattern: '/role/restore/:id',
+    tokens: [{"old":"/role/restore/:id","type":0,"val":"role","end":""},{"old":"/role/restore/:id","type":0,"val":"restore","end":""},{"old":"/role/restore/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['hakAkses.restore']['types'],
+  },
+  'hakAkses.searchTrash': {
+    methods: ["GET","HEAD"],
+    pattern: '/role/trash/search',
+    tokens: [{"old":"/role/trash/search","type":0,"val":"role","end":""},{"old":"/role/trash/search","type":0,"val":"trash","end":""},{"old":"/role/trash/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['hakAkses.searchTrash']['types'],
+  },
   'pengguna.index': {
     methods: ["GET","HEAD"],
     pattern: '/pengguna',
@@ -138,17 +192,17 @@ const routes = {
     tokens: [{"old":"/pengguna/create","type":0,"val":"pengguna","end":""},{"old":"/pengguna/create","type":0,"val":"create","end":""}],
     types: placeholder as Registry['pengguna.create']['types'],
   },
-  'updatePengguna.edit': {
+  'pengguna.edit': {
     methods: ["GET","HEAD"],
     pattern: '/pengguna/edit/:id',
     tokens: [{"old":"/pengguna/edit/:id","type":0,"val":"pengguna","end":""},{"old":"/pengguna/edit/:id","type":0,"val":"edit","end":""},{"old":"/pengguna/edit/:id","type":1,"val":"id","end":""}],
-    types: placeholder as Registry['updatePengguna.edit']['types'],
+    types: placeholder as Registry['pengguna.edit']['types'],
   },
-  'updatePengguna.update': {
+  'pengguna.update': {
     methods: ["PUT"],
     pattern: '/pengguna/update/:id',
     tokens: [{"old":"/pengguna/update/:id","type":0,"val":"pengguna","end":""},{"old":"/pengguna/update/:id","type":0,"val":"update","end":""},{"old":"/pengguna/update/:id","type":1,"val":"id","end":""}],
-    types: placeholder as Registry['updatePengguna.update']['types'],
+    types: placeholder as Registry['pengguna.update']['types'],
   },
   'pengguna.destroy': {
     methods: ["DELETE"],
@@ -162,6 +216,24 @@ const routes = {
     tokens: [{"old":"/pengguna/search","type":0,"val":"pengguna","end":""},{"old":"/pengguna/search","type":0,"val":"search","end":""}],
     types: placeholder as Registry['pengguna.search']['types'],
   },
+  'pengguna.trash': {
+    methods: ["GET","HEAD"],
+    pattern: '/pengguna/trash',
+    tokens: [{"old":"/pengguna/trash","type":0,"val":"pengguna","end":""},{"old":"/pengguna/trash","type":0,"val":"trash","end":""}],
+    types: placeholder as Registry['pengguna.trash']['types'],
+  },
+  'pengguna.restore': {
+    methods: ["PATCH"],
+    pattern: '/pengguna/restore/:id',
+    tokens: [{"old":"/pengguna/restore/:id","type":0,"val":"pengguna","end":""},{"old":"/pengguna/restore/:id","type":0,"val":"restore","end":""},{"old":"/pengguna/restore/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['pengguna.restore']['types'],
+  },
+  'pengguna.searchTrash': {
+    methods: ["GET","HEAD"],
+    pattern: '/pengguna/trash/search',
+    tokens: [{"old":"/pengguna/trash/search","type":0,"val":"pengguna","end":""},{"old":"/pengguna/trash/search","type":0,"val":"trash","end":""},{"old":"/pengguna/trash/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['pengguna.searchTrash']['types'],
+  },
   'resep.index': {
     methods: ["GET","HEAD"],
     pattern: '/resep',
@@ -174,17 +246,17 @@ const routes = {
     tokens: [{"old":"/resep/create","type":0,"val":"resep","end":""},{"old":"/resep/create","type":0,"val":"create","end":""}],
     types: placeholder as Registry['resep.create']['types'],
   },
-  'updateResep.edit': {
+  'resep.edit': {
     methods: ["GET","HEAD"],
     pattern: '/resep/edit/:id',
     tokens: [{"old":"/resep/edit/:id","type":0,"val":"resep","end":""},{"old":"/resep/edit/:id","type":0,"val":"edit","end":""},{"old":"/resep/edit/:id","type":1,"val":"id","end":""}],
-    types: placeholder as Registry['updateResep.edit']['types'],
+    types: placeholder as Registry['resep.edit']['types'],
   },
-  'updateResep.update': {
+  'resep.update': {
     methods: ["PUT"],
     pattern: '/resep/update/:id',
     tokens: [{"old":"/resep/update/:id","type":0,"val":"resep","end":""},{"old":"/resep/update/:id","type":0,"val":"update","end":""},{"old":"/resep/update/:id","type":1,"val":"id","end":""}],
-    types: placeholder as Registry['updateResep.update']['types'],
+    types: placeholder as Registry['resep.update']['types'],
   },
   'resep.destroy': {
     methods: ["DELETE"],
@@ -198,6 +270,24 @@ const routes = {
     tokens: [{"old":"/resep/search","type":0,"val":"resep","end":""},{"old":"/resep/search","type":0,"val":"search","end":""}],
     types: placeholder as Registry['resep.search']['types'],
   },
+  'resep.trash': {
+    methods: ["GET","HEAD"],
+    pattern: '/resep/trash',
+    tokens: [{"old":"/resep/trash","type":0,"val":"resep","end":""},{"old":"/resep/trash","type":0,"val":"trash","end":""}],
+    types: placeholder as Registry['resep.trash']['types'],
+  },
+  'resep.restore': {
+    methods: ["PATCH"],
+    pattern: '/resep/restore/:id',
+    tokens: [{"old":"/resep/restore/:id","type":0,"val":"resep","end":""},{"old":"/resep/restore/:id","type":0,"val":"restore","end":""},{"old":"/resep/restore/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['resep.restore']['types'],
+  },
+  'resep.searchTrash': {
+    methods: ["GET","HEAD"],
+    pattern: '/resep/trash/search',
+    tokens: [{"old":"/resep/trash/search","type":0,"val":"resep","end":""},{"old":"/resep/trash/search","type":0,"val":"trash","end":""},{"old":"/resep/trash/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['resep.searchTrash']['types'],
+  },
   'kategoriProduk.index': {
     methods: ["GET","HEAD"],
     pattern: '/kategori-produk',
@@ -210,17 +300,17 @@ const routes = {
     tokens: [{"old":"/kategori-produk/create","type":0,"val":"kategori-produk","end":""},{"old":"/kategori-produk/create","type":0,"val":"create","end":""}],
     types: placeholder as Registry['kategoriProduk.create']['types'],
   },
-  'updateKategoriProduk.edit': {
+  'kategoriProduk.edit': {
     methods: ["GET","HEAD"],
     pattern: '/kategori-produk/edit/:id',
     tokens: [{"old":"/kategori-produk/edit/:id","type":0,"val":"kategori-produk","end":""},{"old":"/kategori-produk/edit/:id","type":0,"val":"edit","end":""},{"old":"/kategori-produk/edit/:id","type":1,"val":"id","end":""}],
-    types: placeholder as Registry['updateKategoriProduk.edit']['types'],
+    types: placeholder as Registry['kategoriProduk.edit']['types'],
   },
-  'updateKategoriProduk.update': {
+  'kategoriProduk.update': {
     methods: ["PUT"],
     pattern: '/kategori-produk/update/:id',
     tokens: [{"old":"/kategori-produk/update/:id","type":0,"val":"kategori-produk","end":""},{"old":"/kategori-produk/update/:id","type":0,"val":"update","end":""},{"old":"/kategori-produk/update/:id","type":1,"val":"id","end":""}],
-    types: placeholder as Registry['updateKategoriProduk.update']['types'],
+    types: placeholder as Registry['kategoriProduk.update']['types'],
   },
   'kategoriProduk.destroy': {
     methods: ["DELETE"],
@@ -233,6 +323,24 @@ const routes = {
     pattern: '/kategori-produk/search',
     tokens: [{"old":"/kategori-produk/search","type":0,"val":"kategori-produk","end":""},{"old":"/kategori-produk/search","type":0,"val":"search","end":""}],
     types: placeholder as Registry['kategoriProduk.search']['types'],
+  },
+  'kategoriProduk.trash': {
+    methods: ["GET","HEAD"],
+    pattern: '/kategori-produk/trash',
+    tokens: [{"old":"/kategori-produk/trash","type":0,"val":"kategori-produk","end":""},{"old":"/kategori-produk/trash","type":0,"val":"trash","end":""}],
+    types: placeholder as Registry['kategoriProduk.trash']['types'],
+  },
+  'kategoriProduk.restore': {
+    methods: ["PATCH"],
+    pattern: '/kategori-produk/restore/:id',
+    tokens: [{"old":"/kategori-produk/restore/:id","type":0,"val":"kategori-produk","end":""},{"old":"/kategori-produk/restore/:id","type":0,"val":"restore","end":""},{"old":"/kategori-produk/restore/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['kategoriProduk.restore']['types'],
+  },
+  'kategoriProduk.searchTrash': {
+    methods: ["GET","HEAD"],
+    pattern: '/kategori-produk/trash/search',
+    tokens: [{"old":"/kategori-produk/trash/search","type":0,"val":"kategori-produk","end":""},{"old":"/kategori-produk/trash/search","type":0,"val":"trash","end":""},{"old":"/kategori-produk/trash/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['kategoriProduk.searchTrash']['types'],
   },
   'produksi.index': {
     methods: ["GET","HEAD"],
@@ -378,6 +486,24 @@ const routes = {
     tokens: [{"old":"/daftar-penerima/search","type":0,"val":"daftar-penerima","end":""},{"old":"/daftar-penerima/search","type":0,"val":"search","end":""}],
     types: placeholder as Registry['daftarPenerima.search']['types'],
   },
+  'daftarPenerima.edit': {
+    methods: ["GET","HEAD"],
+    pattern: '/daftar-penerima/edit/:id',
+    tokens: [{"old":"/daftar-penerima/edit/:id","type":0,"val":"daftar-penerima","end":""},{"old":"/daftar-penerima/edit/:id","type":0,"val":"edit","end":""},{"old":"/daftar-penerima/edit/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['daftarPenerima.edit']['types'],
+  },
+  'daftarPenerima.update': {
+    methods: ["PUT"],
+    pattern: '/daftar-penerima/update/:id',
+    tokens: [{"old":"/daftar-penerima/update/:id","type":0,"val":"daftar-penerima","end":""},{"old":"/daftar-penerima/update/:id","type":0,"val":"update","end":""},{"old":"/daftar-penerima/update/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['daftarPenerima.update']['types'],
+  },
+  'daftarPenerima.destroy': {
+    methods: ["DELETE"],
+    pattern: '/daftar-penerima/delete/:id',
+    tokens: [{"old":"/daftar-penerima/delete/:id","type":0,"val":"daftar-penerima","end":""},{"old":"/daftar-penerima/delete/:id","type":0,"val":"delete","end":""},{"old":"/daftar-penerima/delete/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['daftarPenerima.destroy']['types'],
+  },
   'tipeNotifikasi.index': {
     methods: ["GET","HEAD"],
     pattern: '/tipe-notifikasi',
@@ -390,17 +516,17 @@ const routes = {
     tokens: [{"old":"/tipe-notifikasi/create","type":0,"val":"tipe-notifikasi","end":""},{"old":"/tipe-notifikasi/create","type":0,"val":"create","end":""}],
     types: placeholder as Registry['tipeNotifikasi.create']['types'],
   },
-  'updateTipeNotifikasi.edit': {
+  'tipeNotifikasi.edit': {
     methods: ["GET","HEAD"],
     pattern: '/tipe-notifikasi/edit/:id',
     tokens: [{"old":"/tipe-notifikasi/edit/:id","type":0,"val":"tipe-notifikasi","end":""},{"old":"/tipe-notifikasi/edit/:id","type":0,"val":"edit","end":""},{"old":"/tipe-notifikasi/edit/:id","type":1,"val":"id","end":""}],
-    types: placeholder as Registry['updateTipeNotifikasi.edit']['types'],
+    types: placeholder as Registry['tipeNotifikasi.edit']['types'],
   },
-  'updateTipeNotifikasi.update': {
+  'tipeNotifikasi.update': {
     methods: ["PUT"],
     pattern: '/tipe-notifikasi/update/:id',
     tokens: [{"old":"/tipe-notifikasi/update/:id","type":0,"val":"tipe-notifikasi","end":""},{"old":"/tipe-notifikasi/update/:id","type":0,"val":"update","end":""},{"old":"/tipe-notifikasi/update/:id","type":1,"val":"id","end":""}],
-    types: placeholder as Registry['updateTipeNotifikasi.update']['types'],
+    types: placeholder as Registry['tipeNotifikasi.update']['types'],
   },
   'tipeNotifikasi.destroy': {
     methods: ["DELETE"],
