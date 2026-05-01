@@ -42,8 +42,10 @@ export default function DaftarPenerima() {
 
     return (
         <>
-            <Heading level={1} color="dark_slate_grey" className="font-bold">Update Daftar Penerima</Heading>
-            <form className="flex flex-col gap-5 bg-white p-5 shadow-md rounded-md w-96" onSubmit={handleUpdate}>
+            <div className="flex justify-center mx-auto mb-5">
+                <Heading level={1} color="dark_slate_grey" className="font-bold">Edit Daftar Penerima</Heading>
+            </div>
+            <form className="flex flex-col gap-5 bg-white p-5 shadow-md rounded-md w-[600px] mx-auto" onSubmit={handleUpdate}>
                 <Input variant={1} size="md" type="hidden" name="id_penerima_notifikasi" value={data.id_penerima_notifikasi} onChange={(e) => setData('id_penerima_notifikasi', parseInt(e.target.value))} />
                 {isInternal &&
                     <>

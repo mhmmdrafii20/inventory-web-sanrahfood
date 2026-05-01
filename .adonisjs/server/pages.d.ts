@@ -27,9 +27,12 @@ declare module '@adonisjs/inertia/types' {
     'bahan/update': ExtractProps<(typeof import('../../inertia/pages/bahan/update.tsx'))['default']>
     'dashboard/home': ExtractProps<(typeof import('../../inertia/pages/dashboard/home.tsx'))['default']>
     'notifikasi/daftarPenerima': ExtractProps<(typeof import('../../inertia/pages/notifikasi/daftarPenerima.tsx'))['default']>
+    'notifikasi/data': ExtractProps<(typeof import('../../inertia/pages/notifikasi/data.ts'))['default']>
     'notifikasi/notifikasiWhatsapp': ExtractProps<(typeof import('../../inertia/pages/notifikasi/notifikasiWhatsapp.tsx'))['default']>
+    'notifikasi/templateNotifikasi': ExtractProps<(typeof import('../../inertia/pages/notifikasi/templateNotifikasi.tsx'))['default']>
     'notifikasi/tipeNotifikasi': ExtractProps<(typeof import('../../inertia/pages/notifikasi/tipeNotifikasi.tsx'))['default']>
     'notifikasi/update/daftarPenerima': ExtractProps<(typeof import('../../inertia/pages/notifikasi/update/daftarPenerima.tsx'))['default']>
+    'notifikasi/update/templateNotifikasi': ExtractProps<(typeof import('../../inertia/pages/notifikasi/update/templateNotifikasi.tsx'))['default']>
     'notifikasi/update/tipeNotifikasi': ExtractProps<(typeof import('../../inertia/pages/notifikasi/update/tipeNotifikasi.tsx'))['default']>
     'produk/index': ExtractProps<(typeof import('../../inertia/pages/produk/index.tsx'))['default']>
     'produk/kategori': ExtractProps<(typeof import('../../inertia/pages/produk/kategori.tsx'))['default']>

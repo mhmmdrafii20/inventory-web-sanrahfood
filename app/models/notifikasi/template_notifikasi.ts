@@ -28,7 +28,7 @@ export default class TemplateNotifikasi extends TemplateNotifikasiSchema {
     @belongsTo(() => TipeNotifikasi, {
         foreignKey: 'id_tipe_notifikasi'
     })
-    declare produk: BelongsTo<typeof TipeNotifikasi>
+    declare tipe_notifikasi: BelongsTo<typeof TipeNotifikasi>
 
     @column({ columnName: 'nama_template' })
     declare nama_template: string

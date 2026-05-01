@@ -6,7 +6,7 @@ import { SubmitEvent } from "react";
 import Input from "~/components/ui/Input";
 import Error from "~/components/ui/Error";
 
-export default function UpdateHakAkses() {
+export default function HakAkses() {
     const { dataRole, errors } = usePage<{ dataRole: { id_hak_akses: number; nama_hak_akses: string; } }>().props;
     const { data, setData, put, processing, reset } = useForm({
         id_hak_akses: dataRole.id_hak_akses,
@@ -22,8 +22,10 @@ export default function UpdateHakAkses() {
     }
     return (
         <>
-            <Heading level={1} color="dark_slate_grey" className="font-bold">Edit Hak Akses</Heading>
-            <form onSubmit={handleUpdate} className="flex flex-col gap-5 bg-white p-5 shadow-md rounded-md w-96">
+            <div className="flex justify-center mx-auto mb-5">
+                <Heading level={1} color="dark_slate_grey" className="font-bold">Edit Hak Akses</Heading>
+            </div>
+            <form className="flex flex-col gap-5 bg-white p-5 shadow-md rounded-md w-[600px] mx-auto" onSubmit={handleUpdate}>
                 <Input variant={1} size="md" type="hidden" value={data.id_hak_akses} onChange={(e) => setData("id_hak_akses", parseInt(e.target.value))} />
 
                 <Paragraph size="lg">Nama Hak Akses</Paragraph>

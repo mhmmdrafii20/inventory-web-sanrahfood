@@ -12,14 +12,21 @@ import ActionButton from "~/components/ui/Button/ActionButton";
 import { FaTrash, FaPen, FaSearch } from "react-icons/fa";
 import { Link } from "@adonisjs/inertia/react";
 import { showDeleteDialog } from "../../../utils/sweetalert";
+import { MultiSelect } from "react-multi-select-component";
+import { templateVarOptions } from "./data";
 
+type Option = {
+    label: string
+    value: string
+}
 
 export default function TipeNotifikasi() {
     const [open, setIsOpen] = useState(false);
-    const { errors, tipeNotifikasi, searchRes } = usePage<{ tipeNotifikasi: { idTipeNotifikasi: number, kodeNotifikasi: number, namaNotifikasi: string }[], searchRes: { idTipeNotifikasi: number, kodeNotifikasi: number, namaNotifikasi: string }[] }>().props;
-    const { data, setData, post, get, delete: destroy, processing, reset } = useForm({
+    const { errors, tipeNotifikasi, searchRes } = usePage<{ tipeNotifikasi: { idTipeNotifikasi: number, kodeNotifikasi: number, namaNotifikasi: string, templateVariables: [] }[], searchRes: { idTipeNotifikasi: number, kodeNotifikasi: number, namaNotifikasi: string, templateVariables: [] }[] }>().props;
+    const { data, setData, post, delete: destroy, processing, reset } = useForm({
         kode_notifikasi: "",
-        nama_notifikasi: ""
+        nama_notifikasi: "",
+        template_variables: [] as string[],
     })
     const [searchData, setSearchData] = useState("");
 
@@ -62,6 +69,11 @@ export default function TipeNotifikasi() {
                             <Paragraph size="lg">Nama Notifikasi</Paragraph>
                             <Input variant={1} size="md" type="text" name="nama_notifikasi" placeholder="Nama Notifikasi" value={data.nama_notifikasi} onChange={e => setData('nama_notifikasi', e.target.value)}></Input>
                             {errors.nama_notifikasi && <Error variant={1}>{errors.nama_notifikasi}</Error>}
+
+                            <Paragraph size="lg">Template Variable</Paragraph>
+                            <MultiSelect options={templateVarOptions} value={templateVarOptions.filter((item) => data.template_variables.includes(item.value))} onChange={(val: Option[]) => { setData('template_variables', val.map(item => item.value)) }} labelledBy="Select"></MultiSelect>
+                            {errors.template_variables && <Error variant={1}>{errors.template_variables}</Error>}
+
                             <Button type="submit" variant={1} size="md" disabled={processing} >{processing ? "Menambahkan...." : "Tambahkan"}</Button>
                         </form>
                     </Modal>
@@ -77,6 +89,7 @@ export default function TipeNotifikasi() {
                         <tr>
                             <th className="border border-gray-300 py-3">Kode Notifikasi</th>
                             <th className="border border-gray-300 py-3">Nama Tipe Notifikasi</th>
+                            <th className="border border-gray-300 py-3">Template Variable</th>
                             <th className="border border-gray-300 py-3">Aksi</th>
                         </tr>
                     </thead>
@@ -85,6 +98,7 @@ export default function TipeNotifikasi() {
                             <tr key={items.idTipeNotifikasi}>
                                 <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.kodeNotifikasi}</Paragraph></td>
                                 <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.namaNotifikasi}</Paragraph></td>
+                                <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.templateVariables.toString()}</Paragraph></td>
                                 <td className="border border-gray-300 py-3 px-5">
                                     <div className="flex flex-row gap-2 justify-center">
                                         <Link route="tipeNotifikasi.edit" routeParams={{ id: items.idTipeNotifikasi }}>

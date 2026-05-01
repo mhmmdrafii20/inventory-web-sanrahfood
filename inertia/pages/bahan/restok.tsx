@@ -22,8 +22,10 @@ export default function Restok() {
 
     return (
         <>
-            <Heading level={1} color="dark_slate_grey" className="font-bold">Restok Bahan Baku</Heading>
-            <form onSubmit={handleCreate} className="flex flex-col gap-5 bg-white p-5 shadow-md rounded-md w-96">
+            <div className="flex justify-center mx-auto mb-5">
+                <Heading level={1} color="dark_slate_grey" className="font-bold">Restok Bahan Baku</Heading>
+            </div>
+            <form className="flex flex-col gap-5 bg-white p-5 shadow-md rounded-md w-[600px] mx-auto" onSubmit={handleCreate}>
                 <div className="flex flex-col gap-5">
                     <div className="flex flex-col gap-3">
                         <Paragraph size="lg">Bahan Baku</Paragraph>

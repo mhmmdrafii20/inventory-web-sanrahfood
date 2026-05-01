@@ -18,6 +18,18 @@ const routes = {
     tokens: [{"old":"/login","type":0,"val":"login","end":""}],
     types: placeholder as Registry['auth.sign_in']['types'],
   },
+  'webhook.stokProduk': {
+    methods: ["POST"],
+    pattern: '/webhook/stok-produk',
+    tokens: [{"old":"/webhook/stok-produk","type":0,"val":"webhook","end":""},{"old":"/webhook/stok-produk","type":0,"val":"stok-produk","end":""}],
+    types: placeholder as Registry['webhook.stokProduk']['types'],
+  },
+  'webhook.stokBahanBaku': {
+    methods: ["POST"],
+    pattern: '/webhook/bahan',
+    tokens: [{"old":"/webhook/bahan","type":0,"val":"webhook","end":""},{"old":"/webhook/bahan","type":0,"val":"bahan","end":""}],
+    types: placeholder as Registry['webhook.stokBahanBaku']['types'],
+  },
   'bahan.index': {
     methods: ["GET","HEAD"],
     pattern: '/bahan',
@@ -539,6 +551,42 @@ const routes = {
     pattern: '/tipe-notifikasi/search',
     tokens: [{"old":"/tipe-notifikasi/search","type":0,"val":"tipe-notifikasi","end":""},{"old":"/tipe-notifikasi/search","type":0,"val":"search","end":""}],
     types: placeholder as Registry['tipeNotifikasi.search']['types'],
+  },
+  'templateNotifikasi.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/template-notifikasi',
+    tokens: [{"old":"/template-notifikasi","type":0,"val":"template-notifikasi","end":""}],
+    types: placeholder as Registry['templateNotifikasi.index']['types'],
+  },
+  'templateNotifikasi.create': {
+    methods: ["POST"],
+    pattern: '/template-notifikasi/create',
+    tokens: [{"old":"/template-notifikasi/create","type":0,"val":"template-notifikasi","end":""},{"old":"/template-notifikasi/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['templateNotifikasi.create']['types'],
+  },
+  'templateNotifikasi.search': {
+    methods: ["GET","HEAD"],
+    pattern: '/template-notifikasi/search',
+    tokens: [{"old":"/template-notifikasi/search","type":0,"val":"template-notifikasi","end":""},{"old":"/template-notifikasi/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['templateNotifikasi.search']['types'],
+  },
+  'templateNotifikasi.edit': {
+    methods: ["GET","HEAD"],
+    pattern: '/template-notifikasi/edit/:id',
+    tokens: [{"old":"/template-notifikasi/edit/:id","type":0,"val":"template-notifikasi","end":""},{"old":"/template-notifikasi/edit/:id","type":0,"val":"edit","end":""},{"old":"/template-notifikasi/edit/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['templateNotifikasi.edit']['types'],
+  },
+  'templateNotifikasi.update': {
+    methods: ["PUT"],
+    pattern: '/template-notifikasi/update/:id',
+    tokens: [{"old":"/template-notifikasi/update/:id","type":0,"val":"template-notifikasi","end":""},{"old":"/template-notifikasi/update/:id","type":0,"val":"update","end":""},{"old":"/template-notifikasi/update/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['templateNotifikasi.update']['types'],
+  },
+  'templateNotifikasi.destroy': {
+    methods: ["DELETE"],
+    pattern: '/template-notifikasi/delete/:id',
+    tokens: [{"old":"/template-notifikasi/delete/:id","type":0,"val":"template-notifikasi","end":""},{"old":"/template-notifikasi/delete/:id","type":0,"val":"delete","end":""},{"old":"/template-notifikasi/delete/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['templateNotifikasi.destroy']['types'],
   },
 } as const satisfies Record<string, AdonisEndpoint>
 

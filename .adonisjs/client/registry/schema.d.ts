@@ -29,6 +29,28 @@ export interface Registry {
       response: unknown
     }
   }
+  'webhook.stokProduk': {
+    methods: ["POST"]
+    pattern: '/webhook/stok-produk'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'webhook.stokBahanBaku': {
+    methods: ["POST"]
+    pattern: '/webhook/bahan'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
   'bahan.index': {
     methods: ["GET","HEAD"]
     pattern: '/bahan'
@@ -982,6 +1004,72 @@ export interface Registry {
       body: {}
       paramsTuple: []
       params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'templateNotifikasi.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/template-notifikasi'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'templateNotifikasi.create': {
+    methods: ["POST"]
+    pattern: '/template-notifikasi/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'templateNotifikasi.search': {
+    methods: ["GET","HEAD"]
+    pattern: '/template-notifikasi/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'templateNotifikasi.edit': {
+    methods: ["GET","HEAD"]
+    pattern: '/template-notifikasi/edit/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'templateNotifikasi.update': {
+    methods: ["PUT"]
+    pattern: '/template-notifikasi/update/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'templateNotifikasi.destroy': {
+    methods: ["DELETE"]
+    pattern: '/template-notifikasi/delete/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
       query: {}
       response: unknown
     }

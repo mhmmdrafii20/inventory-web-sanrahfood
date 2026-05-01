@@ -25,9 +25,14 @@ import RiwayatStokProdukController from '#controllers/produk/riwayat_stok_produk
 import NotifikasiWhatsappController from '#controllers/notifikasi/notifikasi_whatsapp_controller';
 import DaftarPenerimaController from '#controllers/notifikasi/daftar_penerima_controller';
 import TipeNotifikasiController from '#controllers/notifikasi/tipe_notifikasi_controller';
+import TemplateNotifikasiController from '#controllers/notifikasi/template_notifikasi_controller';
+import WebhookController from '#controllers/webhooks/supabase/webhook_controller';
 
 router.get('/', [AuthController, 'login']).as('auth.login');
 router.post('/login', [AuthController, 'signIn']);
+
+router.post('webhook/stok-produk', [WebhookController, 'cekStokProduk']).as('webhook.stokProduk');
+router.post('webhook/bahan', [WebhookController, 'cekStokBahanBaku']).as('webhook.stokBahanBaku');
 
 router
     .group(() => {
@@ -132,5 +137,12 @@ router
         router.put('/tipe-notifikasi/update/:id', [TipeNotifikasiController, 'update']).as('tipeNotifikasi.update');
         router.delete('/tipe-notifikasi/delete/:id', [TipeNotifikasiController, 'destroy']).as('tipeNotifikasi.destroy');
         router.get('/tipe-notifikasi/search', [TipeNotifikasiController, 'search']).as('tipeNotifikasi.search');
+
+        router.get('/template-notifikasi', [TemplateNotifikasiController, 'index']).as('templateNotifikasi.index');
+        router.post('/template-notifikasi/create', [TemplateNotifikasiController, 'create']).as('templateNotifikasi.create');
+        router.get('/template-notifikasi/search', [TemplateNotifikasiController, 'search']).as('templateNotifikasi.search');
+        router.get('/template-notifikasi/edit/:id', [TemplateNotifikasiController, 'edit']).as('templateNotifikasi.edit');
+        router.put('/template-notifikasi/update/:id', [TemplateNotifikasiController, 'update']).as('templateNotifikasi.update')
+        router.delete('/template-notifikasi/delete/:id', [TemplateNotifikasiController, 'destroy']).as('templateNotifikasi.destroy');
     })
     .use(middleware.ensureUserAcces())

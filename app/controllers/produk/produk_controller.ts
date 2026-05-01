@@ -4,7 +4,7 @@ import { ProdukServices } from "#services/produk/ProdukServices";
 import { HttpContext } from "@adonisjs/core/http"
 import { produkValidator, updateProdukValidator } from "#validators/produk/produk";
 import Resep from "#models/resep/resep";
-
+import StokProduk from "#models/produk/stok_produk";
 export default class ProdukController {
     async index({ inertia }: HttpContext) {
         const kategori = await Kategori.all();
@@ -33,9 +33,11 @@ export default class ProdukController {
         const produk = await Produk.find(params.id);
         const dataProduk = produk?.$attributes;
 
+        const stokProduk = await StokProduk.query().where('id_produk', params.id).first();
+        const dataStokProduk = stokProduk?.$attributes;
         const kategori = await Kategori.all();
 
-        return inertia.render('produk/update/produk', { dataProduk, kategori });
+        return inertia.render('produk/update/produk', { dataProduk, kategori, dataStokProduk });
     }
     async update({ response, request, session, params }: HttpContext) {
         try {

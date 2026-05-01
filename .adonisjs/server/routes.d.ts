@@ -6,6 +6,8 @@ export type ScannedRoutes = {
   ALL: {
     'auth.login': { paramsTuple?: []; params?: {} }
     'auth.sign_in': { paramsTuple?: []; params?: {} }
+    'webhook.stokProduk': { paramsTuple?: []; params?: {} }
+    'webhook.stokBahanBaku': { paramsTuple?: []; params?: {} }
     'bahan.index': { paramsTuple?: []; params?: {} }
     'bahan.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'bahan.create': { paramsTuple?: []; params?: {} }
@@ -93,6 +95,12 @@ export type ScannedRoutes = {
     'tipeNotifikasi.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'tipeNotifikasi.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'tipeNotifikasi.search': { paramsTuple?: []; params?: {} }
+    'templateNotifikasi.index': { paramsTuple?: []; params?: {} }
+    'templateNotifikasi.create': { paramsTuple?: []; params?: {} }
+    'templateNotifikasi.search': { paramsTuple?: []; params?: {} }
+    'templateNotifikasi.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'templateNotifikasi.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'templateNotifikasi.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   GET: {
     'auth.login': { paramsTuple?: []; params?: {} }
@@ -149,6 +157,9 @@ export type ScannedRoutes = {
     'tipeNotifikasi.index': { paramsTuple?: []; params?: {} }
     'tipeNotifikasi.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'tipeNotifikasi.search': { paramsTuple?: []; params?: {} }
+    'templateNotifikasi.index': { paramsTuple?: []; params?: {} }
+    'templateNotifikasi.search': { paramsTuple?: []; params?: {} }
+    'templateNotifikasi.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   HEAD: {
     'auth.login': { paramsTuple?: []; params?: {} }
@@ -205,9 +216,14 @@ export type ScannedRoutes = {
     'tipeNotifikasi.index': { paramsTuple?: []; params?: {} }
     'tipeNotifikasi.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'tipeNotifikasi.search': { paramsTuple?: []; params?: {} }
+    'templateNotifikasi.index': { paramsTuple?: []; params?: {} }
+    'templateNotifikasi.search': { paramsTuple?: []; params?: {} }
+    'templateNotifikasi.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   POST: {
     'auth.sign_in': { paramsTuple?: []; params?: {} }
+    'webhook.stokProduk': { paramsTuple?: []; params?: {} }
+    'webhook.stokBahanBaku': { paramsTuple?: []; params?: {} }
     'bahan.create': { paramsTuple?: []; params?: {} }
     'produk.create': { paramsTuple?: []; params?: {} }
     'hakAkses.create': { paramsTuple?: []; params?: {} }
@@ -219,6 +235,7 @@ export type ScannedRoutes = {
     'notifikasiWhatsapp.createSession': { paramsTuple?: []; params?: {} }
     'daftarPenerima.create': { paramsTuple?: []; params?: {} }
     'tipeNotifikasi.create': { paramsTuple?: []; params?: {} }
+    'templateNotifikasi.create': { paramsTuple?: []; params?: {} }
   }
   PUT: {
     'bahan.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -229,6 +246,7 @@ export type ScannedRoutes = {
     'kategoriProduk.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'daftarPenerima.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'tipeNotifikasi.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'templateNotifikasi.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   DELETE: {
     'bahan.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -240,6 +258,7 @@ export type ScannedRoutes = {
     'notifikasiWhatsapp.deleteSession': { paramsTuple?: []; params?: {} }
     'daftarPenerima.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'tipeNotifikasi.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'templateNotifikasi.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   PATCH: {
     'bahan.restore': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }

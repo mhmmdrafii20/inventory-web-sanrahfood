@@ -23,7 +23,16 @@ export const tipeNotifikasiValidator = vine.create({
         .string()
         .minLength(3)
         .maxLength(255)
-        .trim()
+        .trim(),
+    template_variables: vine.array(
+        vine
+            .string()
+            .trim()
+            .toLowerCase()
+            .regex(/^[a-zA-Z_]+$/) //memastikan variable valid seperti { nama_bahan }
+    )
+        .distinct()
+        .minLength(3),
 })
 
 const uniqueUpdateTipeNotifikasi = (id: number) =>
@@ -54,5 +63,15 @@ export const updateTipeNotifikasiValidator = (id: number) => vine.create({
         .minLength(3)
         .maxLength(255)
         .trim()
+        .optional(),
+    template_variables: vine.array(
+        vine
+            .string()
+            .trim()
+            .toLowerCase()
+            .regex(/^[a-zA-Z_]+$/)
+    )
+        .distinct()
+        .minLength(3)
         .optional(),
 })

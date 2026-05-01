@@ -8,13 +8,14 @@ import Select from "~/components/ui/Select";
 import Error from "~/components/ui/Error";
 
 export default function Produk() {
-    const { dataProduk, kategori, errors } = usePage<{ dataProduk: { id_produk: number, nama_produk: string, satuan: string, id_kategori: number }, kategori: { idKategori: number, namaKategori: string }[] }>().props;
+    const { dataProduk, kategori, errors, dataStokProduk } = usePage<{ dataProduk: { id_produk: number, nama_produk: string, satuan: string, id_kategori: number }, kategori: { idKategori: number, namaKategori: string }[], dataStokProduk: { stok_minimum: number } }>().props;
     console.log(kategori)
     const { data, setData, put, processing, reset } = useForm({
         id_produk: dataProduk.id_produk,
         id_kategori: dataProduk.id_kategori,
         nama_produk: dataProduk.nama_produk,
         satuan: dataProduk.satuan,
+        stok_minimum: dataStokProduk.stok_minimum,
     });
 
     function handleUpdate(e: SubmitEvent) {
@@ -28,8 +29,10 @@ export default function Produk() {
 
     return (
         <>
-            <Heading level={1} color="dark_slate_grey" className="font-bold">Edit Produk</Heading>
-            <form onSubmit={handleUpdate} className="flex flex-col gap-5 bg-white p-5 shadow-md rounded-md w-96">
+            <div className="flex justify-center mx-auto mb-5">
+                <Heading level={1} color="dark_slate_grey" className="font-bold">Edit Produk</Heading>
+            </div>
+            <form className="flex flex-col gap-5 bg-white p-5 shadow-md rounded-md w-[600px] mx-auto" onSubmit={handleUpdate}>
                 <Input variant={1} size="md" type="hidden" name="id_produk" value={data.id_produk} onChange={(e) => setData('id_produk', parseInt(e.target.value))} />
 
                 <Paragraph size="lg">Nama Produk</Paragraph>
@@ -47,6 +50,11 @@ export default function Produk() {
                         <option key={items.idKategori} value={items.idKategori}>{items.namaKategori}</option>
                     ))}
                 </Select>
+
+                <Paragraph size="lg">Stok Minimum</Paragraph>
+                <Input variant={1} size="md" type="number" name="stok_minimum" value={data.stok_minimum} onChange={(e) => setData('stok_minimum', parseInt(e.target.value))} />
+                {errors.stok_minimum && <Error variant={1}>{errors.stok_minimum}</Error>}
+
                 {errors.id_kategori && <Error variant={1}>{errors.id_kategori}</Error>}
                 <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Updating...." : "Update"}</Button>
             </form>

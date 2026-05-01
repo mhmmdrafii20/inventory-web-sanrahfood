@@ -27,6 +27,9 @@ export default class StokBahanBaku extends StokBahanBakuSchema {
     @column({ columnName: 'jumlah_stok' })
     declare jumlah_stok: number
 
+    @column({ columnName: 'stok_minimum' })
+    declare stok_minimum: number
+
     @column.dateTime({ autoCreate: true })
     declare created_at: DateTime
 }

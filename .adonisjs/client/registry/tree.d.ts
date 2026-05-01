@@ -6,6 +6,10 @@ export interface ApiDefinition {
     login: typeof routes['auth.login']
     signIn: typeof routes['auth.sign_in']
   }
+  webhook: {
+    stokProduk: typeof routes['webhook.stokProduk']
+    stokBahanBaku: typeof routes['webhook.stokBahanBaku']
+  }
   bahan: {
     index: typeof routes['bahan.index']
     edit: typeof routes['bahan.edit']
@@ -124,5 +128,13 @@ export interface ApiDefinition {
     update: typeof routes['tipeNotifikasi.update']
     destroy: typeof routes['tipeNotifikasi.destroy']
     search: typeof routes['tipeNotifikasi.search']
+  }
+  templateNotifikasi: {
+    index: typeof routes['templateNotifikasi.index']
+    create: typeof routes['templateNotifikasi.create']
+    search: typeof routes['templateNotifikasi.search']
+    edit: typeof routes['templateNotifikasi.edit']
+    update: typeof routes['templateNotifikasi.update']
+    destroy: typeof routes['templateNotifikasi.destroy']
   }
 }

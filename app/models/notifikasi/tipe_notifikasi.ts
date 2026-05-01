@@ -39,8 +39,23 @@ export default class TipeNotifikasi extends TipeNotifikasiSchema {
     @column({ columnName: 'nama_notifikasi' })
     declare nama_notifikasi: string
 
-    @column({ columnName: 'is_deleted' })
-    declare is_deleted: boolean
+    @column({
+        columnName: 'template_variables',
+        prepare: (v: string[]) => {
+            // array convert ke JSON string sebelum disimpan ke DB
+            if (typeof v === 'string') return v // sudah string, skip
+            return JSON.stringify(v)
+        },
+        // JSON string convert ke array setelah diambil dari DB
+        consume: (v: string) => {
+            try {
+                return JSON.parse(v)
+            } catch {
+                return v  // kalo gagal parse, return apa adanya
+            }
+        }
+    })
+    declare template_variables: string[]
 
     @column.dateTime({ autoCreate: true })
     declare created_at: DateTime

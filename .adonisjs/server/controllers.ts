@@ -17,6 +17,7 @@ export const controllers = {
   notifikasi: {
     DaftarPenerima: () => import('#controllers/notifikasi/daftar_penerima_controller'),
     NotifikasiWhatsapp: () => import('#controllers/notifikasi/notifikasi_whatsapp_controller'),
+    TemplateNotifikasi: () => import('#controllers/notifikasi/template_notifikasi_controller'),
     TipeNotifikasi: () => import('#controllers/notifikasi/tipe_notifikasi_controller'),
   },
   produk: {
@@ -31,5 +32,10 @@ export const controllers = {
   },
   resep: {
     Resep: () => import('#controllers/resep/resep_controller'),
+  },
+  webhooks: {
+    supabase: {
+      Webhook: () => import('#controllers/webhooks/supabase/webhook_controller'),
+    },
   },
 }

@@ -17,7 +17,8 @@ export default function Index() {
     const { bahan, errors, searchRes } = usePage<{ bahan: { idBahanBaku: number; namaBahanBaku: string; satuan: string; }[], searchRes: { idBahanBaku: number; namaBahanBaku: string; satuan: string; }[] }>().props;
     const { data, setData, post, get, delete: destroy, processing, reset } = useForm({
         nama_bahan_baku: "",
-        satuan: ""
+        satuan: "",
+        stok_minimum: ""
     })
     const [searchData, setSearchData] = useState("");
 
@@ -63,6 +64,11 @@ export default function Index() {
                                 <Input variant={1} size="md" type="text" name="satuan" value={data.satuan} onChange={e => setData('satuan', e.target.value)} placeholder="Satuan" />
                             </div>
                             {errors.satuan && <Error variant={1}>{errors.satuan}</Error>}
+                            <div className="flex flex-col gap-3">
+                                <Paragraph size="lg">Stok Minimum</Paragraph>
+                                <Input variant={1} size="md" type="number" name="stok_minimum" placeholder="Stok Minimum" value={data.stok_minimum} onChange={(e) => setData('stok_minimum', e.target.value)} />
+                                {errors.stok_minimum && <Error variant={1}>{errors.stok_minimum}</Error>}
+                            </div>
                             <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan"}</Button>
                         </form>
                     </Modal>

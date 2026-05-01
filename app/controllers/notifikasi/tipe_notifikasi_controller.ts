@@ -18,6 +18,7 @@ export default class TipeNotifikasiController {
             session.flash('success', `${payload.nama_notifikasi} berhasil ditambahkan`);
             return response.redirect().toRoute('tipeNotifikasi.index');
         } catch (error) {
+            console.error(error)
             if (error.code === 'E_VALIDATION_ERROR') {
                 throw error
             }
@@ -36,10 +37,12 @@ export default class TipeNotifikasiController {
 
             const payload = await request.validateUsing(updateTipeNotifikasiValidator(params.id));
 
+
             await TipeNotifikasiService.update(payload, params.id);
             session.flash('success', `${tipeNotifikasi?.nama_notifikasi} Berhasil dilakukan perubahan.`);
             return response.redirect().toRoute('tipeNotifikasi.index');
         } catch (error) {
+            console.error(error);
             if (error.code === 'E_VALIDATION_ERROR') {
                 throw error
             }

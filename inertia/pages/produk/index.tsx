@@ -20,6 +20,7 @@ export default function Index() {
         nama_produk: "",
         satuan: "",
         id_kategori: "",
+        stok_minimum: ""
     });
 
     const [searchData, setSearchData] = useState("");
@@ -74,6 +75,11 @@ export default function Index() {
                                     ))}
                                 </Select>
                                 {errors.id_kategori && <Error variant={1}>{errors.id_kategori}</Error>}
+                            </div>
+                            <div className="flex flex-col gap-3">
+                                <Paragraph size="lg">Stok Minimum</Paragraph>
+                                <Input variant={1} size="md" type="number" name="stok_minimum" placeholder="Stok Minimum" value={data.stok_minimum} onChange={(e) => setData('stok_minimum', e.target.value)} />
+                                {errors.stok_minimum && <Error variant={1}>{errors.stok_minimum}</Error>}
                             </div>
                             <Button type="submit" variant={1} disabled={processing} size="md">{processing ? "Menambahkan...." : "Tambahkan"}</Button>
                         </form>

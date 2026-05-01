@@ -110,7 +110,7 @@ export default function ResepUpdate() {
                                 <li key={i} className="flex flex-col gap-1">
                                     <div className="flex flex-row gap-3">
                                         <span className="flex-1">{items.nama_bahan_baku}</span>
-                                        <input type="number" className="w-20" value={items.jumlah} placeholder="Jumlah" onChange={(e) => {
+                                        <Input variant={1} size="md" type="number" className="w-20" value={items.jumlah} placeholder="Jumlah" onChange={(e) => {
                                             const updated = [...data.bahan];
                                             updated[i].jumlah = Number(e.target.value);
                                             setData("bahan", updated);

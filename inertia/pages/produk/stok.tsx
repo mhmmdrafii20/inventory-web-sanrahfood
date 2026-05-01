@@ -8,8 +8,8 @@ import { useState } from "react";
 
 export default function Stok() {
     const { stokProduk, searchRes } = usePage<{
-        stokProduk: { idStokProduk: number; idProduk: number; jumlahStok: number, produk: { namaProduk: string, satuan: string } }[]
-        searchRes: { idStokProduk: number; idProduk: number; jumlahStok: number, produk: { namaProduk: string, satuan: string } }[]
+        stokProduk: { idStokProduk: number; idProduk: number; jumlahStok: number, stokMinimum: number, produk: { namaProduk: string, satuan: string } }[]
+        searchRes: { idStokProduk: number; idProduk: number; jumlahStok: number, stokMinimum: number, produk: { namaProduk: string, satuan: string } }[]
     }>().props;
 
     const [searchData, setSearchData] = useState("");
@@ -38,6 +38,7 @@ export default function Stok() {
                         <tr>
                             <th className="border border-gray-300 py-3">Nama Produk</th>
                             <th className="border border-gray-300 py-3">Jumlah Stok</th>
+                            <th className="border border-gray-300 py-3">Stok Minimum</th>
                             <th className="border border-gray-300 py-3">Satuan</th>
                         </tr>
                     </thead>
@@ -46,6 +47,7 @@ export default function Stok() {
                             <tr key={items.idStokProduk}>
                                 <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.produk.namaProduk}</Paragraph></td>
                                 <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.jumlahStok}</Paragraph></td>
+                                <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.stokMinimum}</Paragraph></td>
                                 <td className="border border-gray-300 py-3 px-5"><Paragraph size="lg">{items.produk.satuan}</Paragraph></td>
                             </tr>
                         )) : <tr className="border border-gray-300"><td colSpan={7} className="text-center py-4"><Paragraph size="lg">Tidak Ada Stok Produk</Paragraph></td></tr>}

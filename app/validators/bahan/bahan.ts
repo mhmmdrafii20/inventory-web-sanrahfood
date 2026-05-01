@@ -26,6 +26,9 @@ export const bahanValidator = vine.create({
         .minLength(1)
         .maxLength(10)
         .trim(),
+    stok_minimum: vine
+        .number()
+        .min(0)
 })
 
 
@@ -58,5 +61,9 @@ export const updateBahanValidator = (id: number) => vine.create({
         .minLength(1)
         .maxLength(10)
         .trim()
+        .optional(),
+    stok_minimum: vine
+        .number()
+        .min(0)
         .optional(),
 })

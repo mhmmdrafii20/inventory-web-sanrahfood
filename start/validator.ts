@@ -29,7 +29,8 @@ const messages = {
   email: '{{field}} tidak valid',
   min: '{{field}} minimal {{min}} ',
   max: '{{field}} maksimal {{max}}',
-  mobile: '{{field}} harus valid'
+  mobile: '{{field}} harus valid',
+  'array.minLength': '{{field}} minimal {{min}} '
 }
 const field = {
   nama_kategori: 'Nama Kategori',
@@ -41,6 +42,7 @@ const field = {
   nama_pengguna: 'Nama Pengguna',
   nomor_telepon: 'Nomor Telepon',
   nama_notifikasi: "Nama Notifikasi",
+  nama_template: 'Nama Template',
   email: 'Email',
   password: 'Password',
   id_hak_akses: 'Hak Akses',
@@ -50,10 +52,13 @@ const field = {
   id_pengguna: 'Pengguna',
   id_bahan_baku: "Bahan Baku",
   id_tipe_notifikasi: "Tipe Notifikasi",
+  bahan: "Bahan",
+  konten: 'Konten',
   jenis_stok: 'Jenis Stok',
   selisih_stok: 'Selisih Stok',
   stok_sebelum: 'Stok Sebelum',
   stok_sesudah: 'Stok Sesudah',
+  stok_minimum: "Stok Minimum",
   tanggal_perubahan_stok: 'Tanggal Perubahan Stok',
   tanggal_produksi: 'Tanggal Produksi',
   tanggal_restok: 'Tanggal Restok',

@@ -2,6 +2,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 import { BahanService } from '#services/bahan/BahanServices';
 import Bahan from '#models/bahan/bahan';
 import { bahanValidator, updateBahanValidator } from '#validators/bahan/bahan';
+import StokBahanBaku from '#models/bahan/stok_bahan_baku';
 export default class BahanController {
     async index({ inertia }: HttpContext) {
         const bahan = await Bahan.query().where({ is_deleted: false });
@@ -26,7 +27,10 @@ export default class BahanController {
         const bahan = await Bahan.find(params.id);
         const dataBahan = bahan?.$attributes;
 
-        return inertia.render('bahan/update', { dataBahan });
+        const stokBahan = await StokBahanBaku.query().where('id_bahan_baku', params.id).first();
+        const dataStokBahan = stokBahan?.$attributes;
+
+        return inertia.render('bahan/update', { dataBahan, dataStokBahan });
     }
     async update({ request, response, params, session }: HttpContext) {
         try {

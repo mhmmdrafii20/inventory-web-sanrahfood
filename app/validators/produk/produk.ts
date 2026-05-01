@@ -26,7 +26,9 @@ export const produkValidator = vine.create({
         .maxLength(10)
         .trim(),
     id_kategori: vine
-        .number().min(1)
+        .number().min(1),
+    stok_minimum: vine
+        .number().min(0)
 });
 
 const uniqueUpdateProduk = (id: number) =>
@@ -60,5 +62,8 @@ export const updateProdukValidator = (id: number) => vine.create({
         .optional(),
     id_kategori: vine
         .number().min(1)
+        .optional(),
+    stok_minimum: vine
+        .number().min(0)
         .optional(),
 });

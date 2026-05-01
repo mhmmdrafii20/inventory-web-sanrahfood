@@ -127,7 +127,7 @@ export default function NotifikasiWhatsapp() {
                     <Heading level={2} color="dark_slate_grey" className="font-bold">Atur Template Notifikasi</Heading>
                     <Paragraph size="md" color="dark_grey">Kelola template pesan WhatsApp untuk setiap tipe notifikasi.</Paragraph>
                     <Button variant={1} size="md" className="w-fit">
-                        <Link href="DaftarPenerima.index">Atur Template Notifikasi </Link>
+                        <Link route="templateNotifikasi.index">Atur Template Notifikasi </Link>
                     </Button>
                 </div>
 
