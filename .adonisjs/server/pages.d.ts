@@ -29,6 +29,7 @@ declare module '@adonisjs/inertia/types' {
     'notifikasi/daftarPenerima': ExtractProps<(typeof import('../../inertia/pages/notifikasi/daftarPenerima.tsx'))['default']>
     'notifikasi/data': ExtractProps<(typeof import('../../inertia/pages/notifikasi/data.ts'))['default']>
     'notifikasi/notifikasiWhatsapp': ExtractProps<(typeof import('../../inertia/pages/notifikasi/notifikasiWhatsapp.tsx'))['default']>
+    'notifikasi/riwayat': ExtractProps<(typeof import('../../inertia/pages/notifikasi/riwayat.tsx'))['default']>
     'notifikasi/templateNotifikasi': ExtractProps<(typeof import('../../inertia/pages/notifikasi/templateNotifikasi.tsx'))['default']>
     'notifikasi/tipeNotifikasi': ExtractProps<(typeof import('../../inertia/pages/notifikasi/tipeNotifikasi.tsx'))['default']>
     'notifikasi/update/daftarPenerima': ExtractProps<(typeof import('../../inertia/pages/notifikasi/update/daftarPenerima.tsx'))['default']>

@@ -3,60 +3,48 @@ import { column, hasMany } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
 import PenerimaJenisNotifikasi from './penerima_jenis_notifikasi.ts'
-import RiwayatNotifikasiBahanBaku from '../bahan/riwayat_notifikasi_bahan_baku.ts'
-import RiwayatNotifikasiProduk from '../produk/riwayat_notifikasi_produk.ts'
 import TemplateNotifikasi from './template_notifikasi.ts'
 
 export default class TipeNotifikasi extends TipeNotifikasiSchema {
-    public static table = 'tb_tipe_notifikasi';
+  public static table = 'tb_tipe_notifikasi'
 
-    @column({ isPrimary: true, columnName: 'id_tipe_notifikasi' })
-    declare id_tipe_notifikasi: number
+  @column({ isPrimary: true, columnName: 'id_tipe_notifikasi' })
+  declare id_tipe_notifikasi: number
 
-    @hasMany(() => RiwayatNotifikasiBahanBaku, {
-        foreignKey: 'id_tipe_notifikasi'
-    })
-    declare riwayatNotifikasiBahanBaku: HasMany<typeof RiwayatNotifikasiBahanBaku>
+  @hasMany(() => PenerimaJenisNotifikasi, {
+    foreignKey: 'id_tipe_notifikasi',
+  })
+  declare penerima_jenis_notifikasi: HasMany<typeof PenerimaJenisNotifikasi>
 
-    @hasMany(() => RiwayatNotifikasiProduk, {
-        foreignKey: 'id_tipe_notifikasi'
-    })
-    declare riwayatNotifikasiProduk: HasMany<typeof RiwayatNotifikasiProduk>
+  @hasMany(() => TemplateNotifikasi, {
+    foreignKey: 'id_tipe_notifikasi',
+  })
+  declare templateNotifikasi: HasMany<typeof TemplateNotifikasi>
 
-    @hasMany(() => PenerimaJenisNotifikasi, {
-        foreignKey: 'id_tipe_notifikasi'
-    })
-    declare penerima_jenis_notifikasi: HasMany<typeof PenerimaJenisNotifikasi>
+  @column({ columnName: 'kode_notifikasi' })
+  declare kode_notifikasi: string
 
-    @hasMany(() => TemplateNotifikasi, {
-        foreignKey: 'id_tipe_notifikasi'
-    })
-    declare templateNotifikasi: HasMany<typeof TemplateNotifikasi>
+  @column({ columnName: 'nama_notifikasi' })
+  declare nama_notifikasi: string
 
-    @column({ columnName: 'kode_notifikasi' })
-    declare kode_notifikasi: string
+  @column({
+    columnName: 'template_variables',
+    prepare: (v: string[]) => {
+      // array convert ke JSON string sebelum disimpan ke DB
+      if (typeof v === 'string') return v // sudah string, skip
+      return JSON.stringify(v)
+    },
+    // JSON string convert ke array setelah diambil dari DB
+    consume: (v: string) => {
+      try {
+        return JSON.parse(v)
+      } catch {
+        return v // kalo gagal parse, return apa adanya
+      }
+    },
+  })
+  declare template_variables: string[]
 
-    @column({ columnName: 'nama_notifikasi' })
-    declare nama_notifikasi: string
-
-    @column({
-        columnName: 'template_variables',
-        prepare: (v: string[]) => {
-            // array convert ke JSON string sebelum disimpan ke DB
-            if (typeof v === 'string') return v // sudah string, skip
-            return JSON.stringify(v)
-        },
-        // JSON string convert ke array setelah diambil dari DB
-        consume: (v: string) => {
-            try {
-                return JSON.parse(v)
-            } catch {
-                return v  // kalo gagal parse, return apa adanya
-            }
-        }
-    })
-    declare template_variables: string[]
-
-    @column.dateTime({ autoCreate: true })
-    declare created_at: DateTime
+  @column.dateTime({ autoCreate: true })
+  declare created_at: DateTime
 }

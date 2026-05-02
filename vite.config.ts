@@ -24,8 +24,10 @@ export default defineConfig({
   },
 
   server: {
+    host: true,
     watch: {
       ignored: ['**/storage/**', '**/tmp/**'],
     },
+    allowedHosts: ['31d1-157-85-206-27.ngrok-free.app', 'localhost'],
   },
 })

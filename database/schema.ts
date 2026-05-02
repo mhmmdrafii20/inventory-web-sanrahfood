@@ -41,7 +41,11 @@ export class TbKategoriSchema extends BaseModel {
 }
 
 export class TbPenerimaJenisNotifikasiSchema extends BaseModel {
-  static $columns = ['idPenerimaJenisNotifikasi', 'idPenerimaNotifikasi', 'idTipeNotifikasi'] as const
+  static $columns = [
+    'idPenerimaJenisNotifikasi',
+    'idPenerimaNotifikasi',
+    'idTipeNotifikasi',
+  ] as const
   $columns = TbPenerimaJenisNotifikasiSchema.$columns
   @column()
   declare idPenerimaJenisNotifikasi: number
@@ -52,7 +56,14 @@ export class TbPenerimaJenisNotifikasiSchema extends BaseModel {
 }
 
 export class TbPenerimaNotifikasiSchema extends BaseModel {
-  static $columns = ['idPenerimaNotifikasi', 'idPengguna', 'namaPenerima', 'nomorTelepon', 'isActive', 'createdAt'] as const
+  static $columns = [
+    'idPenerimaNotifikasi',
+    'idPengguna',
+    'namaPenerima',
+    'nomorTelepon',
+    'isActive',
+    'createdAt',
+  ] as const
   $columns = TbPenerimaNotifikasiSchema.$columns
   @column()
   declare idPenerimaNotifikasi: number
@@ -69,7 +80,14 @@ export class TbPenerimaNotifikasiSchema extends BaseModel {
 }
 
 export class TbPenggunaSchema extends BaseModel {
-  static $columns = ['id', 'idPengguna', 'idHakAkses', 'namaPengguna', 'nomorTelepon', 'createdAt'] as const
+  static $columns = [
+    'id',
+    'idPengguna',
+    'idHakAkses',
+    'namaPengguna',
+    'nomorTelepon',
+    'createdAt',
+  ] as const
   $columns = TbPenggunaSchema.$columns
   @column({ isPrimary: true })
   declare id: number
@@ -101,7 +119,15 @@ export class TbProdukSchema extends BaseModel {
 }
 
 export class TbResepSchema extends BaseModel {
-  static $columns = ['idResep', 'namaResep', 'idProduk', 'isActive', 'batch', 'catatanTambahan', 'createdAt'] as const
+  static $columns = [
+    'idResep',
+    'namaResep',
+    'idProduk',
+    'isActive',
+    'batch',
+    'catatanTambahan',
+    'createdAt',
+  ] as const
   $columns = TbResepSchema.$columns
   @column()
   declare idResep: number
@@ -120,7 +146,14 @@ export class TbResepSchema extends BaseModel {
 }
 
 export class TbResepBahanSchema extends BaseModel {
-  static $columns = ['idResepBahan', 'idResep', 'idBahanBaku', 'jumlah', 'satuan', 'createdAt'] as const
+  static $columns = [
+    'idResepBahan',
+    'idResep',
+    'idBahanBaku',
+    'jumlah',
+    'satuan',
+    'createdAt',
+  ] as const
   $columns = TbResepBahanSchema.$columns
   @column()
   declare idResepBahan: number
@@ -137,7 +170,15 @@ export class TbResepBahanSchema extends BaseModel {
 }
 
 export class TbRiwayatNotifikasiBahanBakuSchema extends BaseModel {
-  static $columns = ['idRiwayatNotifikasiBahanBaku', 'idPenerimaNotifikasi', 'idTipeNotifikasi', 'idTemplateNotifikasi', 'idBahanBaku', 'tanggalDikirim', 'createdAt'] as const
+  static $columns = [
+    'idRiwayatNotifikasiBahanBaku',
+    'idPenerimaNotifikasi',
+    'idTipeNotifikasi',
+    'idTemplateNotifikasi',
+    'idBahanBaku',
+    'tanggalDikirim',
+    'createdAt',
+  ] as const
   $columns = TbRiwayatNotifikasiBahanBakuSchema.$columns
   @column()
   declare idRiwayatNotifikasiBahanBaku: number
@@ -156,7 +197,15 @@ export class TbRiwayatNotifikasiBahanBakuSchema extends BaseModel {
 }
 
 export class TbRiwayatNotifikasiProdukSchema extends BaseModel {
-  static $columns = ['idRiwayatNotifikasiProduk', 'idPenerimaNotifikasi', 'idTipeNotifikasi', 'idTemplateNotifikasi', 'idProduk', 'tanggalDikirim', 'createdAt'] as const
+  static $columns = [
+    'idRiwayatNotifikasiProduk',
+    'idPenerimaNotifikasi',
+    'idTipeNotifikasi',
+    'idTemplateNotifikasi',
+    'idProduk',
+    'tanggalDikirim',
+    'createdAt',
+  ] as const
   $columns = TbRiwayatNotifikasiProdukSchema.$columns
   @column()
   declare idRiwayatNotifikasiProduk: number
@@ -175,7 +224,17 @@ export class TbRiwayatNotifikasiProdukSchema extends BaseModel {
 }
 
 export class TbRiwayatProduksiSchema extends BaseModel {
-  static $columns = ['idRiwayatProduksi', 'idProduk', 'idResep', 'jumlahBatch', 'jumlahHasilProduksi', 'tanggalProduksi', 'catatanTambahan', 'createdAt', 'updatedAt'] as const
+  static $columns = [
+    'idRiwayatProduksi',
+    'idProduk',
+    'idResep',
+    'jumlahBatch',
+    'jumlahHasilProduksi',
+    'tanggalProduksi',
+    'catatanTambahan',
+    'createdAt',
+    'updatedAt',
+  ] as const
   $columns = TbRiwayatProduksiSchema.$columns
   @column()
   declare idRiwayatProduksi: number
@@ -198,7 +257,16 @@ export class TbRiwayatProduksiSchema extends BaseModel {
 }
 
 export class TbRiwayatStokBahanBakuSchema extends BaseModel {
-  static $columns = ['idRiwayatStokBb', 'idStokBahanBaku', 'jenisStok', 'selisihStok', 'stokSebelum', 'stokSesudah', 'tanggalPerubahanStok', 'createdAt'] as const
+  static $columns = [
+    'idRiwayatStokBb',
+    'idStokBahanBaku',
+    'jenisStok',
+    'selisihStok',
+    'stokSebelum',
+    'stokSesudah',
+    'tanggalPerubahanStok',
+    'createdAt',
+  ] as const
   $columns = TbRiwayatStokBahanBakuSchema.$columns
   @column()
   declare idRiwayatStokBb: number
@@ -219,7 +287,16 @@ export class TbRiwayatStokBahanBakuSchema extends BaseModel {
 }
 
 export class TbRiwayatStokProdukSchema extends BaseModel {
-  static $columns = ['idRiwayatStokProduk', 'idStokProduk', 'jenisStok', 'selisihStok', 'stokSebelum', 'stokSesudah', 'tanggalPerubahanStok', 'createdAt'] as const
+  static $columns = [
+    'idRiwayatStokProduk',
+    'idStokProduk',
+    'jenisStok',
+    'selisihStok',
+    'stokSebelum',
+    'stokSesudah',
+    'tanggalPerubahanStok',
+    'createdAt',
+  ] as const
   $columns = TbRiwayatStokProdukSchema.$columns
   @column()
   declare idRiwayatStokProduk: number
@@ -266,7 +343,14 @@ export class TbStokProdukSchema extends BaseModel {
 }
 
 export class TbTemplateNotifikasiSchema extends BaseModel {
-  static $columns = ['idTemplateNotifikasi', 'idTipeNotifikasi', 'namaTemplate', 'konten', 'isActive', 'createdAt'] as const
+  static $columns = [
+    'idTemplateNotifikasi',
+    'idTipeNotifikasi',
+    'namaTemplate',
+    'konten',
+    'isActive',
+    'createdAt',
+  ] as const
   $columns = TbTemplateNotifikasiSchema.$columns
   @column()
   declare idTemplateNotifikasi: number
@@ -283,7 +367,13 @@ export class TbTemplateNotifikasiSchema extends BaseModel {
 }
 
 export class TbTipeNotifikasiSchema extends BaseModel {
-  static $columns = ['idTipeNotifikasi', 'kodeNotifikasi', 'namaNotifikasi', 'isActive', 'createdAt'] as const
+  static $columns = [
+    'idTipeNotifikasi',
+    'kodeNotifikasi',
+    'namaNotifikasi',
+    'isActive',
+    'createdAt',
+  ] as const
   $columns = TbTipeNotifikasiSchema.$columns
   @column()
   declare idTipeNotifikasi: number
@@ -298,7 +388,13 @@ export class TbTipeNotifikasiSchema extends BaseModel {
 }
 
 export class TbNotifikasiWhatsappSchema extends BaseModel {
-  static $columns = ['idWhatsappSessions', 'idPengguna', 'sessionId', 'status', 'createdAt'] as const
+  static $columns = [
+    'idWhatsappSessions',
+    'idPengguna',
+    'sessionId',
+    'status',
+    'createdAt',
+  ] as const
   $columns = TbNotifikasiWhatsappSchema.$columns
   @column()
   declare idWhatsappSessions: number
@@ -306,6 +402,39 @@ export class TbNotifikasiWhatsappSchema extends BaseModel {
   declare idPengguna: number
   @column()
   declare sessionId: string
+  @column()
+  declare status: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+}
+
+export class TbRiwayatNotifikasiSchema extends BaseModel {
+  static $columns = [
+    'idRiwayatNotifikasi',
+    'idTipeNotifikasi',
+    'namaPenerima',
+    'nomorTelepon',
+    'pesan',
+    'status',
+    'errorMessage',
+    'tipeNotifikasi',
+    'createdAt',
+  ] as const
+  $columns = TbRiwayatNotifikasiSchema.$columns
+  @column()
+  declare idRiwayatNotifikasi: number
+  @column()
+  declare idTipeNotifikasi: number
+  @column()
+  declare namaPenerima: string
+  @column()
+  declare nomorTelepon: string
+  @column()
+  declare pesan: string
+  @column()
+  declare status: string
+  @column()
+  declare errorMessage: string
   @column()
   declare status: string
   @column.dateTime({ autoCreate: true })

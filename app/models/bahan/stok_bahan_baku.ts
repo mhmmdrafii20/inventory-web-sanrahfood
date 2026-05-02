@@ -6,30 +6,30 @@ import Bahan from './bahan.ts'
 import RiwayatStokBahanBaku from './riwayat_stok_bahan_baku.ts'
 
 export default class StokBahanBaku extends StokBahanBakuSchema {
-    public static table = 'tb_stok_bahan_baku';
+  public static table = 'tb_stok_bahan_baku'
 
-    @column({ isPrimary: true, columnName: 'id_stok_bahan_baku' })
-    declare id_stok_bahan_baku: number
+  @column({ isPrimary: true, columnName: 'id_stok_bahan_baku' })
+  declare id_stok_bahan_baku: number
 
-    @hasMany(() => RiwayatStokBahanBaku, {
-        foreignKey: 'id_stok_bahan_baku'
-    })
-    declare riwayatStokBahanBaku: HasMany<typeof RiwayatStokBahanBaku>
+  @hasMany(() => RiwayatStokBahanBaku, {
+    foreignKey: 'id_stok_bahan_baku',
+  })
+  declare riwayatStokBahanBaku: HasMany<typeof RiwayatStokBahanBaku>
 
-    @column({ columnName: 'id_bahan_baku' })
-    declare id_bahan_baku: number
+  @column({ columnName: 'id_bahan_baku' })
+  declare id_bahan_baku: number
 
-    @belongsTo(() => Bahan, {
-        foreignKey: 'id_bahan_baku'
-    })
-    declare bahan: BelongsTo<typeof Bahan>
+  @belongsTo(() => Bahan, {
+    foreignKey: 'id_bahan_baku',
+  })
+  declare bahan: BelongsTo<typeof Bahan>
 
-    @column({ columnName: 'jumlah_stok' })
-    declare jumlah_stok: number
+  @column({ columnName: 'jumlah_stok' })
+  declare jumlah_stok: number
 
-    @column({ columnName: 'stok_minimum' })
-    declare stok_minimum: number
+  @column({ columnName: 'stok_minimum' })
+  declare stok_minimum: number
 
-    @column.dateTime({ autoCreate: true })
-    declare created_at: DateTime
+  @column.dateTime({ autoCreate: true })
+  declare created_at: DateTime
 }

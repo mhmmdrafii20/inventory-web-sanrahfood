@@ -8,28 +8,26 @@ import { SubmitEvent } from 'react'
 import Input from '~/components/ui/Input'
 
 export default function Riwayat() {
-  const { riwayatStokProduk, filteredRiwayatStokProduk } = usePage<{
-    riwayatStokProduk: {
-      idRiwayatStokProduk: number
-      idStokProduk: number
-      namaProduk: string
-      jenisStok: string
-      selisihStok: number
-      stokSebelum: number
-      stokSesudah: number
-      tanggalPerubahanStok: string
-      stokProduk: { produk: { namaProduk: string } }
+  const { riwayatNotifikasi, filteredRiwayatNotifikasi } = usePage<{
+    riwayatNotifikasi: {
+      idRiwayatNotifikasi: number
+      idTipeNotifikasi: number
+      namaPenerima: string
+      nomorTelepon: string
+      status: string
+      errorMessage: number
+      tipeNotifikasi: string
+      tanggalDikirim: string
     }[]
-    filteredRiwayatStokProduk: {
-      idRiwayatStokProduk: number
-      idStokProduk: number
-      namaProduk: string
-      jenisStok: string
-      selisihStok: number
-      stokSebelum: number
-      stokSesudah: number
-      tanggalPerubahanStok: string
-      stokProduk: { produk: { namaProduk: string } }
+    filteredRiwayatNotifikasi: {
+      idRiwayatNotifikasi: number
+      idTipeNotifikasi: number
+      namaPenerima: string
+      nomorTelepon: string
+      status: string
+      errorMessage: number
+      tipeNotifikasi: string
+      tanggalDikirim: string
     }[]
   }>().props
 
@@ -38,29 +36,24 @@ export default function Riwayat() {
     tanggal_akhir: '',
   })
 
-  const displayRiwayatStokProduk =
-    filteredRiwayatStokProduk && filteredRiwayatStokProduk.length > 0
-      ? filteredRiwayatStokProduk
-      : riwayatStokProduk
+  const displayRiwayatNotifikasi =
+    filteredRiwayatNotifikasi && filteredRiwayatNotifikasi.length > 0
+      ? filteredRiwayatNotifikasi
+      : riwayatNotifikasi
 
   const handleFilter = (e: SubmitEvent) => {
     e.preventDefault()
-    get('/riwayat-stok-produk/filter', {
+    get('/riwayat-notifikasi/filter', {
       replace: true,
       preserveState: true,
     })
-  }
-  const handleExportPdf = (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault()
-    const query = new URLSearchParams(data).toString()
-    window.open(`/riwayat-stok-produk/generate-pdf?${query}`, '_blank')
   }
 
   return (
     <>
       <Heading level={1} color="dark_slate_grey" className="font-bold">
         {' '}
-        Riwayat Stok Produk
+        Riwayat Notifikasi
       </Heading>
       <div className="flex flex-col  w-full bg-white shadow-md rounded-md p-5">
         <form onSubmit={handleFilter} className="flex flex-row gap-5 mt-5 items-center">
@@ -83,51 +76,41 @@ export default function Riwayat() {
           <Button type="submit" variant={1} disabled={processing} size="md">
             {processing ? 'Filtering...' : 'Filter'}
           </Button>
-          <div className="flex justify-end ml-auto">
-            <Button type="button" variant={1} size="md" onClick={handleExportPdf}>
-              Export PDF
-            </Button>
-          </div>
         </form>
         <div className="max-h-[500px] overflow-y-auto">
           <table className="w-full border-collapse mt-5 bg-white">
             <thead>
               <tr>
-                <th className="border border-gray-300 py-3">Nama Produk</th>
-                <th className="border border-gray-300 py-3">Selisih Stok</th>
-                <th className="border border-gray-300 py-3">Stok Sebelum</th>
-                <th className="border border-gray-300 py-3">Stok Sesudah</th>
-                <th className="border border-gray-300 py-3">Jenis Stok</th>
-                <th className="border border-gray-300 py-3">Tanggal Perubahan Stok</th>
+                <th className="border border-gray-300 py-3">Nama Penerima</th>
+                <th className="border border-gray-300 py-3">Nomor Telepon</th>
+                <th className="border border-gray-300 py-3">Tipe Notifikasi</th>
+                <th className="border border-gray-300 py-3">Pesan</th>
+                <th className="border border-gray-300 py-3">Status</th>
+                <th className="border border-gray-300 py-3">Tanggal Dikirim</th>
               </tr>
             </thead>
             <tbody>
-              {displayRiwayatStokProduk?.length > 0 ? (
-                displayRiwayatStokProduk?.map((items) => (
-                  <tr key={items.idRiwayatStokProduk}>
+              {displayRiwayatNotifikasi?.length > 0 ? (
+                displayRiwayatNotifikasi?.map((items) => (
+                  <tr key={items.idRiwayatNotifikasi}>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items?.namaProduk}</Paragraph>
+                      <Paragraph size="lg">{items?.namaPenerima}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items.selisihStok}</Paragraph>
+                      <Paragraph size="lg">{items.nomorTelepon}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items.stokSebelum}</Paragraph>
+                      <Paragraph size="lg">{items.tipeNotifikasi}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items.stokSesudah}</Paragraph>
+                      <Paragraph size="lg">{items.pesan}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph
-                        size="lg"
-                        className={`${items.jenisStok === 'MASUK' ? 'text-green-800 font-bold' : 'text-red-500 font-bold'}`}
-                      >
-                        {items.jenisStok}
-                      </Paragraph>
+                      <Paragraph size="lg">{items.status}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">
-                        {dayjs(items.tanggalPerubahanStok).format('DD/MM/YYYY')}
+                        {dayjs(items.tanggalDikirim).format('DD/MM/YYYY')}
                       </Paragraph>
                     </td>
                   </tr>
@@ -135,7 +118,7 @@ export default function Riwayat() {
               ) : (
                 <tr className="border border-gray-300">
                   <td colSpan={6} className="text-center py-4">
-                    <Paragraph size="lg">Tidak Ada Riwayat Stok Produk</Paragraph>
+                    <Paragraph size="lg">Tidak Ada Riwayat Notifikasi</Paragraph>
                   </td>
                 </tr>
               )}

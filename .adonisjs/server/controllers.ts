@@ -17,6 +17,7 @@ export const controllers = {
   notifikasi: {
     DaftarPenerima: () => import('#controllers/notifikasi/daftar_penerima_controller'),
     NotifikasiWhatsapp: () => import('#controllers/notifikasi/notifikasi_whatsapp_controller'),
+    RiwayatNotifikasi: () => import('#controllers/notifikasi/riwayat_notifikasi_controller'),
     TemplateNotifikasi: () => import('#controllers/notifikasi/template_notifikasi_controller'),
     TipeNotifikasi: () => import('#controllers/notifikasi/tipe_notifikasi_controller'),
   },

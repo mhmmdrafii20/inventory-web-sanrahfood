@@ -51,6 +51,215 @@ export interface Registry {
       response: unknown
     }
   }
+  'webhook.produksi': {
+    methods: ["POST"]
+    pattern: '/webhook/produksi'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'webhook.restokBahanBaku': {
+    methods: ["POST"]
+    pattern: '/webhook/restok-bahan-baku'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'stokBahan.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/stok-bahan'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'stokBahan.search': {
+    methods: ["GET","HEAD"]
+    pattern: '/stok-bahan/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'stokProduk.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/stok-produk'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'stokProduk.search': {
+    methods: ["GET","HEAD"]
+    pattern: '/stok-produk/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'restokBahan.restok': {
+    methods: ["GET","HEAD"]
+    pattern: '/restok-bahan'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'restokBahan.create': {
+    methods: ["POST"]
+    pattern: '/restok-bahan/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'resep.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/resep'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'resep.create': {
+    methods: ["POST"]
+    pattern: '/resep/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'resep.edit': {
+    methods: ["GET","HEAD"]
+    pattern: '/resep/edit/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'resep.update': {
+    methods: ["PUT"]
+    pattern: '/resep/update/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'resep.destroy': {
+    methods: ["DELETE"]
+    pattern: '/resep/delete/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'resep.search': {
+    methods: ["GET","HEAD"]
+    pattern: '/resep/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'resep.trash': {
+    methods: ["GET","HEAD"]
+    pattern: '/resep/trash'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'resep.restore': {
+    methods: ["PATCH"]
+    pattern: '/resep/restore/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'resep.searchTrash': {
+    methods: ["GET","HEAD"]
+    pattern: '/resep/trash/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'produksi.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/produksi'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'produksi.create': {
+    methods: ["POST"]
+    pattern: '/produksi/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
   'bahan.index': {
     methods: ["GET","HEAD"]
     pattern: '/bahan'
@@ -447,105 +656,6 @@ export interface Registry {
       response: unknown
     }
   }
-  'resep.index': {
-    methods: ["GET","HEAD"]
-    pattern: '/resep'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: unknown
-    }
-  }
-  'resep.create': {
-    methods: ["POST"]
-    pattern: '/resep/create'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: unknown
-    }
-  }
-  'resep.edit': {
-    methods: ["GET","HEAD"]
-    pattern: '/resep/edit/:id'
-    types: {
-      body: {}
-      paramsTuple: [ParamValue]
-      params: { id: ParamValue }
-      query: {}
-      response: unknown
-    }
-  }
-  'resep.update': {
-    methods: ["PUT"]
-    pattern: '/resep/update/:id'
-    types: {
-      body: {}
-      paramsTuple: [ParamValue]
-      params: { id: ParamValue }
-      query: {}
-      response: unknown
-    }
-  }
-  'resep.destroy': {
-    methods: ["DELETE"]
-    pattern: '/resep/delete/:id'
-    types: {
-      body: {}
-      paramsTuple: [ParamValue]
-      params: { id: ParamValue }
-      query: {}
-      response: unknown
-    }
-  }
-  'resep.search': {
-    methods: ["GET","HEAD"]
-    pattern: '/resep/search'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: unknown
-    }
-  }
-  'resep.trash': {
-    methods: ["GET","HEAD"]
-    pattern: '/resep/trash'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: unknown
-    }
-  }
-  'resep.restore': {
-    methods: ["PATCH"]
-    pattern: '/resep/restore/:id'
-    types: {
-      body: {}
-      paramsTuple: [ParamValue]
-      params: { id: ParamValue }
-      query: {}
-      response: unknown
-    }
-  }
-  'resep.searchTrash': {
-    methods: ["GET","HEAD"]
-    pattern: '/resep/trash/search'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: unknown
-    }
-  }
   'kategoriProduk.index': {
     methods: ["GET","HEAD"]
     pattern: '/kategori-produk'
@@ -645,72 +755,6 @@ export interface Registry {
       response: unknown
     }
   }
-  'produksi.index': {
-    methods: ["GET","HEAD"]
-    pattern: '/produksi'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: unknown
-    }
-  }
-  'produksi.create': {
-    methods: ["POST"]
-    pattern: '/produksi/create'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: unknown
-    }
-  }
-  'stokBahan.index': {
-    methods: ["GET","HEAD"]
-    pattern: '/stok-bahan'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: unknown
-    }
-  }
-  'stokBahan.search': {
-    methods: ["GET","HEAD"]
-    pattern: '/stok-bahan/search'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: unknown
-    }
-  }
-  'restokBahan.restok': {
-    methods: ["GET","HEAD"]
-    pattern: '/restok-bahan'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: unknown
-    }
-  }
-  'restokBahan.create': {
-    methods: ["POST"]
-    pattern: '/restok-bahan/create'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: unknown
-    }
-  }
   'riwayatStokBahanBaku.index': {
     methods: ["GET","HEAD"]
     pattern: '/riwayat-stok-bahan-baku'
@@ -736,28 +780,6 @@ export interface Registry {
   'riwayatStokBahanBaku.generate': {
     methods: ["GET","HEAD"]
     pattern: '/riwayat-stok-bahan-baku/generate-pdf'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: unknown
-    }
-  }
-  'stokProduk.index': {
-    methods: ["GET","HEAD"]
-    pattern: '/stok-produk'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: unknown
-    }
-  }
-  'stokProduk.search': {
-    methods: ["GET","HEAD"]
-    pattern: '/stok-produk/search'
     types: {
       body: {}
       paramsTuple: []
@@ -868,6 +890,28 @@ export interface Registry {
   'notifikasiWhatsapp.deleteSession': {
     methods: ["DELETE"]
     pattern: '/notifikasi-whatsapp/deleteSession'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'riwayatNotifikasi.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/riwayat-notifikasi'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'riwayatNotifikasi.filter': {
+    methods: ["GET","HEAD"]
+    pattern: '/riwayat-notifikasi/filter'
     types: {
       body: {}
       paramsTuple: []
@@ -1070,6 +1114,28 @@ export interface Registry {
       body: {}
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'pengguna.get_current_user': {
+    methods: ["GET","HEAD"]
+    pattern: '/current-user'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'auth.signOut': {
+    methods: ["POST"]
+    pattern: '/signout'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
       query: {}
       response: unknown
     }

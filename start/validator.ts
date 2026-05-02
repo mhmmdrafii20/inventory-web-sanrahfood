@@ -14,7 +14,6 @@
 import { DateTime } from 'luxon'
 import vine, { VineDate, SimpleMessagesProvider } from '@vinejs/vine'
 
-
 declare module '@vinejs/vine/types' {
   interface VineGlobalTransforms {
     date: DateTime
@@ -23,14 +22,14 @@ declare module '@vinejs/vine/types' {
 
 const messages = {
   'database.unique': ' {{field}} sudah digunakan ',
-  required: '{{field}} wajib diisi',
-  minLength: '{{field}} minimal {{min}} karakter',
-  maxLength: '{{field}} maksimal {{max}} karakter',
-  email: '{{field}} tidak valid',
-  min: '{{field}} minimal {{min}} ',
-  max: '{{field}} maksimal {{max}}',
-  mobile: '{{field}} harus valid',
-  'array.minLength': '{{field}} minimal {{min}} '
+  'required': '{{field}} wajib diisi',
+  'minLength': '{{field}} minimal {{min}} karakter',
+  'maxLength': '{{field}} maksimal {{max}} karakter',
+  'email': '{{field}} tidak valid',
+  'min': '{{field}} minimal {{min}} ',
+  'max': '{{field}} maksimal {{max}}',
+  'mobile': '{{field}} harus valid',
+  'array.minLength': '{{field}} minimal {{min}} ',
 }
 const field = {
   nama_kategori: 'Nama Kategori',
@@ -41,7 +40,7 @@ const field = {
   nama_resep: 'Nama Resep',
   nama_pengguna: 'Nama Pengguna',
   nomor_telepon: 'Nomor Telepon',
-  nama_notifikasi: "Nama Notifikasi",
+  nama_notifikasi: 'Nama Notifikasi',
   nama_template: 'Nama Template',
   email: 'Email',
   password: 'Password',
@@ -50,15 +49,15 @@ const field = {
   id_resep: 'Resep',
   id_kategori: 'Kategori',
   id_pengguna: 'Pengguna',
-  id_bahan_baku: "Bahan Baku",
-  id_tipe_notifikasi: "Tipe Notifikasi",
-  bahan: "Bahan",
+  id_bahan_baku: 'Bahan Baku',
+  id_tipe_notifikasi: 'Tipe Notifikasi',
+  bahan: 'Bahan',
   konten: 'Konten',
   jenis_stok: 'Jenis Stok',
   selisih_stok: 'Selisih Stok',
   stok_sebelum: 'Stok Sebelum',
   stok_sesudah: 'Stok Sesudah',
-  stok_minimum: "Stok Minimum",
+  stok_minimum: 'Stok Minimum',
   tanggal_perubahan_stok: 'Tanggal Perubahan Stok',
   tanggal_produksi: 'Tanggal Produksi',
   tanggal_restok: 'Tanggal Restok',
@@ -68,6 +67,6 @@ const field = {
   jumlah: 'Jumlah',
   catatan_tambahan: 'Catatan Tambahan',
 }
-vine.messagesProvider = new SimpleMessagesProvider(messages, field);
+vine.messagesProvider = new SimpleMessagesProvider(messages, field)
 
 VineDate.transform((value) => DateTime.fromJSDate(value))

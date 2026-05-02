@@ -6,39 +6,45 @@ import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import Resep from '../resep/resep.ts'
 
 export default class RiwayatProduksi extends RiwayatProduksiSchema {
-    public static table = 'tb_riwayat_produksi';
+  public static table = 'tb_riwayat_produksi'
 
-    @column({ isPrimary: true, columnName: 'id_riwayat_produksi' })
-    declare id_riwayat_produksi: number
+  @column({ isPrimary: true, columnName: 'id_riwayat_produksi' })
+  declare id_riwayat_produksi: number
 
-    @column({ columnName: 'id_produk' })
-    declare id_produk: number
+  @column({ columnName: 'id_produk' })
+  declare id_produk: number
 
-    @belongsTo(() => Produk, {
-        foreignKey: 'id_produk'
-    })
-    declare produk: BelongsTo<typeof Produk>
+  @belongsTo(() => Produk, {
+    foreignKey: 'id_produk',
+  })
+  declare produk: BelongsTo<typeof Produk>
 
-    @column({ columnName: 'id_resep' })
-    declare id_resep: number
+  @column({ columnName: 'nama_produk' })
+  declare nama_produk: string
 
-    @belongsTo(() => Resep, {
-        foreignKey: 'id_resep'
-    })
-    declare resep: BelongsTo<typeof Resep>
+  @column({ columnName: 'id_resep' })
+  declare id_resep: number
 
-    @column({ columnName: 'jumlah_batch' })
-    declare jumlah_batch: number
+  @belongsTo(() => Resep, {
+    foreignKey: 'id_resep',
+  })
+  declare resep: BelongsTo<typeof Resep>
 
-    @column({ columnName: 'jumlah_hasil_produksi' })
-    declare jumlah_hasil_produksi: number
+  @column({ columnName: 'nama_resep' })
+  declare nama_resep: string
 
-    @column.dateTime({ autoCreate: false, columnName: 'tanggal_produksi' })
-    declare tanggal_produksi: DateTime
+  @column({ columnName: 'jumlah_batch' })
+  declare jumlah_batch: number
 
-    @column({ columnName: 'catatan_tambahan' })
-    declare catatan_tambahan: string
+  @column({ columnName: 'jumlah_hasil_produksi' })
+  declare jumlah_hasil_produksi: number
 
-    @column.dateTime({ autoCreate: true })
-    declare created_at: DateTime
+  @column.dateTime({ autoCreate: false, columnName: 'tanggal_produksi' })
+  declare tanggal_produksi: DateTime
+
+  @column({ columnName: 'catatan_tambahan' })
+  declare catatan_tambahan: string
+
+  @column.dateTime({ autoCreate: true })
+  declare created_at: DateTime
 }

@@ -1,77 +1,70 @@
-import vine from "@vinejs/vine"
-import { FieldContext } from "@vinejs/vine/types";
-import TipeNotifikasi from "#models/notifikasi/tipe_notifikasi";
+import vine from '@vinejs/vine'
+import { FieldContext } from '@vinejs/vine/types'
+import TipeNotifikasi from '#models/notifikasi/tipe_notifikasi'
 
-const uniqueTipeNotifikasi = vine.createRule(async (value: unknown, _, field: FieldContext) => {
+const uniqueTipeNotifikasi = vine.createRule(
+  async (value: unknown, _, field: FieldContext) => {
     const duplicate = await TipeNotifikasi.query()
-        .whereRaw('kode_notifikasi ILIKE ?', [String(value)])
-        .first();
+      .whereRaw('kode_notifikasi ILIKE ?', [String(value)])
+      .first()
 
     if (duplicate) {
-        field.report('Kode Notifikasi sudah digunakan', 'unique', field);
+      field.report('Kode Notifikasi sudah digunakan', 'unique', field)
     }
-}, { isAsync: true })
+  },
+  { isAsync: true }
+)
 
 export const tipeNotifikasiValidator = vine.create({
-    kode_notifikasi: vine
+  kode_notifikasi: vine.string().minLength(3).maxLength(50).use(uniqueTipeNotifikasi()).trim(),
+  nama_notifikasi: vine.string().minLength(3).maxLength(255).trim(),
+  template_variables: vine
+    .array(
+      vine
         .string()
-        .minLength(3)
-        .maxLength(50)
-        .use(uniqueTipeNotifikasi())
-        .trim(),
-    nama_notifikasi: vine
-        .string()
-        .minLength(3)
-        .maxLength(255)
-        .trim(),
-    template_variables: vine.array(
-        vine
-            .string()
-            .trim()
-            .toLowerCase()
-            .regex(/^[a-zA-Z_]+$/) //memastikan variable valid seperti { nama_bahan }
+        .trim()
+        .toLowerCase()
+        .regex(/^[a-zA-Z_]+$/) //memastikan variable valid seperti { nama_bahan }
     )
-        .distinct()
-        .minLength(3),
+    .distinct()
+    .minLength(3),
 })
 
 const uniqueUpdateTipeNotifikasi = (id: number) =>
-    vine.createRule(async (value: unknown, _, field: FieldContext) => {
-        const duplicate = await TipeNotifikasi.query()
-            .whereRaw('kode_notifikasi ILIKE ?', [String(value)])
-            .whereNot('id_tipe_notifikasi', id)
-            .first();
+  vine.createRule(
+    async (value: unknown, _, field: FieldContext) => {
+      const duplicate = await TipeNotifikasi.query()
+        .whereRaw('kode_notifikasi ILIKE ?', [String(value)])
+        .whereNot('id_tipe_notifikasi', id)
+        .first()
 
-        if (duplicate) {
-            field.report('Kode Notifikasi sudah digunakan', 'unique', field);
-        }
-    }, { isAsync: true })
+      if (duplicate) {
+        field.report('Kode Notifikasi sudah digunakan', 'unique', field)
+      }
+    },
+    { isAsync: true }
+  )
 
-export const updateTipeNotifikasiValidator = (id: number) => vine.create({
-    id_tipe_notifikasi: vine
-        .number().min(1)
-        .optional(),
+export const updateTipeNotifikasiValidator = (id: number) =>
+  vine.create({
+    id_tipe_notifikasi: vine.number().min(1).optional(),
     kode_notifikasi: vine
-        .string()
-        .minLength(3)
-        .maxLength(50)
-        .use(uniqueUpdateTipeNotifikasi(id)())
-        .trim()
-        .optional(),
-    nama_notifikasi: vine
-        .string()
-        .minLength(3)
-        .maxLength(255)
-        .trim()
-        .optional(),
-    template_variables: vine.array(
+      .string()
+      .minLength(3)
+      .maxLength(50)
+      .use(uniqueUpdateTipeNotifikasi(id)())
+      .trim()
+      .optional(),
+    nama_notifikasi: vine.string().minLength(3).maxLength(255).trim().optional(),
+    template_variables: vine
+      .array(
         vine
-            .string()
-            .trim()
-            .toLowerCase()
-            .regex(/^[a-zA-Z_]+$/)
-    )
-        .distinct()
-        .minLength(3)
-        .optional(),
-})
+          .string()
+          .trim()
+          .toLowerCase()
+          .regex(/^[a-zA-Z_]+$/)
+      )
+      .distinct()
+      .minLength(3)
+      .optional(),
+  })

@@ -1,11 +1,11 @@
-import { IconType } from "react-icons/lib";
+import { IconType } from 'react-icons/lib'
 
 export interface MenuItem {
-    name: string;
-    link: string;
-    icon: IconType;
+  name: string
+  link: string
+  icon: IconType
 }
 export interface MenuSection {
-    label: string;
-    items: MenuItem[];
+  label: string
+  items: MenuItem[]
 }

@@ -5,34 +5,37 @@ import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import StokProduk from './stok_produk.ts'
 
 export default class RiwayatStokProduk extends RiwayatStokProdukSchema {
-    public static table = 'tb_riwayat_stok_produk'; 
+  public static table = 'tb_riwayat_stok_produk'
 
-    @column ({isPrimary:true, columnName:'id_riwayat_stok_produk'})
-    declare id_riwayat_stok_produk:number
+  @column({ isPrimary: true, columnName: 'id_riwayat_stok_produk' })
+  declare id_riwayat_stok_produk: number
 
-    @column({columnName:'id_stok_produk'})
-    declare id_stok_produk:number
+  @column({ columnName: 'id_stok_produk' })
+  declare id_stok_produk: number
 
-    @belongsTo(() => StokProduk, {
-        foreignKey:'id_stok_produk'
-    })
-    declare stokProduk:BelongsTo<typeof StokProduk>
+  @belongsTo(() => StokProduk, {
+    foreignKey: 'id_stok_produk',
+  })
+  declare stokProduk: BelongsTo<typeof StokProduk>
 
-    @column({columnName:'jenis_stok'})
-    declare jenis_stok:Text
+  @column({ columnName: 'nama_produk' })
+  declare nama_produk: produk
 
-    @column({columnName:'selisih_stok'})
-    declare selisih_stok:number
+  @column({ columnName: 'jenis_stok' })
+  declare jenis_stok: Text
 
-    @column({columnName:'stok_sebelum'})
-    declare stok_sebelum:number
+  @column({ columnName: 'selisih_stok' })
+  declare selisih_stok: number
 
-    @column({columnName:'stok_sesudah'})
-    declare stok_sesudah:number
- 
-    @column.dateTime({autoCreate:false, columnName:'tanggal_perubahan_stok'})
-    declare tanggal_perubahan_stok:DateTime
-    
-    @column.dateTime({autoCreate:true})
-    declare created_at:DateTime
+  @column({ columnName: 'stok_sebelum' })
+  declare stok_sebelum: number
+
+  @column({ columnName: 'stok_sesudah' })
+  declare stok_sesudah: number
+
+  @column.dateTime({ autoCreate: false, columnName: 'tanggal_perubahan_stok' })
+  declare tanggal_perubahan_stok: DateTime
+
+  @column.dateTime({ autoCreate: true })
+  declare created_at: DateTime
 }

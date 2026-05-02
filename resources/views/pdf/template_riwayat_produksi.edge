@@ -45,6 +45,7 @@
                     <th>Jumlah Batch</th>
                     <th>Jumlah Hasil Produksi</th>
                     <th>Tanggal Produksi</th>
+                    <th>Catatan Tambahan</th>
                 </tr>
                 @each(item in data)
                     <tr>
@@ -54,6 +55,7 @@
                         <td>{{item.jumlah_batch}}</td>
                         <td>{{item.jumlah_hasil_produksi}}</td>
                         <td>{{item.tanggal_produksi.toFormat('dd-MM-yyyy')}}</td>
+                        <td>{{item.catatan_tambahan || "Tidak ada catatan."}}</td>
                     </tr>
                 @endeach
             </table>

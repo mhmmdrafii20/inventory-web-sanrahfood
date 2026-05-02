@@ -5,10 +5,40 @@ export interface ApiDefinition {
   auth: {
     login: typeof routes['auth.login']
     signIn: typeof routes['auth.sign_in']
+    signOut: typeof routes['auth.signOut']
   }
   webhook: {
     stokProduk: typeof routes['webhook.stokProduk']
     stokBahanBaku: typeof routes['webhook.stokBahanBaku']
+    produksi: typeof routes['webhook.produksi']
+    restokBahanBaku: typeof routes['webhook.restokBahanBaku']
+  }
+  stokBahan: {
+    index: typeof routes['stokBahan.index']
+    search: typeof routes['stokBahan.search']
+  }
+  stokProduk: {
+    index: typeof routes['stokProduk.index']
+    search: typeof routes['stokProduk.search']
+  }
+  restokBahan: {
+    restok: typeof routes['restokBahan.restok']
+    create: typeof routes['restokBahan.create']
+  }
+  resep: {
+    index: typeof routes['resep.index']
+    create: typeof routes['resep.create']
+    edit: typeof routes['resep.edit']
+    update: typeof routes['resep.update']
+    destroy: typeof routes['resep.destroy']
+    search: typeof routes['resep.search']
+    trash: typeof routes['resep.trash']
+    restore: typeof routes['resep.restore']
+    searchTrash: typeof routes['resep.searchTrash']
+  }
+  produksi: {
+    index: typeof routes['produksi.index']
+    create: typeof routes['produksi.create']
   }
   bahan: {
     index: typeof routes['bahan.index']
@@ -53,17 +83,7 @@ export interface ApiDefinition {
     trash: typeof routes['pengguna.trash']
     restore: typeof routes['pengguna.restore']
     searchTrash: typeof routes['pengguna.searchTrash']
-  }
-  resep: {
-    index: typeof routes['resep.index']
-    create: typeof routes['resep.create']
-    edit: typeof routes['resep.edit']
-    update: typeof routes['resep.update']
-    destroy: typeof routes['resep.destroy']
-    search: typeof routes['resep.search']
-    trash: typeof routes['resep.trash']
-    restore: typeof routes['resep.restore']
-    searchTrash: typeof routes['resep.searchTrash']
+    getCurrentUser: typeof routes['pengguna.get_current_user']
   }
   kategoriProduk: {
     index: typeof routes['kategoriProduk.index']
@@ -76,26 +96,10 @@ export interface ApiDefinition {
     restore: typeof routes['kategoriProduk.restore']
     searchTrash: typeof routes['kategoriProduk.searchTrash']
   }
-  produksi: {
-    index: typeof routes['produksi.index']
-    create: typeof routes['produksi.create']
-  }
-  stokBahan: {
-    index: typeof routes['stokBahan.index']
-    search: typeof routes['stokBahan.search']
-  }
-  restokBahan: {
-    restok: typeof routes['restokBahan.restok']
-    create: typeof routes['restokBahan.create']
-  }
   riwayatStokBahanBaku: {
     index: typeof routes['riwayatStokBahanBaku.index']
     filter: typeof routes['riwayatStokBahanBaku.filter']
     generate: typeof routes['riwayatStokBahanBaku.generate']
-  }
-  stokProduk: {
-    index: typeof routes['stokProduk.index']
-    search: typeof routes['stokProduk.search']
   }
   riwayatStokProduk: {
     index: typeof routes['riwayatStokProduk.index']
@@ -112,6 +116,10 @@ export interface ApiDefinition {
     createSession: typeof routes['notifikasiWhatsapp.createSession']
     getQr: typeof routes['notifikasiWhatsapp.getQr']
     deleteSession: typeof routes['notifikasiWhatsapp.deleteSession']
+  }
+  riwayatNotifikasi: {
+    index: typeof routes['riwayatNotifikasi.index']
+    filter: typeof routes['riwayatNotifikasi.filter']
   }
   daftarPenerima: {
     index: typeof routes['daftarPenerima.index']
