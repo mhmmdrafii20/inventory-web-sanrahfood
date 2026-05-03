@@ -28,6 +28,6 @@ export default defineConfig({
     watch: {
       ignored: ['**/storage/**', '**/tmp/**'],
     },
-    allowedHosts: ['31d1-157-85-206-27.ngrok-free.app', 'localhost'],
+    allowedHosts: ['a516-157-85-209-17.ngrok-free.app', 'localhost'],
   },
 })

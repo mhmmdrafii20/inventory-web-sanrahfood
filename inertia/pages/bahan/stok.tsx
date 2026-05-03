@@ -11,12 +11,14 @@ export default function Stok() {
     stokBahan: {
       idStokBahanBaku: number
       idBahanBaku: number
+      stokMinimum: number
       jumlahStok: number
       bahan: { namaBahanBaku: string; satuan: string }
     }[]
     searchRes: {
       idStokBahanBaku: number
       idBahanBaku: number
+      stokMinimum: number
       jumlahStok: number
       bahan: { namaBahanBaku: string; satuan: string }
     }[]
@@ -65,6 +67,7 @@ export default function Stok() {
               <tr>
                 <th className="border border-gray-300 py-3">Nama Bahan Baku</th>
                 <th className="border border-gray-300 py-3">Jumlah Stok</th>
+                <th className="border border-gray-300 py-3">Stok Minimum</th>
                 <th className="border border-gray-300 py-3">Satuan</th>
               </tr>
             </thead>
@@ -77,6 +80,9 @@ export default function Stok() {
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">{items?.jumlahStok}</Paragraph>
+                    </td>
+                    <td className="border border-gray-300 py-3 px-5">
+                      <Paragraph size="lg">{items?.stokMinimum}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">{items?.bahan?.satuan}</Paragraph>

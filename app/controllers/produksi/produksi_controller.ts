@@ -15,18 +15,19 @@ export default class ProduksiController {
       })
     return inertia.render('produksi/index', { produk })
   }
-  async create({ request, response, session }: HttpContext) {
+  async create({ request, response, session, user }: HttpContext) {
     try {
       const payload = await request.validateUsing(produksiValidator)
-      await ProduksiServices.create(payload)
+      await ProduksiServices.create(payload, String(user?.nama_pengguna))
 
       session.flash('success', 'Produksi berhasil dilakukan')
       return response.redirect().toRoute('produksi.index')
     } catch (error) {
+      console.error(error);
       if (error.code === 'E_VALIDATION_ERROR') {
         throw error
       }
-      session.flash('error', 'Terjadi kesalahan saat tambah data.')
+      session.flash('error', 'Terjadi kesalahan saat produksi.')
       return response.redirect().back()
     }
   }

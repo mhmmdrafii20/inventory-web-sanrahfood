@@ -3,6 +3,8 @@ import { BahanService } from '#services/bahan/BahanServices'
 import Bahan from '#models/bahan/bahan'
 import { bahanValidator, updateBahanValidator } from '#validators/bahan/bahan'
 import StokBahanBaku from '#models/bahan/stok_bahan_baku'
+import resepBahan from '#models/resep/resep_bahan'
+
 export default class BahanController {
   async index({ inertia }: HttpContext) {
     const bahan = await Bahan.query().where({ is_deleted: false })
@@ -54,12 +56,25 @@ export default class BahanController {
     try {
       const bahan = await Bahan.find(params.id)
 
+      const isUsedInResep = await resepBahan
+        .query()
+        .whereHas('resep', (resepQuery) => {
+          resepQuery.where({ is_deleted: false })
+        })
+        .where('id_bahan_baku', params.id)
+        .first()
+
+      if (isUsedInResep) {
+        throw new Error(
+          `${bahan?.nama_bahan_baku} tidak dapat dihapus karena masih digunakan dalam resep.`
+        )
+      }
       await BahanService.delete(params.id)
 
       session.flash('success', `${bahan?.nama_bahan_baku} berhasil dihapus`)
       return response.redirect().toRoute('bahan.index')
     } catch (error) {
-      session.flash('error', 'Terjadi kesalahan saat delete.')
+      session.flash('error', error.message)
       return response.redirect().back()
     }
   }

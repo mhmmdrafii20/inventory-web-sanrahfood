@@ -39,7 +39,7 @@ export default class PenggunaController {
   }
   async update({ response, request, session, params }: HttpContext) {
     try {
-      const userPayload = await request.validateUsing(updatePenggunaValidator)
+      const userPayload = await request.validateUsing(updatePenggunaValidator(params.id))
 
       await PenggunaServices.update(userPayload, params.id)
 
@@ -120,7 +120,7 @@ export default class PenggunaController {
     return inertia.render('auth/restore/pengguna', { searchRes })
   }
   async getCurrentUser({ response, user }: HttpContext) {
-    const currentUser = await PenggunaServices.getCurrentUser(user?.id_pengguna)
+    const currentUser = await PenggunaServices.getCurrentUser(String(user?.id_pengguna))
     return response.json({ currentUser })
   }
 }

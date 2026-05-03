@@ -10,7 +10,6 @@ export default class RiwayatStokBahanBakuController {
       .preload('stokBahanBaku', (stokBahanBakuQuery) => {
         stokBahanBakuQuery.preload('bahan')
       })
-      .orderBy('tanggal_perubahan_stok', 'desc')
     return inertia.render('bahan/riwayat', { riwayatStokBahanBaku })
   }
   async filter({ inertia, request, session, response }: HttpContext) {

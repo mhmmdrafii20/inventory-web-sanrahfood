@@ -6,10 +6,10 @@ export type ScannedRoutes = {
   ALL: {
     'auth.login': { paramsTuple?: []; params?: {} }
     'auth.sign_in': { paramsTuple?: []; params?: {} }
-    'webhook.stokProduk': { paramsTuple?: []; params?: {} }
-    'webhook.stokBahanBaku': { paramsTuple?: []; params?: {} }
-    'webhook.produksi': { paramsTuple?: []; params?: {} }
-    'webhook.restokBahanBaku': { paramsTuple?: []; params?: {} }
+    'webhook.get_stok_produk_from_supabase': { paramsTuple?: []; params?: {} }
+    'webhook.get_stok_bahan_baku_from_supabase': { paramsTuple?: []; params?: {} }
+    'webhook.get_produksi_from_supabase': { paramsTuple?: []; params?: {} }
+    'dashboard.index': { paramsTuple?: []; params?: {} }
     'stokBahan.index': { paramsTuple?: []; params?: {} }
     'stokBahan.search': { paramsTuple?: []; params?: {} }
     'stokProduk.index': { paramsTuple?: []; params?: {} }
@@ -110,6 +110,7 @@ export type ScannedRoutes = {
   }
   GET: {
     'auth.login': { paramsTuple?: []; params?: {} }
+    'dashboard.index': { paramsTuple?: []; params?: {} }
     'stokBahan.index': { paramsTuple?: []; params?: {} }
     'stokBahan.search': { paramsTuple?: []; params?: {} }
     'stokProduk.index': { paramsTuple?: []; params?: {} }
@@ -172,6 +173,7 @@ export type ScannedRoutes = {
   }
   HEAD: {
     'auth.login': { paramsTuple?: []; params?: {} }
+    'dashboard.index': { paramsTuple?: []; params?: {} }
     'stokBahan.index': { paramsTuple?: []; params?: {} }
     'stokBahan.search': { paramsTuple?: []; params?: {} }
     'stokProduk.index': { paramsTuple?: []; params?: {} }
@@ -234,10 +236,9 @@ export type ScannedRoutes = {
   }
   POST: {
     'auth.sign_in': { paramsTuple?: []; params?: {} }
-    'webhook.stokProduk': { paramsTuple?: []; params?: {} }
-    'webhook.stokBahanBaku': { paramsTuple?: []; params?: {} }
-    'webhook.produksi': { paramsTuple?: []; params?: {} }
-    'webhook.restokBahanBaku': { paramsTuple?: []; params?: {} }
+    'webhook.get_stok_produk_from_supabase': { paramsTuple?: []; params?: {} }
+    'webhook.get_stok_bahan_baku_from_supabase': { paramsTuple?: []; params?: {} }
+    'webhook.get_produksi_from_supabase': { paramsTuple?: []; params?: {} }
     'restokBahan.create': { paramsTuple?: []; params?: {} }
     'resep.create': { paramsTuple?: []; params?: {} }
     'produksi.create': { paramsTuple?: []; params?: {} }

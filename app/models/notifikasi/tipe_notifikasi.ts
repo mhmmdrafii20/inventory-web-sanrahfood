@@ -4,6 +4,7 @@ import { DateTime } from 'luxon'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
 import PenerimaJenisNotifikasi from './penerima_jenis_notifikasi.ts'
 import TemplateNotifikasi from './template_notifikasi.ts'
+import RiwayatNotifikasi from './riwayat_notifikasi.ts'
 
 export default class TipeNotifikasi extends TipeNotifikasiSchema {
   public static table = 'tb_tipe_notifikasi'
@@ -20,6 +21,11 @@ export default class TipeNotifikasi extends TipeNotifikasiSchema {
     foreignKey: 'id_tipe_notifikasi',
   })
   declare templateNotifikasi: HasMany<typeof TemplateNotifikasi>
+
+  @hasMany(() => RiwayatNotifikasi, {
+    foreignKey: 'id_tipe_notifikasi',
+  })
+  declare riwayatNotifikasi: HasMany<typeof RiwayatNotifikasi>
 
   @column({ columnName: 'kode_notifikasi' })
   declare kode_notifikasi: string

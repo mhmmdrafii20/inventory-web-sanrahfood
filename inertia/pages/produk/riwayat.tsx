@@ -17,6 +17,7 @@ export default function Riwayat() {
       selisihStok: number
       stokSebelum: number
       stokSesudah: number
+      namaPengguna: string
       tanggalPerubahanStok: string
       stokProduk: { produk: { namaProduk: string } }
     }[]
@@ -28,6 +29,7 @@ export default function Riwayat() {
       selisihStok: number
       stokSebelum: number
       stokSesudah: number
+      namaPengguna: string
       tanggalPerubahanStok: string
       stokProduk: { produk: { namaProduk: string } }
     }[]
@@ -98,6 +100,7 @@ export default function Riwayat() {
                 <th className="border border-gray-300 py-3">Stok Sebelum</th>
                 <th className="border border-gray-300 py-3">Stok Sesudah</th>
                 <th className="border border-gray-300 py-3">Jenis Stok</th>
+                <th className="border border-gray-300 py-3">Nama Pengguna</th>
                 <th className="border border-gray-300 py-3">Tanggal Perubahan Stok</th>
               </tr>
             </thead>
@@ -124,6 +127,9 @@ export default function Riwayat() {
                       >
                         {items.jenisStok}
                       </Paragraph>
+                    </td>
+                    <td className="border border-gray-300 py-3 px-5">
+                      <Paragraph size="lg">{items.namaPengguna}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">

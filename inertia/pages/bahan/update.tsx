@@ -15,7 +15,7 @@ export default function Update() {
     id_bahan_baku: dataBahan.id_bahan_baku,
     nama_bahan_baku: dataBahan.nama_bahan_baku,
     satuan: dataBahan.satuan,
-    stok_minimum: dataStokBahan.stok_minimum,
+    stok_minimum: dataStokBahan?.stok_minimum,
   })
   console.log(dataStokBahan)
   function handleUpdate(e: SubmitEvent) {

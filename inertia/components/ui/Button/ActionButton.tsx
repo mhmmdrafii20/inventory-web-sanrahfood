@@ -1,31 +1,39 @@
-import { HTMLAttributes, ReactNode } from "react"
+import { HTMLAttributes, ReactNode } from 'react'
 
-type ActionType = 'search' | 'update' | 'delete' | 'restore';
-type SizeType = 'xs' | 'sm' | 'md' | 'lg';
+type ActionType = 'search' | 'update' | 'delete' | 'restore' | 'view'
+type SizeType = 'xs' | 'sm' | 'md' | 'lg'
 
 type Params = HTMLAttributes<HTMLElement> & {
-    children: ReactNode,
-    type: ActionType,
-    size: SizeType,
-    as?: 'button' | 'span' | 'div',
+  children: ReactNode
+  type: ActionType
+  size: SizeType
+  as?: 'button' | 'span' | 'div'
 }
 
-
 const ActionButton = ({ type, size, children, as, className, ...props }: Params) => {
-    const Component = as || 'button';
+  const Component = as || 'button'
 
-    const actionType = {
-        search: "bg-medium-teal text-white transition-all duration-200 ease-in-out hover:brightness-110",
-        update: "bg-deep-cyan text-white transition-all duration-200 ease-in-out hover:brightness-110",
-        delete: "bg-red-500 text-white transition-all duration-200 ease-in-out hover:brightness-110",
-        restore: "bg-green-800 text-white transition-all duration-200 ease-in-out hover:brightness-110",
-    }
-    const actionSize = {
-        xs: "px-1 h-5",
-        sm: "px-2 h-7.5",
-        md: "px-2 h-8",
-        lg: "px-4 h-10"
-    }
-    return <Component {...props} className={`rounded-sm cursor-pointer ${actionType[type]} ${actionSize[size]} ${className ?? ''} `}>{children}</Component>
+  const actionType = {
+    search:
+      'bg-medium-teal text-white transition-all duration-200 ease-in-out hover:brightness-110',
+    update: 'bg-deep-cyan text-white transition-all duration-200 ease-in-out hover:brightness-110',
+    delete: 'bg-red-500 text-white transition-all duration-200 ease-in-out hover:brightness-110',
+    restore: 'bg-green-800 text-white transition-all duration-200 ease-in-out hover:brightness-110',
+    view: 'bg-emerald-700 text-white transition-all duration-200 ease-in-out hover:brightness-110',
+  }
+  const actionSize = {
+    xs: 'px-1 h-5',
+    sm: 'px-2 h-7.5',
+    md: 'px-2 h-8',
+    lg: 'px-4 h-10',
+  }
+  return (
+    <Component
+      {...props}
+      className={`rounded-sm cursor-pointer ${actionType[type]} ${actionSize[size]} ${className ?? ''} `}
+    >
+      {children}
+    </Component>
+  )
 }
 export default ActionButton

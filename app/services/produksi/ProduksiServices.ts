@@ -9,13 +9,16 @@ import RiwayatStokBahanBaku from '#models/bahan/riwayat_stok_bahan_baku'
 import { errors } from '@vinejs/vine'
 
 export class ProduksiServices {
-  static async create(payload: {
-    id_resep: number
-    id_produk: number
-    jumlah_batch: number
-    tanggal_produksi: DateTime
-    catatan_tambahan?: string
-  }) {
+  static async create(
+    payload: {
+      id_resep: number
+      id_produk: number
+      jumlah_batch: number
+      tanggal_produksi: DateTime
+      catatan_tambahan?: string
+    },
+    nama_pengguna: string
+  ) {
     const resep = await Resep.query()
       .where('id_resep', payload.id_resep)
       .preload('resep_bahan', (resepBahanQuery) => {
@@ -26,14 +29,17 @@ export class ProduksiServices {
 
     const bahanIds = resep.resep_bahan.map((item) => item.id_bahan_baku)
 
-    const stokList = await StokBahanBaku.query().whereIn('id_bahan_baku', bahanIds)
+    const stokList = await StokBahanBaku.query().whereIn('id_bahan_baku', bahanIds).preload('bahan');
 
-    const stokMap = new Map(stokList.map((item) => [item.id_bahan_baku, item.jumlah_stok]))
+    const stokMap = new Map(stokList.map((item) => [item.id_bahan_baku, item]))
 
+    //menghitung maksimal batch yang bisa diproduksi.
     const maxBatchList = resep.resep_bahan.map((items) => {
       let stok = stokMap.get(items.id_bahan_baku) ?? 0
+      //stok tersedia / jumlah kebutuhan per batch = max batch untuk bahan itu
       return Math.floor(Number(stok) / Number(items.jumlah))
     })
+    //dibulatkan kebawah.  
     const maxBatch = Math.min(...maxBatchList)
 
     if (payload.jumlah_batch > maxBatch) {
@@ -45,8 +51,8 @@ export class ProduksiServices {
         },
       ])
     }
-
-    const kebutuhan = resep.resep_bahan.map((items) => {
+    //menghitung kebutuhan bahan baku yang dibutuhkan untuk produksi.
+    const kebutuhanBahanBaku = resep.resep_bahan.map((items) => {
       return {
         id_bahan_baku: items.id_bahan_baku,
         jumlah: Number(items.jumlah) * Number(payload.jumlah_batch),
@@ -54,18 +60,10 @@ export class ProduksiServices {
     })
 
     await db.transaction(async (transaction) => {
-      for (const item of kebutuhan) {
-        let stok = stokMap.get(item.id_bahan_baku) ?? 0
-
-        if (Number(stok) < Number(item.jumlah)) {
-          throw new errors.E_VALIDATION_ERROR([
-            {
-              message: `Stok tidak cukup. Stok saat ini ${stok} dan jumlah yang dibutuhkan ${item.jumlah}`,
-              rule: 'max',
-              field: 'jumlah',
-            },
-          ])
-        }
+      for (const item of kebutuhanBahanBaku) {
+        const stokData = stokMap.get(item.id_bahan_baku)
+        if (!stokData) throw new Error('Stok bahan baku tidak ditemukan')
+        const stok = Number(stokData.jumlah_stok)
 
         const stokSesudah = Number(stok) - Number(item.jumlah)
 
@@ -75,18 +73,16 @@ export class ProduksiServices {
             jumlah_stok: stokSesudah,
           })
 
-        const stokBahanBaku = await StokBahanBaku.query({ client: transaction })
-          .where('id_stok_bahan_baku', item.id_bahan_baku)
-          .firstOrFail()
-
         await RiwayatStokBahanBaku.create(
           {
-            id_stok_bahan_baku: stokBahanBaku.id_stok_bahan_baku,
+            id_stok_bahan_baku: stokData.id_stok_bahan_baku,
+            nama_bahan_baku: stokData.bahan.nama_bahan_baku,
             jenis_stok: 'KELUAR',
             stok_sebelum: Number(stok),
             selisih_stok: -Number(item.jumlah),
             stok_sesudah: Number(stokSesudah),
             tanggal_perubahan_stok: payload.tanggal_produksi,
+            nama_pengguna: nama_pengguna,
           },
           { client: transaction }
         )
@@ -117,6 +113,7 @@ export class ProduksiServices {
           stok_sebelum: Number(stokAwal),
           stok_sesudah: Number(stokSesudah),
           tanggal_perubahan_stok: payload.tanggal_produksi,
+          nama_pengguna: nama_pengguna,
         },
         { client: transaction }
       )
@@ -131,6 +128,7 @@ export class ProduksiServices {
           jumlah_hasil_produksi: Number(payload.jumlah_batch) * Number(resep.yield_per_batch),
           tanggal_produksi: payload.tanggal_produksi,
           catatan_tambahan: payload.catatan_tambahan,
+          nama_pengguna: nama_pengguna,
         },
         { client: transaction }
       )

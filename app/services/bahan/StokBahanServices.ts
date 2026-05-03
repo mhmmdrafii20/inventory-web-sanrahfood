@@ -9,7 +9,7 @@ export class StokBahanServices {
     id_bahan_baku: number
     jumlah: number
     tanggal_restok: DateTime
-  }) {
+  }, nama_pengguna: string) {
     if (payload.jumlah <= 0) {
       throw new errors.E_VALIDATION_ERROR([
         {
@@ -49,6 +49,7 @@ export class StokBahanServices {
           stok_sebelum: Number(stokAwal),
           stok_sesudah: Number(updatedJumlahStok),
           tanggal_perubahan_stok: payload.tanggal_restok,
+          nama_pengguna: nama_pengguna,
         },
         { client: transaction }
       )

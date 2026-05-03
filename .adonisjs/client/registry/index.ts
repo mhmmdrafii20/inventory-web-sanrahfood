@@ -18,29 +18,29 @@ const routes = {
     tokens: [{"old":"/login","type":0,"val":"login","end":""}],
     types: placeholder as Registry['auth.sign_in']['types'],
   },
-  'webhook.stokProduk': {
+  'webhook.get_stok_produk_from_supabase': {
     methods: ["POST"],
     pattern: '/webhook/stok-produk',
     tokens: [{"old":"/webhook/stok-produk","type":0,"val":"webhook","end":""},{"old":"/webhook/stok-produk","type":0,"val":"stok-produk","end":""}],
-    types: placeholder as Registry['webhook.stokProduk']['types'],
+    types: placeholder as Registry['webhook.get_stok_produk_from_supabase']['types'],
   },
-  'webhook.stokBahanBaku': {
+  'webhook.get_stok_bahan_baku_from_supabase': {
     methods: ["POST"],
     pattern: '/webhook/bahan',
     tokens: [{"old":"/webhook/bahan","type":0,"val":"webhook","end":""},{"old":"/webhook/bahan","type":0,"val":"bahan","end":""}],
-    types: placeholder as Registry['webhook.stokBahanBaku']['types'],
+    types: placeholder as Registry['webhook.get_stok_bahan_baku_from_supabase']['types'],
   },
-  'webhook.produksi': {
+  'webhook.get_produksi_from_supabase': {
     methods: ["POST"],
     pattern: '/webhook/produksi',
     tokens: [{"old":"/webhook/produksi","type":0,"val":"webhook","end":""},{"old":"/webhook/produksi","type":0,"val":"produksi","end":""}],
-    types: placeholder as Registry['webhook.produksi']['types'],
+    types: placeholder as Registry['webhook.get_produksi_from_supabase']['types'],
   },
-  'webhook.restokBahanBaku': {
-    methods: ["POST"],
-    pattern: '/webhook/restok-bahan-baku',
-    tokens: [{"old":"/webhook/restok-bahan-baku","type":0,"val":"webhook","end":""},{"old":"/webhook/restok-bahan-baku","type":0,"val":"restok-bahan-baku","end":""}],
-    types: placeholder as Registry['webhook.restokBahanBaku']['types'],
+  'dashboard.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/dashboard',
+    tokens: [{"old":"/dashboard","type":0,"val":"dashboard","end":""}],
+    types: placeholder as Registry['dashboard.index']['types'],
   },
   'stokBahan.index': {
     methods: ["GET","HEAD"],

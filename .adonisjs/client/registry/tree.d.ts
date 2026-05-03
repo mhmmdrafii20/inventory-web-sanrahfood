@@ -8,10 +8,12 @@ export interface ApiDefinition {
     signOut: typeof routes['auth.signOut']
   }
   webhook: {
-    stokProduk: typeof routes['webhook.stokProduk']
-    stokBahanBaku: typeof routes['webhook.stokBahanBaku']
-    produksi: typeof routes['webhook.produksi']
-    restokBahanBaku: typeof routes['webhook.restokBahanBaku']
+    getStokProdukFromSupabase: typeof routes['webhook.get_stok_produk_from_supabase']
+    getStokBahanBakuFromSupabase: typeof routes['webhook.get_stok_bahan_baku_from_supabase']
+    getProduksiFromSupabase: typeof routes['webhook.get_produksi_from_supabase']
+  }
+  dashboard: {
+    index: typeof routes['dashboard.index']
   }
   stokBahan: {
     index: typeof routes['stokBahan.index']

@@ -29,7 +29,7 @@ export interface Registry {
       response: unknown
     }
   }
-  'webhook.stokProduk': {
+  'webhook.get_stok_produk_from_supabase': {
     methods: ["POST"]
     pattern: '/webhook/stok-produk'
     types: {
@@ -40,7 +40,7 @@ export interface Registry {
       response: unknown
     }
   }
-  'webhook.stokBahanBaku': {
+  'webhook.get_stok_bahan_baku_from_supabase': {
     methods: ["POST"]
     pattern: '/webhook/bahan'
     types: {
@@ -51,7 +51,7 @@ export interface Registry {
       response: unknown
     }
   }
-  'webhook.produksi': {
+  'webhook.get_produksi_from_supabase': {
     methods: ["POST"]
     pattern: '/webhook/produksi'
     types: {
@@ -62,9 +62,9 @@ export interface Registry {
       response: unknown
     }
   }
-  'webhook.restokBahanBaku': {
-    methods: ["POST"]
-    pattern: '/webhook/restok-bahan-baku'
+  'dashboard.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard'
     types: {
       body: {}
       paramsTuple: []

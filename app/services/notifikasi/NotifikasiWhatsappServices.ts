@@ -7,6 +7,8 @@ import StokProduk from '#models/produk/stok_produk'
 import Produk from '#models/produk/produk'
 import StokBahanBaku from '#models/bahan/stok_bahan_baku'
 import Bahan from '#models/bahan/bahan'
+import RiwayatNotifikasi from '#models/notifikasi/riwayat_notifikasi'
+import { DateTime } from 'luxon'
 
 export class NotifikasiWhatsappServices {
   static async createSession(
@@ -98,10 +100,15 @@ export class NotifikasiWhatsappServices {
         penerimaJenisNotifikasiQuery.where('id_tipe_notifikasi', tipeNotifikasi.id_tipe_notifikasi)
       })
       .preload('pengguna')
+
     if (penerima.length === 0) throw new Error('Tidak ada penerima untuk notifikasi ini')
     for (const item of penerima) {
+      const nomor = item.nomor_telepon ?? item.pengguna?.nomor_telepon;
+
+      if (!nomor) throw new Error(`Nomor telepon tidak ditemukan untuk ${item.nama_penerima ?? item.pengguna?.nama_pengguna}`)
+
       try {
-        await this.kirimWhatsapp(item.nomor_telepon, pesan)
+        await this.kirimWhatsapp(nomor, pesan)
         await new Promise((resolve) => setTimeout(resolve, 7000))
 
         await RiwayatNotifikasi.create({
@@ -110,8 +117,8 @@ export class NotifikasiWhatsappServices {
           pesan,
           status: 'TERKIRIM',
           tipe_notifikasi: tipeNotifikasi.nama_notifikasi,
-          tanggal_dikirim: new Date(),
-          error_message: null,
+          tanggal_dikirim: DateTime.now(),
+          error_message: 'Tidak ada error.',
           id_tipe_notifikasi: tipeNotifikasi.id_tipe_notifikasi,
         })
       } catch (error) {
@@ -121,7 +128,7 @@ export class NotifikasiWhatsappServices {
           pesan,
           status: 'GAGAL',
           tipe_notifikasi: tipeNotifikasi.nama_notifikasi,
-          tanggal_dikirim: new Date(),
+          tanggal_dikirim: DateTime.now(),
           error_message: error.message || error.response?.data?.message || error.response?.data,
           id_tipe_notifikasi: tipeNotifikasi.id_tipe_notifikasi,
         })
@@ -141,28 +148,28 @@ export class NotifikasiWhatsappServices {
 
       await this.processSendNotification('STOK_MINIMUM_PRODUK', {
         nama_produk: produk.nama_produk,
-        jumlah_stok: String(jumlah_stok),
-        stok_minimum: String(stok.stok_minimum),
-        satuan: produk.satuan,
+        jumlah_stok_produk: String(jumlah_stok),
+        stok_minimum_produk: String(stok.stok_minimum),
+        satuan_produk: produk.satuan,
       })
     }
   }
-  static async cekStokBahanBaku(id_bahan_baku: number, jumlah_stok: number) {
-    const stok = await StokBahanBaku.query().where('id_bahan_baku', id_bahan_baku).first()
+  static async cekStokBahanBaku(id_stok_bahan_baku: number, jumlah_stok: number) {
+    const stok = await StokBahanBaku.query().where('id_stok_bahan_baku', id_stok_bahan_baku).first()
     if (!stok) throw new Error('Stok bahan baku tidak ditemukan')
 
     if (jumlah_stok <= stok.stok_minimum) {
       const bahan = await Bahan.query()
         .where({ is_deleted: false })
-        .where('id_bahan_baku', id_bahan_baku)
+        .where('id_bahan_baku', stok.id_bahan_baku)
         .first()
       if (!bahan) throw new Error('Bahan baku tidak ditemukan')
 
       await this.processSendNotification('STOK_MINIMUM_BAHAN_BAKU', {
-        nama_bahan_baku: bahan.nama_bahan_baku,
-        jumlah_stok: String(jumlah_stok),
-        stok_minimum: String(stok.stok_minimum),
-        satuan: bahan.satuan,
+        nama_bahan: bahan.nama_bahan_baku,
+        jumlah_stok_bahan_baku: String(jumlah_stok),
+        stok_minimum_bahan_baku: String(stok.stok_minimum),
+        satuan_bahan: bahan.satuan,
       })
     }
   }
@@ -181,10 +188,10 @@ export class NotifikasiWhatsappServices {
       nama_produk: produk.nama_produk,
       jumlah_batch: String(jumlah_batch),
       jumlah_hasil_produksi: String(jumlah_hasil_produksi),
-      satuan: produk.satuan,
+      satuan_produk: produk.satuan,
     })
   }
-  static async restokBahanBaku(id_stok_bahan_baku: number, stok_sesudah: number) {
+  static async restokBahanBaku(id_stok_bahan_baku: number, jumlah_stok: number) {
     const stok = await StokBahanBaku.query()
       .where('id_stok_bahan_baku', id_stok_bahan_baku)
       .preload('bahan')
@@ -193,7 +200,7 @@ export class NotifikasiWhatsappServices {
 
     await this.processSendNotification('RESTOK_BAHAN_BAKU', {
       nama_bahan: stok.bahan.nama_bahan_baku,
-      stok_bahan: String(stok_sesudah),
+      stok_bahan: String(jumlah_stok),
       satuan_bahan: stok.bahan.satuan,
     })
   }
@@ -202,20 +209,20 @@ export class NotifikasiWhatsappServices {
 
     const check = await axios.get(`https://api-zawa.azickri.com/session`, {
       headers: {
-        'id': String(session.id_zawa),
-        'session-id': String(session.session_id),
+        'id': String(session?.id_zawa),
+        'session-id': String(session?.session_id),
       },
     })
 
     if (!check.data.isConnected) {
-      await NotifikasiWhatsapp.query().where('id', session.id_zawa).update({
+      await NotifikasiWhatsapp.query().where('id', String(session?.id_zawa)).update({
         status: 'NOT_CONNECTED',
       })
       throw new Error('Gagal kirim pesan, WhatsApp belum terhubung (device tidak aktif)')
     }
 
     try {
-      const res = await axios.post(
+      await axios.post(
         `https://api-zawa.azickri.com/message`,
         {
           phone: nomor_telepon.replace('+', ''),
@@ -224,8 +231,8 @@ export class NotifikasiWhatsappServices {
         },
         {
           headers: {
-            'id': String(session.id_zawa),
-            'session-id': String(session.session_id),
+            'id': String(session?.id_zawa),
+            'session-id': String(session?.session_id),
           },
         }
       )

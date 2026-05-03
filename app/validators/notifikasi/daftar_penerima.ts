@@ -15,6 +15,19 @@ const uniqueDaftarPenerima = vine.createRule(
   { isAsync: true }
 )
 
+const uniqueNomorTelepon = vine.createRule(
+  async (value: unknown, _, field: FieldContext) => {
+    const duplicate = await PenerimaNotifikasi.query()
+      .whereRaw('nomor_telepon ILIKE ?', [String(value)])
+      .first()
+
+    if (duplicate) {
+      field.report('Nomor Telepon sudah digunakan', 'unique', field)
+    }
+  },
+  { isAsync: true }
+)
+
 export const daftarPenerimaValidator = vine.create({
   id_pengguna: vine.string().trim().optional(),
   nama_penerima: vine
@@ -24,7 +37,7 @@ export const daftarPenerimaValidator = vine.create({
     .trim()
     .use(uniqueDaftarPenerima())
     .optional(),
-  nomor_telepon: vine.string().mobile().trim().optional(),
+  nomor_telepon: vine.string().mobile().trim().use(uniqueNomorTelepon()).optional(),
   id_tipe_notifikasi: vine.array(vine.number().min(1)),
 })
 
@@ -43,6 +56,21 @@ const uniqueUpdateDaftarPenerima = (id: number) =>
     { isAsync: true }
   )
 
+const uniqueUpdateNomorTelepon = (id: number) =>
+  vine.createRule(
+    async (value: unknown, _, field: FieldContext) => {
+      const duplicate = await PenerimaNotifikasi.query()
+        .whereRaw('nomor_telepon ILIKE ?', [String(value)])
+        .whereNot('id_penerima_notifikasi', id)
+        .first()
+
+      if (duplicate) {
+        field.report('Nomor Telepon sudah digunakan', 'unique', field)
+      }
+    },
+    { isAsync: true }
+  )
+
 export const updateDaftarPenerimaValidator = (id: number) =>
   vine.create({
     id_penerima_notifikasi: vine.number().min(1).optional(),
@@ -54,6 +82,6 @@ export const updateDaftarPenerimaValidator = (id: number) =>
       .trim()
       .use(uniqueUpdateDaftarPenerima(id)())
       .optional(),
-    nomor_telepon: vine.string().mobile().trim().optional(),
+    nomor_telepon: vine.string().mobile().trim().use(uniqueUpdateNomorTelepon(id)()).optional(),
     id_tipe_notifikasi: vine.array(vine.number().min(1)),
   })

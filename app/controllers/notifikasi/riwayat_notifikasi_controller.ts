@@ -1,10 +1,10 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import RiwayatNotifikasi from '#models/notifikasi/riwayat_notifikasi'
+import { RiwayatNotifikasiServices } from '#services/notifikasi/RiwayatNotifikasiServices'
 export default class RiwayatNotifikasiController {
   async index({ inertia }: HttpContext) {
     const riwayatNotifikasi = await RiwayatNotifikasi.query()
       .preload('tipeNotifikasi')
-      .orderBy('tanggal_dikirim', 'desc')
     return inertia.render('notifikasi/riwayat', { riwayatNotifikasi })
   }
   async filter({ inertia, request, session, response }: HttpContext) {

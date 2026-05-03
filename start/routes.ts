@@ -28,21 +28,20 @@ import TipeNotifikasiController from '#controllers/notifikasi/tipe_notifikasi_co
 import TemplateNotifikasiController from '#controllers/notifikasi/template_notifikasi_controller'
 import WebhookController from '#controllers/webhooks/supabase/webhook_controller'
 import RiwayatNotifikasiController from '#controllers/notifikasi/riwayat_notifikasi_controller'
+import DashboardController from '#controllers/dashboard/dashboard_controller'
 
 router.get('/', [AuthController, 'login']).as('auth.login')
 router.post('/login', [AuthController, 'signIn'])
 
-router.post('/webhook/stok-produk', [WebhookController, 'cekStokProduk']).as('webhook.stokProduk')
-router.post('/webhook/bahan', [WebhookController, 'cekStokBahanBaku']).as('webhook.stokBahanBaku')
+router.post('/webhook/stok-produk', [WebhookController, 'getStokProdukFromSupabase'])
+router.post('/webhook/bahan', [WebhookController, 'getStokBahanBakuFromSupabase'])
 router
   .post('/webhook/produksi', [WebhookController, 'getProduksiFromSupabase'])
-  .as('webhook.produksi')
-router
-  .post('/webhook/restok-bahan-baku', [WebhookController, 'getRestokBahanBakuFromSupabase'])
-  .as('webhook.restokBahanBaku')
+
 
 router
   .group(() => {
+    router.get('/dashboard', [DashboardController, 'index']).as('dashboard.index')
     router
       .group(() => {
         router.get('/stok-bahan', [StokBahanController, 'index']).as('stokBahan.index')

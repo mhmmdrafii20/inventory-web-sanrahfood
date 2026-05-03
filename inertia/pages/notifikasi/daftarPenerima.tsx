@@ -14,7 +14,7 @@ import { SubmitEvent } from 'react'
 import Error from '~/components/ui/Error'
 import ActionButton from '~/components/ui/Button/ActionButton'
 import { Link } from '@adonisjs/inertia/react'
-import { FaPen, FaTrash, FaSearch } from 'react-icons/fa'
+import { FaPen, FaTrash, FaSearch, FaEye } from 'react-icons/fa'
 import { showDeleteDialog } from '../../../utils/sweetalert'
 
 type Option = {
@@ -31,6 +31,7 @@ export default function DaftarPenerima() {
     searchRes: {
       idPenerimaNotifikasi: number
       namaPenerima: string
+      penerima_jenis_notifikasi: { tipeNotifikasi: { namaNotifikasi: string } }[]
       pengguna: { namaPengguna: string; nomorTelepon: string }
       nomorTelepon: string
     }[]
@@ -44,11 +45,13 @@ export default function DaftarPenerima() {
     daftarPenerima: {
       idPenerimaNotifikasi: number
       namaPenerima: string
+      penerima_jenis_notifikasi: { tipeNotifikasi: { namaNotifikasi: string } }[]
       pengguna: { namaPengguna: string; nomorTelepon: string }
       nomorTelepon: string
     }[]
   }>().props
 
+  console.log(daftarPenerima)
   const {
     data,
     setData,
@@ -92,6 +95,7 @@ export default function DaftarPenerima() {
       }
     )
   }
+
   const displayDaftarPenerima = searchRes && searchRes.length > 0 ? searchRes : daftarPenerima
 
   function handleDelete(id: number) {
@@ -223,12 +227,13 @@ export default function DaftarPenerima() {
             <tr>
               <th className="border border-gray-300 py-3">Nama Penerima</th>
               <th className="border border-gray-300 py-3">Nomor Telepon</th>
+              <th className="border border-gray-300 py-3">Tipe Notifikasi</th>
               <th className="border border-gray-300 py-3">Aksi</th>
             </tr>
           </thead>
           <tbody>
             {displayDaftarPenerima?.length > 0 ? (
-              displayDaftarPenerima?.map((items) => (
+              displayDaftarPenerima?.map((items, i) => (
                 <tr key={items.idPenerimaNotifikasi}>
                   <td className="border border-gray-300 py-3 px-5">
                     <Paragraph size="lg">
@@ -238,6 +243,13 @@ export default function DaftarPenerima() {
                   <td className="border border-gray-300 py-3 px-5">
                     <Paragraph size="lg">
                       {items.pengguna?.nomorTelepon ?? items?.nomorTelepon}
+                    </Paragraph>
+                  </td>
+                  <td className="border border-gray-300 py-3 px-5">
+                    <Paragraph size="lg">
+                      {items.penerima_jenis_notifikasi
+                        ?.map((jenis) => jenis.tipeNotifikasi?.namaNotifikasi)
+                        .join(', ')}
                     </Paragraph>
                   </td>
                   <td className="border border-gray-300 py-3 px-5">

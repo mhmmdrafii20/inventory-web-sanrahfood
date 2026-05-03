@@ -17,10 +17,10 @@ export default class StokBahanController {
     const bahan = await Bahan.query().where({ is_deleted: false })
     return inertia.render('bahan/restok', { bahan })
   }
-  async create({ request, response, session }: HttpContext) {
+  async create({ request, response, session, user }: HttpContext) {
     try {
       const payload = await request.validateUsing(stokBahanValidator)
-      await StokBahanServices.update(payload)
+      await StokBahanServices.update(payload, String(user?.nama_pengguna))
 
       const bahan = await Bahan.find(payload.id_bahan_baku)
 

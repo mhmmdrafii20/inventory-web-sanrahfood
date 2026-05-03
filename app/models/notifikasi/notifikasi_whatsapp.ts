@@ -1,6 +1,8 @@
 import { TbNotifikasiWhatsappSchema as NotifikasiWhatsappSchema } from '#database/schema'
-import { column } from '@adonisjs/lucid/orm'
+import { column, belongsTo } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
+import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import Pengguna from '../auth/pengguna.ts'
 
 export default class NotifikasiWhatsapp extends NotifikasiWhatsappSchema {
   static table = 'tb_whatsapp_sessions'
@@ -10,6 +12,12 @@ export default class NotifikasiWhatsapp extends NotifikasiWhatsappSchema {
 
   @column({ columnName: 'id_pengguna' })
   declare id_pengguna: string
+
+  @belongsTo(() => Pengguna, {
+    foreignKey: 'id_pengguna',
+    localKey: 'id_pengguna',
+  })
+  declare pengguna: BelongsTo<typeof Pengguna>
 
   @column({ columnName: 'id_zawa' })
   declare id_zawa: string

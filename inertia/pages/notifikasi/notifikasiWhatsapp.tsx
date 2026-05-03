@@ -28,6 +28,7 @@ export default function NotifikasiWhatsapp() {
     const interval = setInterval(async () => {
       try {
         const res = await axios.get('/notifikasi-whatsapp/get-qr')
+        console.log(res.data.qrcode)
         setQrCode(res.data.qrcode)
         setIsOpen(true)
 
@@ -62,13 +63,12 @@ export default function NotifikasiWhatsapp() {
               Status :
             </Paragraph>
             <span
-              className={`w-3 h-3 rounded-full ${
-                whatsappSession?.status === 'CONNECTED'
-                  ? 'bg-green-500'
-                  : whatsappSession?.status === 'QR_READY'
-                    ? 'bg-yellow-400'
-                    : 'bg-red-500'
-              }`}
+              className={`w-3 h-3 rounded-full ${whatsappSession?.status === 'CONNECTED'
+                ? 'bg-green-500'
+                : whatsappSession?.status === 'QR_READY'
+                  ? 'bg-yellow-400'
+                  : 'bg-red-500'
+                }`}
             />
             <Paragraph size="lg" color="dark_slate_grey">
               {whatsappSession?.status === 'CONNECTED'
@@ -80,21 +80,21 @@ export default function NotifikasiWhatsapp() {
           </div>
           {(whatsappSession?.status === 'NOT_CONNECTED' ||
             whatsappSession?.status === undefined) && (
-            <>
-              <Paragraph size="md" color="dark_grey">
-                Klik tombol di bawah untuk menghubungkan WhatsApp ke sistem.
-              </Paragraph>
-              <Button
-                onClick={handleConnect}
-                variant={1}
-                size="md"
-                className="w-fit"
-                disabled={processing}
-              >
-                {processing ? 'Proses...' : 'Buat Session'}
-              </Button>
-            </>
-          )}
+              <>
+                <Paragraph size="md" color="dark_grey">
+                  Klik tombol di bawah untuk menghubungkan WhatsApp ke sistem.
+                </Paragraph>
+                <Button
+                  onClick={handleConnect}
+                  variant={1}
+                  size="md"
+                  className="w-fit"
+                  disabled={processing}
+                >
+                  {processing ? 'Proses...' : 'Buat Session'}
+                </Button>
+              </>
+            )}
           {whatsappSession?.status === 'QR_READY' && (
             <>
               {!qrCode && (

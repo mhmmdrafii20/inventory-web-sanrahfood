@@ -6,6 +6,7 @@ import HakAkses from './hakAkses.ts'
 import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
 import PenerimaNotifikasi from '../notifikasi/penerima_notifikasi.ts'
 import PenerimaJenisNotifikasi from '../notifikasi/penerima_jenis_notifikasi.ts'
+import NotifikasiWhatsapp from '../notifikasi/notifikasi_whatsapp.ts'
 
 export default class Pengguna extends PenggunaSchema {
   public static table = 'public.tb_pengguna'
@@ -21,6 +22,12 @@ export default class Pengguna extends PenggunaSchema {
     localKey: 'id_pengguna',
   })
   declare penerima_notifikasi: HasMany<typeof PenerimaNotifikasi>
+
+  @hasMany(() => NotifikasiWhatsapp, {
+    foreignKey: 'id_pengguna',
+    localKey: 'id_pengguna',
+  })
+  declare notifikasiWhatsapp: HasMany<typeof NotifikasiWhatsapp>
 
   @column({ columnName: 'nama_pengguna' })
   declare nama_pengguna: string

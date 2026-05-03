@@ -13,7 +13,7 @@ export default class AuthController {
     })
     if (!error) {
       session.flash('success', 'Berhasil melakukan login.')
-      return response.redirect().toRoute('bahan.index')
+      return response.redirect().toRoute('dashboard.index')
     }
     session.flash('error', 'Login Gagal')
     return response.redirect().back()

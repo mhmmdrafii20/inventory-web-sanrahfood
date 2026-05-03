@@ -64,6 +64,9 @@ export class DaftarPenerimaServices {
   static async search(search: string) {
     return await PenerimaNotifikasi.query()
       .preload('pengguna')
+      .preload('penerima_jenis_notifikasi', (penerimaJenisNotifikasiQuery) => {
+        penerimaJenisNotifikasiQuery.preload('tipeNotifikasi')
+      })
       .whereHas('pengguna', (penggunaQuery) => {
         penggunaQuery.where({ is_deleted: false }).whereHas('hakAkses', (hakAksesQuery) => {
           hakAksesQuery.where({ is_deleted: false })

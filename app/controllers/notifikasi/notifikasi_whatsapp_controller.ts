@@ -34,7 +34,7 @@ export default class NotifikasiWhatsappController {
       const penggunaId = String(user?.id_pengguna)
       const res = await NotifikasiWhatsappServices.getQr(penggunaId)
       session.flash('success', 'QR Code berhasil tergenerate')
-      return response.redirect().toRoute('notifikasiWhatsapp.index')
+      return response.ok(res);
     } catch (error) {
       session.flash('error', error.message)
       return response.redirect().back()

@@ -9,7 +9,6 @@ export default class RiwayatProduksiController {
     const riwayatProduksi = await RiwayatProduksi.query()
       .preload('produk')
       .preload('resep')
-      .orderBy('tanggal_produksi', 'desc')
     return inertia.render('produksi/riwayat', { riwayatProduksi })
   }
   async filter({ request, inertia, session, response }: HttpContext) {

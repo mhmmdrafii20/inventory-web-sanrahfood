@@ -27,12 +27,12 @@ const isKontenHasValidFormat = vine.createRule(
 export const templateNotifikasiValidator = vine.create({
   id_tipe_notifikasi: vine.number().min(1),
   nama_template: vine.string().minLength(3).maxLength(50).trim(),
-  konten: vine.string().minLength(3).maxLength(100).trim().use(isKontenHasValidFormat()),
+  konten: vine.string().minLength(3).maxLength(255).trim().use(isKontenHasValidFormat()),
 })
 
 export const updateTemplateNotifikasiValidator = vine.create({
   id_notifikasi_template: vine.number().min(1).optional(),
   id_tipe_notifikasi: vine.number().min(1).optional(),
   nama_template: vine.string().minLength(3).maxLength(50).trim().optional(),
-  konten: vine.string().minLength(3).maxLength(100).trim().use(isKontenHasValidFormat()).optional(),
+  konten: vine.string().minLength(3).maxLength(255).trim().use(isKontenHasValidFormat()).optional(),
 })

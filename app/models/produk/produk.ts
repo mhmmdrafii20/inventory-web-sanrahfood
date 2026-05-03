@@ -5,6 +5,7 @@ import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
 import { DateTime } from 'luxon'
 import Resep from '../resep/resep.ts'
 import RiwayatProduksi from '../produksi/riwayat_produksi.ts'
+import StokProduk from './stok_produk.ts'
 
 export default class Produk extends ProdukSchema {
   public static table = 'tb_produk'
@@ -16,6 +17,11 @@ export default class Produk extends ProdukSchema {
     foreignKey: 'id_produk',
   })
   declare riwayatProduksi: HasMany<typeof RiwayatProduksi>
+
+  @hasMany(() => StokProduk, {
+    foreignKey: 'id_produk',
+  })
+  declare stokProduk: HasMany<typeof StokProduk>
 
   @column({ columnName: 'id_kategori' })
   declare id_kategori: number

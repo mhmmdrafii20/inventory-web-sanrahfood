@@ -17,6 +17,7 @@ export default function Riwayat() {
       namaResep: string
       jumlahBatch: number
       jumlahHasilProduksi: number
+      namaPengguna: string
       catatanTambahan: string
       tanggalProduksi: string
       produk: { namaProduk: string; satuan: string }
@@ -30,6 +31,7 @@ export default function Riwayat() {
       namaResep: string
       jumlahBatch: number
       jumlahHasilProduksi: number
+      namaPengguna: string
       catatanTambahan: string
       tanggalProduksi: string
       produk: { namaProduk: string; satuan: string }
@@ -103,6 +105,7 @@ export default function Riwayat() {
                 <th className="border border-gray-300 py-3">Yield Per Batch</th>
                 <th className="border border-gray-300 py-3">Jumlah Batch</th>
                 <th className="border border-gray-300 py-3">Jumlah Hasil Produksi</th>
+                <th className="border border-gray-300 py-3">Nama Pengguna</th>
                 <th className="border border-gray-300 py-3">Tanggal Produksi</th>
                 <th className="border border-gray-300 py-3">Catatan Tambahan</th>
               </tr>
@@ -125,6 +128,9 @@ export default function Riwayat() {
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">{items.jumlahHasilProduksi}</Paragraph>
+                    </td>
+                    <td className="border border-gray-300 py-3 px-5">
+                      <Paragraph size="lg">{items.namaPengguna}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">

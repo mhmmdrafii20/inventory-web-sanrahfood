@@ -16,7 +16,8 @@ export default function Riwayat() {
       nomorTelepon: string
       status: string
       errorMessage: number
-      tipeNotifikasi: string
+      tipeNotifikasi: { namaNotifikasi: string }
+      pesan: string
       tanggalDikirim: string
     }[]
     filteredRiwayatNotifikasi: {
@@ -25,8 +26,9 @@ export default function Riwayat() {
       namaPenerima: string
       nomorTelepon: string
       status: string
+      pesan: string
       errorMessage: number
-      tipeNotifikasi: string
+      tipeNotifikasi: { namaNotifikasi: string }
       tanggalDikirim: string
     }[]
   }>().props
@@ -40,7 +42,7 @@ export default function Riwayat() {
     filteredRiwayatNotifikasi && filteredRiwayatNotifikasi.length > 0
       ? filteredRiwayatNotifikasi
       : riwayatNotifikasi
-
+  console.log(displayRiwayatNotifikasi)
   const handleFilter = (e: SubmitEvent) => {
     e.preventDefault()
     get('/riwayat-notifikasi/filter', {
@@ -85,6 +87,7 @@ export default function Riwayat() {
                 <th className="border border-gray-300 py-3">Nomor Telepon</th>
                 <th className="border border-gray-300 py-3">Tipe Notifikasi</th>
                 <th className="border border-gray-300 py-3">Pesan</th>
+                <th className="border border-gray-300 py-3">Error</th>
                 <th className="border border-gray-300 py-3">Status</th>
                 <th className="border border-gray-300 py-3">Tanggal Dikirim</th>
               </tr>
@@ -100,13 +103,17 @@ export default function Riwayat() {
                       <Paragraph size="lg">{items.nomorTelepon}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items.tipeNotifikasi}</Paragraph>
+                      <Paragraph size="lg">{items.tipeNotifikasi.namaNotifikasi}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">{items.pesan}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items.status}</Paragraph>
+                      <Paragraph size="lg">{items.errorMessage}</Paragraph>
+                    </td>
+                    <td className="border border-gray-300 py-3 px-5">
+                      <Paragraph size="lg" className={`${items.status === 'TERKIRIM' ? 'text-green-800 font-bold' : 'text-red-500 font-bold'}`}>
+                        {items.status}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">

@@ -3,7 +3,6 @@ import { belongsTo, column } from '@adonisjs/lucid/orm'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import PenerimaNotifikasi from './penerima_notifikasi.ts'
 import TipeNotifikasi from './tipe_notifikasi.ts'
-import Pengguna from '../auth/pengguna.ts'
 
 export default class PenerimaJenisNotifikasi extends PenerimaJenisNotifikasiSchema {
   public static table = 'tb_penerima_jenis_notifikasi'
@@ -25,5 +24,5 @@ export default class PenerimaJenisNotifikasi extends PenerimaJenisNotifikasiSche
   @belongsTo(() => TipeNotifikasi, {
     foreignKey: 'id_tipe_notifikasi',
   })
-  declare tipe_notifikasi: BelongsTo<typeof TipeNotifikasi>
+  declare tipeNotifikasi: BelongsTo<typeof TipeNotifikasi>
 }

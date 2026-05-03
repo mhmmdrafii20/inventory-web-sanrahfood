@@ -19,7 +19,7 @@ export default class RiwayatStokBahanBaku extends RiwayatStokBahanBakuSchema {
   declare stokBahanBaku: BelongsTo<typeof StokBahanBaku>
 
   @column({ columnName: 'nama_bahan_baku' })
-  declare nama_bahan_baku: number
+  declare nama_bahan_baku: string
 
   @column({ columnName: 'jenis_stok' })
   declare jenis_stok: Text
@@ -32,6 +32,9 @@ export default class RiwayatStokBahanBaku extends RiwayatStokBahanBakuSchema {
 
   @column({ columnName: 'stok_sesudah' })
   declare stok_sesudah: number
+
+  @column({ columnName: 'nama_pengguna' })
+  declare nama_pengguna: string
 
   @column.dateTime({ autoCreate: false, columnName: 'tanggal_perubahan_stok' })
   declare tanggal_perubahan_stok: DateTime

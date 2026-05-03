@@ -37,6 +37,7 @@ export class ResepServices {
       nama_resep?: string
       id_produk?: number
       yield_per_batch?: number
+      catatan_tambahan?: string
       bahan: { id_bahan_baku?: number; jumlah?: number }[]
     }
   ) {
@@ -46,6 +47,7 @@ export class ResepServices {
         nama_resep: data.nama_resep,
         id_produk: data.id_produk,
         yield_per_batch: data.yield_per_batch,
+        catatan_tambahan: data.catatan_tambahan,
       })
 
       await ResepBahan.query({ client: transaction }).where('id_resep', params).delete()

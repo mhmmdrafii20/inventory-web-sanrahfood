@@ -14,6 +14,9 @@ export const controllers = {
     RiwayatStokBahanBaku: () => import('#controllers/bahan/riwayat_stok_bahan_baku'),
     StokBahan: () => import('#controllers/bahan/stok_bahan_controller'),
   },
+  dashboard: {
+    Dashboard: () => import('#controllers/dashboard/dashboard_controller'),
+  },
   notifikasi: {
     DaftarPenerima: () => import('#controllers/notifikasi/daftar_penerima_controller'),
     NotifikasiWhatsapp: () => import('#controllers/notifikasi/notifikasi_whatsapp_controller'),

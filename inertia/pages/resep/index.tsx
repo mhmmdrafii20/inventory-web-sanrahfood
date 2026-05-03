@@ -1,11 +1,12 @@
 import Heading from '~/components/ui/Heading'
 import ActionButton from '~/components/ui/Button/ActionButton'
 import { Link } from '@adonisjs/inertia/react'
-import { FaPen, FaTrashRestore, FaTrash, FaSearch } from 'react-icons/fa'
+import { FaPen, FaTrashRestore, FaTrash, FaSearch, FaEye } from 'react-icons/fa'
 import Paragraph from '~/components/ui/Paragraph'
 import Button from '~/components/ui/Button/Button'
 import { useState, SubmitEvent } from 'react'
 import Modal from 'react-responsive-modal'
+import 'react-responsive-modal/styles.css'
 import { MultiSelect } from 'react-multi-select-component'
 import { usePage, useForm, router } from '@inertiajs/react'
 import { showDeleteDialog } from '../../../utils/sweetalert'
@@ -19,7 +20,9 @@ type Option = {
   value: string
 }
 export default function Index() {
-  const [open, setIsOpen] = useState(false)
+  const [open, setIsOpen] = useState<'create' | 'view' | null>(null)
+  const [selectedId, setSelectedId] = useState<number | null>(null)
+
   const { bahan, produk, resep, errors, searchRes } = usePage<{
     bahan: { idBahanBaku: number; namaBahanBaku: string; satuan: string }[]
     produk: { idProduk: number; namaProduk: string; satuan: string }[]
@@ -29,6 +32,7 @@ export default function Index() {
       idProduk: string
       yieldPerBatch: number
       catatanTambahan: string
+      resep_bahan: { bahan: { idBahanBaku: number, namaBahanBaku: string; satuan: string }; jumlah: number }[]
       produk: { namaProduk: string; satuan: string }
     }[]
     searchRes: {
@@ -37,11 +41,10 @@ export default function Index() {
       idProduk: string
       yieldPerBatch: number
       catatanTambahan: string
+      resep_bahan: { bahan: { idBahanBaku: number, namaBahanBaku: string; satuan: string }; jumlah: number }[]
       produk: { namaProduk: string; satuan: string }
     }[]
   }>().props
-
-  console.log(resep)
 
   const options = bahan?.map((items) => ({
     label: items.namaBahanBaku,
@@ -74,7 +77,7 @@ export default function Index() {
 
     post('/resep/create', {
       onSuccess: () => {
-        setIsOpen(false)
+        setIsOpen(null)
         reset()
       },
     })
@@ -95,6 +98,14 @@ export default function Index() {
     )
   }
   const displayResep = searchRes?.length > 0 ? searchRes : resep
+
+  const selectedResep = resep.find((resep) => resep.idResep === selectedId)
+  console.log(selectedResep)
+
+  function handleView(id: number) {
+    setSelectedId(id)
+    setIsOpen('view')
+  }
   return (
     <>
       <Heading level={1} color="dark_slate_grey" className="font-bold">
@@ -102,12 +113,12 @@ export default function Index() {
       </Heading>
       <div className="flex flex-col  w-full bg-white shadow-md rounded-md p-5">
         <div className="flex flex-row justify-between mt-5">
-          <Button onClick={() => setIsOpen(true)} variant={1} size="md">
+          <Button onClick={() => setIsOpen('create')} variant={1} size="md">
             Tambah Resep
           </Button>
           <Modal
-            open={open}
-            onClose={() => setIsOpen(false)}
+            open={open === 'create'}
+            onClose={() => setIsOpen(null)}
             center
             styles={{ modal: { width: '1024px' } }}
             closeOnOverlayClick={false}
@@ -285,6 +296,7 @@ export default function Index() {
                 <th className="border border-gray-300 py-3">Nama Resep</th>
                 <th className="border border-gray-300 py-3">Produk</th>
                 <th className="border border-gray-300 py-3">Yield Per Batch</th>
+                <th className="border border-gray-300 py-3">Catatan Tambahan</th>
                 <th className="border border-gray-300 py-3">Aksi</th>
               </tr>
             </thead>
@@ -302,6 +314,9 @@ export default function Index() {
                       <Paragraph size="lg">{items.yieldPerBatch}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
+                      <Paragraph size="lg">{items.catatanTambahan}</Paragraph>
+                    </td>
+                    <td className="border border-gray-300 py-3 px-5">
                       <div className="flex flex-row gap-2 justify-center">
                         <Link route="resep.edit" routeParams={{ id: items.idResep }}>
                           <ActionButton
@@ -313,6 +328,13 @@ export default function Index() {
                             <FaPen />
                           </ActionButton>
                         </Link>
+                        <ActionButton
+                          type="view"
+                          size="sm"
+                          onClick={() => handleView(items.idResep)}
+                        >
+                          <FaEye />
+                        </ActionButton>
                         <ActionButton
                           type="delete"
                           size="sm"
@@ -326,7 +348,7 @@ export default function Index() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan={4} className="border border-gray-300 py-3 text-center">
+                  <td colSpan={5} className="border border-gray-300 py-3 text-center">
                     <Paragraph size="lg">Tidak Ada Resep</Paragraph>
                   </td>
                 </tr>
@@ -334,6 +356,72 @@ export default function Index() {
             </tbody>
           </table>
         </div>
+        <Modal
+          open={open === 'view'}
+          onClose={() => setIsOpen(null)}
+          styles={{ modal: { width: '1024px' } }}
+          center
+        >
+          {selectedResep && (
+            <>
+              <Heading level={1} color="dark_slate_grey" className="font-bold">
+                Detail Resep
+              </Heading>
+              <div className="flex flex-col gap-3">
+                <Paragraph size="lg">Nama Resep</Paragraph>
+                <Input variant={1} size="md" disabled value={selectedResep.namaResep}></Input>
+
+                <Paragraph size="lg">Nama Produk</Paragraph>
+                <Input
+                  variant={1}
+                  size="md"
+                  disabled
+                  value={selectedResep.produk.namaProduk}
+                ></Input>
+                <Paragraph size="lg">Yield Per Batch</Paragraph>
+                <Input variant={1} size="md" disabled value={selectedResep.yieldPerBatch}></Input>
+
+                <Paragraph size="lg">Catatan Tambahan</Paragraph>
+                <TextArea
+                  variant={1}
+                  size="md"
+                  disabled
+                  value={selectedResep.catatanTambahan}
+                  rows={5}
+                ></TextArea>
+                <Paragraph size="lg">Bahan Baku</Paragraph>
+                {selectedResep.resep_bahan?.length > 0 ? (
+                  <table className="w-full text-sm border-collapse">
+                    <thead>
+                      <tr className="bg-gray-100 text-left">
+                        <th className="px-4 py-2 border border-gray-200">Nama Bahan</th>
+                        <th className="px-4 py-2 border border-gray-200">Jumlah</th>
+                        <th className="px-4 py-2 border border-gray-200">Satuan</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {selectedResep.resep_bahan.map((items) => (
+                        <tr key={items.bahan.idBahanBaku} className="hover:bg-gray-50">
+                          <td className="px-4 py-2 border border-gray-200">
+                            {items.bahan?.namaBahanBaku}
+                          </td>
+                          <td className="px-4 py-2 border border-gray-200">{items?.jumlah}</td>
+                          <td className="px-4 py-2 border border-gray-200">
+                            {items.bahan?.satuan}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                ) : (
+                  <Paragraph size="md" className="text-gray-500">
+                    Tidak Ada Bahan Baku
+                  </Paragraph>
+                )}
+              </div>
+            </>
+          )}
+        </Modal>
       </div>
     </>
   )

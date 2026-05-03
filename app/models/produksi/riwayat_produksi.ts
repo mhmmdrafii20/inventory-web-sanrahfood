@@ -39,6 +39,9 @@ export default class RiwayatProduksi extends RiwayatProduksiSchema {
   @column({ columnName: 'jumlah_hasil_produksi' })
   declare jumlah_hasil_produksi: number
 
+  @column({ columnName: 'nama_pengguna' })
+  declare nama_pengguna: string
+
   @column.dateTime({ autoCreate: false, columnName: 'tanggal_produksi' })
   declare tanggal_produksi: DateTime
 
