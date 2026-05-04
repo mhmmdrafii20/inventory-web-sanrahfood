@@ -7,7 +7,7 @@ export default function SidebarMenuItem({ item }: { item: MenuItem }) {
 
   // Aktif jika pathname dimulai dengan link item ini
   // (misal: /pengguna cocok dengan /pengguna/edit/1)
-  const isActive = url === item.link || url.startsWith(item.link + '/')
+  const isActive = url === item.link
 
   const className = [
     // Base — layout & transition

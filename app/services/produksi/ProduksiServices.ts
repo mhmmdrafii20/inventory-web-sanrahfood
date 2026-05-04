@@ -29,7 +29,7 @@ export class ProduksiServices {
 
     const bahanIds = resep.resep_bahan.map((item) => item.id_bahan_baku)
 
-    const stokList = await StokBahanBaku.query().whereIn('id_bahan_baku', bahanIds).preload('bahan');
+    const stokList = await StokBahanBaku.query().whereIn('id_bahan_baku', bahanIds).preload('bahan')
 
     const stokMap = new Map(stokList.map((item) => [item.id_bahan_baku, item]))
 
@@ -39,7 +39,7 @@ export class ProduksiServices {
       //stok tersedia / jumlah kebutuhan per batch = max batch untuk bahan itu
       return Math.floor(Number(stok) / Number(items.jumlah))
     })
-    //dibulatkan kebawah.  
+    //dibulatkan kebawah.
     const maxBatch = Math.min(...maxBatchList)
 
     if (payload.jumlah_batch > maxBatch) {
@@ -78,6 +78,7 @@ export class ProduksiServices {
             id_stok_bahan_baku: stokData.id_stok_bahan_baku,
             nama_bahan_baku: stokData.bahan.nama_bahan_baku,
             jenis_stok: 'KELUAR',
+            tipe_transaksi: 'PRODUKSI',
             stok_sebelum: Number(stok),
             selisih_stok: -Number(item.jumlah),
             stok_sesudah: Number(stokSesudah),
@@ -109,6 +110,7 @@ export class ProduksiServices {
           id_stok_produk: stokProduk.id_stok_produk,
           nama_produk: stokProduk.produk.nama_produk,
           jenis_stok: 'MASUK',
+          tipe_transaksi: 'PRODUKSI',
           selisih_stok: Number(payload.jumlah_batch) * Number(resep.yield_per_batch),
           stok_sebelum: Number(stokAwal),
           stok_sesudah: Number(stokSesudah),

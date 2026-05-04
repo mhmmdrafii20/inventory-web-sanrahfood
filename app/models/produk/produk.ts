@@ -6,7 +6,7 @@ import { DateTime } from 'luxon'
 import Resep from '../resep/resep.ts'
 import RiwayatProduksi from '../produksi/riwayat_produksi.ts'
 import StokProduk from './stok_produk.ts'
-
+import StokAdjustmentProduk from './stok_adjustment_produk.ts'
 export default class Produk extends ProdukSchema {
   public static table = 'tb_produk'
 
@@ -22,6 +22,11 @@ export default class Produk extends ProdukSchema {
     foreignKey: 'id_produk',
   })
   declare stokProduk: HasMany<typeof StokProduk>
+
+  @hasMany(() => StokAdjustmentProduk, {
+    foreignKey: 'id_produk',
+  })
+  declare stokAdjustmentProduk: HasMany<typeof StokAdjustmentProduk>
 
   @column({ columnName: 'id_kategori' })
   declare id_kategori: number

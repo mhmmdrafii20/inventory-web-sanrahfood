@@ -22,10 +22,18 @@ export interface ApiDefinition {
   stokProduk: {
     index: typeof routes['stokProduk.index']
     search: typeof routes['stokProduk.search']
+    adjustment: typeof routes['stokProduk.adjustment']
+    createAdjustment: typeof routes['stokProduk.createAdjustment']
+    status: typeof routes['stokProduk.status']
   }
   restokBahan: {
     restok: typeof routes['restokBahan.restok']
     create: typeof routes['restokBahan.create']
+  }
+  stokBahanBaku: {
+    adjustment: typeof routes['stokBahanBaku.adjustment']
+    createAdjustment: typeof routes['stokBahanBaku.createAdjustment']
+    status: typeof routes['stokBahanBaku.status']
   }
   resep: {
     index: typeof routes['resep.index']
@@ -53,6 +61,12 @@ export interface ApiDefinition {
     restore: typeof routes['bahan.restore']
     searchTrash: typeof routes['bahan.searchTrash']
   }
+  approvalStokBahanBaku: {
+    index: typeof routes['approval-stok-bahan-baku.index']
+    approve: typeof routes['approval-stok-bahan-baku.approve']
+    reject: typeof routes['approval-stok-bahan-baku.reject']
+    search: typeof routes['approval-stok-bahan-baku.search']
+  }
   produk: {
     index: typeof routes['produk.index']
     create: typeof routes['produk.create']
@@ -63,6 +77,12 @@ export interface ApiDefinition {
     trash: typeof routes['produk.trash']
     restore: typeof routes['produk.restore']
     searchTrash: typeof routes['produk.searchTrash']
+  }
+  approvalStokProduk: {
+    index: typeof routes['approval-stok-produk.index']
+    approve: typeof routes['approval-stok-produk.approve']
+    reject: typeof routes['approval-stok-produk.reject']
+    search: typeof routes['approval-stok-produk.search']
   }
   hakAkses: {
     index: typeof routes['hakAkses.index']

@@ -47,3 +47,27 @@ export function showDeleteDialog(onConfirm: () => void, description?: string, ti
         "Batal"
     )
 }
+export function showApproveDialog(onConfirm: () => void) {
+    confirmDialog(
+        "Yakin ingin menyetujui penyesuaian stok ini?",
+        "Stok akan diperbarui sesuai dengan data penyesuaian yang diajukan.",
+        "warning",
+        onConfirm,
+        "Setujui",
+        "Batal",
+        "#166534",
+        "#dc2626"
+    )
+}
+export function showRejectDialog(onConfirm: () => void) {
+    confirmDialog(
+        "Yakin ingin menolak penyesuaian stok ini?",
+        "Penyesuaian stok akan ditolak dan tidak akan diproses.",
+        "warning",
+        onConfirm,
+        "Tolak",
+        "Batal",
+        "#dc2626",
+        "#14919b"
+    )
+}

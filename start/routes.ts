@@ -35,9 +35,7 @@ router.post('/login', [AuthController, 'signIn'])
 
 router.post('/webhook/stok-produk', [WebhookController, 'getStokProdukFromSupabase'])
 router.post('/webhook/bahan', [WebhookController, 'getStokBahanBakuFromSupabase'])
-router
-  .post('/webhook/produksi', [WebhookController, 'getProduksiFromSupabase'])
-
+router.post('/webhook/produksi', [WebhookController, 'getProduksiFromSupabase'])
 
 router
   .group(() => {
@@ -57,6 +55,23 @@ router
         router
           .post('/restok-bahan/create', [StokBahanController, 'create'])
           .as('restokBahan.create')
+        router
+          .get('/stok-bahan-baku/adjustment', [StokBahanController, 'adjustment'])
+          .as('stokBahanBaku.adjustment')
+        router
+          .post('/stok-bahan-baku/adjustment/create', [StokBahanController, 'createAdjustment'])
+          .as('stokBahanBaku.createAdjustment')
+        router
+          .get('/stok-bahan-baku/status', [StokBahanController, 'status'])
+          .as('stokBahanBaku.status')
+        router
+          .get('/stok-produk/adjustment', [StokProdukController, 'adjustment'])
+          .as('stokProduk.adjustment')
+        router
+          .post('/stok-produk/adjustment/create', [StokProdukController, 'createAdjustment'])
+          .as('stokProduk.createAdjustment')
+
+        router.get('/stok-produk/status', [StokProdukController, 'status']).as('stokProduk.status')
       })
       .use(middleware.ensureRoleAccess(['Karyawan Gudang']))
     router
@@ -88,6 +103,19 @@ router
         router.patch('/bahan/restore/:id', [BahanController, 'restore']).as('bahan.restore')
         router.get('/bahan/trash/search', [BahanController, 'searchTrash']).as('bahan.searchTrash')
 
+        router
+          .get('/approval-stok-bahan-baku', [StokBahanController, 'approval'])
+          .as('approval-stok-bahan-baku.index')
+        router
+          .post('/approval-stok-bahan-baku/approve/:id', [StokBahanController, 'approve'])
+          .as('approval-stok-bahan-baku.approve')
+        router
+          .post('/approval-stok-bahan-baku/reject/:id', [StokBahanController, 'reject'])
+          .as('approval-stok-bahan-baku.reject')
+        router
+          .get('/approval-stok-bahan-baku/search', [StokBahanController, 'searchApproval'])
+          .as('approval-stok-bahan-baku.search')
+
         router.get('/produk', [ProdukController, 'index']).as('produk.index')
         router.post('/produk/create', [ProdukController, 'create']).as('produk.create')
         router.get('/produk/edit/:id', [ProdukController, 'edit']).as('produk.edit')
@@ -99,6 +127,18 @@ router
         router
           .get('/produk/trash/search', [ProdukController, 'searchTrash'])
           .as('produk.searchTrash')
+        router
+          .get('/approval-stok-produk', [StokProdukController, 'approval'])
+          .as('approval-stok-produk.index')
+        router
+          .post('/approval-stok-produk/approve/:id', [StokProdukController, 'approve'])
+          .as('approval-stok-produk.approve')
+        router
+          .post('/approval-stok-produk/reject/:id', [StokProdukController, 'reject'])
+          .as('approval-stok-produk.reject')
+        router
+          .get('/approval-stok-produk/search', [StokProdukController, 'searchApproval'])
+          .as('approval-stok-produk.search')
 
         router.get('/role', [HakAksesController, 'index']).as('hakAkses.index')
         router.post('/role/create', [HakAksesController, 'create']).as('hakAkses.create')

@@ -139,6 +139,72 @@ export interface Registry {
       response: unknown
     }
   }
+  'stokBahanBaku.adjustment': {
+    methods: ["GET","HEAD"]
+    pattern: '/stok-bahan-baku/adjustment'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'stokBahanBaku.createAdjustment': {
+    methods: ["POST"]
+    pattern: '/stok-bahan-baku/adjustment/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'stokBahanBaku.status': {
+    methods: ["GET","HEAD"]
+    pattern: '/stok-bahan-baku/status'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'stokProduk.adjustment': {
+    methods: ["GET","HEAD"]
+    pattern: '/stok-produk/adjustment'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'stokProduk.createAdjustment': {
+    methods: ["POST"]
+    pattern: '/stok-produk/adjustment/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'stokProduk.status': {
+    methods: ["GET","HEAD"]
+    pattern: '/stok-produk/status'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
   'resep.index': {
     methods: ["GET","HEAD"]
     pattern: '/resep'
@@ -359,6 +425,50 @@ export interface Registry {
       response: unknown
     }
   }
+  'approval-stok-bahan-baku.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/approval-stok-bahan-baku'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'approval-stok-bahan-baku.approve': {
+    methods: ["POST"]
+    pattern: '/approval-stok-bahan-baku/approve/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'approval-stok-bahan-baku.reject': {
+    methods: ["POST"]
+    pattern: '/approval-stok-bahan-baku/reject/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'approval-stok-bahan-baku.search': {
+    methods: ["GET","HEAD"]
+    pattern: '/approval-stok-bahan-baku/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
   'produk.index': {
     methods: ["GET","HEAD"]
     pattern: '/produk'
@@ -450,6 +560,50 @@ export interface Registry {
   'produk.searchTrash': {
     methods: ["GET","HEAD"]
     pattern: '/produk/trash/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'approval-stok-produk.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/approval-stok-produk'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'approval-stok-produk.approve': {
+    methods: ["POST"]
+    pattern: '/approval-stok-produk/approve/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'approval-stok-produk.reject': {
+    methods: ["POST"]
+    pattern: '/approval-stok-produk/reject/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'approval-stok-produk.search': {
+    methods: ["GET","HEAD"]
+    pattern: '/approval-stok-produk/search'
     types: {
       body: {}
       paramsTuple: []

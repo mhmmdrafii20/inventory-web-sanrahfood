@@ -1,6 +1,9 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import StokProduk from '#models/produk/stok_produk'
 import { StokProdukServices } from '#services/produk/StokProdukServices'
+import Produk from '#models/produk/produk'
+import { adjustmentStokProdukValidator } from '#validators/produk/stok_adjustment'
+import StokAdjustmentProduk from '#models/produk/stok_adjustment_produk'
 
 export default class StokProdukController {
   async index({ inertia }: HttpContext) {
@@ -19,5 +22,61 @@ export default class StokProdukController {
     }
     const searchRes = await StokProdukServices.search(nama_produk)
     return inertia.render('produk/stok', { searchRes })
+  }
+  async adjustment({ inertia }: HttpContext) {
+    const produk = await Produk.query().where({ is_deleted: false })
+    return inertia.render('produk/adjustment/adjustment', { produk })
+  }
+  async createAdjustment({ request, response, user, session }: HttpContext) {
+    try {
+      const payload = await request.validateUsing(adjustmentStokProdukValidator)
+      await StokProdukServices.createAdjustment(payload, String(user?.id_pengguna))
+      session.flash('success', 'Permintaaan adjustment stok telah dikirim')
+      return response.redirect().back()
+    } catch (error) {
+      if (error.code === 'E_VALIDATION_ERROR') {
+        throw error
+      }
+      session.flash('error', 'Terjadi kesalahan saat mengirim adjustment stok produk')
+      return response.redirect().back()
+    }
+  }
+  async approval({ inertia }: HttpContext) {
+    const adjustmentProduk = await StokAdjustmentProduk.query()
+      .preload('produk', (produkQuery) => {
+        produkQuery.where({ is_deleted: false })
+      })
+      .where({ status_adjustment: 'PENDING' })
+      .preload('pengguna')
+
+    return inertia.render('produk/approval', { adjustmentProduk })
+  }
+  async approve({ session, response, user, params }: HttpContext) {
+    await StokProdukServices.approve(Number(params.id), String(user?.nama_pengguna))
+    session.flash('success', 'Permintaan adjustment stok telah disetujui')
+    return response.redirect().back()
+  }
+  async reject({ session, response, user, params }: HttpContext) {
+    await StokProdukServices.reject(Number(params.id), String(user?.nama_pengguna))
+    session.flash('success', 'Permintaan adjustment stok telah ditolak')
+    return response.redirect().back()
+  }
+  async status({ inertia }: HttpContext) {
+    const adjustmentProduk = await StokAdjustmentProduk.query()
+      .preload('produk', (produkQuery) => {
+        produkQuery.where({ is_deleted: false })
+      })
+      .preload('pengguna')
+
+    return inertia.render('produk/adjustment/status', { adjustmentProduk })
+  }
+  async searchApproval({ request, inertia, response }: HttpContext) {
+    const nama_produk = request.input('search', '')
+
+    if (!nama_produk) {
+      return response.redirect().toRoute('approval-stok-produk.index')
+    }
+    const searchRes = await StokProdukServices.searchApproval(nama_produk)
+    return inertia.render('produk/approval', { searchRes })
   }
 }

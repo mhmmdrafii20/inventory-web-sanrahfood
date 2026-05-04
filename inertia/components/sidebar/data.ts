@@ -99,6 +99,57 @@ export const data: MenuSection[] = [
     ],
   },
   {
+    label: 'Stok Approval',
+    items: [
+      {
+        name: 'Approval Stok Produk',
+        link: '/approval-stok-produk',
+        icon: TbNotes,
+        role: ['Pemilik'],
+      },
+      {
+        name: 'Approval Stok Bahan Baku',
+        link: '/approval-stok-bahan-baku',
+        icon: TbCubePlus,
+        role: ['Pemilik'],
+      },
+    ],
+  },
+  {
+    label: 'Stok Adjustment',
+    items: [
+      {
+        name: 'Adjust Stok Produk',
+        link: '/stok-produk/adjustment',
+        icon: TbNotes,
+        role: ['Karyawan Gudang'],
+      },
+      {
+        name: 'Adjust Stok Bahan Baku',
+        link: '/stok-bahan-baku/adjustment',
+        icon: TbCubePlus,
+        role: ['Karyawan Gudang'],
+      },
+    ],
+  },
+  {
+    label: 'Status Adjustment ',
+    items: [
+      {
+        name: 'Status Adjustment Stok Produk',
+        link: '/stok-produk/status',
+        icon: TbBox,
+        role: ['Karyawan Gudang'],
+      },
+      {
+        name: 'Status Adjustment Bahan Baku',
+        link: '/stok-bahan-baku/status',
+        icon: TbCubePlus,
+        role: ['Karyawan Gudang'],
+      },
+    ],
+  },
+  {
     label: 'Whatsapp',
     items: [
       {

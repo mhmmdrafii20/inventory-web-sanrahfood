@@ -24,6 +24,9 @@ export default class RiwayatStokBahanBaku extends RiwayatStokBahanBakuSchema {
   @column({ columnName: 'jenis_stok' })
   declare jenis_stok: Text
 
+  @column({ columnName: 'tipe_transaksi' })
+  declare tipe_transaksi: Text
+
   @column({ columnName: 'selisih_stok' })
   declare selisih_stok: number
 

@@ -4,17 +4,16 @@ import SidebarMenuItem from './SidebarMenuItem'
 import { TbHome } from 'react-icons/tb'
 import { data as menuSections } from './data'
 import { Link, usePage } from '@inertiajs/react'
-import supabase from 'services/supabase'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import Button from '~/components/ui/Button/Button'
 import { useForm } from '@inertiajs/react'
+import { MenuItem, User } from './types'
 
 export default function Sidebar() {
   const { url } = usePage()
   const { post } = useForm()
   const isDashboardActive = url === '/dashboard' || url.startsWith('/dashboard/')
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -27,10 +26,10 @@ export default function Sidebar() {
   const menuWithPermissions = menuSections.map((item) => {
     return {
       ...item,
-      items: item.items.filter((subItem) => subItem.role.includes(user?.hakAkses?.namaHakAkses)),
+      items: item.items.filter((subItem) => subItem.role && subItem.role.includes(user?.hakAkses?.namaHakAkses ?? '')),
     }
   })
-  async function handleAction(item) {
+  async function handleAction(item: MenuItem) {
     if (item.type === 'action' && item.action === 'logout') {
       post('/signout')
     }
@@ -79,12 +78,12 @@ export default function Sidebar() {
                   {section.items.map((item) => (
                     <li key={item.name}>
                       {item.type === 'action' ? (
-                        <Button
+                        <button
                           onClick={() => handleAction(item)}
                           className="w-full text-left p-0 cursor-pointer"
                         >
                           <SidebarMenuItem item={item} />
-                        </Button>
+                        </button>
                       ) : (
                         <SidebarMenuItem item={item} />
                       )}

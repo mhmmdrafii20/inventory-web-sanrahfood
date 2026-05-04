@@ -124,10 +124,14 @@ export default function Riwayat() {
                       <Paragraph size="lg">{items.resep?.yieldPerBatch}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items.jumlahBatch}</Paragraph>
+                      <Paragraph size="lg">
+                        {items.jumlahBatch} {items.produk.satuan}
+                      </Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items.jumlahHasilProduksi}</Paragraph>
+                      <Paragraph size="lg">
+                        {items.jumlahHasilProduksi} {items.produk.satuan}
+                      </Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">{items.namaPengguna}</Paragraph>

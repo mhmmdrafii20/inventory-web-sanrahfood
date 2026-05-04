@@ -19,6 +19,9 @@ declare module '@adonisjs/inertia/types' {
     'auth/restore/pengguna': ExtractProps<(typeof import('../../inertia/pages/auth/restore/pengguna.tsx'))['default']>
     'auth/update/hakAkses': ExtractProps<(typeof import('../../inertia/pages/auth/update/hakAkses.tsx'))['default']>
     'auth/update/pengguna': ExtractProps<(typeof import('../../inertia/pages/auth/update/pengguna.tsx'))['default']>
+    'bahan/adjustment/adjustment': ExtractProps<(typeof import('../../inertia/pages/bahan/adjustment/adjustment.tsx'))['default']>
+    'bahan/adjustment/status': ExtractProps<(typeof import('../../inertia/pages/bahan/adjustment/status.tsx'))['default']>
+    'bahan/approval': ExtractProps<(typeof import('../../inertia/pages/bahan/approval.tsx'))['default']>
     'bahan/index': ExtractProps<(typeof import('../../inertia/pages/bahan/index.tsx'))['default']>
     'bahan/restok': ExtractProps<(typeof import('../../inertia/pages/bahan/restok.tsx'))['default']>
     'bahan/restore/index': ExtractProps<(typeof import('../../inertia/pages/bahan/restore/index.tsx'))['default']>
@@ -35,6 +38,9 @@ declare module '@adonisjs/inertia/types' {
     'notifikasi/update/daftarPenerima': ExtractProps<(typeof import('../../inertia/pages/notifikasi/update/daftarPenerima.tsx'))['default']>
     'notifikasi/update/templateNotifikasi': ExtractProps<(typeof import('../../inertia/pages/notifikasi/update/templateNotifikasi.tsx'))['default']>
     'notifikasi/update/tipeNotifikasi': ExtractProps<(typeof import('../../inertia/pages/notifikasi/update/tipeNotifikasi.tsx'))['default']>
+    'produk/adjustment/adjustment': ExtractProps<(typeof import('../../inertia/pages/produk/adjustment/adjustment.tsx'))['default']>
+    'produk/adjustment/status': ExtractProps<(typeof import('../../inertia/pages/produk/adjustment/status.tsx'))['default']>
+    'produk/approval': ExtractProps<(typeof import('../../inertia/pages/produk/approval.tsx'))['default']>
     'produk/index': ExtractProps<(typeof import('../../inertia/pages/produk/index.tsx'))['default']>
     'produk/kategori': ExtractProps<(typeof import('../../inertia/pages/produk/kategori.tsx'))['default']>
     'produk/restore/kategori': ExtractProps<(typeof import('../../inertia/pages/produk/restore/kategori.tsx'))['default']>

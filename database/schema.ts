@@ -435,8 +435,83 @@ export class TbRiwayatNotifikasiSchema extends BaseModel {
   declare status: string
   @column()
   declare errorMessage: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+}
+
+export class TbStokProdukAdjustmentSchema extends BaseModel {
+  static $columns = [
+    'idStokProdukAdjustment',
+    'idProduk',
+    'idPengguna',
+    'jenisStok',
+    'jumlah',
+    'statusAdjustment',
+    'tanggalAdjustment',
+    'catatanTambahan',
+    'approved_by',
+    'approved_at',
+    'createdAt',
+  ] as const
+  $columns = TbStokProdukAdjustmentSchema.$columns
   @column()
-  declare status: string
+  declare idStokProdukAdjustment: number
+  @column()
+  declare idProduk: number
+  @column()
+  declare idPengguna: string
+  @column()
+  declare jenisStok: string
+  @column()
+  declare jumlah: number
+  @column()
+  declare statusAdjustment: string
+  @column.dateTime({ columnName: 'tanggal_adjustment' })
+  declare tanggalAdjustment: DateTime
+  @column()
+  declare catatanTambahan: string
+  @column()
+  declare approvedBy: string
+  @column.dateTime({ columnName: 'approved_at' })
+  declare approvedAt: DateTime | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+}
+export class TbStokBahanBakuAdjustmentSchema extends BaseModel {
+  static $columns = [
+    'idStokBahanBakuAdjustment',
+    'idBahanBaku',
+    'idPengguna',
+    'jenisStok',
+    'jumlah',
+    'statusAdjustment',
+    'tanggalAdjustment',
+    'catatanTambahan',
+    'approved_by',
+    'approved_at',
+    'createdAt',
+  ] as const
+  $columns = TbStokBahanBakuAdjustmentSchema.$columns
+  @column()
+  declare idStokBahanBakuAdjustment: number
+  @column()
+  declare idBahanBaku: number
+  @column()
+  declare idPengguna: string
+  @column()
+  declare jenisStok: string
+  @column()
+  declare jumlah: number
+  @column()
+  declare statusAdjustment: string
+  @column.dateTime({ columnName: 'tanggal_adjustment' })
+  declare tanggalAdjustment: DateTime
+  @column()
+  declare catatanTambahan: string
+  @column()
+  declare approvedBy: string
+  @column.dateTime({ columnName: 'approved_at' })
+  declare approvedAt: DateTime | null
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
 }

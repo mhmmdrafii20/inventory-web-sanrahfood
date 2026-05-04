@@ -61,6 +61,7 @@ const field = {
   tanggal_perubahan_stok: 'Tanggal Perubahan Stok',
   tanggal_produksi: 'Tanggal Produksi',
   tanggal_restok: 'Tanggal Restok',
+  tanggal_adjustment: 'Tanggal Adjustment',
   jumlah_batch: 'Jumlah Batch',
   yield_per_batch: 'Yield Per Batch',
   jumlah_stok: 'Jumlah Stok',

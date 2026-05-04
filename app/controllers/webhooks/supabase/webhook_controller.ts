@@ -29,13 +29,18 @@ export default class WebhookController {
     const stokBerkurang = record.jumlah_stok < old_record.jumlah_stok
 
     if (stokBertambah) {
-      await NotifikasiWhatsappServices.restokBahanBaku(record.id_stok_bahan_baku, record.jumlah_stok)
+      await NotifikasiWhatsappServices.restokBahanBaku(
+        record.id_stok_bahan_baku,
+        record.jumlah_stok
+      )
     }
 
     if (stokBerkurang) {
-      await NotifikasiWhatsappServices.cekStokBahanBaku(record.id_stok_bahan_baku, record.jumlah_stok)
+      await NotifikasiWhatsappServices.cekStokBahanBaku(
+        record.id_stok_bahan_baku,
+        record.jumlah_stok
+      )
     }
-
     return response.ok('OK')
   }
   async getProduksiFromSupabase({ request, response }: HttpContext) {

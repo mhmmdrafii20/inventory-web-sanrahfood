@@ -65,7 +65,6 @@ export default function Stok() {
                 <th className="border border-gray-300 py-3">Nama Produk</th>
                 <th className="border border-gray-300 py-3">Jumlah Stok</th>
                 <th className="border border-gray-300 py-3">Stok Minimum</th>
-                <th className="border border-gray-300 py-3">Satuan</th>
               </tr>
             </thead>
             <tbody>
@@ -76,13 +75,14 @@ export default function Stok() {
                       <Paragraph size="lg">{items.produk.namaProduk}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items.jumlahStok}</Paragraph>
+                      <Paragraph size="lg">
+                        {items.jumlahStok} {items.produk.satuan}
+                      </Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items.stokMinimum}</Paragraph>
-                    </td>
-                    <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items.produk.satuan}</Paragraph>
+                      <Paragraph size="lg">
+                        {items.stokMinimum} {items.produk.satuan}
+                      </Paragraph>
                     </td>
                   </tr>
                 ))

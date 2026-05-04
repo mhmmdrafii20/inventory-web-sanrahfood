@@ -15,24 +15,26 @@ export default function Riwayat() {
       idStokBahanBaku: number
       namaBahanBaku: string
       jenisStok: string
+      tipeTransaksi: string
       selisihStok: number
       stokSebelum: number
       stokSesudah: number
       namaPengguna: string
       tanggalPerubahanStok: string
-      stokBahanBaku: { bahan: { namaBahanBaku: string } }
+      stokBahanBaku: { bahan: { namaBahanBaku: string; satuan: string } }
     }[]
     filteredRiwayatStokBahanBaku: {
       idRiwayatStokBb: number
       idStokBahanBaku: number
       namaBahanBaku: string
       jenisStok: string
+      tipeTransaksi: string
       selisihStok: number
       stokSebelum: number
       stokSesudah: number
       namaPengguna: string
       tanggalPerubahanStok: string
-      stokBahanBaku: { bahan: { namaBahanBaku: string } }
+      stokBahanBaku: { bahan: { namaBahanBaku: string; satuan: string } }
     }[]
   }>().props
 
@@ -46,8 +48,6 @@ export default function Riwayat() {
       ? filteredRiwayatStokBahanBaku
       : riwayatStokBahanBaku
 
-  console.log(displayRiwayatStokBahanBaku)
-
   const handleFilter = (e: SubmitEvent) => {
     e.preventDefault()
     get(`/riwayat-stok-bahan-baku/filter`, {
@@ -59,6 +59,11 @@ export default function Riwayat() {
     e.preventDefault()
     const query = new URLSearchParams(data).toString()
     window.open(`/riwayat-stok-bahan-baku/generate-pdf?${query}`, '_blank')
+  }
+  const tipeStyle: Record<string, string> = {
+    PRODUKSI: 'text-blue-500 ',
+    RESTOK: 'text-green-600 ',
+    ADJUSTMENT: 'text-yellow-500 ',
   }
   return (
     <>
@@ -95,13 +100,14 @@ export default function Riwayat() {
         </form>
         <div className="max-h-[500px] overflow-y-auto">
           <table className="w-full border-collapse mt-5 bg-white">
-            <thead className="bg-gray-100">
+            <thead>
               <tr>
                 <th className="border border-gray-300 py-3">Nama Bahan Baku</th>
                 <th className="border border-gray-300 py-3">Selisih Stok</th>
                 <th className="border border-gray-300 py-3">Stok Sebelum</th>
                 <th className="border border-gray-300 py-3">Stok Sesudah</th>
                 <th className="border border-gray-300 py-3">Jenis Stok</th>
+                <th className="border border-gray-300 py-3">Tipe Transaksi</th>
                 <th className="border border-gray-300 py-3">Nama Pengguna</th>
                 <th className="border border-gray-300 py-3">Tanggal Perubahan Stok</th>
               </tr>
@@ -114,13 +120,19 @@ export default function Riwayat() {
                       <Paragraph size="lg">{items?.namaBahanBaku}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items.selisihStok}</Paragraph>
+                      <Paragraph size="lg">
+                        {items.selisihStok} {items.stokBahanBaku.bahan.satuan}
+                      </Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items.stokSebelum}</Paragraph>
+                      <Paragraph size="lg">
+                        {items.stokSebelum} {items.stokBahanBaku.bahan.satuan}
+                      </Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items.stokSesudah}</Paragraph>
+                      <Paragraph size="lg">
+                        {items.stokSesudah} {items.stokBahanBaku.bahan.satuan}
+                      </Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph
@@ -128,6 +140,14 @@ export default function Riwayat() {
                         className={`${items.jenisStok === 'MASUK' ? 'text-green-800 font-bold' : 'text-red-500 font-bold'}`}
                       >
                         {items.jenisStok}
+                      </Paragraph>
+                    </td>
+                    <td className="border border-gray-300 py-3 px-5">
+                      <Paragraph
+                        size="lg"
+                        className={`${tipeStyle[items.tipeTransaksi]} font-bold`}
+                      >
+                        {items.tipeTransaksi}
                       </Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
@@ -142,7 +162,7 @@ export default function Riwayat() {
                 ))
               ) : (
                 <tr className="border border-gray-300">
-                  <td colSpan={7} className="text-center py-4">
+                  <td colSpan={8} className="text-center py-4">
                     <Paragraph size="lg">Tidak Ada Riwayat Stok Bahan Baku</Paragraph>
                   </td>
                 </tr>
