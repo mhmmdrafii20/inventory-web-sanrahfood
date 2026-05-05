@@ -62,9 +62,9 @@ export interface Registry {
       response: unknown
     }
   }
-  'dashboard.index': {
+  'dashboard.gudang': {
     methods: ["GET","HEAD"]
-    pattern: '/dashboard'
+    pattern: '/gudang/dashboard'
     types: {
       body: {}
       paramsTuple: []
@@ -172,6 +172,39 @@ export interface Registry {
       response: unknown
     }
   }
+  'stokBahanBaku.searchStatus': {
+    methods: ["GET","HEAD"]
+    pattern: '/stok-bahan-baku/status/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'produk.stokKeluar': {
+    methods: ["GET","HEAD"]
+    pattern: '/produk/stok-keluar'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'produk.createStokKeluar': {
+    methods: ["POST"]
+    pattern: '/produk/stok-keluar/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
   'stokProduk.adjustment': {
     methods: ["GET","HEAD"]
     pattern: '/stok-produk/adjustment'
@@ -197,6 +230,28 @@ export interface Registry {
   'stokProduk.status': {
     methods: ["GET","HEAD"]
     pattern: '/stok-produk/status'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'stokProduk.searchStatus': {
+    methods: ["GET","HEAD"]
+    pattern: '/stok-produk/status/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'dashboard.produksi': {
+    methods: ["GET","HEAD"]
+    pattern: '/produksi/dashboard'
     types: {
       body: {}
       paramsTuple: []
@@ -318,6 +373,17 @@ export interface Registry {
   'produksi.create': {
     methods: ["POST"]
     pattern: '/produksi/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'dashboard.pemilik': {
+    methods: ["GET","HEAD"]
+    pattern: '/pemilik/dashboard'
     types: {
       body: {}
       paramsTuple: []
@@ -1268,6 +1334,105 @@ export interface Registry {
       body: {}
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'supplier.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/supplier'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'supplier.create': {
+    methods: ["POST"]
+    pattern: '/supplier/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'supplier.edit': {
+    methods: ["GET","HEAD"]
+    pattern: '/supplier/edit/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'supplier.update': {
+    methods: ["PUT"]
+    pattern: '/supplier/update/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'supplier.destroy': {
+    methods: ["DELETE"]
+    pattern: '/supplier/delete/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'supplier.search': {
+    methods: ["GET","HEAD"]
+    pattern: '/supplier/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'supplier.trash': {
+    methods: ["GET","HEAD"]
+    pattern: '/supplier/trash'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'supplier.restore': {
+    methods: ["PATCH"]
+    pattern: '/supplier/restore/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+    }
+  }
+  'supplier.searchTrash': {
+    methods: ["GET","HEAD"]
+    pattern: '/supplier/trash/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
       query: {}
       response: unknown
     }

@@ -1,11 +1,15 @@
 import Heading from '~/components/ui/Heading'
 import Paragraph from '~/components/ui/Paragraph'
-import { usePage } from '@inertiajs/react'
+import { usePage, router } from '@inertiajs/react'
 import dayjs from 'dayjs'
 import 'dayjs/locale/id'
+import Input from '~/components/ui/Input'
+import ActionButton from '~/components/ui/Button/ActionButton'
+import { FaSearch } from 'react-icons/fa'
+import { useState } from 'react'
 
 export default function StatusBahan() {
-  const { adjustmentBahan } = usePage<{
+  const { adjustmentBahan, searchRes } = usePage<{
     adjustmentBahan: {
       idStokBahanAdjustment: number
       idBahan: number
@@ -16,7 +20,33 @@ export default function StatusBahan() {
       approvedAt: string | null
       bahan: { namaBahanBaku: string; satuan: string }
     }[]
+    searchRes?: {
+      idStokBahanAdjustment: number
+      idBahan: number
+      jenisStok: string
+      jumlah: number
+      statusAdjustment: string
+      approvedBy: string | null
+      approvedAt: string | null
+      bahan: { namaBahanBaku: string; satuan: string }
+    }[]
   }>().props
+
+  const [searchData, setSearchData] = useState('')
+
+  function handleSearch() {
+    router.get(
+      '/stok-bahan-baku/status/search',
+      { search: searchData },
+      {
+        preserveState: true,
+        replace: true,
+      }
+    )
+  }
+
+  const displayAdjustmentBahan = searchRes && searchRes.length > 0 ? searchRes : adjustmentBahan
+
   return (
     <>
       <Heading level={1} color="dark_slate_grey" className="font-bold">
@@ -24,6 +54,21 @@ export default function StatusBahan() {
       </Heading>
 
       <div className="flex flex-col w-full bg-white shadow-md rounded-md p-5">
+        <div className="w-full flex flex-row items-center gap-3">
+          <Input
+            variant={1}
+            size="md"
+            type="text"
+            name="nama_bahan_baku"
+            placeholder="Cari Nama Bahan Baku"
+            className="flex-1"
+            value={searchData}
+            onChange={(e) => setSearchData(e.target.value)}
+          />
+          <ActionButton type="search" size="lg" onClick={handleSearch}>
+            <FaSearch />
+          </ActionButton>
+        </div>
         <div className="max-h-[500px] overflow-y-auto">
           <table className="w-full border-collapse mt-5 bg-white">
             <thead>
@@ -38,8 +83,8 @@ export default function StatusBahan() {
             </thead>
 
             <tbody>
-              {adjustmentBahan?.length > 0 ? (
-                adjustmentBahan.map((items) => (
+              {displayAdjustmentBahan?.length > 0 ? (
+                displayAdjustmentBahan.map((items) => (
                   <tr key={items.idStokBahanAdjustment}>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">{items.bahan.namaBahanBaku}</Paragraph>

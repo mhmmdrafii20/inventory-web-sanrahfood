@@ -13,7 +13,9 @@ export interface ApiDefinition {
     getProduksiFromSupabase: typeof routes['webhook.get_produksi_from_supabase']
   }
   dashboard: {
-    index: typeof routes['dashboard.index']
+    gudang: typeof routes['dashboard.gudang']
+    produksi: typeof routes['dashboard.produksi']
+    pemilik: typeof routes['dashboard.pemilik']
   }
   stokBahan: {
     index: typeof routes['stokBahan.index']
@@ -25,6 +27,7 @@ export interface ApiDefinition {
     adjustment: typeof routes['stokProduk.adjustment']
     createAdjustment: typeof routes['stokProduk.createAdjustment']
     status: typeof routes['stokProduk.status']
+    searchStatus: typeof routes['stokProduk.searchStatus']
   }
   restokBahan: {
     restok: typeof routes['restokBahan.restok']
@@ -34,6 +37,20 @@ export interface ApiDefinition {
     adjustment: typeof routes['stokBahanBaku.adjustment']
     createAdjustment: typeof routes['stokBahanBaku.createAdjustment']
     status: typeof routes['stokBahanBaku.status']
+    searchStatus: typeof routes['stokBahanBaku.searchStatus']
+  }
+  produk: {
+    stokKeluar: typeof routes['produk.stokKeluar']
+    createStokKeluar: typeof routes['produk.createStokKeluar']
+    index: typeof routes['produk.index']
+    create: typeof routes['produk.create']
+    edit: typeof routes['produk.edit']
+    update: typeof routes['produk.update']
+    destroy: typeof routes['produk.destroy']
+    search: typeof routes['produk.search']
+    trash: typeof routes['produk.trash']
+    restore: typeof routes['produk.restore']
+    searchTrash: typeof routes['produk.searchTrash']
   }
   resep: {
     index: typeof routes['resep.index']
@@ -66,17 +83,6 @@ export interface ApiDefinition {
     approve: typeof routes['approval-stok-bahan-baku.approve']
     reject: typeof routes['approval-stok-bahan-baku.reject']
     search: typeof routes['approval-stok-bahan-baku.search']
-  }
-  produk: {
-    index: typeof routes['produk.index']
-    create: typeof routes['produk.create']
-    edit: typeof routes['produk.edit']
-    update: typeof routes['produk.update']
-    destroy: typeof routes['produk.destroy']
-    search: typeof routes['produk.search']
-    trash: typeof routes['produk.trash']
-    restore: typeof routes['produk.restore']
-    searchTrash: typeof routes['produk.searchTrash']
   }
   approvalStokProduk: {
     index: typeof routes['approval-stok-produk.index']
@@ -166,5 +172,16 @@ export interface ApiDefinition {
     edit: typeof routes['templateNotifikasi.edit']
     update: typeof routes['templateNotifikasi.update']
     destroy: typeof routes['templateNotifikasi.destroy']
+  }
+  supplier: {
+    index: typeof routes['supplier.index']
+    create: typeof routes['supplier.create']
+    edit: typeof routes['supplier.edit']
+    update: typeof routes['supplier.update']
+    destroy: typeof routes['supplier.destroy']
+    search: typeof routes['supplier.search']
+    trash: typeof routes['supplier.trash']
+    restore: typeof routes['supplier.restore']
+    searchTrash: typeof routes['supplier.searchTrash']
   }
 }

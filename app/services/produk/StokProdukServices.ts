@@ -12,6 +12,59 @@ export class StokProdukServices {
       })
       .preload('produk')
   }
+  static async createStokKeluar(
+    payload: {
+      produk: {
+        id_produk: number
+        jumlah: number
+      }[]
+      tanggal_pengeluaran: DateTime
+      catatan_tambahan?: string
+    },
+    nama_pengguna: string
+  ) {
+    await db.transaction(async (transaction) => {
+      for (const item of payload.produk) {
+        const oldStok = await StokProduk.query({ client: transaction })
+          .where('id_produk', item.id_produk)
+          .preload('produk')
+          .firstOrFail()
+
+        if (Number(item.jumlah) > Number(oldStok.jumlah_stok)) {
+          throw new Error(
+            `Jumlah yang diminta untuk produk ${oldStok.produk.nama_produk} lebih besar dari stok yang tersedia.`
+          )
+        }
+
+        const updatedStok = Number(oldStok.jumlah_stok) - Number(item.jumlah)
+
+        if (updatedStok < 0) {
+          throw new Error(
+            `Stok tidak mencukupi untuk melakukan transaksi produk ${oldStok.produk.nama_produk}.`
+          )
+        }
+
+        await StokProduk.query({ client: transaction }).where('id_produk', item.id_produk).update({
+          jumlah_stok: updatedStok,
+        })
+
+        await RiwayatStokProduk.create(
+          {
+            id_stok_produk: Number(oldStok?.id_stok_produk),
+            nama_produk: oldStok.produk.nama_produk,
+            selisih_stok: -Number(item.jumlah),
+            tipe_transaksi: 'PENJUALAN',
+            stok_sebelum: Number(oldStok.jumlah_stok),
+            stok_sesudah: Number(updatedStok),
+            jenis_stok: 'KELUAR',
+            nama_pengguna: nama_pengguna,
+            tanggal_perubahan_stok: payload.tanggal_pengeluaran,
+          },
+          { client: transaction }
+        )
+      }
+    })
+  }
   static async createAdjustment(
     payload: {
       id_produk: number
@@ -103,5 +156,14 @@ export class StokProdukServices {
       .preload('produk')
       .preload('pengguna')
       .where('status_adjustment', 'PENDING')
+  }
+
+  static async searchStatus(nama_produk: string) {
+    return await StokAdjustmentProduk.query()
+      .whereHas('produk', (b) => {
+        b.where('nama_produk', 'ILIKE', `%${nama_produk}%`).where({ is_deleted: false })
+      })
+      .preload('produk')
+      .preload('pengguna')
   }
 }

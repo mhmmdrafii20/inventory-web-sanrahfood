@@ -37,6 +37,9 @@ export const controllers = {
   resep: {
     Resep: () => import('#controllers/resep/resep_controller'),
   },
+  supplier: {
+    Supplier: () => import('#controllers/supplier/supplier_controller'),
+  },
   webhooks: {
     supabase: {
       Webhook: () => import('#controllers/webhooks/supabase/webhook_controller'),

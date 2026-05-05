@@ -29,6 +29,7 @@ import TemplateNotifikasiController from '#controllers/notifikasi/template_notif
 import WebhookController from '#controllers/webhooks/supabase/webhook_controller'
 import RiwayatNotifikasiController from '#controllers/notifikasi/riwayat_notifikasi_controller'
 import DashboardController from '#controllers/dashboard/dashboard_controller'
+import SupplierController from '#controllers/supplier/supplier_controller'
 
 router.get('/', [AuthController, 'login']).as('auth.login')
 router.post('/login', [AuthController, 'signIn'])
@@ -39,9 +40,10 @@ router.post('/webhook/produksi', [WebhookController, 'getProduksiFromSupabase'])
 
 router
   .group(() => {
-    router.get('/dashboard', [DashboardController, 'index']).as('dashboard.index')
     router
       .group(() => {
+        router.get('gudang/dashboard', [DashboardController, 'gudang']).as('dashboard.gudang')
+
         router.get('/stok-bahan', [StokBahanController, 'index']).as('stokBahan.index')
         router.get('/stok-bahan/search', [StokBahanController, 'search']).as('stokBahan.search')
 
@@ -65,6 +67,15 @@ router
           .get('/stok-bahan-baku/status', [StokBahanController, 'status'])
           .as('stokBahanBaku.status')
         router
+          .get('/stok-bahan-baku/status/search', [StokBahanController, 'searchStatus'])
+          .as('stokBahanBaku.searchStatus')
+        router
+          .get('/produk/stok-keluar', [StokProdukController, 'stokKeluar'])
+          .as('produk.stokKeluar')
+        router
+          .post('/produk/stok-keluar/create', [StokProdukController, 'createStokKeluar'])
+          .as('produk.createStokKeluar')
+        router
           .get('/stok-produk/adjustment', [StokProdukController, 'adjustment'])
           .as('stokProduk.adjustment')
         router
@@ -72,10 +83,15 @@ router
           .as('stokProduk.createAdjustment')
 
         router.get('/stok-produk/status', [StokProdukController, 'status']).as('stokProduk.status')
+        router
+          .get('/stok-produk/status/search', [StokProdukController, 'searchStatus'])
+          .as('stokProduk.searchStatus')
       })
       .use(middleware.ensureRoleAccess(['Karyawan Gudang']))
     router
       .group(() => {
+        router.get('produksi/dashboard', [DashboardController, 'produksi']).as('dashboard.produksi')
+
         router.get('/resep', [ResepController, 'index']).as('resep.index')
         router.post('/resep/create', [ResepController, 'create']).as('resep.create')
         router.get('/resep/edit/:id', [ResepController, 'edit']).as('resep.edit')
@@ -93,6 +109,10 @@ router
 
     router
       .group(() => {
+        router
+          .get('pemilik/dashboard', [DashboardController, 'pemilik', 'getProdukPenjualanBulanan'])
+          .as('dashboard.pemilik')
+
         router.get('/bahan', [BahanController, 'index']).as('bahan.index')
         router.get('/bahan/edit/:id', [BahanController, 'edit']).as('bahan.edit')
         router.post('/bahan/create', [BahanController, `create`]).as('bahan.create')
@@ -309,6 +329,22 @@ router
         router
           .delete('/template-notifikasi/delete/:id', [TemplateNotifikasiController, 'destroy'])
           .as('templateNotifikasi.destroy')
+
+        router.get('/supplier', [SupplierController, 'index']).as('supplier.index')
+        router.post('/supplier/create', [SupplierController, 'create']).as('supplier.create')
+        router.get('/supplier/edit/:id', [SupplierController, 'edit']).as('supplier.edit')
+        router.put('/supplier/update/:id', [SupplierController, 'update']).as('supplier.update')
+        router
+          .delete('/supplier/delete/:id', [SupplierController, 'destroy'])
+          .as('supplier.destroy')
+        router.get('/supplier/search', [SupplierController, 'search']).as('supplier.search')
+        router.get('/supplier/trash', [SupplierController, 'trash']).as('supplier.trash')
+        router
+          .patch('/supplier/restore/:id', [SupplierController, 'restore'])
+          .as('supplier.restore')
+        router
+          .get('/supplier/trash/search', [SupplierController, 'searchTrash'])
+          .as('supplier.searchTrash')
       })
       .use(middleware.ensureRoleAccess(['Pemilik']))
 

@@ -28,7 +28,9 @@ declare module '@adonisjs/inertia/types' {
     'bahan/riwayat': ExtractProps<(typeof import('../../inertia/pages/bahan/riwayat.tsx'))['default']>
     'bahan/stok': ExtractProps<(typeof import('../../inertia/pages/bahan/stok.tsx'))['default']>
     'bahan/update': ExtractProps<(typeof import('../../inertia/pages/bahan/update.tsx'))['default']>
-    'dashboard/home': ExtractProps<(typeof import('../../inertia/pages/dashboard/home.tsx'))['default']>
+    'dashboard/gudang/index': ExtractProps<(typeof import('../../inertia/pages/dashboard/gudang/index.tsx'))['default']>
+    'dashboard/pemilik/index': ExtractProps<(typeof import('../../inertia/pages/dashboard/pemilik/index.tsx'))['default']>
+    'dashboard/produksi/index': ExtractProps<(typeof import('../../inertia/pages/dashboard/produksi/index.tsx'))['default']>
     'notifikasi/daftarPenerima': ExtractProps<(typeof import('../../inertia/pages/notifikasi/daftarPenerima.tsx'))['default']>
     'notifikasi/data': ExtractProps<(typeof import('../../inertia/pages/notifikasi/data.ts'))['default']>
     'notifikasi/notifikasiWhatsapp': ExtractProps<(typeof import('../../inertia/pages/notifikasi/notifikasiWhatsapp.tsx'))['default']>
@@ -47,6 +49,7 @@ declare module '@adonisjs/inertia/types' {
     'produk/restore/produk': ExtractProps<(typeof import('../../inertia/pages/produk/restore/produk.tsx'))['default']>
     'produk/riwayat': ExtractProps<(typeof import('../../inertia/pages/produk/riwayat.tsx'))['default']>
     'produk/stok': ExtractProps<(typeof import('../../inertia/pages/produk/stok.tsx'))['default']>
+    'produk/stokKeluar': ExtractProps<(typeof import('../../inertia/pages/produk/stokKeluar.tsx'))['default']>
     'produk/update/kategori': ExtractProps<(typeof import('../../inertia/pages/produk/update/kategori.tsx'))['default']>
     'produk/update/produk': ExtractProps<(typeof import('../../inertia/pages/produk/update/produk.tsx'))['default']>
     'produksi/index': ExtractProps<(typeof import('../../inertia/pages/produksi/index.tsx'))['default']>
@@ -54,5 +57,8 @@ declare module '@adonisjs/inertia/types' {
     'resep/index': ExtractProps<(typeof import('../../inertia/pages/resep/index.tsx'))['default']>
     'resep/restore/resep': ExtractProps<(typeof import('../../inertia/pages/resep/restore/resep.tsx'))['default']>
     'resep/update/resep': ExtractProps<(typeof import('../../inertia/pages/resep/update/resep.tsx'))['default']>
+    'supplier/index': ExtractProps<(typeof import('../../inertia/pages/supplier/index.tsx'))['default']>
+    'supplier/restore': ExtractProps<(typeof import('../../inertia/pages/supplier/restore.tsx'))['default']>
+    'supplier/update': ExtractProps<(typeof import('../../inertia/pages/supplier/update.tsx'))['default']>
   }
 }

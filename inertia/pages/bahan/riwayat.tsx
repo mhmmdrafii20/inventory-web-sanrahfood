@@ -20,6 +20,7 @@ export default function Riwayat() {
       stokSebelum: number
       stokSesudah: number
       namaPengguna: string
+      namaSupplier: string
       tanggalPerubahanStok: string
       stokBahanBaku: { bahan: { namaBahanBaku: string; satuan: string } }
     }[]
@@ -33,6 +34,7 @@ export default function Riwayat() {
       stokSebelum: number
       stokSesudah: number
       namaPengguna: string
+      namaSupplier: string
       tanggalPerubahanStok: string
       stokBahanBaku: { bahan: { namaBahanBaku: string; satuan: string } }
     }[]
@@ -108,6 +110,7 @@ export default function Riwayat() {
                 <th className="border border-gray-300 py-3">Stok Sesudah</th>
                 <th className="border border-gray-300 py-3">Jenis Stok</th>
                 <th className="border border-gray-300 py-3">Tipe Transaksi</th>
+                <th className="border border-gray-300 py-3">Nama Supplier</th>
                 <th className="border border-gray-300 py-3">Nama Pengguna</th>
                 <th className="border border-gray-300 py-3">Tanggal Perubahan Stok</th>
               </tr>
@@ -148,6 +151,11 @@ export default function Riwayat() {
                         className={`${tipeStyle[items.tipeTransaksi]} font-bold`}
                       >
                         {items.tipeTransaksi}
+                      </Paragraph>
+                    </td>
+                    <td className="border border-gray-300 py-3 px-5">
+                      <Paragraph size="lg">
+                        {items.tipeTransaksi === 'RESTOK' ? items.namaSupplier : '-'}
                       </Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">

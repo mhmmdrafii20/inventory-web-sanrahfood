@@ -5,6 +5,7 @@ import { StokBahanServices } from '#services/bahan/StokBahanServices'
 import { stokBahanValidator } from '#validators/bahan/stok_bahan'
 import StokAdjustmentBahanBaku from '#models/bahan/stok_adjustment_bahan_baku'
 import { adjustmentStokBahanBakuValidator } from '#validators/bahan/stok_adjustment'
+import Supplier from '#models/supplier/supplier'
 export default class StokBahanController {
   async index({ inertia }: HttpContext) {
     const stokBahan = await StokBahanBaku.query()
@@ -16,7 +17,8 @@ export default class StokBahanController {
   }
   async restok({ inertia }: HttpContext) {
     const bahan = await Bahan.query().where({ is_deleted: false })
-    return inertia.render('bahan/restok', { bahan })
+    const supplier = await Supplier.query().where({ is_deleted: false })
+    return inertia.render('bahan/restok', { bahan, supplier })
   }
   async create({ request, response, session, user }: HttpContext) {
     try {
@@ -114,5 +116,15 @@ export default class StokBahanController {
     }
     const searchRes = await StokBahanServices.searchApproval(nama_bahan_baku)
     return inertia.render('bahan/approval', { searchRes })
+  }
+
+  async searchStatus({ request, inertia, response }: HttpContext) {
+    const nama_bahan_baku = request.input('search', '')
+
+    if (!nama_bahan_baku) {
+      return response.redirect().toRoute('stokBahanBaku.status')
+    }
+    const searchRes = await StokBahanServices.searchStatus(nama_bahan_baku)
+    return inertia.render('bahan/adjustment/status', { searchRes })
   }
 }

@@ -51,6 +51,7 @@ const field = {
   id_pengguna: 'Pengguna',
   id_bahan_baku: 'Bahan Baku',
   id_tipe_notifikasi: 'Tipe Notifikasi',
+  produk: 'Produk',
   bahan: 'Bahan',
   konten: 'Konten',
   jenis_stok: 'Jenis Stok',
@@ -66,6 +67,7 @@ const field = {
   yield_per_batch: 'Yield Per Batch',
   jumlah_stok: 'Jumlah Stok',
   jumlah: 'Jumlah',
+  tanggal_pengeluaran: 'Tanggal Pengeluaran',
   catatan_tambahan: 'Catatan Tambahan',
 }
 vine.messagesProvider = new SimpleMessagesProvider(messages, field)

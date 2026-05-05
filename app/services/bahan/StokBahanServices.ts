@@ -9,6 +9,7 @@ export class StokBahanServices {
   static async update(
     payload: {
       id_bahan_baku: number
+      nama_supplier: string
       jumlah: number
       tanggal_restok: DateTime
     },
@@ -55,6 +56,7 @@ export class StokBahanServices {
           stok_sesudah: Number(updatedJumlahStok),
           tanggal_perubahan_stok: payload.tanggal_restok,
           nama_pengguna: nama_pengguna,
+          nama_supplier: payload.nama_supplier,
         },
         { client: transaction }
       )
@@ -164,5 +166,14 @@ export class StokBahanServices {
       .preload('bahan')
       .preload('pengguna')
       .where('status_adjustment', 'PENDING')
+  }
+
+  static async searchStatus(nama_bahan_baku: string) {
+    return await StokAdjustmentBahanBaku.query()
+      .whereHas('bahan', (b) => {
+        b.where('nama_bahan_baku', 'ILIKE', `%${nama_bahan_baku}%`).where({ is_deleted: false })
+      })
+      .preload('bahan')
+      .preload('pengguna')
   }
 }

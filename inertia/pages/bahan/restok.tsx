@@ -8,11 +8,13 @@ import Select from '~/components/ui/Select'
 import Error from '~/components/ui/Error'
 
 export default function Restok() {
-  const { bahan, errors } = usePage<{
+  const { bahan, errors, supplier } = usePage<{
     bahan: { idBahanBaku: number; namaBahanBaku: string; satuan: string }[]
+    supplier: { idSupplier: number; namaSupplier: string }[]
   }>().props
   const { data, setData, post, processing } = useForm({
     id_bahan_baku: '',
+    nama_supplier: '',
     jumlah: '',
     tanggal_restok: '',
   })
@@ -51,7 +53,25 @@ export default function Restok() {
               ))}
             </Select>
           </div>
+          <div className="flex flex-col gap-3">
+            <Paragraph size="lg">Supplier</Paragraph>
+            <Select
+              variant={1}
+              size="md"
+              name="id_supplier"
+              value={data.nama_supplier}
+              onChange={(e) => setData('nama_supplier', e.target.value)}
+            >
+              <option value="">Pilih Supplier</option>
+              {supplier.map((item) => (
+                <option key={item.idSupplier} value={item.namaSupplier}>
+                  {item.namaSupplier}
+                </option>
+              ))}
+            </Select>
+          </div>
           {errors.id_bahan_baku && <Error variant={1}>{errors.id_bahan_baku}</Error>}
+          {errors.id_supplier && <Error variant={1}>{errors.id_supplier}</Error>}
           <div className="flex flex-col gap-3">
             <Paragraph size="lg">Jumlah</Paragraph>
             <Input

@@ -44,6 +44,7 @@ export default class Pengguna extends PenggunaSchema {
 
   @belongsTo(() => HakAkses, {
     foreignKey: 'id_hak_akses',
+    localKey: 'id_hak_akses',
   })
   declare hakAkses: BelongsTo<typeof HakAkses>
 

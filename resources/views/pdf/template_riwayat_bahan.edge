@@ -1,62 +1,100 @@
 <html>
-    <head>
-        <style>
-            .header{
-                display:flex;
-                flex-direction:column;
-                align-items:center;
-                justify-content:center;
-            }
-            .header h1 {
-                font-size: 32px;
-                font-weight: bold;
-                text-transform: uppercase;
-            }
-            .header span {
-                font-size:24px;
-                font-weight: 600;
-                text-transform: uppercase;
-            }
-            table {
-                width:100%;
-                border-collapse: collapse;
-                margin-top:1rem;
-            }
-            th, td {
-                border: 1px solid #000;
-                padding: 8px;
-                text-align: center;
-            }
-            th {
-                background-color: #f2f2f2;
-                font-weight: bold;
-            }
-        </style>
-        <body>
-            <div class="header">
-                <h1>{{title}}</h1>
-                <span>Periode : {{date}}</span>
-            </div>
-            <table>
-                <tr>
-                    <th>Nama Bahan Baku</th>
-                    <th>Selisih Stok</th>
-                    <th>Stok Awal</th>
-                    <th>Stok Akhir</th>
-                    <th>Jenis Stok</th>
-                    <th>Tanggal Perubahan Stok</th>
-                </tr>
-                @each(item in data)
-                    <tr>
-                        <td>{{item.stokBahanBaku.bahan.nama_bahan_baku}}</td>
-                        <td>{{item.selisih_stok}}</td>
-                        <td>{{item.stok_sebelum}}</td>
-                        <td>{{item.stok_sesudah}}</td>
-                        <td>{{item.jenis_stok}}</td>
-                        <td>{{item.tanggal_perubahan_stok.toFormat('dd-MM-yyyy')}}</td>
-                    </tr>
-                @endeach
-            </table>
-        </body>
-    </head>
+  <head>
+    <style>
+      .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .header h1 {
+        font-size: 32px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      
+      .header span {
+        font-size: 24px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+      }
+      
+      th,
+      td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: center;
+      }
+      
+      th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+      }
+    </style>
+    <body>
+      <div class="header">
+        <h1>
+          {{ title }}
+        </h1>
+        <span>Periode : {{date}}</span>
+      </div>
+      <table>
+        <tr>
+          <th>
+            Nama Bahan Baku
+          </th>
+          <th>
+            Selisih Stok
+          </th>
+          <th>
+            Stok Awal
+          </th>
+          <th>
+            Stok Akhir
+          </th>
+          <th>
+            Jenis Stok
+          </th>
+          <th>
+            Tipe Transaksi
+          </th>
+          <th>
+            Tanggal Perubahan Stok
+          </th>
+        </tr>
+        @each(item in data)
+          <tr>
+            <td>
+              {{ item.stokBahanBaku.bahan.nama_bahan_baku }}
+            </td>
+            <td>
+              {{ item.selisih_stok }} {{ item.stokBahanBaku.bahan.satuan }}
+            </td>
+            <td>
+              {{ item.stok_sebelum }} {{ item.stokBahanBaku.bahan.satuan }}
+            </td>
+            <td>
+              {{ item.stok_sesudah }} {{ item.stokBahanBaku.bahan.satuan }}
+            </td>
+            <td>
+              {{ item.jenis_stok }}
+            </td>
+            <td>
+              {{ item.tipe_transaksi }}
+            </td>
+            <td>
+              {{ item.tanggal_perubahan_stok.toFormat('dd-MM-yyyy') }}
+            </td>
+          </tr>
+        @endeach
+      </table>
+    </body>
+  </head>
 </html>

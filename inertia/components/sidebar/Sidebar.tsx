@@ -26,7 +26,9 @@ export default function Sidebar() {
   const menuWithPermissions = menuSections.map((item) => {
     return {
       ...item,
-      items: item.items.filter((subItem) => subItem.role && subItem.role.includes(user?.hakAkses?.namaHakAkses ?? '')),
+      items: item.items.filter(
+        (subItem) => subItem.role && subItem.role.includes(user?.hakAkses?.namaHakAkses ?? '')
+      ),
     }
   })
   async function handleAction(item: MenuItem) {
@@ -37,9 +39,9 @@ export default function Sidebar() {
 
   return (
     <>
-      <nav className="w-80 bg-dark-teal max-h-screen overflow-y-auto">
+      <nav className="w-80 bg-dark-teal overflow-y-auto">
         <div className="px-5 pt-5 pb-3">
-          <img src={Logo} height="200px" alt="logo_sanrah" />
+          <img src={Logo} className="h-[10vh] max-h-24" alt="logo_sanrah" />
         </div>
         {/* Dashboard */}
         <ul className="flex flex-col px-5 gap-1 pb-2">

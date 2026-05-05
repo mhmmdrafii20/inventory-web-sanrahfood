@@ -11,7 +11,7 @@ export default function SidebarMenuItem({ item }: { item: MenuItem }) {
 
   const className = [
     // Base — layout & transition
-    'flex flex-row items-center gap-3 py-2 rounded-lg',
+    'flex flex-row items-center gap-2 py-2 rounded-lg',
     'transition-all duration-200 ease-in-out',
     'select-none',
 

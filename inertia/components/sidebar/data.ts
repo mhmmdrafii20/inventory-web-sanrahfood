@@ -36,6 +36,17 @@ export const data: MenuSection[] = [
     ],
   },
   {
+    label: 'Supplier',
+    items: [
+      {
+        name: 'Supplier',
+        link: '/supplier',
+        icon: TbUser,
+        role: ['Pemilik'],
+      },
+    ],
+  },
+  {
     label: 'Bahan Baku',
     items: [
       {
@@ -95,6 +106,12 @@ export const data: MenuSection[] = [
         link: '/stok-produk',
         icon: TbPackage,
         role: ['Karyawan Gudang', 'Karyawan Produksi', 'Pemilik'],
+      },
+      {
+        name: 'Stok Keluar',
+        link: '/produk/stok-keluar',
+        icon: TbBox,
+        role: ['Karyawan Gudang'],
       },
     ],
   },

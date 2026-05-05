@@ -32,7 +32,10 @@ export default function Index() {
       idProduk: string
       yieldPerBatch: number
       catatanTambahan: string
-      resep_bahan: { bahan: { idBahanBaku: number, namaBahanBaku: string; satuan: string }; jumlah: number }[]
+      resep_bahan: {
+        bahan: { idBahanBaku: number; namaBahanBaku: string; satuan: string }
+        jumlah: number
+      }[]
       produk: { namaProduk: string; satuan: string }
     }[]
     searchRes: {
@@ -41,7 +44,10 @@ export default function Index() {
       idProduk: string
       yieldPerBatch: number
       catatanTambahan: string
-      resep_bahan: { bahan: { idBahanBaku: number, namaBahanBaku: string; satuan: string }; jumlah: number }[]
+      resep_bahan: {
+        bahan: { idBahanBaku: number; namaBahanBaku: string; satuan: string }
+        jumlah: number
+      }[]
       produk: { namaProduk: string; satuan: string }
     }[]
   }>().props
@@ -314,7 +320,9 @@ export default function Index() {
                       <Paragraph size="lg">{items.yieldPerBatch}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items.catatanTambahan}</Paragraph>
+                      <Paragraph size="lg">
+                        {items.catatanTambahan || 'TIdak ada catatan.'}
+                      </Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <div className="flex flex-row gap-2 justify-center">

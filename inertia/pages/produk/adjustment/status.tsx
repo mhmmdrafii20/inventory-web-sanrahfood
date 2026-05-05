@@ -1,12 +1,26 @@
 import Heading from '~/components/ui/Heading'
 import Paragraph from '~/components/ui/Paragraph'
-import { usePage } from '@inertiajs/react'
+import { usePage, router } from '@inertiajs/react'
 import dayjs from 'dayjs'
 import 'dayjs/locale/id'
+import Input from '~/components/ui/Input'
+import ActionButton from '~/components/ui/Button/ActionButton'
+import { FaSearch } from 'react-icons/fa'
+import { useState } from 'react'
 
 export default function Status() {
-  const { adjustmentProduk } = usePage<{
+  const { adjustmentProduk, searchRes } = usePage<{
     adjustmentProduk: {
+      idStokProdukAdjustment: number
+      idProduk: number
+      jenisStok: string
+      jumlah: number
+      statusAdjustment: string
+      approvedBy: string | null
+      approvedAt: string | null
+      produk: { namaProduk: string; satuan: string }
+    }[]
+    searchRes?: {
       idStokProdukAdjustment: number
       idProduk: number
       jenisStok: string
@@ -18,12 +32,42 @@ export default function Status() {
     }[]
   }>().props
 
+  const [searchData, setSearchData] = useState('')
+
+  function handleSearch() {
+    router.get(
+      '/stok-produk/status/search',
+      { search: searchData },
+      {
+        preserveState: true,
+        replace: true,
+      }
+    )
+  }
+
+  const displayAdjustmentProduk = searchRes && searchRes.length > 0 ? searchRes : adjustmentProduk
+
   return (
     <>
       <Heading level={1} color="dark_slate_grey" className="font-bold">
         Status Adjustment Stok
       </Heading>
       <div className="flex flex-col w-full bg-white shadow-md rounded-md p-5">
+        <div className="w-full flex flex-row items-center gap-3">
+          <Input
+            variant={1}
+            size="md"
+            type="text"
+            name="nama_produk"
+            placeholder="Cari Nama Produk"
+            className="flex-1"
+            value={searchData}
+            onChange={(e) => setSearchData(e.target.value)}
+          />
+          <ActionButton type="search" size="lg" onClick={handleSearch}>
+            <FaSearch />
+          </ActionButton>
+        </div>
         <div className="max-h-[500px] overflow-y-auto">
           <table className="w-full border-collapse mt-5 bg-white">
             <thead>
@@ -37,8 +81,8 @@ export default function Status() {
               </tr>
             </thead>
             <tbody>
-              {adjustmentProduk?.length > 0 ? (
-                adjustmentProduk.map((items) => (
+              {displayAdjustmentProduk?.length > 0 ? (
+                displayAdjustmentProduk.map((items) => (
                   <tr key={items.idStokProdukAdjustment}>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">{items.produk.namaProduk}</Paragraph>

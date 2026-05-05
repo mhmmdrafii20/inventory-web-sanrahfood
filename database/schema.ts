@@ -515,3 +515,18 @@ export class TbStokBahanBakuAdjustmentSchema extends BaseModel {
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
 }
+
+export class TbSupplierSchema extends BaseModel {
+  static $columns = ['idSupplier', 'namaSupplier', 'alamat', 'nomorTelepon', 'createdAt'] as const
+  $columns = TbSupplierSchema.$columns
+  @column()
+  declare idSupplier: number
+  @column()
+  declare namaSupplier: string
+  @column()
+  declare alamat: string
+  @column()
+  declare nomorTelepon: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+}

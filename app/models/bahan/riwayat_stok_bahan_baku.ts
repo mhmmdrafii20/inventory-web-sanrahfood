@@ -39,6 +39,9 @@ export default class RiwayatStokBahanBaku extends RiwayatStokBahanBakuSchema {
   @column({ columnName: 'nama_pengguna' })
   declare nama_pengguna: string
 
+  @column({ columnName: 'nama_supplier' })
+  declare nama_supplier: Text
+
   @column.dateTime({ autoCreate: false, columnName: 'tanggal_perubahan_stok' })
   declare tanggal_perubahan_stok: DateTime
 

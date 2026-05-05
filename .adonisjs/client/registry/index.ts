@@ -36,11 +36,11 @@ const routes = {
     tokens: [{"old":"/webhook/produksi","type":0,"val":"webhook","end":""},{"old":"/webhook/produksi","type":0,"val":"produksi","end":""}],
     types: placeholder as Registry['webhook.get_produksi_from_supabase']['types'],
   },
-  'dashboard.index': {
+  'dashboard.gudang': {
     methods: ["GET","HEAD"],
-    pattern: '/dashboard',
-    tokens: [{"old":"/dashboard","type":0,"val":"dashboard","end":""}],
-    types: placeholder as Registry['dashboard.index']['types'],
+    pattern: '/gudang/dashboard',
+    tokens: [{"old":"/gudang/dashboard","type":0,"val":"gudang","end":""},{"old":"/gudang/dashboard","type":0,"val":"dashboard","end":""}],
+    types: placeholder as Registry['dashboard.gudang']['types'],
   },
   'stokBahan.index': {
     methods: ["GET","HEAD"],
@@ -96,6 +96,24 @@ const routes = {
     tokens: [{"old":"/stok-bahan-baku/status","type":0,"val":"stok-bahan-baku","end":""},{"old":"/stok-bahan-baku/status","type":0,"val":"status","end":""}],
     types: placeholder as Registry['stokBahanBaku.status']['types'],
   },
+  'stokBahanBaku.searchStatus': {
+    methods: ["GET","HEAD"],
+    pattern: '/stok-bahan-baku/status/search',
+    tokens: [{"old":"/stok-bahan-baku/status/search","type":0,"val":"stok-bahan-baku","end":""},{"old":"/stok-bahan-baku/status/search","type":0,"val":"status","end":""},{"old":"/stok-bahan-baku/status/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['stokBahanBaku.searchStatus']['types'],
+  },
+  'produk.stokKeluar': {
+    methods: ["GET","HEAD"],
+    pattern: '/produk/stok-keluar',
+    tokens: [{"old":"/produk/stok-keluar","type":0,"val":"produk","end":""},{"old":"/produk/stok-keluar","type":0,"val":"stok-keluar","end":""}],
+    types: placeholder as Registry['produk.stokKeluar']['types'],
+  },
+  'produk.createStokKeluar': {
+    methods: ["POST"],
+    pattern: '/produk/stok-keluar/create',
+    tokens: [{"old":"/produk/stok-keluar/create","type":0,"val":"produk","end":""},{"old":"/produk/stok-keluar/create","type":0,"val":"stok-keluar","end":""},{"old":"/produk/stok-keluar/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['produk.createStokKeluar']['types'],
+  },
   'stokProduk.adjustment': {
     methods: ["GET","HEAD"],
     pattern: '/stok-produk/adjustment',
@@ -113,6 +131,18 @@ const routes = {
     pattern: '/stok-produk/status',
     tokens: [{"old":"/stok-produk/status","type":0,"val":"stok-produk","end":""},{"old":"/stok-produk/status","type":0,"val":"status","end":""}],
     types: placeholder as Registry['stokProduk.status']['types'],
+  },
+  'stokProduk.searchStatus': {
+    methods: ["GET","HEAD"],
+    pattern: '/stok-produk/status/search',
+    tokens: [{"old":"/stok-produk/status/search","type":0,"val":"stok-produk","end":""},{"old":"/stok-produk/status/search","type":0,"val":"status","end":""},{"old":"/stok-produk/status/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['stokProduk.searchStatus']['types'],
+  },
+  'dashboard.produksi': {
+    methods: ["GET","HEAD"],
+    pattern: '/produksi/dashboard',
+    tokens: [{"old":"/produksi/dashboard","type":0,"val":"produksi","end":""},{"old":"/produksi/dashboard","type":0,"val":"dashboard","end":""}],
+    types: placeholder as Registry['dashboard.produksi']['types'],
   },
   'resep.index': {
     methods: ["GET","HEAD"],
@@ -179,6 +209,12 @@ const routes = {
     pattern: '/produksi/create',
     tokens: [{"old":"/produksi/create","type":0,"val":"produksi","end":""},{"old":"/produksi/create","type":0,"val":"create","end":""}],
     types: placeholder as Registry['produksi.create']['types'],
+  },
+  'dashboard.pemilik': {
+    methods: ["GET","HEAD"],
+    pattern: '/pemilik/dashboard',
+    tokens: [{"old":"/pemilik/dashboard","type":0,"val":"pemilik","end":""},{"old":"/pemilik/dashboard","type":0,"val":"dashboard","end":""}],
+    types: placeholder as Registry['dashboard.pemilik']['types'],
   },
   'bahan.index': {
     methods: ["GET","HEAD"],
@@ -695,6 +731,60 @@ const routes = {
     pattern: '/template-notifikasi/delete/:id',
     tokens: [{"old":"/template-notifikasi/delete/:id","type":0,"val":"template-notifikasi","end":""},{"old":"/template-notifikasi/delete/:id","type":0,"val":"delete","end":""},{"old":"/template-notifikasi/delete/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['templateNotifikasi.destroy']['types'],
+  },
+  'supplier.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/supplier',
+    tokens: [{"old":"/supplier","type":0,"val":"supplier","end":""}],
+    types: placeholder as Registry['supplier.index']['types'],
+  },
+  'supplier.create': {
+    methods: ["POST"],
+    pattern: '/supplier/create',
+    tokens: [{"old":"/supplier/create","type":0,"val":"supplier","end":""},{"old":"/supplier/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['supplier.create']['types'],
+  },
+  'supplier.edit': {
+    methods: ["GET","HEAD"],
+    pattern: '/supplier/edit/:id',
+    tokens: [{"old":"/supplier/edit/:id","type":0,"val":"supplier","end":""},{"old":"/supplier/edit/:id","type":0,"val":"edit","end":""},{"old":"/supplier/edit/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['supplier.edit']['types'],
+  },
+  'supplier.update': {
+    methods: ["PUT"],
+    pattern: '/supplier/update/:id',
+    tokens: [{"old":"/supplier/update/:id","type":0,"val":"supplier","end":""},{"old":"/supplier/update/:id","type":0,"val":"update","end":""},{"old":"/supplier/update/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['supplier.update']['types'],
+  },
+  'supplier.destroy': {
+    methods: ["DELETE"],
+    pattern: '/supplier/delete/:id',
+    tokens: [{"old":"/supplier/delete/:id","type":0,"val":"supplier","end":""},{"old":"/supplier/delete/:id","type":0,"val":"delete","end":""},{"old":"/supplier/delete/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['supplier.destroy']['types'],
+  },
+  'supplier.search': {
+    methods: ["GET","HEAD"],
+    pattern: '/supplier/search',
+    tokens: [{"old":"/supplier/search","type":0,"val":"supplier","end":""},{"old":"/supplier/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['supplier.search']['types'],
+  },
+  'supplier.trash': {
+    methods: ["GET","HEAD"],
+    pattern: '/supplier/trash',
+    tokens: [{"old":"/supplier/trash","type":0,"val":"supplier","end":""},{"old":"/supplier/trash","type":0,"val":"trash","end":""}],
+    types: placeholder as Registry['supplier.trash']['types'],
+  },
+  'supplier.restore': {
+    methods: ["PATCH"],
+    pattern: '/supplier/restore/:id',
+    tokens: [{"old":"/supplier/restore/:id","type":0,"val":"supplier","end":""},{"old":"/supplier/restore/:id","type":0,"val":"restore","end":""},{"old":"/supplier/restore/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['supplier.restore']['types'],
+  },
+  'supplier.searchTrash': {
+    methods: ["GET","HEAD"],
+    pattern: '/supplier/trash/search',
+    tokens: [{"old":"/supplier/trash/search","type":0,"val":"supplier","end":""},{"old":"/supplier/trash/search","type":0,"val":"trash","end":""},{"old":"/supplier/trash/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['supplier.searchTrash']['types'],
   },
   'pengguna.get_current_user': {
     methods: ["GET","HEAD"],

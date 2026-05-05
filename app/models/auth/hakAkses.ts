@@ -16,6 +16,7 @@ export default class HakAkses extends HakAksesSchema {
 
   @hasMany(() => Pengguna, {
     foreignKey: 'id_hak_akses',
+    localKey: 'id_hak_akses',
   })
   declare pengguna: HasMany<typeof Pengguna>
 
