@@ -12,11 +12,6 @@ export interface ApiDefinition {
     getStokBahanBakuFromSupabase: typeof routes['webhook.get_stok_bahan_baku_from_supabase']
     getProduksiFromSupabase: typeof routes['webhook.get_produksi_from_supabase']
   }
-  dashboard: {
-    gudang: typeof routes['dashboard.gudang']
-    produksi: typeof routes['dashboard.produksi']
-    pemilik: typeof routes['dashboard.pemilik']
-  }
   stokBahan: {
     index: typeof routes['stokBahan.index']
     search: typeof routes['stokBahan.search']
@@ -28,6 +23,11 @@ export interface ApiDefinition {
     createAdjustment: typeof routes['stokProduk.createAdjustment']
     status: typeof routes['stokProduk.status']
     searchStatus: typeof routes['stokProduk.searchStatus']
+  }
+  dashboard: {
+    gudang: typeof routes['dashboard.gudang']
+    produksi: typeof routes['dashboard.produksi']
+    pemilik: typeof routes['dashboard.pemilik']
   }
   restokBahan: {
     restok: typeof routes['restokBahan.restok']

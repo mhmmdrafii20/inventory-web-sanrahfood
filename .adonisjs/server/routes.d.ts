@@ -9,11 +9,11 @@ export type ScannedRoutes = {
     'webhook.get_stok_produk_from_supabase': { paramsTuple?: []; params?: {} }
     'webhook.get_stok_bahan_baku_from_supabase': { paramsTuple?: []; params?: {} }
     'webhook.get_produksi_from_supabase': { paramsTuple?: []; params?: {} }
-    'dashboard.gudang': { paramsTuple?: []; params?: {} }
     'stokBahan.index': { paramsTuple?: []; params?: {} }
     'stokBahan.search': { paramsTuple?: []; params?: {} }
     'stokProduk.index': { paramsTuple?: []; params?: {} }
     'stokProduk.search': { paramsTuple?: []; params?: {} }
+    'dashboard.gudang': { paramsTuple?: []; params?: {} }
     'restokBahan.restok': { paramsTuple?: []; params?: {} }
     'restokBahan.create': { paramsTuple?: []; params?: {} }
     'stokBahanBaku.adjustment': { paramsTuple?: []; params?: {} }
@@ -139,11 +139,11 @@ export type ScannedRoutes = {
   }
   GET: {
     'auth.login': { paramsTuple?: []; params?: {} }
-    'dashboard.gudang': { paramsTuple?: []; params?: {} }
     'stokBahan.index': { paramsTuple?: []; params?: {} }
     'stokBahan.search': { paramsTuple?: []; params?: {} }
     'stokProduk.index': { paramsTuple?: []; params?: {} }
     'stokProduk.search': { paramsTuple?: []; params?: {} }
+    'dashboard.gudang': { paramsTuple?: []; params?: {} }
     'restokBahan.restok': { paramsTuple?: []; params?: {} }
     'stokBahanBaku.adjustment': { paramsTuple?: []; params?: {} }
     'stokBahanBaku.status': { paramsTuple?: []; params?: {} }
@@ -220,11 +220,11 @@ export type ScannedRoutes = {
   }
   HEAD: {
     'auth.login': { paramsTuple?: []; params?: {} }
-    'dashboard.gudang': { paramsTuple?: []; params?: {} }
     'stokBahan.index': { paramsTuple?: []; params?: {} }
     'stokBahan.search': { paramsTuple?: []; params?: {} }
     'stokProduk.index': { paramsTuple?: []; params?: {} }
     'stokProduk.search': { paramsTuple?: []; params?: {} }
+    'dashboard.gudang': { paramsTuple?: []; params?: {} }
     'restokBahan.restok': { paramsTuple?: []; params?: {} }
     'stokBahanBaku.adjustment': { paramsTuple?: []; params?: {} }
     'stokBahanBaku.status': { paramsTuple?: []; params?: {} }

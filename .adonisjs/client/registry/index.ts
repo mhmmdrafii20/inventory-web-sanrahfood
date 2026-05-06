@@ -36,12 +36,6 @@ const routes = {
     tokens: [{"old":"/webhook/produksi","type":0,"val":"webhook","end":""},{"old":"/webhook/produksi","type":0,"val":"produksi","end":""}],
     types: placeholder as Registry['webhook.get_produksi_from_supabase']['types'],
   },
-  'dashboard.gudang': {
-    methods: ["GET","HEAD"],
-    pattern: '/gudang/dashboard',
-    tokens: [{"old":"/gudang/dashboard","type":0,"val":"gudang","end":""},{"old":"/gudang/dashboard","type":0,"val":"dashboard","end":""}],
-    types: placeholder as Registry['dashboard.gudang']['types'],
-  },
   'stokBahan.index': {
     methods: ["GET","HEAD"],
     pattern: '/stok-bahan',
@@ -65,6 +59,12 @@ const routes = {
     pattern: '/stok-produk/search',
     tokens: [{"old":"/stok-produk/search","type":0,"val":"stok-produk","end":""},{"old":"/stok-produk/search","type":0,"val":"search","end":""}],
     types: placeholder as Registry['stokProduk.search']['types'],
+  },
+  'dashboard.gudang': {
+    methods: ["GET","HEAD"],
+    pattern: '/gudang/dashboard',
+    tokens: [{"old":"/gudang/dashboard","type":0,"val":"gudang","end":""},{"old":"/gudang/dashboard","type":0,"val":"dashboard","end":""}],
+    types: placeholder as Registry['dashboard.gudang']['types'],
   },
   'restokBahan.restok': {
     methods: ["GET","HEAD"],

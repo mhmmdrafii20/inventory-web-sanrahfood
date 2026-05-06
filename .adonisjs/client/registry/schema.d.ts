@@ -62,17 +62,6 @@ export interface Registry {
       response: unknown
     }
   }
-  'dashboard.gudang': {
-    methods: ["GET","HEAD"]
-    pattern: '/gudang/dashboard'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: unknown
-    }
-  }
   'stokBahan.index': {
     methods: ["GET","HEAD"]
     pattern: '/stok-bahan'
@@ -109,6 +98,17 @@ export interface Registry {
   'stokProduk.search': {
     methods: ["GET","HEAD"]
     pattern: '/stok-produk/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'dashboard.gudang': {
+    methods: ["GET","HEAD"]
+    pattern: '/gudang/dashboard'
     types: {
       body: {}
       paramsTuple: []

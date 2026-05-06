@@ -40,10 +40,9 @@ router.post('/webhook/produksi', [WebhookController, 'getProduksiFromSupabase'])
 
 router
   .group(() => {
+    //GUDANG PRODUKSI PEMILIK
     router
       .group(() => {
-        router.get('gudang/dashboard', [DashboardController, 'gudang']).as('dashboard.gudang')
-
         router.get('/stok-bahan', [StokBahanController, 'index']).as('stokBahan.index')
         router.get('/stok-bahan/search', [StokBahanController, 'search']).as('stokBahan.search')
 
@@ -51,8 +50,11 @@ router
         router.get('/stok-produk/search', [StokProdukController, 'search']).as('stokProduk.search')
       })
       .use(middleware.ensureRoleAccess(['Karyawan Gudang', 'Karyawan Produksi', 'Pemilik']))
+
+    //GUDANG DOANG
     router
       .group(() => {
+        router.get('/gudang/dashboard', [DashboardController, 'gudang']).as('dashboard.gudang')
         router.get('/restok-bahan', [StokBahanController, 'restok']).as('restokBahan.restok')
         router
           .post('/restok-bahan/create', [StokBahanController, 'create'])
@@ -88,9 +90,13 @@ router
           .as('stokProduk.searchStatus')
       })
       .use(middleware.ensureRoleAccess(['Karyawan Gudang']))
+
+    //PRODUKSI DOANG
     router
       .group(() => {
-        router.get('produksi/dashboard', [DashboardController, 'produksi']).as('dashboard.produksi')
+        router
+          .get('/produksi/dashboard', [DashboardController, 'produksi'])
+          .as('dashboard.produksi')
 
         router.get('/resep', [ResepController, 'index']).as('resep.index')
         router.post('/resep/create', [ResepController, 'create']).as('resep.create')
@@ -107,11 +113,10 @@ router
       })
       .use(middleware.ensureRoleAccess(['Karyawan Produksi']))
 
+    //PEMILIK DOANG
     router
       .group(() => {
-        router
-          .get('pemilik/dashboard', [DashboardController, 'pemilik', 'getProdukPenjualanBulanan'])
-          .as('dashboard.pemilik')
+        router.get('pemilik/dashboard', [DashboardController, 'pemilik']).as('dashboard.pemilik')
 
         router.get('/bahan', [BahanController, 'index']).as('bahan.index')
         router.get('/bahan/edit/:id', [BahanController, 'edit']).as('bahan.edit')

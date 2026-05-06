@@ -19,6 +19,29 @@ import type { MenuSection } from './types'
 
 export const data: MenuSection[] = [
   {
+    label: 'Dashboard',
+    items: [
+      {
+        name: 'Dashboard',
+        link: '/pemilik/dashboard',
+        icon: TbHome,
+        role: ['Pemilik'],
+      },
+      {
+        name: 'Dashboard',
+        link: '/gudang/dashboard',
+        icon: TbHome,
+        role: ['Karyawan Gudang'],
+      },
+      {
+        name: 'Dashboard',
+        link: '/produksi/dashboard',
+        icon: TbHome,
+        role: ['Karyawan Produksi'],
+      },
+    ],
+  },
+  {
     label: 'Pengguna',
     items: [
       {

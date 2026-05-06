@@ -29,6 +29,8 @@ declare module '@adonisjs/inertia/types' {
     'bahan/stok': ExtractProps<(typeof import('../../inertia/pages/bahan/stok.tsx'))['default']>
     'bahan/update': ExtractProps<(typeof import('../../inertia/pages/bahan/update.tsx'))['default']>
     'dashboard/gudang/index': ExtractProps<(typeof import('../../inertia/pages/dashboard/gudang/index.tsx'))['default']>
+    'dashboard/pemilik/components/AdjustmentStok': ExtractProps<(typeof import('../../inertia/pages/dashboard/pemilik/components/AdjustmentStok.tsx'))['default']>
+    'dashboard/pemilik/components/MonitoringChart': ExtractProps<(typeof import('../../inertia/pages/dashboard/pemilik/components/MonitoringChart.tsx'))['default']>
     'dashboard/pemilik/index': ExtractProps<(typeof import('../../inertia/pages/dashboard/pemilik/index.tsx'))['default']>
     'dashboard/produksi/index': ExtractProps<(typeof import('../../inertia/pages/dashboard/produksi/index.tsx'))['default']>
     'notifikasi/daftarPenerima': ExtractProps<(typeof import('../../inertia/pages/notifikasi/daftarPenerima.tsx'))['default']>
