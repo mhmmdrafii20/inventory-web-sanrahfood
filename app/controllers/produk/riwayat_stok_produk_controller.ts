@@ -6,10 +6,12 @@ import { PdfServices } from '#services/pdf/PdfServices'
 
 export default class RiwayatStokProdukController {
   async index({ inertia }: HttpContext) {
-    const riwayatStokProduk = await RiwayatStokProduk.query()
-      .preload('stokProduk', (stokProdukQuery) => {
+    const riwayatStokProduk = await RiwayatStokProduk.query().preload(
+      'stokProduk',
+      (stokProdukQuery) => {
         stokProdukQuery.preload('produk')
-      })
+      }
+    )
     return inertia.render('produk/riwayat', { riwayatStokProduk })
   }
   async filter({ inertia, request, session, response }: HttpContext) {
@@ -45,14 +47,14 @@ export default class RiwayatStokProdukController {
 
     const html = await TemplateService.render('template_riwayat_produk', {
       data: filteredRiwayatStokProduk,
-      title: 'Laporan Riwayat Stok Produk',
+      title: 'Riwayat Stok Produk',
       date: `${tanggal_awal} s/d ${tanggal_akhir}`,
     })
 
     const pdf = await PdfServices.generatePdf(html)
 
     response.header('Content-Type', 'application/pdf')
-    response.header('Content-Disposition', 'attachment; filename="Laporan_Riwayat_Stok_Produk.pdf"')
+    response.header('Content-Disposition', 'attachment; filename="Riwayat_Stok_Produk.pdf"')
     return response.send(pdf)
   }
 }

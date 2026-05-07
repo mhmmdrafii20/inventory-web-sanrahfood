@@ -786,6 +786,30 @@ const routes = {
     tokens: [{"old":"/supplier/trash/search","type":0,"val":"supplier","end":""},{"old":"/supplier/trash/search","type":0,"val":"trash","end":""},{"old":"/supplier/trash/search","type":0,"val":"search","end":""}],
     types: placeholder as Registry['supplier.searchTrash']['types'],
   },
+  'laporan-produk.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/produk/laporan',
+    tokens: [{"old":"/produk/laporan","type":0,"val":"produk","end":""},{"old":"/produk/laporan","type":0,"val":"laporan","end":""}],
+    types: placeholder as Registry['laporan-produk.index']['types'],
+  },
+  'laporan-produk.generate': {
+    methods: ["GET","HEAD"],
+    pattern: '/laporan-produk/generate-pdf',
+    tokens: [{"old":"/laporan-produk/generate-pdf","type":0,"val":"laporan-produk","end":""},{"old":"/laporan-produk/generate-pdf","type":0,"val":"generate-pdf","end":""}],
+    types: placeholder as Registry['laporan-produk.generate']['types'],
+  },
+  'laporan-bahan-baku.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/bahan-baku/laporan',
+    tokens: [{"old":"/bahan-baku/laporan","type":0,"val":"bahan-baku","end":""},{"old":"/bahan-baku/laporan","type":0,"val":"laporan","end":""}],
+    types: placeholder as Registry['laporan-bahan-baku.index']['types'],
+  },
+  'laporan-bahan-baku.generate': {
+    methods: ["GET","HEAD"],
+    pattern: '/laporan-bahan-baku/generate-pdf',
+    tokens: [{"old":"/laporan-bahan-baku/generate-pdf","type":0,"val":"laporan-bahan-baku","end":""},{"old":"/laporan-bahan-baku/generate-pdf","type":0,"val":"generate-pdf","end":""}],
+    types: placeholder as Registry['laporan-bahan-baku.generate']['types'],
+  },
   'pengguna.get_current_user': {
     methods: ["GET","HEAD"],
     pattern: '/current-user',

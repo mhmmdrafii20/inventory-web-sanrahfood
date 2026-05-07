@@ -1437,6 +1437,50 @@ export interface Registry {
       response: unknown
     }
   }
+  'laporan-produk.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/produk/laporan'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'laporan-produk.generate': {
+    methods: ["GET","HEAD"]
+    pattern: '/laporan-produk/generate-pdf'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'laporan-bahan-baku.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/bahan-baku/laporan'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
+  'laporan-bahan-baku.generate': {
+    methods: ["GET","HEAD"]
+    pattern: '/laporan-bahan-baku/generate-pdf'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+    }
+  }
   'pengguna.get_current_user': {
     methods: ["GET","HEAD"]
     pattern: '/current-user'

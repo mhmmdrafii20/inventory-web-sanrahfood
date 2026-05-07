@@ -23,6 +23,7 @@ declare module '@adonisjs/inertia/types' {
     'bahan/adjustment/status': ExtractProps<(typeof import('../../inertia/pages/bahan/adjustment/status.tsx'))['default']>
     'bahan/approval': ExtractProps<(typeof import('../../inertia/pages/bahan/approval.tsx'))['default']>
     'bahan/index': ExtractProps<(typeof import('../../inertia/pages/bahan/index.tsx'))['default']>
+    'bahan/laporan': ExtractProps<(typeof import('../../inertia/pages/bahan/laporan.tsx'))['default']>
     'bahan/restok': ExtractProps<(typeof import('../../inertia/pages/bahan/restok.tsx'))['default']>
     'bahan/restore/index': ExtractProps<(typeof import('../../inertia/pages/bahan/restore/index.tsx'))['default']>
     'bahan/riwayat': ExtractProps<(typeof import('../../inertia/pages/bahan/riwayat.tsx'))['default']>
@@ -47,6 +48,7 @@ declare module '@adonisjs/inertia/types' {
     'produk/approval': ExtractProps<(typeof import('../../inertia/pages/produk/approval.tsx'))['default']>
     'produk/index': ExtractProps<(typeof import('../../inertia/pages/produk/index.tsx'))['default']>
     'produk/kategori': ExtractProps<(typeof import('../../inertia/pages/produk/kategori.tsx'))['default']>
+    'produk/laporan': ExtractProps<(typeof import('../../inertia/pages/produk/laporan.tsx'))['default']>
     'produk/restore/kategori': ExtractProps<(typeof import('../../inertia/pages/produk/restore/kategori.tsx'))['default']>
     'produk/restore/produk': ExtractProps<(typeof import('../../inertia/pages/produk/restore/produk.tsx'))['default']>
     'produk/riwayat': ExtractProps<(typeof import('../../inertia/pages/produk/riwayat.tsx'))['default']>

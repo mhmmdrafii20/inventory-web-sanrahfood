@@ -17,6 +17,10 @@ export const controllers = {
   dashboard: {
     Dashboard: () => import('#controllers/dashboard/dashboard_controller'),
   },
+  laporan: {
+    LaporanStokBahanBaku: () => import('#controllers/laporan/laporan_stok_bahan_baku_controller'),
+    LaporanStokProduk: () => import('#controllers/laporan/laporan_stok_produk_controller'),
+  },
   notifikasi: {
     DaftarPenerima: () => import('#controllers/notifikasi/daftar_penerima_controller'),
     NotifikasiWhatsapp: () => import('#controllers/notifikasi/notifikasi_whatsapp_controller'),

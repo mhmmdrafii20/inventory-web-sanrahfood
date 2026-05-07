@@ -117,7 +117,9 @@ export default function Approval() {
                       <Paragraph size="lg">{items.jenisStok}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items.jumlah}</Paragraph>
+                      <Paragraph size="lg">
+                        {items.jumlah} {items.produk.satuan}
+                      </Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">

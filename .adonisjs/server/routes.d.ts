@@ -134,6 +134,10 @@ export type ScannedRoutes = {
     'supplier.trash': { paramsTuple?: []; params?: {} }
     'supplier.restore': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'supplier.searchTrash': { paramsTuple?: []; params?: {} }
+    'laporan-produk.index': { paramsTuple?: []; params?: {} }
+    'laporan-produk.generate': { paramsTuple?: []; params?: {} }
+    'laporan-bahan-baku.index': { paramsTuple?: []; params?: {} }
+    'laporan-bahan-baku.generate': { paramsTuple?: []; params?: {} }
     'pengguna.get_current_user': { paramsTuple?: []; params?: {} }
     'auth.signOut': { paramsTuple?: []; params?: {} }
   }
@@ -216,6 +220,10 @@ export type ScannedRoutes = {
     'supplier.search': { paramsTuple?: []; params?: {} }
     'supplier.trash': { paramsTuple?: []; params?: {} }
     'supplier.searchTrash': { paramsTuple?: []; params?: {} }
+    'laporan-produk.index': { paramsTuple?: []; params?: {} }
+    'laporan-produk.generate': { paramsTuple?: []; params?: {} }
+    'laporan-bahan-baku.index': { paramsTuple?: []; params?: {} }
+    'laporan-bahan-baku.generate': { paramsTuple?: []; params?: {} }
     'pengguna.get_current_user': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
@@ -297,6 +305,10 @@ export type ScannedRoutes = {
     'supplier.search': { paramsTuple?: []; params?: {} }
     'supplier.trash': { paramsTuple?: []; params?: {} }
     'supplier.searchTrash': { paramsTuple?: []; params?: {} }
+    'laporan-produk.index': { paramsTuple?: []; params?: {} }
+    'laporan-produk.generate': { paramsTuple?: []; params?: {} }
+    'laporan-bahan-baku.index': { paramsTuple?: []; params?: {} }
+    'laporan-bahan-baku.generate': { paramsTuple?: []; params?: {} }
     'pengguna.get_current_user': { paramsTuple?: []; params?: {} }
   }
   POST: {

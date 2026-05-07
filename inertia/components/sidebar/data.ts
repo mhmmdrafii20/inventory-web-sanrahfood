@@ -14,6 +14,7 @@ import {
   TbHome,
   TbBrandWhatsapp,
   TbLogout,
+  TbFile,
 } from 'react-icons/tb'
 import type { MenuSection } from './types'
 
@@ -225,6 +226,23 @@ export const data: MenuSection[] = [
         name: 'Riwayat Notifikasi',
         link: '/riwayat-notifikasi',
         icon: TbHistory,
+        role: ['Pemilik'],
+      },
+    ],
+  },
+  {
+    label: 'Laporan Stok',
+    items: [
+      {
+        name: 'Laporan Stok Produk',
+        link: '/produk/laporan',
+        icon: TbFile,
+        role: ['Pemilik'],
+      },
+      {
+        name: 'Laporan Stok Bahan Baku',
+        link: '/bahan-baku/laporan',
+        icon: TbFile,
         role: ['Pemilik'],
       },
     ],

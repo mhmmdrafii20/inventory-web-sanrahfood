@@ -6,9 +6,7 @@ import { PdfServices } from '#services/pdf/PdfServices'
 
 export default class RiwayatProduksiController {
   async index({ inertia }: HttpContext) {
-    const riwayatProduksi = await RiwayatProduksi.query()
-      .preload('produk')
-      .preload('resep')
+    const riwayatProduksi = await RiwayatProduksi.query().preload('produk').preload('resep')
     return inertia.render('produksi/riwayat', { riwayatProduksi })
   }
   async filter({ request, inertia, session, response }: HttpContext) {
@@ -44,14 +42,14 @@ export default class RiwayatProduksiController {
 
     const html = await TemplateServices.render('template_riwayat_produksi', {
       data: filteredRiwayatProduksi,
-      title: 'Laporan Riwayat Produksi',
+      title: 'Riwayat Produksi',
       date: `${tanggal_awal} s/d ${tanggal_akhir}`,
     })
 
     const pdf = await PdfServices.generatePdf(html)
 
     response.header('Content-Type', 'application/pdf')
-    response.header('Content-Disposition', 'attachment; filename="Laporan_Riwayat_Produksi.pdf"')
+    response.header('Content-Disposition', 'attachment; filename="Riwayat_Produksi.pdf"')
     return response.send(pdf)
   }
 }

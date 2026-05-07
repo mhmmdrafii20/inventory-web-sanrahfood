@@ -30,6 +30,8 @@ import WebhookController from '#controllers/webhooks/supabase/webhook_controller
 import RiwayatNotifikasiController from '#controllers/notifikasi/riwayat_notifikasi_controller'
 import DashboardController from '#controllers/dashboard/dashboard_controller'
 import SupplierController from '#controllers/supplier/supplier_controller'
+import LaporanStokProdukController from '#controllers/laporan/laporan_stok_produk_controller'
+import LaporanStokBahanBakuController from '#controllers/laporan/laporan_stok_bahan_baku_controller'
 
 router.get('/', [AuthController, 'login']).as('auth.login')
 router.post('/login', [AuthController, 'signIn'])
@@ -51,7 +53,7 @@ router
       })
       .use(middleware.ensureRoleAccess(['Karyawan Gudang', 'Karyawan Produksi', 'Pemilik']))
 
-    //GUDANG DOANG
+    //GUDANG
     router
       .group(() => {
         router.get('/gudang/dashboard', [DashboardController, 'gudang']).as('dashboard.gudang')
@@ -91,7 +93,7 @@ router
       })
       .use(middleware.ensureRoleAccess(['Karyawan Gudang']))
 
-    //PRODUKSI DOANG
+    //PRODUKSI
     router
       .group(() => {
         router
@@ -113,7 +115,7 @@ router
       })
       .use(middleware.ensureRoleAccess(['Karyawan Produksi']))
 
-    //PEMILIK DOANG
+    //PEMILIK
     router
       .group(() => {
         router.get('pemilik/dashboard', [DashboardController, 'pemilik']).as('dashboard.pemilik')
@@ -350,6 +352,22 @@ router
         router
           .get('/supplier/trash/search', [SupplierController, 'searchTrash'])
           .as('supplier.searchTrash')
+
+        router
+          .get('/produk/laporan', [LaporanStokProdukController, 'laporan'])
+          .as('laporan-produk.index')
+
+        router
+          .get('/laporan-produk/generate-pdf', [LaporanStokProdukController, 'generate'])
+          .as('laporan-produk.generate')
+
+        router
+          .get('/bahan-baku/laporan', [LaporanStokBahanBakuController, 'laporan'])
+          .as('laporan-bahan-baku.index')
+
+        router
+          .get('/laporan-bahan-baku/generate-pdf', [LaporanStokBahanBakuController, 'generate'])
+          .as('laporan-bahan-baku.generate')
       })
       .use(middleware.ensureRoleAccess(['Pemilik']))
 

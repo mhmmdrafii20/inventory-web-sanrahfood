@@ -184,4 +184,12 @@ export interface ApiDefinition {
     restore: typeof routes['supplier.restore']
     searchTrash: typeof routes['supplier.searchTrash']
   }
+  laporanProduk: {
+    index: typeof routes['laporan-produk.index']
+    generate: typeof routes['laporan-produk.generate']
+  }
+  laporanBahanBaku: {
+    index: typeof routes['laporan-bahan-baku.index']
+    generate: typeof routes['laporan-bahan-baku.generate']
+  }
 }

@@ -37,7 +37,7 @@ export default function AdjustmentStok({ requests }: Props) {
       </Paragraph>
       <div className="flex flex-col gap-4 bg-white shadow-md px-5 py-5 rounded-md">
         <div className="flex flex-row items-center gap-4">
-          <Paragraph size="md" color="dark_grey">
+          <Paragraph size="md" color="dark_slate_grey">
             Menunggu Persetujuan Pemilik
           </Paragraph>
           <span className="text-yellow-500 font-bold text-sm uppercase">

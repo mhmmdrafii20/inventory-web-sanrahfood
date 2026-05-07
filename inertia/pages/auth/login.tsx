@@ -26,9 +26,6 @@ export default function Login() {
         <Heading level={1} color="dark_slate_grey">
           Login
         </Heading>
-        <Heading level={3} color="dark_grey">
-          Hai, Selamat datang kembali 🖐️
-        </Heading>
 
         <form onSubmit={handleSignIn} className="flex flex-col gap-5 mt-5">
           <div className="flex flex-col gap-3">
