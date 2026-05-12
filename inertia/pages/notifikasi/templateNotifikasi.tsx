@@ -101,7 +101,7 @@ export default function TemplateNotifikasi() {
   return (
     <>
       <Heading level={1} color="dark_slate_grey" className="font-bold">
-        Template Notifikasi
+        Manajemen Template Notifikasi
       </Heading>
       <div className="flex flex-col gap-5  bg-white shadow-md rounded-md p-5">
         <div className="flex flex-row justify-between mt-5">

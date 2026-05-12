@@ -70,7 +70,7 @@ export default function Pengguna() {
           onChange={(e) => setData('id_pengguna', e.target.value)}
         />
 
-        <Paragraph size="lg">Email</Paragraph>
+        <Paragraph size="lg">Email Pengguna</Paragraph>
         <Input
           variant={1}
           size="md"
@@ -106,6 +106,14 @@ export default function Pengguna() {
         />
         {errors.nama_pengguna && <Error variant={1}>{errors.nama_pengguna}</Error>}
 
+        <Paragraph size="lg">Nomor Telepon</Paragraph>
+        <PhoneInput
+          placeholder="Nomor telepon Pengguna"
+          value={data.nomor_telepon}
+          onChange={(e) => setData('nomor_telepon', e ?? '')}
+        />
+        {errors.nomor_telepon && <Error variant={1}>{errors.nomor_telepon}</Error>}
+
         <Paragraph size="lg">Hak Akses</Paragraph>
         <Select
           variant={1}
@@ -122,14 +130,6 @@ export default function Pengguna() {
           ))}
         </Select>
         {errors.id_hak_akses && <Error variant={1}>{errors.id_hak_akses}</Error>}
-
-        <Paragraph size="lg">Nomor Telepon</Paragraph>
-        <PhoneInput
-          placeholder="Nomor telepon Pengguna"
-          value={data.nomor_telepon}
-          onChange={(e) => setData('nomor_telepon', e ?? '')}
-        />
-        {errors.nomor_telepon && <Error variant={1}>{errors.nomor_telepon}</Error>}
 
         <Button type="submit" variant={1} disabled={processing} size="md">
           {processing ? 'Updating....' : 'Update'}

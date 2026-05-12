@@ -50,7 +50,7 @@ export default function Status() {
   return (
     <>
       <Heading level={1} color="dark_slate_grey" className="font-bold">
-        Status Adjustment Stok
+        Status Adjustment Stok Produk
       </Heading>
       <div className="flex flex-col w-full bg-white shadow-md rounded-md p-5">
         <div className="w-full flex flex-row items-center gap-3">

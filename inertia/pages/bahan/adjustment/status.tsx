@@ -50,7 +50,7 @@ export default function StatusBahan() {
   return (
     <>
       <Heading level={1} color="dark_slate_grey" className="font-bold">
-        Status Adjustment Stok Bahan
+        Status Adjustment Stok Bahan Baku
       </Heading>
 
       <div className="flex flex-col w-full bg-white shadow-md rounded-md p-5">
