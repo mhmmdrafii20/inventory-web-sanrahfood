@@ -16,7 +16,7 @@ const uniqueBahanBaku = vine.createRule(
 )
 
 export const bahanValidator = vine.create({
-  nama_bahan_baku: vine.string().minLength(3).maxLength(50).use(uniqueBahanBaku()).trim(),
+  nama_bahan_baku: vine.string().minLength(3).maxLength(255).use(uniqueBahanBaku()).trim(),
   satuan: vine.string().minLength(1).maxLength(10).trim(),
   stok_minimum: vine.number().min(0),
 })
@@ -42,7 +42,7 @@ export const updateBahanValidator = (id: number) =>
     nama_bahan_baku: vine
       .string()
       .minLength(3)
-      .maxLength(50)
+      .maxLength(255)
       .trim()
       .use(uniqueUpdateBahanBaku(id)())
       .optional(),
