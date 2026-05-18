@@ -1,11 +1,10 @@
 import { TbPenggunaSchema as PenggunaSchema, TbStokProdukAdjustmentSchema } from '#database/schema'
 // import { BaseSchema } from "@adonisjs/lucid/schema";
-import { belongsTo, column, hasMany } from '@adonisjs/lucid/orm'
+import { belongsTo, column, hasMany, hasOne } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 import HakAkses from './hakAkses.ts'
-import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
+import type { BelongsTo, HasMany, HasOne } from '@adonisjs/lucid/types/relations'
 import PenerimaNotifikasi from '../notifikasi/penerima_notifikasi.ts'
-import PenerimaJenisNotifikasi from '../notifikasi/penerima_jenis_notifikasi.ts'
 import NotifikasiWhatsapp from '../notifikasi/notifikasi_whatsapp.ts'
 import StokAdjustmentProduk from '#models/produk/stok_adjustment_produk'
 
@@ -18,11 +17,11 @@ export default class Pengguna extends PenggunaSchema {
   @column({ columnName: 'id_pengguna' })
   declare id_pengguna: string
 
-  @hasMany(() => PenerimaNotifikasi, {
+  @hasOne(() => PenerimaNotifikasi, {
     foreignKey: 'id_pengguna',
     localKey: 'id_pengguna',
   })
-  declare penerima_notifikasi: HasMany<typeof PenerimaNotifikasi>
+  declare penerima_notifikasi: HasOne<typeof PenerimaNotifikasi>
 
   @hasMany(() => StokAdjustmentProduk, {
     foreignKey: 'id_pengguna',
@@ -30,11 +29,11 @@ export default class Pengguna extends PenggunaSchema {
   })
   declare stokAdjustmentProduk: HasMany<typeof StokAdjustmentProduk>
 
-  @hasMany(() => NotifikasiWhatsapp, {
+  @hasOne(() => NotifikasiWhatsapp, {
     foreignKey: 'id_pengguna',
     localKey: 'id_pengguna',
   })
-  declare notifikasiWhatsapp: HasMany<typeof NotifikasiWhatsapp>
+  declare notifikasiWhatsapp: HasOne<typeof NotifikasiWhatsapp>
 
   @column({ columnName: 'nama_pengguna' })
   declare nama_pengguna: string

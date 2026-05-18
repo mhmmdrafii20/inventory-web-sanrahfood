@@ -1,7 +1,7 @@
 import { TbProdukSchema as ProdukSchema } from '#database/schema'
-import { belongsTo, column, hasMany } from '@adonisjs/lucid/orm'
+import { belongsTo, column, hasMany, hasOne } from '@adonisjs/lucid/orm'
 import Kategori from './kategori.ts'
-import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
+import type { BelongsTo, HasMany, HasOne } from '@adonisjs/lucid/types/relations'
 import { DateTime } from 'luxon'
 import Resep from '../resep/resep.ts'
 import RiwayatProduksi from '../produksi/riwayat_produksi.ts'
@@ -18,10 +18,10 @@ export default class Produk extends ProdukSchema {
   })
   declare riwayatProduksi: HasMany<typeof RiwayatProduksi>
 
-  @hasMany(() => StokProduk, {
+  @hasOne(() => StokProduk, {
     foreignKey: 'id_produk',
   })
-  declare stokProduk: HasMany<typeof StokProduk>
+  declare stokProduk: HasOne<typeof StokProduk>
 
   @hasMany(() => StokAdjustmentProduk, {
     foreignKey: 'id_produk',

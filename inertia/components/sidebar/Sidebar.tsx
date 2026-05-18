@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useForm } from '@inertiajs/react'
 import { MenuItem, User } from './types'
+import Heading from '~/components/ui/Heading'
 
 export default function Sidebar() {
   const { post } = useForm()
@@ -36,8 +37,10 @@ export default function Sidebar() {
   return (
     <>
       <nav className="w-80 bg-dark-teal overflow-y-auto">
-        <div className="px-5 pt-5 pb-3">
-          <img src={Logo} className="h-[10vh] max-h-24" alt="logo_sanrah" />
+        <div className="px-5 pt-5 pb-3 ">
+          <h1 className="font-bold text-center !text-white w-full">
+            SANRAHFOOD INVENTORY MANAGEMENT
+          </h1>
         </div>
         {/* Grouped sections */}
         <ul className="flex flex-col px-5 gap-1 pb-6">
