@@ -5,7 +5,7 @@ export default class extends BaseSchema {
 
   async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id_riwayat_produksi', {primaryKey:true})
+      table.increments('id_riwayat_produksi', { primaryKey: true })
       table.integer('id_produk')
       table.integer('id_resep')
       table.integer('jumlah_batch').notNullable()
@@ -14,7 +14,6 @@ export default class extends BaseSchema {
       table.string('catatan_tambahan').nullable()
 
       table.timestamp('created_at')
-      table.timestamp('updated_at')
     })
   }
 

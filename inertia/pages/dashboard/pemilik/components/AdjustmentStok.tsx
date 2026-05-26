@@ -71,7 +71,7 @@ export default function AdjustmentStok({ requests }: Props) {
                   <span className="text-dark-grey">
                     Tanggal Pengajuan :{' '}
                     <strong className="font-semibold">
-                      {dayjs(item.tanggal_adjustment).fromNow()}
+                      {dayjs(item.tanggal_adjustment).format('DD MMMM YYYY')}
                     </strong>
                   </span>
                 </div>

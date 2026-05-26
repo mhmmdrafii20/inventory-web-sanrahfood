@@ -101,7 +101,7 @@ export default function index() {
             </div>
             {getProdukNoResep.length === 0 ? (
               <div className="flex flex-row items-center gap-5">
-                <Paragraph size="lg" color="dark_slate_grey">
+                <Paragraph size="md" color="dark_slate_grey" className="mt-2">
                   Tidak ada produk yang belum memiliki resep
                 </Paragraph>
               </div>
@@ -121,9 +121,9 @@ export default function index() {
                   <div className="flex">
                     <Link
                       route="resep.index"
-                      className="bg-dark-teal text-white mx-auto w-full px-4 py-2 rounded-md font-semibold text-sm  text-center hover:bg-dark_slate_grey transition duration-300"
+                      className="text-blue-500 font-semibold text-center text-sm"
                     >
-                      Buatkan Resep
+                      Buatkan Resep →
                     </Link>
                   </div>
                 </div>

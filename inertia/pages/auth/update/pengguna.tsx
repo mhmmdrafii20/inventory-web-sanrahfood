@@ -111,6 +111,12 @@ export default function Pengguna() {
           placeholder="Nomor telepon Pengguna"
           value={data.nomor_telepon}
           onChange={(e) => setData('nomor_telepon', e ?? '')}
+          style={{
+            outline: 'none',
+            borderRadius: '4px',
+            padding: '8px',
+            border: '1px solid #ccc',
+          }}
         />
         {errors.nomor_telepon && <Error variant={1}>{errors.nomor_telepon}</Error>}
 

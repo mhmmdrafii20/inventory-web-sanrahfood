@@ -157,7 +157,8 @@ export default function Index() {
                     </strong>
                   </span>
                   <span className="text-dark-grey mb-2">
-                    Tanggal Pengajuan <strong>{dayjs(items.tanggal_adjustment).fromNow()}</strong>
+                    Tanggal Pengajuan{' '}
+                    <strong>{dayjs(items.tanggal_adjustment).format('DD MMMM YYYY')}</strong>
                   </span>
                 </div>
                 <Link

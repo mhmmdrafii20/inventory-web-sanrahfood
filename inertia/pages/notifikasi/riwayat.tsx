@@ -112,8 +112,12 @@ export default function Riwayat() {
                       <Paragraph size="lg">{items.errorMessage}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg" className={`${items.status === 'TERKIRIM' ? 'text-green-800 font-bold' : 'text-red-500 font-bold'}`}>
-                        {items.status}</Paragraph>
+                      <Paragraph
+                        size="lg"
+                        className={`${items.status === 'TERKIRIM' ? 'text-green-800 font-bold' : 'text-red-500 font-bold'}`}
+                      >
+                        {items.status}
+                      </Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">
@@ -124,7 +128,7 @@ export default function Riwayat() {
                 ))
               ) : (
                 <tr className="border border-gray-300">
-                  <td colSpan={6} className="text-center py-4">
+                  <td colSpan={7} className="text-center py-4">
                     <Paragraph size="lg">Tidak Ada Riwayat Notifikasi</Paragraph>
                   </td>
                 </tr>

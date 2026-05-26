@@ -121,11 +121,11 @@ export default function Riwayat() {
                       <Paragraph size="lg">{items?.namaResep}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items.resep?.yieldPerBatch}</Paragraph>
+                      <Paragraph size="lg">{items.resep?.yieldPerBatch} {items.produk.satuan}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">
-                        {items.jumlahBatch} {items.produk.satuan}
+                        {items.jumlahBatch} Batch
                       </Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">

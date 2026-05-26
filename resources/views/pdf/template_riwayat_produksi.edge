@@ -51,9 +51,9 @@
                     <tr>
                         <td>{{item.produk.nama_produk}}</td>
                         <td>{{item.resep.nama_resep}}</td>
-                        <td>{{item.resep.yield_per_batch}}</td>
-                        <td>{{item.jumlah_batch}}</td>
-                        <td>{{item.jumlah_hasil_produksi}}</td>
+                        <td>{{item.resep.yield_per_batch}}  {{item.produk.satuan}}</td>
+                        <td>{{item.jumlah_batch}} Batch</td>
+                        <td>{{item.jumlah_hasil_produksi}} {{item.produk.satuan}}</td>
                         <td>{{item.tanggal_produksi.toFormat('dd-MM-yyyy')}}</td>
                         <td>{{item.catatan_tambahan || "Tidak ada catatan."}}</td>
                     </tr>

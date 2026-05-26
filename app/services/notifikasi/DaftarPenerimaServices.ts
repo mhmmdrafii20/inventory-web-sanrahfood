@@ -79,6 +79,5 @@ export class DaftarPenerimaServices {
             penggunaQuery.where('nama_pengguna', 'ILIKE', `%${search}%`)
           })
       })
-      .where({ is_deleted: false })
   }
 }

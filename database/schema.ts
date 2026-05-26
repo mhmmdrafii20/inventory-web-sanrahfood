@@ -233,7 +233,6 @@ export class TbRiwayatProduksiSchema extends BaseModel {
     'tanggalProduksi',
     'catatanTambahan',
     'createdAt',
-    'updatedAt',
   ] as const
   $columns = TbRiwayatProduksiSchema.$columns
   @column()
@@ -252,8 +251,6 @@ export class TbRiwayatProduksiSchema extends BaseModel {
   declare catatanTambahan: string | null
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare updatedAt: DateTime | null
 }
 
 export class TbRiwayatStokBahanBakuSchema extends BaseModel {

@@ -4,15 +4,25 @@ export class LaporanStokBahanBakuServices {
   static async getLaporanData(tanggal_awal?: string, tanggal_akhir?: string) {
     const laporanMap = new Map()
 
-    const queryRestok = RiwayatStokBahanBaku.query()
-      .join(
-        'tb_stok_bahan_baku',
-        'tb_stok_bahan_baku.id_stok_bahan_baku',
-        '=',
-        'tb_riwayat_stok_bahan_baku.id_stok_bahan_baku'
-      )
-      .join('tb_bahan_baku', 'tb_bahan_baku.id_bahan_baku', '=', 'tb_stok_bahan_baku.id_bahan_baku')
-      .select('tb_riwayat_stok_bahan_baku.nama_bahan_baku', 'tb_bahan_baku.satuan as satuan')
+    function withSatuan(query: any) {
+      return query
+        .join(
+          'tb_stok_bahan_baku',
+          'tb_stok_bahan_baku.id_stok_bahan_baku',
+          '=',
+          'tb_riwayat_stok_bahan_baku.id_stok_bahan_baku'
+        )
+        .join(
+          'tb_bahan_baku',
+          'tb_bahan_baku.id_bahan_baku',
+          '=',
+          'tb_stok_bahan_baku.id_bahan_baku'
+        )
+        .select('tb_bahan_baku.satuan as satuan')
+    }
+
+    const queryRestok = withSatuan(RiwayatStokBahanBaku.query())
+      .select('tb_riwayat_stok_bahan_baku.nama_bahan_baku')
       .where('tipe_transaksi', 'RESTOK')
 
     if (tanggal_awal && tanggal_akhir) {
@@ -21,7 +31,7 @@ export class LaporanStokBahanBakuServices {
 
     const totalRestok = await queryRestok
       .sum('selisih_stok as total')
-      .groupBy('tb_riwayat_stok_bahan_baku.nama_bahan_baku', 'satuan')
+      .groupBy('tb_riwayat_stok_bahan_baku.nama_bahan_baku', 'tb_bahan_baku.satuan')
 
     totalRestok.forEach((item) => {
       const nama = item.nama_bahan_baku
@@ -34,8 +44,8 @@ export class LaporanStokBahanBakuServices {
       })
     })
 
-    const queryPenggunaanProduksi = RiwayatStokBahanBaku.query()
-      .select('nama_bahan_baku')
+    const queryPenggunaanProduksi = withSatuan(RiwayatStokBahanBaku.query())
+      .select('tb_riwayat_stok_bahan_baku.nama_bahan_baku')
       .where('tipe_transaksi', 'PRODUKSI')
 
     if (tanggal_awal && tanggal_akhir) {
@@ -44,7 +54,7 @@ export class LaporanStokBahanBakuServices {
 
     const totalPenggunaanProduksi = await queryPenggunaanProduksi
       .sum('selisih_stok as total')
-      .groupBy('nama_bahan_baku')
+      .groupBy('tb_riwayat_stok_bahan_baku.nama_bahan_baku', 'tb_bahan_baku.satuan')
 
     totalPenggunaanProduksi.forEach((item) => {
       const nama = item.nama_bahan_baku
@@ -52,12 +62,13 @@ export class LaporanStokBahanBakuServices {
       laporanMap.set(nama, {
         ...(laporanMap.get(nama) || {}),
         nama_bahan_baku: nama,
+        satuan: item.$extras.satuan,
         total_penggunaan_produksi: Math.abs(Number(item.$extras.total)),
       })
     })
 
-    const queryAdjustment = RiwayatStokBahanBaku.query()
-      .select('nama_bahan_baku')
+    const queryAdjustment = withSatuan(RiwayatStokBahanBaku.query())
+      .select('tb_riwayat_stok_bahan_baku.nama_bahan_baku')
       .select(
         db.raw(`
         SUM(
@@ -85,7 +96,10 @@ export class LaporanStokBahanBakuServices {
       queryAdjustment.whereBetween('tanggal_perubahan_stok', [tanggal_awal, tanggal_akhir])
     }
 
-    const totalAdjustment = await queryAdjustment.groupBy('nama_bahan_baku')
+    const totalAdjustment = await queryAdjustment.groupBy(
+      'tb_riwayat_stok_bahan_baku.nama_bahan_baku',
+      'tb_bahan_baku.satuan'
+    )
 
     totalAdjustment.forEach((item) => {
       const nama = item.nama_bahan_baku
@@ -93,6 +107,7 @@ export class LaporanStokBahanBakuServices {
       laporanMap.set(nama, {
         ...(laporanMap.get(nama) || {}),
         nama_bahan_baku: nama,
+        satuan: item.$extras.satuan,
         adjustment_masuk: Number(item.$extras.adjustment_masuk),
         adjustment_keluar: Number(item.$extras.adjustment_keluar),
       })

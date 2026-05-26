@@ -76,20 +76,20 @@ export default function Laporan() {
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">
-                        {items.total_produksi} {items.satuan}
+                        {items.total_produksi ?? 0} {items.satuan}
                       </Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items.total_penjualan}</Paragraph>
+                      <Paragraph size="lg">{items.total_penjualan ?? 0}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">
-                        {items.adjustment_masuk} {items.satuan}
+                        {items.adjustment_masuk ?? 0} {items.satuan}
                       </Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">
-                        {items.adjustment_keluar} {items.satuan}
+                        {items.adjustment_keluar ?? 0} {items.satuan}
                       </Paragraph>
                     </td>
                   </tr>

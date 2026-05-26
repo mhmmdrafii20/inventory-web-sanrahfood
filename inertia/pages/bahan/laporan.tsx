@@ -16,6 +16,7 @@ export default function Laporan() {
       adjustment_keluar: number
     }[]
   }>().props
+  console.log(laporanData)
   const { data, setData } = useForm({
     tanggal_awal: '',
     tanggal_akhir: '',
@@ -74,22 +75,22 @@ export default function Laporan() {
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">
-                        {items.total_restok} {items.satuan}
+                        {items.total_restok ?? 0} {items.satuan}
                       </Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">
-                        {items.total_penggunaan_produksi} {items.satuan}
+                        {items.total_penggunaan_produksi ?? 0} {items.satuan}
                       </Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">
-                        {items.adjustment_masuk} {items.satuan}
+                        {items.adjustment_masuk ?? 0} {items.satuan}
                       </Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">
-                        {items.adjustment_keluar} {items.satuan}
+                        {items.adjustment_keluar ?? 0} {items.satuan}
                       </Paragraph>
                     </td>
                   </tr>

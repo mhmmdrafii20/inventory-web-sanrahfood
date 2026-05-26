@@ -105,8 +105,7 @@ export default function Index() {
   }
   const displayResep = searchRes?.length > 0 ? searchRes : resep
 
-  const selectedResep = resep.find((resep) => resep.idResep === selectedId)
-  console.log(selectedResep)
+  const selectedResep = resep?.find((resep) => resep.idResep === selectedId)
 
   function handleView(id: number) {
     setSelectedId(id)
@@ -317,7 +316,7 @@ export default function Index() {
                       <Paragraph size="lg">{items.produk?.namaProduk}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items.yieldPerBatch}</Paragraph>
+                      <Paragraph size="lg">{items.yieldPerBatch}  {items.produk?.satuan}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">

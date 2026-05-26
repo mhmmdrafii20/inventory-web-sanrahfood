@@ -20,7 +20,10 @@ export default class TipeNotifikasiService {
   ) {
     const data = await TipeNotifikasi.query()
       .where('id_tipe_notifikasi', params)
-      .update({ ...payload })
+      .update({ ...payload,
+      template_variables: payload.template_variables
+        ? JSON.stringify(payload.template_variables)
+        : undefined})
     return data
   }
   static async delete(params: number) {

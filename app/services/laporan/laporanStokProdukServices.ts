@@ -4,15 +4,29 @@ export class LaporanStokProdukServices {
   static async getLaporanData(tanggal_awal?: string, tanggal_akhir?: string) {
     const laporanMap = new Map()
 
-    const queryPenjualan = RiwayatStokProduk.query()
-      .select('nama_produk')
+    function withSatuan(query: any) {
+      return query
+        .join(
+          'tb_stok_produk',
+          'tb_stok_produk.id_stok_produk',
+          '=',
+          'tb_riwayat_stok_produk.id_stok_produk'
+        )
+        .join('tb_produk', 'tb_produk.id_produk', '=', 'tb_stok_produk.id_produk')
+        .select('tb_produk.satuan as satuan')
+    }
+
+    const queryPenjualan = withSatuan(RiwayatStokProduk.query())
+      .select('tb_riwayat_stok_produk.nama_produk')
       .where('tipe_transaksi', 'PENJUALAN')
 
     if (tanggal_awal && tanggal_akhir) {
       queryPenjualan.whereBetween('tanggal_perubahan_stok', [tanggal_awal, tanggal_akhir])
     }
 
-    const totalPenjualan = await queryPenjualan.sum('selisih_stok as total').groupBy('nama_produk')
+    const totalPenjualan = await queryPenjualan
+      .sum('selisih_stok as total')
+      .groupBy('tb_riwayat_stok_produk.nama_produk', 'tb_produk.satuan')
 
     totalPenjualan.forEach((item) => {
       const nama = item.nama_produk
@@ -20,19 +34,13 @@ export class LaporanStokProdukServices {
       laporanMap.set(nama, {
         ...(laporanMap.get(nama) || {}),
         nama_produk: nama,
+        satuan: item.$extras.satuan,
         total_penjualan: Math.abs(Number(item.$extras.total)),
       })
     })
 
-    const queryProduksi = RiwayatStokProduk.query()
-      .join(
-        'tb_stok_produk',
-        'tb_stok_produk.id_stok_produk',
-        '=',
-        'tb_riwayat_stok_produk.id_stok_produk'
-      )
-      .join('tb_produk', 'tb_produk.id_produk', '=', 'tb_stok_produk.id_produk')
-      .select('tb_riwayat_stok_produk.nama_produk', 'tb_produk.satuan as satuan')
+    const queryProduksi = withSatuan(RiwayatStokProduk.query())
+      .select('tb_riwayat_stok_produk.nama_produk')
       .where('tipe_transaksi', 'PRODUKSI')
 
     if (tanggal_awal && tanggal_akhir) {
@@ -41,8 +49,7 @@ export class LaporanStokProdukServices {
 
     const totalProduksi = await queryProduksi
       .sum('selisih_stok as total')
-      .groupBy('tb_riwayat_stok_produk.nama_produk', 'satuan')
-
+      .groupBy('tb_riwayat_stok_produk.nama_produk', 'tb_produk.satuan')
     totalProduksi.forEach((item) => {
       const nama = item.nama_produk
 
@@ -54,8 +61,8 @@ export class LaporanStokProdukServices {
       })
     })
 
-    const queryAdjustment = RiwayatStokProduk.query()
-      .select('nama_produk')
+    const queryAdjustment = withSatuan(RiwayatStokProduk.query())
+      .select('tb_riwayat_stok_produk.nama_produk')
       .select(
         db.raw(`
         SUM(
@@ -83,7 +90,10 @@ export class LaporanStokProdukServices {
       queryAdjustment.whereBetween('tanggal_perubahan_stok', [tanggal_awal, tanggal_akhir])
     }
 
-    const totalAdjustment = await queryAdjustment.groupBy('nama_produk')
+    const totalAdjustment = await queryAdjustment.groupBy(
+      'tb_riwayat_stok_produk.nama_produk',
+      'tb_produk.satuan'
+    )
 
     totalAdjustment.forEach((item) => {
       const nama = item.nama_produk
@@ -91,6 +101,7 @@ export class LaporanStokProdukServices {
       laporanMap.set(nama, {
         ...(laporanMap.get(nama) || {}),
         nama_produk: nama,
+        satuan: item.$extras.satuan,
         adjustment_masuk: Number(item.$extras.adjustment_masuk),
         adjustment_keluar: Number(item.$extras.adjustment_keluar),
       })
