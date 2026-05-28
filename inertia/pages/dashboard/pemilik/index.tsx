@@ -74,6 +74,8 @@ export default function Index() {
     minimumStokBahanBaku: number
     namaPengguna: string
   }>().props
+
+  console.log(produkPenjualanBulanan)
   const optionsProdukPenjualanBulanan = options(
     'produkPenjualanBulanan',
     '100%',

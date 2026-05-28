@@ -80,7 +80,7 @@ export default function Laporan() {
                       </Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
-                      <Paragraph size="lg">{items.total_penjualan ?? 0}</Paragraph>
+                      <Paragraph size="lg">{items.total_penjualan ?? 0} {items.satuan}</Paragraph>
                     </td>
                     <td className="border border-gray-300 py-3 px-5">
                       <Paragraph size="lg">

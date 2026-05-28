@@ -75,13 +75,13 @@
               {{ item.stokBahanBaku.bahan.nama_bahan_baku }}
             </td>
             <td>
-              {{ item.selisih_stok }} {{ item.stokBahanBaku.bahan.satuan }}
+              {{ item.selisih_stok ?? 0 }} {{ item.stokBahanBaku.bahan.satuan }}
             </td>
             <td>
-              {{ item.stok_sebelum }} {{ item.stokBahanBaku.bahan.satuan }}
+              {{ item.stok_sebelum ?? 0 }} {{ item.stokBahanBaku.bahan.satuan }}
             </td>
             <td>
-              {{ item.stok_sesudah }} {{ item.stokBahanBaku.bahan.satuan }}
+              {{ item.stok_sesudah ?? 0 }} {{ item.stokBahanBaku.bahan.satuan }}
             </td>
             <td>
               {{ item.jenis_stok }}

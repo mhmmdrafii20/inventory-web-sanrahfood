@@ -19,6 +19,6 @@ export default class RiwayatNotifikasiController {
       tanggal_awal,
       tanggal_akhir
     )
-    return inertia.render('produk/riwayat', { filteredRiwayatNotifikasi })
+    return inertia.render('notifikasi/riwayat', { filteredRiwayatNotifikasi })
   }
 }

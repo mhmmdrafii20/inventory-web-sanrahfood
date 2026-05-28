@@ -263,20 +263,23 @@ export default class DashboardService {
       })
 
     const grouped: Record<string, number[]> = {}
-
+    const satuan : Record<string, string> = {}
+    
     data.forEach((item) => {
       const namaProduk = item.stokProduk.produk.nama_produk
+      const satuanProduk = item.stokProduk.produk.satuan
       const minggu = getWeekOfMonth(item.tanggal_perubahan_stok.toJSDate())
 
       if (!grouped[namaProduk]) {
         grouped[namaProduk] = [0, 0, 0, 0, 0]
+        satuan[namaProduk] = satuanProduk
       }
       grouped[namaProduk][minggu - 1] += Math.abs(item.selisih_stok)
     })
     const categories = ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4', 'Minggu 5']
 
     const series = Object.keys(grouped).map((namaProduk) => ({
-      name: namaProduk,
+      name: `${namaProduk} (${satuan[namaProduk]})`,
       data: grouped[namaProduk],
     }))
     return { categories, series }

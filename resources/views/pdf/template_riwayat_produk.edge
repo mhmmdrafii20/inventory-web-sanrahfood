@@ -75,13 +75,13 @@
               {{ item.nama_produk }}
             </td>
             <td>
-              {{ item.selisih_stok }} {{ item.stokProduk.produk.satuan }}
+              {{ item.selisih_stok ?? 0 }} {{ item.stokProduk.produk.satuan }}
             </td>
             <td>
-              {{ item.stok_sebelum }} {{ item.stokProduk.produk.satuan }}
+              {{ item.stok_sebelum ?? 0 }} {{ item.stokProduk.produk.satuan }}
             </td>
             <td>
-              {{ item.stok_sesudah }} {{ item.stokProduk.produk.satuan }}
+              {{ item.stok_sesudah ?? 0 }} {{ item.stokProduk.produk.satuan }}
             </td>
             <td>
               {{ item.jenis_stok }}

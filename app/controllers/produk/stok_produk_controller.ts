@@ -52,7 +52,7 @@ export default class StokProdukController {
     try {
       const payload = await request.validateUsing(adjustmentStokProdukValidator)
       await StokProdukServices.createAdjustment(payload, String(user?.id_pengguna))
-      session.flash('success', 'Permintaaan adjustment stok telah dikirim')
+      session.flash('success', 'Permintaaan adjustment stok produk telah dikirim')
       return response.redirect().back()
     } catch (error) {
       if (error.code === 'E_VALIDATION_ERROR') {
@@ -74,12 +74,12 @@ export default class StokProdukController {
   }
   async approve({ session, response, user, params }: HttpContext) {
     await StokProdukServices.approve(Number(params.id), String(user?.nama_pengguna))
-    session.flash('success', 'Permintaan adjustment stok telah disetujui')
+    session.flash('success', 'Permintaan adjustment stok produk telah disetujui')
     return response.redirect().back()
   }
   async reject({ session, response, user, params }: HttpContext) {
     await StokProdukServices.reject(Number(params.id), String(user?.nama_pengguna))
-    session.flash('success', 'Permintaan adjustment stok telah ditolak')
+    session.flash('success', 'Permintaan adjustment stok produk telah ditolak')
     return response.redirect().back()
   }
   async status({ inertia }: HttpContext) {

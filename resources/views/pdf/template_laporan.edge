@@ -69,16 +69,16 @@
               {{ item.nama }}
             </td>
             <td>
-              {{ item.masuk }} {{ item.satuan }}
+              {{ item.masuk ?? 0}} {{ item.satuan }}
             </td>
             <td>
-              {{ item.keluar }} {{ item.type === 'bahan_baku' ? item.satuan : '' }}
+              {{ item.keluar ?? 0 }} {{item.satuan}}
             </td>
             <td>
-              {{ item.adjustment_masuk }} {{ item.satuan }}
+              {{ item.adjustment_masuk ?? 0 }} {{ item.satuan }}
             </td>
             <td>
-              {{ item.adjustment_keluar }} {{ item.satuan }}
+              {{ item.adjustment_keluar ?? 0 }} {{ item.satuan }}
             </td>
           </tr>
         @endeach
