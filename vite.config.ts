@@ -28,6 +28,6 @@ export default defineConfig({
     watch: {
       ignored: ['**/storage/**', '**/tmp/**'],
     },
-    allowedHosts: ['7dd4-2a09-bac1-6520-8-00-3e6-4e.ngrok-free.app', 'localhost'],
+    allowedHosts: ['https://inventory-web-sanrahfood-production.up.railway.app', 'localhost'],
   },
 })
