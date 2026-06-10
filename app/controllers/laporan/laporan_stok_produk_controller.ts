@@ -24,7 +24,6 @@ export default class LaporanStokProdukController {
       session.flash('error', 'Data tidak ditemukan')
       return response.redirect().back()
     }
-    console.log(filteredLaporanStokProduk)
     const html = await TemplateService.render('template_laporan', {
       data: filteredLaporanStokProduk.map((item) => ({
         nama: item.nama_produk,

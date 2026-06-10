@@ -56,8 +56,6 @@ export default class WebhookController {
       )
       return response.ok('Data produksi berhasil dikirim')
     } catch (error) {
-      console.log(error)
-
       return response.ok('Data produksi gagal dikirim')
     }
   }

@@ -16,7 +16,6 @@ export default function Laporan() {
       adjustment_keluar: number
     }[]
   }>().props
-  console.log(laporanData)
   const { data, setData } = useForm({
     tanggal_awal: '',
     tanggal_akhir: '',

@@ -31,7 +31,6 @@ export default class AuthController {
 
       const role = hakAkses?.$attributes.nama_hak_akses as Role
 
-      console.log(role)
       const roleRedirectMap = {
         'Pemilik': 'dashboard.pemilik',
         'Karyawan Gudang': 'dashboard.gudang',

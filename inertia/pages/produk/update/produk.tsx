@@ -13,7 +13,6 @@ export default function Produk() {
     kategori: { idKategori: number; namaKategori: string }[]
     dataStokProduk: { stok_minimum: number }
   }>().props
-  console.log(kategori)
   const { data, setData, put, processing, reset } = useForm({
     id_produk: dataProduk.id_produk,
     id_kategori: dataProduk.id_kategori,

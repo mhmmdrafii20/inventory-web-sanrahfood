@@ -42,7 +42,6 @@ export default function Riwayat() {
     filteredRiwayatNotifikasi && filteredRiwayatNotifikasi.length > 0
       ? filteredRiwayatNotifikasi
       : riwayatNotifikasi
-  console.log(displayRiwayatNotifikasi)
   const handleFilter = (e: SubmitEvent) => {
     e.preventDefault()
     get('/riwayat-notifikasi/filter', {

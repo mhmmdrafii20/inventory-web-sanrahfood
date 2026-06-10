@@ -27,8 +27,6 @@ export default function resep() {
   }>().props
   const { patch } = useForm()
 
-  console.log(resep)
-
   function handleSearch() {
     router.get(
       `/resep/trash/search`,

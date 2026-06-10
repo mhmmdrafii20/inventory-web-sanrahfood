@@ -75,7 +75,6 @@ export default function Index() {
     namaPengguna: string
   }>().props
 
-  console.log(produkPenjualanBulanan)
   const optionsProdukPenjualanBulanan = options(
     'produkPenjualanBulanan',
     '100%',

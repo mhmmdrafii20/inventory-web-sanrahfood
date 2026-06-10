@@ -77,7 +77,6 @@ export default class StokBahanController {
     return inertia.render('bahan/approval', { adjustmentBahanBaku })
   }
   async approve({ session, response, user, params }: HttpContext) {
-    console.log(params.id)
     try {
       await StokBahanServices.approve(params.id, String(user?.nama_pengguna))
 

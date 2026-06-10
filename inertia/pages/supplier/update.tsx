@@ -20,8 +20,6 @@ export default function UpdateSupplier() {
     }
   }>().props
 
-  console.log(dataSupplier)
-
   const { data, setData, put, reset, processing } = useForm({
     id_supplier: dataSupplier.id_supplier,
     nama_supplier: dataSupplier.nama_supplier,

@@ -51,7 +51,6 @@ export default function DaftarPenerima() {
     }[]
   }>().props
 
-  console.log(daftarPenerima)
   const {
     data,
     setData,

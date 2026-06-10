@@ -28,7 +28,6 @@ export default function NotifikasiWhatsapp() {
     const interval = setInterval(async () => {
       try {
         const res = await axios.get('/notifikasi-whatsapp/get-qr')
-        console.log(res.data.qrcode)
         setQrCode(res.data.qrcode)
         setIsOpen(true)
 
