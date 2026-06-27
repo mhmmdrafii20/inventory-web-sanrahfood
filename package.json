@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node bin/server.js",
-    "postinstall": "rm -rf /root/.cache/puppeteer && npx puppeteer browsers install chrome",
+    "postinstall": "npx puppeteer browsers install chrome-headless-shell",
     "build": "vite build && node ace build --ignore-ts-errors",
     "dev": "node ace serve --watch",
     "test": "node ace test",
