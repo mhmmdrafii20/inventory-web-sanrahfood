@@ -5,7 +5,8 @@ export class PdfServices {
     static async generatePdf(html: string) {
         try {
             console.log('=== FIND CHROMIUM ===')
-            console.log(execSync("find /root/.cache/puppeteer/chrome -maxdepth 3").toString());
+            console.log(execSync('find /root/.cache/puppeteer/chrome -type f 2>/dev/null || true').toString())
+            console.log(execSync('ls -R /root/.cache/puppeteer/chrome').toString())
         } catch (e) {
         console.error(e)
         }
