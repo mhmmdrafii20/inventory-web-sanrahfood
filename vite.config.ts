@@ -28,6 +28,6 @@ export default defineConfig({
     watch: {
       ignored: ['**/storage/**', '**/tmp/**'],
     },
-    allowedHosts: ['https://inventory-web-sanrahfood-production.up.railway.app', 'localhost'],
+    allowedHosts: ['inventory-web-sanrahfood-production.up.railway.app', 'localhost'],
   },
 })
