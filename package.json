@@ -9,7 +9,6 @@
   },
   "scripts": {
     "start": "node bin/server.js",
-    "postinstall": "npx puppeteer browsers install chrome",
 	"build": "vite build && node ace build --ignore-ts-errors",
     "dev": "node ace serve --watch",
     "test": "node ace test",
