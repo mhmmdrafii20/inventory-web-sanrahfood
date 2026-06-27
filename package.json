@@ -8,9 +8,9 @@
     "node": ">=24.0.0"
   },
   "scripts": {
-    "start": "node bin/server.js",  
+    "start": "node bin/server.js",
     "postinstall": "npx puppeteer browsers install chrome",
-	"build": "vite build && node ace build --ignore-ts-errors",
+    "build": "vite build && node ace build --ignore-ts-errors",
     "dev": "node ace serve --watch",
     "test": "node ace test",
     "lint": "eslint .",
@@ -83,7 +83,7 @@
     "edge.js": "^6.5.0",
     "luxon": "^3.7.2",
     "pg": "^8.20.0",
-    "puppeteer": "^24.42.0",
+    "puppeteer": "^23.11.1",
     "react": "^19.2.4",
     "react-apexcharts": "^2.1.0",
     "react-dom": "^19.2.4",
