@@ -7,7 +7,7 @@ import Resep from '#models/resep/resep'
 import StokProduk from '#models/produk/stok_produk'
 export default class ProdukController {
   async index({ inertia }: HttpContext) {
-    const kategori = await Kategori.all()
+    const kategori = await Kategori.query().where({is_deleted:false})
     const produk = await Produk.query()
       .whereHas('kategori', (b) => {
         b.where({ is_deleted: false })
