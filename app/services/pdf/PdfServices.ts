@@ -13,7 +13,7 @@ export class PdfServices {
 
         const browser = await puppeteer.launch({
             headless: true,
-            executablePath: '/opt/google/chrome/chrome', 
+            executablePath: ' "/root/.cache/puppeteer/chrome/linux-147.0.7727.57/chrome-linux64/chrome",', 
             args: [
                 '--no-sandbox',
                 '--disable-setuid-sandbox',
