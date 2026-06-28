@@ -1,17 +1,12 @@
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-core';
 
 export class PdfServices {
     static async generatePdf(html: string) {
-        const browser = await puppeteer.launch({
-            headless: true,
-            args: [
-                '--no-sandbox',
-                '--disable-setuid-sandbox',
-            ],
-        });
+    const browser = await puppeteer.connect({ browserWSEndpoint: process.env.BROWSER_WS_ENDPOINT });
+
         const page = await browser.newPage();
 
-        await page.setContent(html, { waitUntil: 'networkidle0' });
+        await page.setContent(html);
 
         const pdf = await page.pdf({
             format: 'A4',
