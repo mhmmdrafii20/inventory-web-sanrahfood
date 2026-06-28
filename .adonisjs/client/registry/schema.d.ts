@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 /// <reference path="../manifest.d.ts" />
 
-import type { ExtractBody, ExtractQuery, ExtractQueryForGet, ExtractResponse } from '@tuyau/core/types'
-import type { InferInput } from '@vinejs/vine/types'
+import type { ExtractBody, ExtractErrorResponse, ExtractQuery, ExtractQueryForGet, ExtractResponse } from '@tuyau/core/types'
+import type { InferInput, SimpleError } from '@vinejs/vine/types'
 
 export type ParamValue = string | number | bigint | boolean
 
@@ -16,6 +16,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'auth.sign_in': {
@@ -27,6 +28,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'webhook.get_stok_produk_from_supabase': {
@@ -38,6 +40,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'webhook.get_stok_bahan_baku_from_supabase': {
@@ -49,6 +52,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'webhook.get_produksi_from_supabase': {
@@ -60,6 +64,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'stokBahan.index': {
@@ -71,6 +76,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'stokBahan.search': {
@@ -82,6 +88,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'stokProduk.index': {
@@ -93,6 +100,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'stokProduk.search': {
@@ -104,6 +112,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'dashboard.gudang': {
@@ -115,6 +124,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'restokBahan.restok': {
@@ -126,6 +136,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'restokBahan.create': {
@@ -137,6 +148,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'stokBahanBaku.adjustment': {
@@ -148,6 +160,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'stokBahanBaku.createAdjustment': {
@@ -159,6 +172,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'stokBahanBaku.status': {
@@ -170,6 +184,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'stokBahanBaku.searchStatus': {
@@ -181,6 +196,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'produk.stokKeluar': {
@@ -192,6 +208,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'produk.createStokKeluar': {
@@ -203,6 +220,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'stokProduk.adjustment': {
@@ -214,6 +232,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'stokProduk.createAdjustment': {
@@ -225,6 +244,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'stokProduk.status': {
@@ -236,6 +256,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'stokProduk.searchStatus': {
@@ -247,6 +268,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'dashboard.produksi': {
@@ -258,6 +280,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'resep.index': {
@@ -269,6 +292,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'resep.create': {
@@ -280,6 +304,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'resep.edit': {
@@ -291,6 +316,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'resep.update': {
@@ -302,6 +328,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'resep.destroy': {
@@ -313,6 +340,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'resep.search': {
@@ -324,6 +352,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'resep.trash': {
@@ -335,6 +364,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'resep.restore': {
@@ -346,6 +376,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'resep.searchTrash': {
@@ -357,6 +388,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'produksi.index': {
@@ -368,6 +400,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'produksi.create': {
@@ -379,6 +412,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'dashboard.pemilik': {
@@ -390,6 +424,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'bahan.index': {
@@ -401,6 +436,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'bahan.edit': {
@@ -412,6 +448,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'bahan.create': {
@@ -423,6 +460,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'bahan.update': {
@@ -434,6 +472,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'bahan.destroy': {
@@ -445,6 +484,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'bahan.search': {
@@ -456,6 +496,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'bahan.trash': {
@@ -467,6 +508,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'bahan.restore': {
@@ -478,6 +520,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'bahan.searchTrash': {
@@ -489,6 +532,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'approval-stok-bahan-baku.index': {
@@ -500,6 +544,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'approval-stok-bahan-baku.approve': {
@@ -511,6 +556,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'approval-stok-bahan-baku.reject': {
@@ -522,6 +568,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'approval-stok-bahan-baku.search': {
@@ -533,6 +580,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'produk.index': {
@@ -544,6 +592,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'produk.create': {
@@ -555,6 +604,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'produk.edit': {
@@ -566,6 +616,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'produk.update': {
@@ -577,6 +628,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'produk.destroy': {
@@ -588,6 +640,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'produk.search': {
@@ -599,6 +652,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'produk.trash': {
@@ -610,6 +664,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'produk.restore': {
@@ -621,6 +676,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'produk.searchTrash': {
@@ -632,6 +688,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'approval-stok-produk.index': {
@@ -643,6 +700,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'approval-stok-produk.approve': {
@@ -654,6 +712,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'approval-stok-produk.reject': {
@@ -665,6 +724,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'approval-stok-produk.search': {
@@ -676,6 +736,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'hakAkses.index': {
@@ -687,6 +748,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'hakAkses.create': {
@@ -698,6 +760,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'hakAkses.edit': {
@@ -709,6 +772,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'hakAkses.update': {
@@ -720,6 +784,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'hakAkses.destroy': {
@@ -731,6 +796,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'hakAkses.search': {
@@ -742,6 +808,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'hakAkses.trash': {
@@ -753,6 +820,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'hakAkses.restore': {
@@ -764,6 +832,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'hakAkses.searchTrash': {
@@ -775,6 +844,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'pengguna.index': {
@@ -786,6 +856,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'pengguna.create': {
@@ -797,6 +868,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'pengguna.edit': {
@@ -808,6 +880,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'pengguna.update': {
@@ -819,6 +892,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'pengguna.destroy': {
@@ -830,6 +904,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'pengguna.search': {
@@ -841,6 +916,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'pengguna.trash': {
@@ -852,6 +928,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'pengguna.restore': {
@@ -863,6 +940,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'pengguna.searchTrash': {
@@ -874,6 +952,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'kategoriProduk.index': {
@@ -885,6 +964,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'kategoriProduk.create': {
@@ -896,6 +976,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'kategoriProduk.edit': {
@@ -907,6 +988,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'kategoriProduk.update': {
@@ -918,6 +1000,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'kategoriProduk.destroy': {
@@ -929,6 +1012,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'kategoriProduk.search': {
@@ -940,6 +1024,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'kategoriProduk.trash': {
@@ -951,6 +1036,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'kategoriProduk.restore': {
@@ -962,6 +1048,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'kategoriProduk.searchTrash': {
@@ -973,6 +1060,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'riwayatStokBahanBaku.index': {
@@ -984,6 +1072,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'riwayatStokBahanBaku.filter': {
@@ -995,6 +1084,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'riwayatStokBahanBaku.generate': {
@@ -1006,6 +1096,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'riwayatStokProduk.index': {
@@ -1017,6 +1108,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'riwayatStokProduk.filter': {
@@ -1028,6 +1120,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'riwayatStokProduk.generate': {
@@ -1039,6 +1132,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'riwayatProduksi.index': {
@@ -1050,6 +1144,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'riwayatProduksi.filter': {
@@ -1061,6 +1156,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'riwayatProduksi.generate': {
@@ -1072,6 +1168,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'notifikasiWhatsapp.index': {
@@ -1083,6 +1180,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'notifikasiWhatsapp.createSession': {
@@ -1094,6 +1192,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'notifikasiWhatsapp.getQr': {
@@ -1105,6 +1204,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'notifikasiWhatsapp.deleteSession': {
@@ -1116,6 +1216,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'riwayatNotifikasi.index': {
@@ -1127,6 +1228,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'riwayatNotifikasi.filter': {
@@ -1138,6 +1240,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'daftarPenerima.index': {
@@ -1149,6 +1252,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'daftarPenerima.create': {
@@ -1160,6 +1264,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'daftarPenerima.search': {
@@ -1171,6 +1276,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'daftarPenerima.edit': {
@@ -1182,6 +1288,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'daftarPenerima.update': {
@@ -1193,6 +1300,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'daftarPenerima.destroy': {
@@ -1204,6 +1312,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'tipeNotifikasi.index': {
@@ -1215,6 +1324,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'tipeNotifikasi.create': {
@@ -1226,6 +1336,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'tipeNotifikasi.edit': {
@@ -1237,6 +1348,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'tipeNotifikasi.update': {
@@ -1248,6 +1360,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'tipeNotifikasi.destroy': {
@@ -1259,6 +1372,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'tipeNotifikasi.search': {
@@ -1270,6 +1384,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'templateNotifikasi.index': {
@@ -1281,6 +1396,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'templateNotifikasi.create': {
@@ -1292,6 +1408,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'templateNotifikasi.search': {
@@ -1303,6 +1420,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'templateNotifikasi.edit': {
@@ -1314,6 +1432,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'templateNotifikasi.update': {
@@ -1325,6 +1444,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'templateNotifikasi.destroy': {
@@ -1336,6 +1456,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'supplier.index': {
@@ -1347,6 +1468,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'supplier.create': {
@@ -1358,6 +1480,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'supplier.edit': {
@@ -1369,6 +1492,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'supplier.update': {
@@ -1380,6 +1504,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'supplier.destroy': {
@@ -1391,6 +1516,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'supplier.search': {
@@ -1402,6 +1528,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'supplier.trash': {
@@ -1413,6 +1540,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'supplier.restore': {
@@ -1424,6 +1552,7 @@ export interface Registry {
       params: { id: ParamValue }
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'supplier.searchTrash': {
@@ -1435,6 +1564,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'laporan-produk.index': {
@@ -1446,6 +1576,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'laporan-produk.generate': {
@@ -1457,6 +1588,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'laporan-bahan-baku.index': {
@@ -1468,6 +1600,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'laporan-bahan-baku.generate': {
@@ -1479,6 +1612,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'pengguna.get_current_user': {
@@ -1490,6 +1624,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
   'auth.signOut': {
@@ -1501,6 +1636,7 @@ export interface Registry {
       params: {}
       query: {}
       response: unknown
+      errorResponse: unknown
     }
   }
 }
